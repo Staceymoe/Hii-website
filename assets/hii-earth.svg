@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-labelledby="title desc">
+  <title id="title">Earth from space</title>
+  <desc id="desc">A stylized globe with blue atmospheric glow, land masses, clouds, and a bright horizon flare.</desc>
+  <defs>
+    <radialGradient id="spaceGlow" cx="64%" cy="34%" r="62%">
+      <stop offset="0%" stop-color="#3048b8" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#0d1635" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ocean" cx="62%" cy="36%" r="64%">
+      <stop offset="0%" stop-color="#2e75b8"/>
+      <stop offset="30%" stop-color="#064886"/>
+      <stop offset="61%" stop-color="#05234e"/>
+      <stop offset="100%" stop-color="#01040b"/>
+    </radialGradient>
+    <radialGradient id="shade" cx="70%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="42%" stop-color="#ffffff" stop-opacity="0.02"/>
+      <stop offset="75%" stop-color="#000000" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.83"/>
+    </radialGradient>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cloudBlur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.5"/></filter>
+    <clipPath id="globeClip"><circle cx="465" cy="365" r="270"/></clipPath>
+  </defs>
+  <rect width="900" height="760" fill="none"/>
+  <circle cx="504" cy="346" r="356" fill="url(#spaceGlow)"/>
+  <g filter="url(#softGlow)">
+    <circle cx="465" cy="365" r="278" fill="none" stroke="#315fff" stroke-opacity="0.32" stroke-width="18"/>
+    <circle cx="465" cy="365" r="272" fill="none" stroke="#7ab9ff" stroke-opacity="0.55" stroke-width="4"/>
+  </g>
+  <circle cx="465" cy="365" r="270" fill="url(#ocean)"/>
+  <g clip-path="url(#globeClip)">
+    <rect x="195" y="95" width="540" height="540" fill="#061837"/>
+    <circle cx="465" cy="365" r="270" fill="url(#ocean)"/>
+    <g fill="#6c8a40" opacity="0.96">
+      <path d="M389 171c58-20 118-19 162 8 28 18 47 42 48 70-28-4-55-4-82 1-32 6-70-1-95-21-23-18-37-35-33-58Z"/>
+      <path d="M583 233c50 4 92 29 112 67-25 9-44 5-62-12-18-18-42-16-61-5-19 11-41 8-57-7 16-27 35-41 68-43Z"/>
+      <path d="M459 252c44 15 72 40 84 74 7 19 25 26 40 39 19 15 19 42 5 63-19-8-35-28-60-31-31-4-50-20-55-47-7-35-31-50-66-53 9-23 24-37 52-45Z"/>
+      <path d="M544 424c37 8 67 35 77 69 8 29 0 56-22 79-35-17-59-46-69-86-6-25-4-46 14-62Z"/>
+      <path d="M295 255c26-47 69-75 126-84-12 33-33 59-62 78-22 14-44 18-64 6Z"/>
+      <path d="M316 312c51-5 92 11 126 49-40 23-85 20-136-8-8-14-5-27 10-41Z"/>
+      <path d="M279 414c34-11 63-6 88 16 29 26 60 39 96 38-14 37-45 58-93 64-31-25-60-56-91-118Z"/>
+    </g>
+    <g fill="#b4834a" opacity="0.84">
+      <path d="M368 182c30-15 65-23 105-24-42 28-69 52-79 72-22-9-32-25-26-48Z"/>
+      <path d="M292 282c33-21 74-30 122-27-20 26-46 42-78 48-20 4-34-3-44-21Z"/>
+      <path d="M549 515c18 23 33 43 45 60-26 15-51 15-76 1 4-24 14-44 31-61Z"/>
+    </g>
+    <g fill="#ffffff" opacity="0.86" filter="url(#cloudBlur)">
+      <path d="M350 150c76 8 134 21 176 39-60-8-119-10-177-5-28 3-58 0-90-7 22-19 52-28 91-27Z"/>
+      <path d="M422 236c68 8 127 24 179 49-52-10-103-14-153-13-39 1-78-5-118-18 24-14 55-20 92-18Z"/>
+      <path d="M390 352c70 0 137 12 200 35-56 2-109-2-158-12-43-8-82-7-119 5 11-18 36-27 77-28Z"/>
+      <path d="M268 420c72 4 134 20 185 49-42-7-84-7-125 1-36 7-65 2-88-17 2-17 12-28 28-33Z"/>
+      <path d="M533 159c62 13 112 35 150 66-41-11-79-15-114-11-37 3-65-9-84-35 13-13 29-20 48-20Z"/>
+      <path d="M589 421c48 10 83 30 106 60-33-7-67-10-102-10-20 0-37-11-50-33 10-12 25-18 46-17Z"/>
+    </g>
+    <circle cx="465" cy="365" r="270" fill="url(#shade)"/>
+    <path d="M230 573c82 51 187 76 305 44 102-28 165-102 199-210 3 75-24 154-84 213-104 101-269 99-420-47Z" fill="#000" opacity="0.35"/>
+  </g>
+  <circle cx="465" cy="365" r="270" fill="none" stroke="#87c8ff" stroke-opacity="0.64" stroke-width="2"/>
+  <path d="M604 92c78 16 137 68 164 143" fill="none" stroke="#a9d8ff" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M687 153c57 10 101 49 120 103" fill="none" stroke="#315fff" stroke-opacity="0.42" stroke-width="11" stroke-linecap="round" filter="url(#softGlow)"/>
+  <g transform="translate(724 154)" filter="url(#softGlow)">
+    <circle r="20" fill="#fff" opacity="0.94"/>
+    <path d="M-86 0H86M0-86V86M-52-52 52 52M52-52-52 52" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
+  </g>
+  <g opacity="0.42" fill="#fff">
+    <circle cx="807" cy="224" r="13"/>
+    <circle cx="844" cy="254" r="6" opacity="0.5"/>
+    <circle cx="786" cy="297" r="4" opacity="0.45"/>
+    <circle cx="124" cy="174" r="2" opacity="0.6"/>
+    <circle cx="151" cy="506" r="1.5" opacity="0.6"/>
+  </g>
+</svg>
