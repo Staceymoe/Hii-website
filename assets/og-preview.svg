@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="70%" cy="35%" r="55%">
+      <stop offset="0" stop-color="#243ca2" stop-opacity="0.7"/>
+      <stop offset="0.45" stop-color="#071026" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="text" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#cfd5df"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#020305"/>
+  <circle cx="830" cy="300" r="330" fill="url(#g)"/>
+  <circle cx="840" cy="310" r="180" fill="#061a3d" stroke="#76a7ff" stroke-width="4"/>
+  <circle cx="910" cy="215" r="22" fill="#fff" opacity="0.9"/>
+  <text x="78" y="258" fill="url(#text)" font-family="Arial, Helvetica, sans-serif" font-size="182" font-weight="800" letter-spacing="-18">Hii</text>
+  <text x="88" y="323" fill="#f7f8fb" font-family="Arial, Helvetica, sans-serif" font-size="39" font-weight="300" letter-spacing="-2">Hybrid Intelligence Institute</text>
+  <rect x="88" y="353" width="96" height="2" fill="#6b86ff"/>
+  <text x="88" y="425" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="45" font-weight="300" letter-spacing="-2">A new hello for a new world.</text>
+  <text x="90" y="486" fill="#b7bbc7" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="300">Research and education on the missing relational layer of AI.</text>
+</svg>
