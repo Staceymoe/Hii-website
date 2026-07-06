@@ -101,12 +101,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue-soft); out
   border-bottom: 1px solid var(--line);
 }
 .brand { display: inline-flex; align-items: center; gap: 1rem; letter-spacing: .12em; text-transform: uppercase; }
-.brand-mark { font-size: clamp(2.2rem, 3vw, 3.15rem); font-weight: 850; letter-spacing: -.08em; text-transform: none; line-height: .9; }
+.brand-mark { font-size: clamp(2.2rem, 3vw, 3.15rem); font-weight: 850; letter-spacing: .01em; text-transform: none; line-height: .9; }
 .brand-name { color: var(--text); font-size: clamp(.72rem, 1vw, .9rem); font-weight: 500; line-height: 1.22; }
 .site-nav { display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 3.2rem); color: rgba(255,255,255,.9); font-size: .78rem; font-weight: 650; letter-spacing: .18em; text-transform: uppercase; }
 .site-nav a { position: relative; padding: .35rem 0; }
 .site-nav a::after { content: ""; position: absolute; inset: auto 0 -.1rem; height: 1px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
 .site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); }
+.site-nav .nav-social { color: var(--blue-soft); letter-spacing: .04em; text-transform: none; }
 .nav-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.04); color: var(--text); }
 .nav-toggle span { display: block; width: 18px; height: 1px; margin: .32rem auto; background: currentColor; }
 .study-strip, .why, .current-work, .about, .news, .contact { padding-block: clamp(4.5rem, 8vw, 8.5rem); }
@@ -139,6 +140,7 @@ p { color: var(--muted); }
 .fine-print { color: var(--faint); font-size: .85rem; }
 .site-footer { display: flex; justify-content: space-between; gap: 1rem; padding-block: 2rem; border-top: 1px solid var(--line); color: var(--faint); }
 .site-footer p { margin: 0; color: var(--faint); }
+.site-footer a { color: var(--blue-soft); }
 @media (max-width: 1040px) {
   .front-graphic { min-height: auto; }
   .front-graphic img { height: auto; min-height: 58svh; object-fit: contain; }
