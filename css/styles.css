@@ -75,6 +75,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue-soft); out
   object-fit: cover;
   object-position: center top;
 }
+.mobile-hero { display: none; }
 .graphic-hotspot {
   position: absolute;
   display: block;
@@ -154,8 +155,43 @@ p { color: var(--muted); }
 }
 @media (max-width: 760px) {
   :root { --header-h: 74px; }
-  .front-graphic { padding-top: 0; background: #000; }
-  .front-graphic img { width: 100%; height: auto; min-height: 0; object-fit: contain; }
+  .front-graphic { display: none; }
+  .mobile-hero {
+    min-height: 78svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-block: 5rem 4rem;
+    background:
+      radial-gradient(circle at 78% 28%, rgba(107,134,255,.22), transparent 14rem),
+      linear-gradient(180deg, #000 0%, #03040a 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-hero-mark {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(5.5rem, 24vw, 8.5rem);
+    font-weight: 850;
+    letter-spacing: -.08em;
+    line-height: .84;
+  }
+  .mobile-hero-name {
+    margin: .75rem 0 2.5rem;
+    color: var(--text);
+    font-size: .88rem;
+    font-weight: 650;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .mobile-hero h1 {
+    margin: 0 0 2rem;
+    max-width: 16rem;
+    font-size: clamp(2.45rem, 12vw, 4rem);
+    font-weight: 260;
+    letter-spacing: -.07em;
+    line-height: .98;
+  }
   .brand-name { display: none; }
   .nav-toggle { display: block; }
   .site-nav {
@@ -175,6 +211,7 @@ p { color: var(--muted); }
   }
   .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
   .site-nav a { padding: .9rem 1rem; }
+  .study-strip { padding-top: 4rem; }
   .study-grid { grid-template-columns: 1fr; }
   .study-card { min-height: auto; }
   .work-list article { grid-template-columns: 1fr; }
