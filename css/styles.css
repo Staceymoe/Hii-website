@@ -81,10 +81,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--blue-soft); out
   border-radius: 2px;
 }
 .graphic-hotspot-explore {
-  left: 7.8%;
-  top: 61.3%;
-  width: 17.4%;
-  height: 5.7%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  cursor: pointer;
+}
+.graphic-hotspot-explore:focus-visible {
+  outline: 2px solid var(--blue-soft);
+  outline-offset: -8px;
 }
 .site-header {
   position: sticky;
@@ -151,7 +156,6 @@ p { color: var(--muted); }
   :root { --header-h: 74px; }
   .front-graphic { padding-top: 0; background: #000; }
   .front-graphic img { width: 100%; height: auto; min-height: 0; object-fit: contain; }
-  .graphic-hotspot { display: none; }
   .brand-name { display: none; }
   .nav-toggle { display: block; }
   .site-nav {
