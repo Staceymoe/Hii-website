@@ -1,0 +1,39 @@
+@media (max-width: 760px) {
+  .mobile-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 78svh;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, .94) 0%, rgba(0, 0, 0, .72) 48%, rgba(0, 0, 0, .48) 100%),
+      radial-gradient(circle at 78% 26%, rgba(107, 134, 255, .34), transparent 13rem),
+      url('/assets_hii-frontpage.png');
+    background-size: cover;
+    background-position: 57% top;
+  }
+
+  .mobile-hero-mark {
+    font-size: clamp(5.8rem, 24vw, 8.5rem);
+    letter-spacing: -0.035em;
+    line-height: .86;
+  }
+
+  .mobile-hero-name {
+    max-width: 18rem;
+    font-size: .82rem;
+    line-height: 1.35;
+    letter-spacing: .16em;
+  }
+
+  .mobile-hero h1 {
+    max-width: 18.5rem;
+    font-size: clamp(2.25rem, 10.5vw, 3.45rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+
+  .mobile-hero .button {
+    min-height: 52px;
+    padding-inline: 1.5rem;
+    letter-spacing: .14em;
+  }
+}
