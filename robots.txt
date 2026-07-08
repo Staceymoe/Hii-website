@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# Change to Allow: / after Cat approves public launch.
-# Sitemap: https://hii.earth/sitemap.xml
+Sitemap: https://hii.earth/sitemap.xml
