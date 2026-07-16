@@ -3,30 +3,46 @@ const nav = document.querySelector('[data-site-nav]');
 const toggle = document.querySelector('[data-nav-toggle]');
 
 function syncHeader() {
+  if (!header) return;
   header.classList.toggle('is-scrolled', window.scrollY > 18);
 }
 
+function setNavState(isOpen) {
+  if (!nav || !toggle) return;
+  nav.classList.toggle('is-open', isOpen);
+  toggle.setAttribute('aria-expanded', String(isOpen));
+  toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+}
+
 function closeNav() {
-  nav.classList.remove('is-open');
-  toggle.setAttribute('aria-expanded', 'false');
+  setNavState(false);
 }
 
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-toggle.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('is-open');
-  toggle.setAttribute('aria-expanded', String(isOpen));
-});
+if (nav && toggle) {
+  toggle.addEventListener('click', () => {
+    setNavState(!nav.classList.contains('is-open'));
+  });
 
-nav.addEventListener('click', event => {
-  if (event.target instanceof HTMLAnchorElement) {
-    closeNav();
-  }
-});
+  nav.addEventListener('click', event => {
+    if (event.target instanceof HTMLAnchorElement) {
+      closeNav();
+    }
+  });
+
+  document.addEventListener('click', event => {
+    if (!nav.classList.contains('is-open')) return;
+    if (event.target instanceof Node && !nav.contains(event.target) && !toggle.contains(event.target)) {
+      closeNav();
+    }
+  });
+}
 
 window.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     closeNav();
+    toggle?.focus();
   }
 });
