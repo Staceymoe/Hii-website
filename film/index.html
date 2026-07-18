@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hii — A new hello for a new world</title>
+<meta name="description" content="The Hybrid Intelligence Institute studies what happens between humans and AI — so people can navigate it without hype or panic.">
+<meta property="og:title" content="Hii — Hybrid Intelligence Institute">
+<meta property="og:description" content="We study what happens between humans and AI — without hype or panic.">
+<meta property="og:type" content="video.other">
+<meta property="og:image" content="hii-explainer-poster.jpg">
+<style>
+  :root{ --bg:#040609; --ink:#e9edf1; --ink-dim:#9aa6b1; --ui:#9fc3dd; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{
+    background:var(--bg); color:var(--ink); min-height:100%;
+    font-family:"Manrope","Seravek","Gill Sans",Calibri,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:24px; gap:20px; -webkit-font-smoothing:antialiased;
+  }
+  .stage{
+    position:relative; width:100%; max-width:960px;
+    aspect-ratio:16/9; background:#000;
+    border-radius:14px; overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(159,195,221,.12);
+  }
+  .stage video{ width:100%; height:100%; display:block; object-fit:cover; background:#000; }
+  .veil{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:14px;
+    background:radial-gradient(circle at 50% 45%, rgba(4,6,9,.35), rgba(4,6,9,.7));
+    cursor:pointer; transition:opacity .4s ease; border:none; color:var(--ink); font:inherit;
+  }
+  .veil.hidden{ opacity:0; pointer-events:none; }
+  .play{
+    width:74px; height:74px; border-radius:50%;
+    border:1px solid rgba(159,195,221,.5); background:rgba(8,12,18,.55);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 30px rgba(159,195,221,.25);
+  }
+  .play svg{ width:30px; height:30px; margin-left:4px; fill:var(--ink); }
+  .veil span{ font-size:.9rem; letter-spacing:.08em; color:var(--ink-dim); }
+  .unmute{
+    position:absolute; bottom:16px; right:16px; z-index:3;
+    display:none; align-items:center; gap:8px;
+    background:rgba(8,12,18,.72); color:var(--ink);
+    border:1px solid rgba(159,195,221,.35); border-radius:999px;
+    padding:9px 16px; font:inherit; font-size:.85rem; cursor:pointer;
+    backdrop-filter:blur(6px);
+  }
+  .unmute.show{ display:inline-flex; }
+  .unmute svg{ width:16px; height:16px; fill:var(--ui); }
+  .caption{ text-align:center; max-width:960px; }
+  .caption h1{ font-weight:600; font-size:clamp(1.1rem,3vw,1.5rem); letter-spacing:.01em; }
+  .caption p{ color:var(--ink-dim); font-size:.95rem; margin-top:6px; }
+  .caption a{ color:var(--ui); text-decoration:none; }
+  .caption a:hover{ text-decoration:underline; }
+  @media (max-width:600px){ body{ padding:14px; } .stage{ border-radius:10px; } }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <video id="film" playsinline muted preload="metadata" poster="hii-explainer-poster.jpg">
+      <source src="hii-explainer.mp4" type="video/mp4">
+      Your browser does not support embedded video. <a href="hii-explainer.mp4">Open the film</a> instead.
+    </video>
+    <button class="veil" id="veil" aria-label="Play the Hii film">
+      <span class="play" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      <span>Play · with sound</span>
+    </button>
+    <button class="unmute" id="unmute" aria-label="Turn on sound">
+      <svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+      Sound on
+    </button>
+  </div>
+  <div class="caption">
+    <h1>A new hello for a new world.</h1>
+    <p>We study what happens between humans and AI — without hype or panic. &nbsp;<a href="https://hii.earth">hii.earth</a></p>
+  </div>
+<script>
+  var film = document.getElementById('film');
+  var veil = document.getElementById('veil');
+  var unmute = document.getElementById('unmute');
+  veil.addEventListener('click', function(){
+    film.muted = false;
+    film.currentTime = 0;
+    var p = film.play();
+    if (p && p.catch) {
+      p.catch(function(){ film.muted = true; film.play(); unmute.classList.add('show'); });
+    }
+    veil.classList.add('hidden');
+  });
+  window.addEventListener('load', function(){
+    var attempt = film.play();
+    if (attempt && attempt.then) {
+      attempt.then(function(){ veil.classList.add('hidden'); unmute.classList.add('show'); })
+      .catch(function(){});
+    }
+  });
+  unmute.addEventListener('click', function(){
+    film.muted = false;
+    if (film.paused) film.play();
+    unmute.classList.remove('show');
+  });
+  film.addEventListener('ended', function(){
+    unmute.classList.remove('show');
+    veil.querySelector('span:last-child').textContent = 'Watch again · with sound';
+    veil.classList.remove('hidden');
+  });
+</script>
+</body>
+</html>
