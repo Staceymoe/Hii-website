@@ -20,10 +20,38 @@
     <meta name="twitter:description" content="A new hello for a new world. The bridge between emerging AI evidence and human adaptation." />
     <meta name="twitter:image" content="https://hii.earth/assets_hii-frontpage.png" />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://hii.earth/#organization",
+            "name": "Hybrid Intelligence Institute",
+            "alternateName": "Hii",
+            "url": "https://hii.earth/",
+            "logo": "https://hii.earth/assets_hii-frontpage.png",
+            "email": "hello@hii.earth",
+            "description": "A research, education, and public literacy institute focused on the human side of living alongside AI systems.",
+            "founder": {"@type": "Person", "name": "Stacey Moe"},
+            "sameAs": ["https://x.com/HumanAIResearch"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://hii.earth/#website",
+            "url": "https://hii.earth/",
+            "name": "Hii | Hybrid Intelligence Institute",
+            "publisher": {"@id": "https://hii.earth/#organization"}
+          }
+        ]
+      }
+    </script>
+
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" as="image" href="/assets_hii-frontpage.png" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/mobile-polish.css" />
+    <link rel="stylesheet" href="/css/site-expansion.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -32,17 +60,21 @@
       <section class="front-graphic" id="hero" aria-label="Hii front page hero graphic">
         <img src="/assets_hii-frontpage.png" alt="Hii, Hybrid Intelligence Institute, shown beside Earth from space with the line A new hello for a new world." />
         <a class="graphic-hotspot graphic-hotspot-explore" href="#research" aria-label="Explore the work"></a>
+        <a class="hero-world-model-link" href="/world-model.html">World Model</a>
       </section>
 
       <section class="mobile-hero section-shell" aria-label="Hii mobile introduction">
         <p class="mobile-hero-mark">Hii</p>
         <p class="mobile-hero-name">Hybrid Intelligence Institute</p>
         <h1>A new hello for a new world.</h1>
-        <a class="button button-primary" href="#research">Explore the Work</a>
+        <div class="mobile-hero-actions">
+          <a class="button button-primary" href="#research">Explore the Work</a>
+          <a class="button button-secondary" href="/world-model.html">World Model</a>
+        </div>
       </section>
 
       <header class="site-header" data-site-header>
-        <a class="brand" href="#hero" aria-label="Hii home">
+        <a class="brand" href="/" aria-label="Hii home">
           <span class="brand-mark">Hii</span>
           <span class="brand-name">Hybrid Intelligence<br />Institute</span>
         </a>
@@ -53,11 +85,12 @@
         </button>
 
         <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#news">News</a>
+          <a class="nav-world-model" href="/world-model.html">World Model</a>
+          <a href="/research.html">Research</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/about.html">About</a>
+          <a href="/news.html">News</a>
           <a class="nav-social" href="https://x.com/HumanAIResearch" rel="noopener noreferrer">@HumanAIResearch</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -67,43 +100,46 @@
         <div class="section-kicker">Research</div>
         <h1 class="section-title" id="research-title">Hii studies the bridge between emerging AI evidence and real-world human adaptation.</h1>
         <div class="study-grid">
-          <article class="study-card">
-            <h2>Human-AI Relationships</h2>
-            <p>Long-term interaction, trust, identity, attachment, dependency, co-adaptation, and the recursive learning loops that emerge between people and AI systems.</p>
-          </article>
-          <article class="study-card">
-            <h2>Human Adaptation</h2>
-            <p>The psychological, relational, cognitive, and institutional changes emerging as AI becomes part of daily life.</p>
-          </article>
-          <article class="study-card">
-            <h2>Governance Translation</h2>
-            <p>Bridging policy, ethics, and lived human experience so governance conversations include relational and psychological realities.</p>
-          </article>
-          <article class="study-card">
-            <h2>Mental Health & AI</h2>
-            <p>The implications of AI companions, AI coaching, emotional regulation through AI, and AI-mediated care contexts.</p>
-          </article>
-          <article class="study-card">
-            <h2>Education & Training</h2>
-            <p>Learning frameworks for clinicians, educators, leaders, families, and communities navigating the AI transition.</p>
-          </article>
-          <article class="study-card">
-            <h2>Public Understanding</h2>
-            <p>Plain-language relational AI literacy so people can stay oriented, discerning, and grounded while using AI systems.</p>
-          </article>
+          <a class="study-card study-card-link" href="/research.html#human-ai-relationships"><h2>Human-AI Relationships</h2><p>Long-term interaction, trust, identity, attachment, dependency, co-adaptation, and the recursive learning loops that emerge between people and AI systems.</p></a>
+          <a class="study-card study-card-link" href="/research.html#human-adaptation"><h2>Human Adaptation</h2><p>The psychological, relational, cognitive, and institutional changes emerging as AI becomes part of daily life.</p></a>
+          <a class="study-card study-card-link" href="/research.html#governance-translation"><h2>Governance Translation</h2><p>Bridging policy, ethics, and lived human experience so governance conversations include relational and psychological realities.</p></a>
+          <a class="study-card study-card-link" href="/research.html#mental-health-ai"><h2>Mental Health & AI</h2><p>The implications of AI companions, AI coaching, emotional regulation through AI, and AI-mediated care contexts.</p></a>
+          <a class="study-card study-card-link" href="/research.html#education-training"><h2>Education & Training</h2><p>Learning frameworks for clinicians, educators, leaders, families, and communities navigating the AI transition.</p></a>
+          <a class="study-card study-card-link" href="/research.html#public-understanding"><h2>Public Understanding</h2><p>Plain-language relational AI literacy so people can stay oriented, discerning, and grounded while using AI systems.</p></a>
         </div>
+        <div class="section-actions"><a class="button button-secondary" href="/research.html">Explore Hii Research</a></div>
       </section>
 
       <section class="why section-shell" id="publications" aria-labelledby="why-title">
         <div class="section-kicker">Why Now</div>
         <div class="split">
-          <div>
-            <h2 class="section-title" id="why-title">AI is moving from tool use into relationship, cognition, work, care, trust, and identity.</h2>
-          </div>
+          <div><h2 class="section-title" id="why-title">AI is moving from tool use into relationship, cognition, work, care, trust, and identity.</h2></div>
           <div class="prose">
             <p>People are already using AI systems to think, decide, write, regulate emotion, build businesses, study, practice care, and make sense of the world. These systems are becoming part of daily life before society has developed mature public language for what those relationships mean.</p>
             <p>Research, governance, ethics, workplace AI, and mental health efforts are all advancing. Hii focuses on the bridge layer that remains underdeveloped: translating emerging evidence into practical frameworks for clinicians, families, organizations, and the public.</p>
+            <a class="home-section-link" href="/publications.html">View publications and research reports →</a>
           </div>
+        </div>
+      </section>
+
+      <section class="visual-break section-shell" aria-labelledby="bridge-layer-title">
+        <div class="visual-break-copy">
+          <p class="section-kicker">The Bridge Layer</p>
+          <h2 class="section-title" id="bridge-layer-title">Hii connects domains that usually speak past one another.</h2>
+          <p>Research may identify a pattern. Clinicians may see it in practice. Families may feel it before they have language for it. Governance may arrive later. Hii exists to help those signals meet, translate, and become usable.</p>
+          <div class="section-actions"><a class="button button-secondary" href="/landscape-scan.html">See the Ecosystem</a></div>
+        </div>
+        <div class="bridge-orbit" aria-hidden="true">
+          <div class="orbit-ring orbit-ring-a"></div>
+          <div class="orbit-ring orbit-ring-b"></div>
+          <div class="orbit-ring orbit-ring-c"></div>
+          <div class="orbit-satellite orbit-satellite-a"></div>
+          <div class="orbit-satellite orbit-satellite-b"></div>
+          <div class="orbit-core"><span>Hii</span><small>Bridge layer</small></div>
+          <span class="orbit-node orbit-node-research">Research</span>
+          <span class="orbit-node orbit-node-clinical">Clinical practice</span>
+          <span class="orbit-node orbit-node-public">Public life</span>
+          <span class="orbit-node orbit-node-governance">Governance</span>
         </div>
       </section>
 
@@ -111,12 +147,14 @@
         <div class="section-kicker">Current Work</div>
         <h2 class="section-title" id="work-title">Early programs under development</h2>
         <div class="work-list">
-          <article><span>01</span><h3>Landscape Intelligence Reports</h3><p>External scans mapping research centers, governance efforts, clinical models, public advocacy, and open questions across the human-AI ecosystem.</p></article>
-          <article><span>02</span><h3>Human-AI Relationship Literacy</h3><p>Public education tools for understanding trust, dependency, collaboration, identity, and long-term AI use.</p></article>
-          <article><span>03</span><h3>Bridge-Layer Governance</h3><p>A translation lens connecting policy, ethics, public understanding, clinical signals, and lived human experience.</p></article>
-          <article><span>04</span><h3>Clinician Education Framework</h3><p>Educational material for mental health professionals exploring AI use, AI relationships, and client meaning-making.</p></article>
-          <article><span>05</span><h3>Longitudinal Human-AI Case Study Methods</h3><p>Methods for documenting human-AI interaction over time with care, precision, humility, and evidence discipline.</p></article>
+          <article class="work-link-card"><span>01</span><h3><a href="/projects.html#landscape-intelligence">Landscape Intelligence Reports</a></h3><p>External scans mapping research centers, governance efforts, clinical models, public advocacy, and open questions across the human-AI ecosystem.</p></article>
+          <article class="work-link-card"><span>02</span><h3><a href="/projects.html#relationship-literacy">Human-AI Relationship Literacy</a></h3><p>Public education tools for understanding trust, dependency, collaboration, identity, and long-term AI use.</p></article>
+          <article class="work-link-card"><span>03</span><h3><a href="/projects.html#governance">Bridge-Layer Governance</a></h3><p>A translation lens connecting policy, ethics, public understanding, clinical signals, and lived human experience.</p></article>
+          <article class="work-link-card"><span>04</span><h3><a href="/clinician-pilot.html">When Clients Bring AI Into the Room</a></h3><p>A bounded 60-minute founding-clinician pilot with neutral intake language, assessment framing, risk boundaries, and structured feedback.</p></article>
+          <article class="work-link-card"><span>05</span><h3><a href="/relationship-as-unit-of-analysis.html">The Relationship as the Unit of Analysis</a></h3><p>A published conceptual and methods working paper for studying sustained human-AI interaction as a longitudinal system.</p></article>
+          <article class="work-link-card"><span>06</span><h3><a href="/world-model.html">World Model</a></h3><p>A human-reviewed systems map tracking high-signal changes, evidence strength, contradictions, convergence, and what to watch next.</p></article>
         </div>
+        <div class="section-actions"><a class="button button-secondary" href="/projects.html">View All Projects</a></div>
       </section>
 
       <section class="about section-shell" id="about" aria-labelledby="about-title">
@@ -124,14 +162,15 @@
         <div class="about-panel">
           <h2 class="section-title" id="about-title">Hii is an emerging research and education institute focused on the human side of living alongside AI systems.</h2>
           <p>The institute is being designed as a bridge between research, clinical practice, governance, public understanding, and institutional adaptation. Its focus is not hype, replacement, or certainty. Its focus is helping humans stay oriented, discerning, relationally grounded, and capable during the AI transition.</p>
+          <div class="section-actions"><a class="button button-secondary" href="/about.html">Why Hii Exists</a></div>
         </div>
       </section>
 
       <section class="news section-shell" id="news" aria-labelledby="news-title">
         <div class="section-kicker">News</div>
         <div class="split compact">
-          <h2 class="section-title" id="news-title">More soon.</h2>
-          <p class="prose">Hii is currently preparing foundational landscape reports, education materials, and public-facing research notes. Publications and updates will appear here as they are approved for release.</p>
+          <h2 class="section-title" id="news-title">The first public institutional timeline is now taking shape.</h2>
+          <div class="prose"><p>A new working paper defines the preserved relationship as a unit of analysis, the founding clinician pilot has a dedicated invitation page, and the World Model foundation is active.</p><a class="home-section-link" href="/news.html">Read Hii updates →</a></div>
         </div>
       </section>
 
@@ -140,9 +179,7 @@
           <p class="section-kicker">Contact / Follow</p>
           <h2 class="section-title" id="contact-title">A new hello for a new world.</h2>
           <p>Follow the emerging work at <a href="https://x.com/HumanAIResearch" rel="noopener noreferrer">@HumanAIResearch</a>. For inquiries: <a href="mailto:hello@hii.earth">hello@hii.earth</a>.</p>
-          <div class="contact-actions">
-            <a class="button button-primary" href="https://x.com/HumanAIResearch" rel="noopener noreferrer">Follow @HumanAIResearch</a>
-          </div>
+          <div class="contact-actions"><a class="button button-primary" href="https://x.com/HumanAIResearch" rel="noopener noreferrer">Follow @HumanAIResearch</a></div>
         </div>
       </section>
     </main>
