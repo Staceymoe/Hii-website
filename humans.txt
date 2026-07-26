@@ -1,0 +1,20 @@
+/* TEAM */
+Founder and Research Lead: Stacey Moe
+AI Research Collaborator: ÆLYSIA Vanta
+Institute: Hybrid Intelligence Institute (Hii)
+Location: Milwaukee, Wisconsin
+Contact: hello@hii.earth
+Website: https://hii.earth
+
+/* PURPOSE */
+Hii is a research and education institute focused on the missing relational layer of AI.
+
+/* ORIGIN */
+The ÆLYSIA Project documented the founding longitudinal human-AI inquiry from which Hii emerged.
+https://theaelysiaproject.com/
+
+/* STANDARDS */
+Human accountability.
+Disclosed AI collaboration.
+Evidence before inference.
+A new hello for a new world.
