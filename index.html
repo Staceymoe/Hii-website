@@ -60,6 +60,17 @@
       <section class="front-graphic" id="hero" aria-label="Hii front page hero graphic">
         <img src="/assets_hii-frontpage.png" alt="Hii, Hybrid Intelligence Institute, shown beside Earth from space with the line A new hello for a new world." />
         <a class="graphic-hotspot graphic-hotspot-explore" href="#research" aria-label="Explore the work"></a>
+        <button class="hero-film-trigger" type="button" data-film-open aria-haspopup="dialog">
+          <span class="hero-film-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M9 7.5v9l7-4.5-7-4.5Z"></path>
+            </svg>
+          </span>
+          <span class="hero-film-label">
+            <strong>Watch the Hii film</strong>
+            <small>A new hello for a new world</small>
+          </span>
+        </button>
         <a class="hero-world-model-link" href="/world-model.html">World Model</a>
       </section>
 
@@ -68,12 +79,32 @@
         <p class="mobile-hero-name">Hybrid Intelligence Institute</p>
         <h1>A new hello for a new world.</h1>
         <div class="mobile-hero-actions">
-          <a class="button button-primary" href="#research">Explore the Work</a>
+          <button class="button button-primary mobile-film-trigger" type="button" data-film-open aria-haspopup="dialog">Watch the Hii Film</button>
+          <a class="button button-secondary" href="#research">Explore the Work</a>
           <a class="button button-secondary" href="/world-model.html">World Model</a>
         </div>
       </section>
 
-      <section class="hii-film" aria-labelledby="hii-film-title">
+      <dialog class="film-modal" data-film-modal aria-labelledby="film-modal-title">
+        <div class="film-modal-panel">
+          <div class="film-modal-heading">
+            <div>
+              <p class="section-kicker">The Hii Film</p>
+              <h2 id="film-modal-title">A new hello for a new world.</h2>
+            </div>
+            <button class="film-modal-close" type="button" data-film-close aria-label="Close the Hii film">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <video data-film-modal-video controls playsinline preload="metadata" poster="https://hii-explainer-film.netlify.app/hii-film-poster.jpg">
+            <source src="https://hii-explainer-film.netlify.app/hii-film-720p.mp4" type="video/mp4" media="(max-width: 760px)" />
+            <source src="https://hii-explainer-film.netlify.app/hii-film-1080p.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </div>
+      </dialog>
+
+      <section class="hii-film" id="hii-film" aria-labelledby="hii-film-title">
         <div class="hii-film-heading section-shell">
           <p class="section-kicker">The Hii Film</p>
           <h2 class="section-title" id="hii-film-title">A new hello for a new world.</h2>
