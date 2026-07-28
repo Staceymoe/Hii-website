@@ -40,6 +40,54 @@ if (nav && toggle) {
   });
 }
 
+const filmModal = document.querySelector('[data-film-modal]');
+const filmModalVideo = document.querySelector('[data-film-modal-video]');
+const filmOpeners = document.querySelectorAll('[data-film-open]');
+const filmCloser = document.querySelector('[data-film-close]');
+const embeddedFilm = document.querySelector('#hii-film video');
+
+function openFilm() {
+  if (!(filmModal instanceof HTMLDialogElement) || typeof filmModal.showModal !== 'function') {
+    document.querySelector('#hii-film')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (embeddedFilm instanceof HTMLVideoElement) {
+      window.setTimeout(() => embeddedFilm.play().catch(() => {}), 450);
+    }
+    return;
+  }
+
+  if (!filmModal.open) {
+    filmModal.showModal();
+  }
+
+  if (filmModalVideo instanceof HTMLVideoElement) {
+    filmModalVideo.play().catch(() => {});
+  }
+}
+
+function closeFilm() {
+  if (filmModalVideo instanceof HTMLVideoElement) {
+    filmModalVideo.pause();
+  }
+  if (filmModal instanceof HTMLDialogElement && filmModal.open) {
+    filmModal.close();
+  }
+}
+
+filmOpeners.forEach(opener => opener.addEventListener('click', openFilm));
+filmCloser?.addEventListener('click', closeFilm);
+
+filmModal?.addEventListener('click', event => {
+  if (event.target === filmModal) {
+    closeFilm();
+  }
+});
+
+filmModal?.addEventListener('close', () => {
+  if (filmModalVideo instanceof HTMLVideoElement) {
+    filmModalVideo.pause();
+  }
+});
+
 window.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     closeNav();
