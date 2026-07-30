@@ -1,0 +1,65 @@
+name: Update Hii Film
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/update-hii-film.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-film:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install video tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python -m pip install --upgrade gdown
+
+      - name: Download corrected Hii film from Google Drive
+        run: |
+          gdown 'https://drive.google.com/uc?id=1TMHJEgadbxf6vJJgFJnAoN1JT2H0QbM8' -O hii-film-source.mp4
+          test -s hii-film-source.mp4
+
+      - name: Build the cover image from the corrected final frame
+        run: |
+          ffmpeg -y -sseof -1 -i hii-film-source.mp4 -frames:v 1 final-frame.jpg
+          ffmpeg -y -i final-frame.jpg -vf "scale=1920:1080,drawbox=x=0:y=648:w=1920:h=190:color=0xC9A675@0.96:t=fill,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-ExtraLight.ttf:text='A new hello for a new world':fontcolor=0x343642:fontsize=68:x=(w-text_w)/2:y=700" -frames:v 1 hii-film-poster.jpg
+
+      - name: Add the cover to the front and create website versions
+        run: |
+          ffmpeg -y \
+            -loop 1 -t 1.6 -i hii-film-poster.jpg \
+            -f lavfi -t 1.6 -i anullsrc=channel_layout=stereo:sample_rate=48000 \
+            -i hii-film-source.mp4 \
+            -filter_complex "[0:v]scale=1920:1080,setsar=1,fps=30,format=yuv420p[v0];[1:a]aresample=48000[a0];[2:v]scale=1920:1080,setsar=1,fps=30,format=yuv420p[v1];[2:a]aresample=48000[a1];[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]" \
+            -map "[v]" -map "[a]" -c:v libx264 -preset medium -crf 21 -movflags +faststart -c:a aac -b:a 192k hii-film-1080p.mp4
+          ffmpeg -y -i hii-film-1080p.mp4 -vf "scale=-2:720" -c:v libx264 -preset medium -crf 23 -movflags +faststart -c:a aac -b:a 128k hii-film-720p.mp4
+
+      - name: Point the homepage to the new local film files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text()
+          text = text.replace('https://hii-explainer-film.netlify.app/hii-film-poster.jpg', '/hii-film-poster.jpg')
+          text = text.replace('https://hii-explainer-film.netlify.app/hii-film-720p.mp4', '/hii-film-720p.mp4')
+          text = text.replace('https://hii-explainer-film.netlify.app/hii-film-1080p.mp4', '/hii-film-1080p.mp4')
+          path.write_text(text)
+          PY
+
+      - name: Commit the updated film and cover
+        run: |
+          git config user.name 'Hii Website Automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html hii-film-poster.jpg hii-film-720p.mp4 hii-film-1080p.mp4
+          git commit -m 'Publish corrected Hii film with new cover'
+          git push
