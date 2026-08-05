@@ -8,10 +8,18 @@ const observatoryFilm = document.querySelector('[data-hii-film]');
 const observatoryFilmOpen = document.querySelector('[data-observatory-film-open]');
 const observatoryFilmClose = document.querySelector('[data-observatory-film-close]');
 const observatoryStatus = document.querySelector('[data-observatory-status]');
+const observatoryHoldTime = 20.9;
 
 function setObservatoryReady() {
   observatoryHero?.classList.add('is-ready');
   if (observatoryStatus) observatoryStatus.textContent = 'The Hii observatory is ready. Select the center lens to play the Hii Film.';
+}
+
+function holdObservatoryFinalFrame() {
+  if (!(observatoryAwakening instanceof HTMLVideoElement)) return;
+  observatoryAwakening.pause();
+  observatoryAwakening.currentTime = Math.min(observatoryHoldTime, observatoryAwakening.duration || observatoryHoldTime);
+  setObservatoryReady();
 }
 
 function playObservatoryFilm() {
@@ -40,16 +48,25 @@ function closeObservatoryFilm() {
 }
 
 if (observatoryAwakening instanceof HTMLVideoElement) {
-  observatoryAwakening.addEventListener('ended', setObservatoryReady);
+  observatoryAwakening.addEventListener('timeupdate', () => {
+    if (observatoryAwakening.currentTime >= observatoryHoldTime) {
+      holdObservatoryFinalFrame();
+    }
+  });
+  observatoryAwakening.addEventListener('ended', holdObservatoryFinalFrame);
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     observatoryAwakening.addEventListener('loadedmetadata', () => {
-      observatoryAwakening.currentTime = Math.max(0, observatoryAwakening.duration - .08);
-      observatoryAwakening.pause();
-      setObservatoryReady();
+      holdObservatoryFinalFrame();
     }, { once: true });
   } else {
-    observatoryAwakening.play().catch(() => setObservatoryReady());
+    observatoryAwakening.play().catch(() => {
+      if (observatoryAwakening.readyState >= 1) {
+        holdObservatoryFinalFrame();
+      } else {
+        observatoryAwakening.addEventListener('loadedmetadata', holdObservatoryFinalFrame, { once: true });
+      }
+    });
   }
 }
 
