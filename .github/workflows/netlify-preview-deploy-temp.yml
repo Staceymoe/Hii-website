@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/netlify-preview-deploy-20260806
+  pull_request:
+    branches:
+      - agent/post-hero-site-build
   workflow_dispatch:
 
 permissions:
