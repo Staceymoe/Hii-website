@@ -1,0 +1,34 @@
+name: Temporary Netlify Post-Hero Preview Deploy
+
+on:
+  push:
+    branches:
+      - agent/netlify-preview-deploy-20260806
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out preview branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify the draft build
+        run: |
+          npm run build
+          npm run check
+
+      - name: Deploy to isolated Netlify preview project
+        run: >-
+          npx -y @netlify/mcp@latest
+          --site-id c5cd7961-184a-4300-937e-074df42b9de8
+          --proxy-path "https://netlify-mcp.netlify.app/proxy/eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..nJt7TN1UVZt12Qg5.gxd-a_wRdlVeZERTH4UEmyRFuSWl9IOUY75MPKOe8Z46Eg9W4mJ8SKjtTkU2lutjmIWlvFGs_dZ6WQCfXw4lQX2LX14OB0hGB7apAoriAh2qHjys_9LBC703SiOLv5hoz04qDgwWFbXjT-bOAU6iKRbzfep0KZ0NhtyvgzD0Fvhlfj439TUGIhQD2soEwhHzzItLPijRFx9lMZn9K-HTwTe5pYG3sHXGOs_rG2AsC68NhU5yO-_UPdqPHlXyD5Z2RjLTlQpJpX4oCBhwWAcxXw7wtzxjhMoWFCXT5yc4IDysx2BOIOiYoPZtR-8f546eIDE1gu4gjx2bJL8tc_9EVpc8oYLxEFTHy7cWzHkQQu4WCKdp20H08KeylvJMZmFGMUklTRhD.E6n4q3t7VdGeTqhDby1fRg"
