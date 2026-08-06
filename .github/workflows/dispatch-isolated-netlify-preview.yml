@@ -1,0 +1,24 @@
+name: Dispatch Isolated Netlify Preview
+
+on:
+  pull_request:
+    branches:
+      - agent/post-hero-site-build
+    types:
+      - edited
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  dispatch-preview:
+    if: github.event.pull_request.number == 4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch the isolated preview workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run netlify-preview-deploy-temp.yml --ref agent/netlify-preview-deploy-20260806
