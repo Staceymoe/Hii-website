@@ -1,0 +1,35 @@
+name: Post-Hero Site Build Check
+
+on:
+  pull_request:
+    branches:
+      - agent/observatory-hero-draft
+    paths:
+      - 'package.json'
+      - 'scripts/**'
+      - 'site/**'
+      - 'css/post-hero.css'
+      - 'netlify.toml'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build generated site
+        run: npm run build
+
+      - name: Verify routes and protected hero
+        run: npm run check
