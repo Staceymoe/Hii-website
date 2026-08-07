@@ -1,0 +1,16 @@
+<header class="site-header">
+  <a class="wordmark" href="/" aria-label="Hii front door">Hii</a>
+  <div class="header-actions">
+    <details class="utility-menu">
+      <summary>Navigate</summary>
+      <nav aria-label="Institutional navigation">
+        <ul>
+          {% for link in site.utilityLinks %}
+            <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </details>
+    <a class="return-link" href="/">Return to Hii</a>
+  </div>
+</header>

@@ -1,6 +1,6 @@
 [build]
-  command = "bash scripts/build-hii-front-door-restart.sh"
-  publish = "_restart"
+  command = "bash scripts/build-hii-front-door-restart.sh && pnpm build"
+  publish = "_site"
 
 [[headers]]
   for = "/*"

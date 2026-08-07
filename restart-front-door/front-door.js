@@ -105,6 +105,7 @@
     if (!lens || lens.disabled || !entry.classList.contains('is-ready')) return;
     const destination = lens.dataset.destination;
     if (destination === 'film') openFilm();
+    else if (destination === 'Relate') window.location.assign('/relationships/');
     else openDestinationTest(destination);
   });
 
