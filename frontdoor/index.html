@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hii | Hybrid Intelligence Institute</title>
+  <meta name="description" content="Hii is the Hybrid Intelligence Institute. We study the human side of living alongside AI systems." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/hero-front-door.css" />
+</head>
+<body>
+  <a class="skip-link" href="#hii-interface">Skip to Hii interface</a>
+  <main id="hii-interface" class="front-door" data-front-door>
+    <div class="front-door__stage">
+      <video class="front-door__motion" data-motion-video autoplay muted playsinline preload="auto" aria-label="Hii observatory opening animation">
+        <source src="/assets/hii-hero-front-door.mp4" type="video/mp4" />
+      </video>
+      <nav class="lens-map" aria-label="Hii pathways">
+        <button class="lens-hit lens-hit--relate" data-lens="Relate" type="button" tabindex="-1" aria-label="Relate, Human-AI Relationships"></button>
+        <button class="lens-hit lens-hit--study" data-lens="Study" type="button" tabindex="-1" aria-label="Study, Research, Evidence, and Publications"></button>
+        <button class="lens-hit lens-hit--adapt" data-lens="Adapt" type="button" tabindex="-1" aria-label="Adapt, Human Adaptation"></button>
+        <button class="lens-hit lens-hit--understand" data-lens="Understand" type="button" tabindex="-1" aria-label="Understand, Public Orientation and Literacy"></button>
+        <button class="lens-hit lens-hit--care" data-lens="Care" type="button" tabindex="-1" aria-label="Care, Mental Health and Clinical Practice"></button>
+        <button class="lens-hit lens-hit--govern" data-lens="Govern" type="button" tabindex="-1" aria-label="Govern, Governance Translation"></button>
+        <button class="lens-hit lens-hit--prepare" data-lens="Prepare" type="button" tabindex="-1" aria-label="Prepare, Institutional Readiness"></button>
+        <button class="lens-hit lens-hit--film" data-lens="Film" data-open-film type="button" tabindex="-1" aria-label="Play the Hii film"></button>
+      </nav>
+      <p class="sr-only" data-interface-status aria-live="polite">The Hii observatory is opening.</p>
+    </div>
+  </main>
+  <div class="film-layer" data-film-layer hidden>
+    <div class="film-layer__backdrop" data-close-film></div>
+    <section class="film-layer__panel" role="dialog" aria-modal="true" aria-label="Hii film">
+      <button class="return-to-hii" data-close-film type="button">Return to Hii</button>
+      <video class="film-layer__video" data-film-video controls playsinline preload="metadata" poster="/hii-film-poster.jpg">
+        <source src="/hii-film-1080p.mp4" type="video/mp4" media="(min-width: 900px)" />
+        <source src="/hii-film-720p.mp4" type="video/mp4" />
+      </video>
+    </section>
+  </div>
+  <script src="/hero-front-door.js"></script>
+</body>
+</html>
