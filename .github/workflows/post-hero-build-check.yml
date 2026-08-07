@@ -1,0 +1,55 @@
+name: Post-Hero Site Build Check
+
+on:
+  pull_request:
+    branches:
+      - agent/observatory-hero-draft
+    paths:
+      - 'package.json'
+      - 'scripts/**'
+      - 'site/**'
+      - 'css/post-hero.css'
+      - 'netlify.toml'
+      - 'index.html'
+      - '.github/workflows/post-hero-build-check.yml'
+  push:
+    branches:
+      - agent/post-hero-site-build
+    paths:
+      - 'package.json'
+      - 'scripts/**'
+      - 'site/**'
+      - 'css/post-hero.css'
+      - 'netlify.toml'
+      - 'index.html'
+      - '.github/workflows/post-hero-build-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build generated site
+        run: npm run build
+
+      - name: Verify routes and protected hero
+        run: npm run check
+
+      - name: Package preview site
+        uses: actions/upload-artifact@v4
+        with:
+          name: hii-post-hero-preview
+          path: _site
+          if-no-files-found: error
+          retention-days: 7

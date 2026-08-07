@@ -1,0 +1,174 @@
+/* Hii motion hero interface */
+.hii-interface-home {
+  margin: 0;
+  min-height: 100vh;
+  background: #000;
+  color: #f4efe4;
+  overflow: hidden;
+}
+
+.hii-interface-home #hii-interface { min-height: 100vh; }
+
+.motion-hero {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+  overflow: hidden;
+}
+
+.motion-hero__stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.motion-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hero-hit-map {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  outline: none;
+  opacity: 1;
+  pointer-events: none;
+  cursor: default;
+}
+
+.motion-hero.is-ready .hero-hit-map { pointer-events: auto; }
+.motion-hero.is-ready .hero-node { pointer-events: auto; cursor: pointer; }
+
+.hero-node::after {
+  content: '';
+  position: absolute;
+  inset: -4%;
+  border-radius: 50%;
+  border: 1px solid rgba(215, 163, 95, 0);
+  box-shadow: 0 0 0 0 rgba(215, 163, 95, 0);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.motion-hero.is-ready .hero-node:hover::after,
+.motion-hero.is-ready .hero-node:focus-visible::after {
+  border-color: rgba(215, 163, 95, .82);
+  box-shadow: 0 0 24px rgba(215, 163, 95, .24);
+}
+
+.hero-node:focus-visible { box-shadow: 0 0 0 2px rgba(244, 239, 228, .92); }
+
+/* Exact circle centers measured from the 1920x1080 final frame. */
+.hero-node--relate { left: 49.9%; top: 13.2%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--study { left: 34.3%; top: 26.3%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--adapt { left: 65.4%; top: 26.3%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--understand { left: 30.4%; top: 55.6%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--care { left: 69.3%; top: 55.6%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--govern { left: 41.1%; top: 79.4%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--prepare { left: 58.7%; top: 79.4%; width: 9.2%; aspect-ratio: 1; }
+.hero-node--film { left: 49.9%; top: 48.5%; width: 24%; aspect-ratio: 1; }
+
+.motion-hero__hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.film-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+}
+
+.film-dialog[hidden] { display: none; }
+.film-dialog__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, .94); backdrop-filter: blur(10px); }
+.film-dialog__panel { position: relative; width: min(94vw, 1400px); z-index: 1; }
+.film-dialog__video { width: 100%; max-height: 82vh; background: #000; display: block; }
+.film-dialog__close {
+  position: fixed;
+  top: 24px;
+  right: clamp(16px, 3.5vw, 52px);
+  z-index: 2;
+  border: 1px solid rgba(244, 239, 228, .25);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .58);
+  color: #f4efe4;
+  padding: .75rem 1.1rem;
+  font: inherit;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.film-dialog__close:hover,
+.film-dialog__close:focus-visible { border-color: rgba(215, 163, 95, .82); }
+
+.return-to-hii {
+  position: fixed;
+  top: 24px;
+  right: clamp(16px, 3.5vw, 52px);
+  z-index: 1500;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .75rem 1.1rem;
+  border: 1px solid rgba(244, 239, 228, .22);
+  border-radius: 999px;
+  background: rgba(2, 3, 5, .72);
+  backdrop-filter: blur(10px);
+  color: #f4efe4;
+  text-decoration: none;
+  font-size: .78rem;
+  letter-spacing: .08em;
+}
+.return-to-hii::before { content: '←'; color: #d7a35f; }
+.return-to-hii:hover,
+.return-to-hii:focus-visible { border-color: rgba(215, 163, 95, .82); }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .return-to-hii,
+  .film-dialog__close { top: 14px; right: 14px; }
+  .hero-node--film { width: 26%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-node::after { transition: none; }
+}
