@@ -24,7 +24,7 @@ const mediaChunks = (await readdir(mediaSource))
   .filter(name => /^hero-v4\.preview-\d+\.b64$/.test(name))
   .sort();
 
-if (mediaChunks.length !== 13) throw new Error(`Expected 13 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
+if (mediaChunks.length !== 10) throw new Error(`Expected 10 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
 
 const encodedHero = (await Promise.all(mediaChunks.map(name => readFile(path.join(mediaSource, name), 'utf8')))).join('');
 const heroBuffer = Buffer.from(encodedHero, 'base64');
