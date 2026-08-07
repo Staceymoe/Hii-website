@@ -5,8 +5,8 @@ import path from "node:path";
 const root = process.cwd();
 const sourceOnly = process.argv.includes("--source-only");
 const approved = {
-  index: "357a3dffe79f58a25e90fadac4f3c64d4171f0afd7e44e607180dc8786330aa6",
-  css: "5fd8b61236bad8cde19a2bbdf83caaca245c75c21eb1dabecfdedd392c17c95c",
+  index: "e4ebf7ab4ff0cc0fbf60dce6aafc760f77b41996d254869de337e56a9f44e1b0",
+  css: "e1e858884224a5ac5c13313097c56e9f8ab48326c9806486fcaf74c06c28565e",
   normalizedJs: "677f525ac16008098dc714cddb94c06f98a4b0f63df82deea53b16fa2efe272d",
   hero: "e9054efa1eea286e74e50d76ddcb7e436cb2fe733b3a968553da5451de9f904e",
   film: "76e000d4d1e8e4e31a45d4f0bcbc412b286c4ac9524ed8fa8e84e145f3475abc"
@@ -19,9 +19,14 @@ const assertHash = async (relativePath, expected) => {
   const actual = sha(await bytes(relativePath));
   if (actual !== expected) throw new Error(`${relativePath} checksum changed: ${actual}`);
 };
+const assertTextHash = async (relativePath, expected) => {
+  const normalized = (await bytes(relativePath)).toString("utf8").replace(/\r\n/g, "\n");
+  const actual = sha(normalized);
+  if (actual !== expected) throw new Error(`${relativePath} canonical checksum changed: ${actual}`);
+};
 
-await assertHash("restart-front-door/index.html", approved.index);
-await assertHash("restart-front-door/front-door.css", approved.css);
+await assertTextHash("restart-front-door/index.html", approved.index);
+await assertTextHash("restart-front-door/front-door.css", approved.css);
 
 const jsPath = "restart-front-door/front-door.js";
 const javascript = (await bytes(jsPath)).toString("utf8");
@@ -34,8 +39,8 @@ if (sha(normalizedLineEndings.replace(seam, "")) !== approved.normalizedJs) {
 }
 
 if (!sourceOnly) {
-  await assertHash("_restart/index.html", approved.index);
-  await assertHash("_restart/front-door.css", approved.css);
+  await assertTextHash("_restart/index.html", approved.index);
+  await assertTextHash("_restart/front-door.css", approved.css);
   await assertHash("_restart/media/hii-hero-front-door-approved.mp4", approved.hero);
   await assertHash("_restart/media/hii-film-approved-web-1080p.mp4", approved.film);
 

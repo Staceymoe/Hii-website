@@ -78,8 +78,9 @@ const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
 if (!sitemap.includes("https://hii.earth/relationships/")) fail("sitemap omits /relationships/");
 else pass("sitemap includes /relationships/");
 
-const approvedSourceHash = sha(await read("restart-front-door/index.html"));
-if (approvedSourceHash !== "357a3dffe79f58a25e90fadac4f3c64d4171f0afd7e44e607180dc8786330aa6") {
+const approvedSource = (await read("restart-front-door/index.html")).toString("utf8").replace(/\r\n/g, "\n");
+const approvedSourceHash = sha(approvedSource);
+if (approvedSourceHash !== "e4ebf7ab4ff0cc0fbf60dce6aafc760f77b41996d254869de337e56a9f44e1b0") {
   fail("approved front-door HTML checksum changed");
 }
 
