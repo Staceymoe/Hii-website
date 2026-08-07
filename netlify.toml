@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "bash scripts/build-hii-front-door-restart.sh"
+  publish = "_restart"
 
 [[headers]]
   for = "/*"
@@ -8,3 +9,8 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
