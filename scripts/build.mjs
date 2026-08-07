@@ -17,24 +17,26 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   await cp(path.join(root, entry.name), path.join(out, entry.name), { recursive: true });
 }
 
+// Reconstruct the verified review hero from connector-safe text chunks.
+// The full-quality 1080p web master remains preserved in the Hii Website Drive folder.
 const mediaSource = path.join(root, 'site', 'media');
 const mediaChunks = (await readdir(mediaSource))
-  .filter(name => /^hero-v4\.preview-\d+\.b64$/.test(name))
+  .filter(name => /^hero-v4\.final-\d+\.b64$/.test(name))
   .sort();
 
-if (mediaChunks.length !== 13) throw new Error(`Expected 13 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
+if (mediaChunks.length !== 9) throw new Error(`Expected 9 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
 
 const encodedHero = (await Promise.all(mediaChunks.map(name => readFile(path.join(mediaSource, name), 'utf8')))).join('');
 const heroBuffer = Buffer.from(encodedHero, 'base64');
 const heroSha = createHash('sha256').update(heroBuffer).digest('hex');
-const expectedHeroSha = 'b193df8ab6d481e307fc24a1c339c76e297d00524e5db26d4dc8a90b9a4b94b3';
+const expectedHeroSha = '424c4400de58ee4d2ea7a08fc27e85cc29df0ccafbd64039264f9b72e023eb8c';
 
-if (heroBuffer.length !== 181495 || heroSha !== expectedHeroSha) {
+if (heroBuffer.length !== 126794 || heroSha !== expectedHeroSha) {
   throw new Error(`Hii motion hero failed integrity verification. bytes=${heroBuffer.length} sha256=${heroSha}`);
 }
 
 await mkdir(path.join(out, 'assets'), { recursive: true });
-await writeFile(path.join(out, 'assets', 'hii-hero-v4-1080p.mp4'), heroBuffer);
+await writeFile(path.join(out, 'assets', 'hii-hero-v4-preview.mp4'), heroBuffer);
 
 const home = `${head({ title: canonical.name, description: canonical.description, path: '/' })}
 <body class="hii-interface-home">
