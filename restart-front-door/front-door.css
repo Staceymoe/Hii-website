@@ -1,0 +1,187 @@
+:root {
+  color-scheme: dark;
+  --black: #000;
+  --ivory: #fff8e6;
+  --ivory-soft: rgba(255,248,230,.76);
+  --line: rgba(255,248,230,.24);
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; min-height: 100%; background: var(--black); }
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  color: var(--ivory);
+}
+button { font: inherit; }
+[hidden] { display: none !important; }
+
+.hii-entry,
+.hero-shell,
+.destination-test,
+.film-layer {
+  width: 100vw;
+  height: 100svh;
+  background: #000;
+}
+
+.hero-shell {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.hero-stage {
+  position: relative;
+  width: min(100vw, calc(100svh * 16 / 9));
+  height: min(100svh, calc(100vw * 9 / 16));
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.hero-motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.lens-map {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+.hii-entry.is-ready .lens-map {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lens {
+  position: absolute;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+.lens:hover,
+.lens:focus-visible {
+  border-color: rgba(255,248,230,.68);
+  background: rgba(255,248,230,.015);
+  box-shadow: 0 0 0 4px rgba(255,248,230,.035), 0 0 34px rgba(255,248,230,.12);
+  outline: none;
+}
+
+/* Coordinates are measured from the approved 16:9 final frame. */
+.lens-film { left: 49.9%; top: 48.6%; width: 23.2%; aspect-ratio: 1; }
+.lens-relate { left: 49.9%; top: 13.1%; width: 9.3%; aspect-ratio: 1; }
+.lens-adapt { left: 65.5%; top: 26.3%; width: 9.3%; aspect-ratio: 1; }
+.lens-care { left: 69.3%; top: 55.6%; width: 9.3%; aspect-ratio: 1; }
+.lens-prepare { left: 58.7%; top: 79.3%; width: 9.3%; aspect-ratio: 1; }
+.lens-govern { left: 41.1%; top: 79.4%; width: 9.3%; aspect-ratio: 1; }
+.lens-understand { left: 30.5%; top: 55.6%; width: 9.3%; aspect-ratio: 1; }
+.lens-study { left: 34.3%; top: 26.2%; width: 9.3%; aspect-ratio: 1; }
+
+.autoplay-fallback,
+.return-hii {
+  position: fixed;
+  z-index: 20;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(0,0,0,.42);
+  color: var(--ivory);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(.78rem, 1vw, .92rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .01em;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.return-hii {
+  top: max(1.2rem, env(safe-area-inset-top));
+  right: max(1.2rem, env(safe-area-inset-right));
+  padding: .82rem 1.08rem;
+}
+.autoplay-fallback {
+  left: 50%;
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: .9rem 1.2rem;
+}
+.autoplay-fallback:hover,
+.return-hii:hover,
+.autoplay-fallback:focus-visible,
+.return-hii:focus-visible {
+  background: rgba(255,248,230,.09);
+  border-color: rgba(255,248,230,.56);
+  outline: none;
+}
+
+.destination-test {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+}
+.destination-title {
+  margin: 0;
+  color: var(--ivory-soft);
+  font-size: clamp(1.7rem, 4vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -.035em;
+}
+
+.film-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  display: grid;
+  place-items: center;
+  padding: clamp(.75rem, 2vw, 2rem);
+}
+.hii-film {
+  display: block;
+  width: min(100%, calc(100svh * 16 / 9));
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+.film-return { z-index: 30; }
+
+@media (max-width: 760px) {
+  .return-hii {
+    top: max(.8rem, env(safe-area-inset-top));
+    right: max(.8rem, env(safe-area-inset-right));
+    padding: .72rem .9rem;
+  }
+  .lens-film { width: 25%; }
+  .lens-relate,
+  .lens-adapt,
+  .lens-care,
+  .lens-prepare,
+  .lens-govern,
+  .lens-understand,
+  .lens-study { width: 10.5%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lens-map,
+  .lens,
+  .return-hii,
+  .autoplay-fallback { transition: none; }
+}
