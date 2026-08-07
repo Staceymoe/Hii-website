@@ -17,14 +17,12 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   await cp(path.join(root, entry.name), path.join(out, entry.name), { recursive: true });
 }
 
-// Reconstruct the verified review hero from connector-safe text chunks.
-// The full-quality 1080p web master remains preserved in the Hii Website Drive folder.
 const mediaSource = path.join(root, 'site', 'media');
 const mediaChunks = (await readdir(mediaSource))
   .filter(name => /^hero-v4\.preview-\d+\.b64$/.test(name))
   .sort();
 
-if (mediaChunks.length !== 10) throw new Error(`Expected 10 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
+if (mediaChunks.length !== 13) throw new Error(`Expected 13 verified Hii hero preview chunks, found ${mediaChunks.length}. Build stopped.`);
 
 const encodedHero = (await Promise.all(mediaChunks.map(name => readFile(path.join(mediaSource, name), 'utf8')))).join('');
 const heroBuffer = Buffer.from(encodedHero, 'base64');
