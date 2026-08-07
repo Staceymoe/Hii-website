@@ -28,14 +28,19 @@ const required = [
   [/<main id="main-content"[^>]*>/, "main landmark"],
   [/href="#main-content">Skip to content/, "skip link"],
   [/aria-label="Institutional navigation"/, "utility navigation label"],
-  [/href="\/">Return to Hii/, "Return to Hii"],
-  [/Content decision/, "explicit editorial decision"],
+  [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
+  [/class="wordmark" href="\/\?return=hii"/, "static-state Hii wordmark return"],
+  [/The Relationship as the Unit of Analysis/, "canonical working-paper title"],
+  [/Relationship literacy/, "Relationship Literacy section"],
+  [/Explore Epistemic Guardrails/, "Epistemic Guardrails link"],
   [/Relationship-level research does not require a claim about machine consciousness\./, "research boundary"]
 ];
 for (const [pattern, label] of required) {
   if (!pattern.test(page)) fail(`relationships page is missing ${label}`);
   else pass(`relationships page includes ${label}`);
 }
+if (/Content decision/i.test(page)) fail("relationships page exposes a visitor-facing content decision");
+else pass("relationships page has no visitor-facing content decisions");
 
 const h1Count = (page.match(/<h1(?:\s|>)/g) || []).length;
 if (h1Count !== 1) fail(`relationships page has ${h1Count} h1 elements; expected 1`);

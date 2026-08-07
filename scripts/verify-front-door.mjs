@@ -12,7 +12,20 @@ const approved = {
   film: "76e000d4d1e8e4e31a45d4f0bcbc412b286c4ac9524ed8fa8e84e145f3475abc"
 };
 
-const seam = "    else if (destination === 'Relate') window.location.assign('/relationships/');\n";
+const allowedSeams = [
+  {
+    label: "return-state query detection",
+    content: "  const returnToStaticFrontDoor = new URLSearchParams(window.location.search).get('return') === 'hii';\n"
+  },
+  {
+    label: "return-state static settlement",
+    content: "    if (returnToStaticFrontDoor) {\n      hero.pause();\n      hero.currentTime = HERO_FREEZE_AT;\n      frozen = true;\n      settle();\n      history.replaceState(null, '', window.location.pathname + window.location.hash);\n      return;\n    }\n\n"
+  },
+  {
+    label: "Relate routing",
+    content: "    else if (destination === 'Relate') window.location.assign('/relationships/');\n"
+  }
+];
 const bytes = async (relativePath) => readFile(path.join(root, relativePath));
 const sha = (content) => createHash("sha256").update(content).digest("hex");
 const assertHash = async (relativePath, expected) => {
@@ -31,11 +44,15 @@ await assertTextHash("restart-front-door/front-door.css", approved.css);
 const jsPath = "restart-front-door/front-door.js";
 const javascript = (await bytes(jsPath)).toString("utf8");
 const normalizedLineEndings = javascript.replace(/\r\n/g, "\n");
-if (normalizedLineEndings.split(seam).length !== 2) {
-  throw new Error(`${jsPath} must contain exactly one approved Relate routing seam.`);
+let lockedJavascript = normalizedLineEndings;
+for (const seam of allowedSeams) {
+  if (lockedJavascript.split(seam.content).length !== 2) {
+    throw new Error(`${jsPath} must contain exactly one approved ${seam.label} seam.`);
+  }
+  lockedJavascript = lockedJavascript.replace(seam.content, "");
 }
-if (sha(normalizedLineEndings.replace(seam, "")) !== approved.normalizedJs) {
-  throw new Error(`${jsPath} differs from the approved file outside the Relate routing seam.`);
+if (sha(lockedJavascript) !== approved.normalizedJs) {
+  throw new Error(`${jsPath} differs from the approved file outside the routing and return-state seams.`);
 }
 
 if (!sourceOnly) {

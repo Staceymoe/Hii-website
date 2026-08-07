@@ -145,12 +145,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .artifact-card { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 1.5rem 4rem; padding: clamp(2rem, 5vw, 4.5rem); background: var(--ivory); color: var(--ink); }
 .artifact-card .artifact-type, .artifact-card .artifact-status { color: #6c5d3e; }
 .artifact-card h3 { font-size: clamp(2rem, 4vw, 4rem); }
-.artifact-card > p:not(.artifact-type):not(.artifact-status), .artifact-card > a, .artifact-card > aside { grid-column: 2; }
+.artifact-card > p:not(.artifact-type):not(.artifact-status), .artifact-card > a { grid-column: 2; }
 .text-link { width: fit-content; font-weight: 600; text-underline-offset: 0.3em; }
-.content-decision { margin-top: 1.5rem; padding: 1rem 1.2rem; border-left: 2px solid var(--champagne); font-size: 0.85rem; }
-.content-decision strong { letter-spacing: 0.08em; text-transform: uppercase; }
-.content-decision p { margin: 0.4rem 0 0; }
-.literacy-section .content-decision { color: var(--muted); }
 .boundary-section { background: var(--ivory); color: var(--ink); }
 .boundary-inner { padding-block: clamp(6rem, 13vw, 12rem); }
 .boundary-inner .eyebrow { color: #6c5d3e; }
@@ -180,6 +176,13 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   a:hover { color: var(--champagne); }
   .button-link:hover { color: var(--ink); background: var(--champagne); }
 }
+@media (min-width: 761px) {
+  .pathway-section { padding-block: clamp(5rem, 8vw, 7.5rem); }
+  .themes-section { padding-block: clamp(5rem, 8vw, 7.5rem); }
+  .evidence-section { padding-block: clamp(5rem, 8vw, 7rem); }
+  .literacy-section { padding-block: clamp(5rem, 8vw, 7rem); }
+  .boundary-inner { padding-block: clamp(5rem, 8vw, 8rem); }
+}
 @media (max-width: 760px) {
   .site-header, .section-shell, .site-footer { width: min(calc(100% - 2rem), var(--max)); }
   .world-hero { grid-template-columns: 1fr; min-height: auto; gap: 4rem; padding-block: 6rem; }
@@ -190,7 +193,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .theme-row { grid-template-columns: 1fr; gap: 0.6rem; }
   .theme-row p { max-width: 38rem; }
   .artifact-card { grid-template-columns: 1fr; }
-  .artifact-card > p:not(.artifact-type):not(.artifact-status), .artifact-card > a, .artifact-card > aside { grid-column: 1; }
+  .artifact-card > p:not(.artifact-type):not(.artifact-status), .artifact-card > a { grid-column: 1; }
   .site-footer { grid-template-columns: 1fr; }
 }
 @media (max-width: 460px) {

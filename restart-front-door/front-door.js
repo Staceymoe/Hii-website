@@ -9,6 +9,7 @@
   const filmLayer = document.querySelector('[data-film-layer]');
   const film = document.querySelector('[data-hii-film]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const returnToStaticFrontDoor = new URLSearchParams(window.location.search).get('return') === 'hii';
 
   if (!entry || !hero || !lensMap) return;
 
@@ -81,6 +82,15 @@
   const startHero = () => {
     if (started) return;
     started = true;
+
+    if (returnToStaticFrontDoor) {
+      hero.pause();
+      hero.currentTime = HERO_FREEZE_AT;
+      frozen = true;
+      settle();
+      history.replaceState(null, '', window.location.pathname + window.location.hash);
+      return;
+    }
 
     if (reduceMotion) {
       hero.pause();
