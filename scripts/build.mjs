@@ -20,10 +20,10 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 // Reconstruct the verified web-optimized hero from connector-safe text chunks.
 const mediaSource = path.join(root, 'site', 'media');
 const mediaChunks = (await readdir(mediaSource))
-  .filter(name => /^hero-v4\.safe-\d+\.b64$/.test(name))
+  .filter(name => /^hero-v4\.safe2-\d+\.b64$/.test(name))
   .sort();
 
-if (mediaChunks.length !== 23) throw new Error(`Expected 23 verified Hii hero chunks, found ${mediaChunks.length}. Build stopped.`);
+if (mediaChunks.length !== 12) throw new Error(`Expected 12 verified Hii hero chunks, found ${mediaChunks.length}. Build stopped.`);
 
 const encodedHero = (await Promise.all(mediaChunks.map(name => readFile(path.join(mediaSource, name), 'utf8')))).join('');
 const heroBuffer = Buffer.from(encodedHero, 'base64');
