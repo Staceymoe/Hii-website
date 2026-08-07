@@ -31,6 +31,46 @@ export function head({ title, description, path = '/' }) {
 </head>`;
 }
 
+export function heroInterface() {
+  const byShort = short => pathways.find(pathway => pathway.short === short);
+  const node = (short, position) => {
+    const pathway = byShort(short);
+    return `<a class="hero-node hero-node--${position}" data-hero-node href="/${pathway.slug}/" tabindex="-1" aria-label="${esc(pathway.short)}: ${esc(pathway.title)}"><span class="sr-only">${esc(pathway.short)}: ${esc(pathway.title)}</span></a>`;
+  };
+
+  return `<section class="motion-hero" aria-label="Hii interactive observatory" data-motion-hero>
+    <div class="motion-hero__stage">
+      <video class="motion-hero__video" data-motion-video autoplay muted playsinline preload="auto" aria-label="Hii observatory interface opening animation">
+        <source src="/assets/hii-hero-v4-1080p.mp4" type="video/mp4" />
+      </video>
+
+      <nav class="hero-hit-map" data-hero-map aria-label="Choose a Hii pathway">
+        ${node('Relate', 'relate')}
+        ${node('Adapt', 'adapt')}
+        ${node('Care', 'care')}
+        ${node('Prepare', 'prepare')}
+        ${node('Govern', 'govern')}
+        ${node('Understand', 'understand')}
+        ${node('Study', 'study')}
+        <button class="hero-node hero-node--film" data-hero-node data-open-film type="button" tabindex="-1" aria-label="Play the Hii film"><span class="sr-only">Play the Hii film</span></button>
+      </nav>
+
+      <p class="motion-hero__hint" data-hero-hint aria-live="polite">The observatory is opening.</p>
+    </div>
+  </section>
+
+  <div class="film-dialog" data-film-dialog hidden>
+    <div class="film-dialog__backdrop" data-close-film></div>
+    <section class="film-dialog__panel" role="dialog" aria-modal="true" aria-label="Hii film">
+      <button class="film-dialog__close" type="button" data-close-film aria-label="Close Hii film">Return to Hii</button>
+      <video class="film-dialog__video" data-film-video controls playsinline preload="metadata" poster="/hii-film-poster.jpg">
+        <source src="/hii-film-1080p.mp4" type="video/mp4" media="(min-width: 900px)" />
+        <source src="/hii-film-720p.mp4" type="video/mp4" />
+      </video>
+    </section>
+  </div>`;
+}
+
 export function header() {
   const links = pathways.map(pathway => `<a href="/${pathway.slug}/">${esc(pathway.short)}</a>`).join('\n          ');
   return `<header class="site-header post-hero-header" data-site-header>
@@ -59,20 +99,12 @@ export function footer() {
   </footer>`;
 }
 
-export function pathwayCards() {
-  return pathways.map((pathway, index) => `<a class="pathway-card" href="/${pathway.slug}/">
-    <span class="pathway-index">0${index + 1}</span>
-    <span class="pathway-name">${esc(pathway.short)}</span>
-    <strong>${esc(pathway.title)}</strong>
-    <span>${esc(pathway.summary)}</span>
-  </a>`).join('\n');
-}
-
-export function shell({ title, description, path, main, bodyClass = '' }) {
+export function shell({ title, description, path, main, bodyClass = '', showHeader = true, showReturn = false }) {
   return `${head({ title, description, path })}
 <body class="${esc(bodyClass)}">
   <a class="skip-link" href="#main">Skip to content</a>
-  ${header()}
+  ${showReturn ? '<a class="return-to-hii" href="/">Return to Hii</a>' : ''}
+  ${showHeader ? header() : ''}
   <main id="main">${main}</main>
   ${footer()}
   <script src="/js/main.js"></script>
@@ -87,9 +119,10 @@ export function portalPage(pathway) {
     title: pathway.title,
     description: pathway.summary,
     path: `/${pathway.slug}/`,
-    bodyClass: 'portal-page',
+    bodyClass: `portal-page portal-page--${esc(pathway.slug)}`,
+    showHeader: false,
+    showReturn: true,
     main: `<section class="portal-hero section-shell">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Hii</a><span>/</span><span>${esc(pathway.short)}</span></nav>
       <p class="section-kicker">${esc(pathway.short)}</p>
       <h1>${esc(pathway.title)}</h1>
       <p class="portal-lede">${esc(pathway.summary)}</p>
@@ -103,8 +136,7 @@ export function portalPage(pathway) {
       <div><p class="section-kicker">What this pathway examines</p><ul class="theme-list">${themes}</ul></div>
       <aside class="boundary-card"><p class="section-kicker">Boundary</p><p>${esc(pathway.boundary)}</p></aside>
     </section>
-    <section class="portal-links section-shell"><p class="section-kicker">Start with the existing work</p><div class="artifact-links">${links}</div></section>
-    <section class="portal-return section-shell"><a href="/#pathways">Return to the seven pathways <span aria-hidden="true">→</span></a></section>`
+    <section class="portal-links section-shell"><p class="section-kicker">Start with the existing work</p><div class="artifact-links">${links}</div></section>`
   });
 }
 
