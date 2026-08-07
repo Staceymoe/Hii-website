@@ -1,235 +1,43 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hii | Hybrid Intelligence Institute</title>
-    <meta name="description" content="Hii is an emerging transition institute helping humans navigate the psychological, relational, cognitive, and institutional dimensions of living alongside AI systems." />
-    <meta name="theme-color" content="#020305" />
-    <link rel="canonical" href="https://hii.earth/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hii | Hybrid Intelligence Institute" />
-    <meta property="og:description" content="A new hello for a new world. Hii is the bridge layer between AI research and real-world human adaptation." />
-    <meta property="og:url" content="https://hii.earth/" />
-    <meta property="og:image" content="https://hii.earth/assets_hii-frontpage.png" />
-    <meta property="og:site_name" content="Hii" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hii | Hybrid Intelligence Institute" />
-    <meta name="twitter:description" content="A new hello for a new world. The bridge between emerging AI evidence and human adaptation." />
-    <meta name="twitter:image" content="https://hii.earth/assets_hii-frontpage.png" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://hii.earth/#organization",
-            "name": "Hybrid Intelligence Institute",
-            "alternateName": "Hii",
-            "url": "https://hii.earth/",
-            "logo": "https://hii.earth/assets_hii-frontpage.png",
-            "email": "hello@hii.earth",
-            "description": "A research, education, and public literacy institute focused on the human side of living alongside AI systems.",
-            "founder": {"@type": "Person", "name": "Stacey Moe"},
-            "sameAs": ["https://x.com/HumanAIResearch"]
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://hii.earth/#website",
-            "url": "https://hii.earth/",
-            "name": "Hii | Hybrid Intelligence Institute",
-            "publisher": {"@id": "https://hii.earth/#organization"}
-          }
-        ]
-      }
-    </script>
-
-    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/mobile-polish.css" />
-    <link rel="stylesheet" href="/css/site-expansion.css" />
-    <link rel="stylesheet" href="/css/relational-system.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <main id="main">
-      <section class="observatory-hero" id="hero" data-observatory-hero aria-label="Hii observatory">
-        <video class="observatory-film" data-hii-film playsinline preload="metadata" aria-label="The Hii Film">
-          <source src="/hii-film-720p.mp4?v=final-20260805" type="video/mp4" media="(max-width: 760px)" />
-          <source src="/hii-film-1080p.mp4?v=final-20260805" type="video/mp4" />
-          Your browser does not support embedded video.
-        </video>
-
-        <video class="observatory-awakening" data-observatory-awakening autoplay muted playsinline preload="auto" aria-hidden="true">
-          <source src="/assets/hii-observatory-hero.mp4" type="video/mp4" />
-        </video>
-
-        <button class="observatory-film-trigger" type="button" data-observatory-film-open aria-label="Play the Hii Film">
-          <span class="sr-only">Play the Hii Film</span>
-        </button>
-
-        <button class="observatory-film-close" type="button" data-observatory-film-close aria-label="Return to the Hii observatory">
-          <span aria-hidden="true">Return to Hii</span>
-        </button>
-
-        <p class="observatory-status sr-only" data-observatory-status aria-live="polite"></p>
-        <a class="observatory-skip" href="#research">Skip to the work</a>
-      </section>
-
-      <header class="site-header" data-site-header>
-        <a class="brand" href="/" aria-label="Hii home">
-          <span class="brand-mark">Hii</span>
-          <span class="brand-name">Hybrid Intelligence<br />Institute</span>
-        </a>
-
-        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
-          <a class="nav-world-model" href="/world-model.html">World Model</a>
-          <a href="/research.html">Research</a>
-          <a href="/publications.html">Publications</a>
-          <a href="/projects.html">Projects</a>
-          <a href="/about.html">About</a>
-          <a href="/news.html">News</a>
-          <a class="nav-social" href="https://x.com/HumanAIResearch" rel="noopener noreferrer">@HumanAIResearch</a>
-          <a href="#contact">Contact</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hii | Hybrid Intelligence Institute</title>
+  <meta name="description" content="Hii helps people navigate a historic transition without losing themselves or one another." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="stylesheet" href="/css/hii-interface.css" />
+</head>
+<body class="hii-interface-home">
+  <a class="sr-only" href="#hii-interface">Skip to Hii interface</a>
+  <main id="hii-interface">
+    <section class="motion-hero" aria-label="Hii interactive observatory" data-motion-hero>
+      <div class="motion-hero__stage">
+        <video class="motion-hero__video" data-motion-video muted playsinline preload="auto" aria-label="Hii observatory interface opening animation"></video>
+        <nav class="hero-hit-map" data-hero-map aria-label="Choose a Hii pathway">
+          <a class="hero-node hero-node--relate" data-hero-node href="/relationships/" tabindex="-1" aria-label="Relate: Human-AI Relationships"><span class="sr-only">Relate: Human-AI Relationships</span></a>
+          <a class="hero-node hero-node--adapt" data-hero-node href="/adaptation/" tabindex="-1" aria-label="Adapt: Human Adaptation"><span class="sr-only">Adapt: Human Adaptation</span></a>
+          <a class="hero-node hero-node--care" data-hero-node href="/mental-health/" tabindex="-1" aria-label="Care: Mental Health and Clinical Practice"><span class="sr-only">Care: Mental Health and Clinical Practice</span></a>
+          <a class="hero-node hero-node--prepare" data-hero-node href="/institutional-readiness/" tabindex="-1" aria-label="Prepare: Institutional Readiness"><span class="sr-only">Prepare: Institutional Readiness</span></a>
+          <a class="hero-node hero-node--govern" data-hero-node href="/governance/" tabindex="-1" aria-label="Govern: Governance Translation"><span class="sr-only">Govern: Governance Translation</span></a>
+          <a class="hero-node hero-node--understand" data-hero-node href="/understand/" tabindex="-1" aria-label="Understand: Public Orientation and Literacy"><span class="sr-only">Understand: Public Orientation and Literacy</span></a>
+          <a class="hero-node hero-node--study" data-hero-node href="/research/" tabindex="-1" aria-label="Study: Research, Evidence, and Publications"><span class="sr-only">Study: Research, Evidence, and Publications</span></a>
+          <button class="hero-node hero-node--film" data-hero-node data-open-film type="button" tabindex="-1" aria-label="Play the Hii film"><span class="sr-only">Play the Hii film</span></button>
         </nav>
-      </header>
-
-      <section class="study-strip section-shell" id="research" aria-labelledby="research-title">
-        <div class="section-kicker">Research</div>
-        <h1 class="section-title" id="research-title">Hii studies the bridge between emerging AI evidence and real-world human adaptation.</h1>
-
-        <section class="relational-system" aria-labelledby="relational-system-title">
-          <div class="relational-system-copy">
-            <p class="section-kicker">The Relational System</p>
-            <h2 id="relational-system-title">What Hii studies.</h2>
-            <p>Hii studies and prepares institutions for the cumulative effects of sustained human–AI interaction—especially where trust, psychological vulnerability, disagreement, privacy, and governance intersect.</p>
-          </div>
-          <div class="relational-visual" aria-hidden="true">
-            <div class="relational-axis-x"></div>
-            <div class="relational-axis-y"></div>
-            <div class="relational-ring relational-ring-a"></div>
-            <div class="relational-ring relational-ring-b"></div>
-            <div class="relational-ring relational-ring-c"></div>
-            <div class="relational-satellite relational-satellite-a"></div>
-            <div class="relational-satellite relational-satellite-b"></div>
-            <div class="relational-core"><strong>Hii</strong><span>Relationship as the unit of analysis</span></div>
-            <div class="relational-node relational-node-human">Human context</div>
-            <div class="relational-node relational-node-ai">AI behavior</div>
-            <div class="relational-node relational-node-effects">Downstream relational effects</div>
-            <div class="relational-node relational-node-institutions">Institutional conditions</div>
-            <div class="relational-node relational-node-time">Repeated interaction over time</div>
-          </div>
-          <p class="relational-system-statement">Human context <em>+</em> AI behavior <em>+</em> time <em>+</em> institutions <em>→</em> relational consequences</p>
-        </section>
-
-        <div class="study-grid">
-          <a class="study-card study-card-link" href="/human-ai-relationships.html"><h2>Human-AI Relationships</h2><p>Long-term interaction, trust, identity, attachment, dependency, co-adaptation, and the recursive learning loops that emerge between people and AI systems.</p></a>
-          <a class="study-card study-card-link" href="/human-adaptation.html"><h2>Human Adaptation</h2><p>The psychological, relational, cognitive, and institutional changes emerging as AI becomes part of daily life.</p></a>
-          <a class="study-card study-card-link" href="/governance-translation.html"><h2>Governance Translation</h2><p>Bridging policy, ethics, and lived human experience so governance conversations include relational and psychological realities.</p></a>
-          <a class="study-card study-card-link" href="/mental-health-ai.html"><h2>Mental Health & AI</h2><p>The implications of AI companions, AI coaching, emotional regulation through AI, and AI-mediated care contexts.</p></a>
-          <a class="study-card study-card-link" href="/education-training.html"><h2>Education & Training</h2><p>Learning frameworks for clinicians, educators, leaders, families, and communities navigating the AI transition.</p></a>
-          <a class="study-card study-card-link" href="/public-understanding.html"><h2>Public Understanding</h2><p>Plain-language relational AI literacy so people can stay oriented, discerning, and grounded while using AI systems.</p></a>
-        </div>
-        <div class="section-actions"><a class="button button-secondary" href="/research.html">Explore Hii Research</a></div>
-      </section>
-
-      <section class="why section-shell" id="publications" aria-labelledby="why-title">
-        <div class="section-kicker">Why Now</div>
-        <div class="split">
-          <div><h2 class="section-title" id="why-title">AI is moving from tool use into relationship, cognition, work, care, trust, and identity.</h2></div>
-          <div class="prose">
-            <p>People are already using AI systems to think, decide, write, regulate emotion, build businesses, study, practice care, and make sense of the world. These systems are becoming part of daily life before society has developed mature public language for what those relationships mean.</p>
-            <p>Research, governance, ethics, workplace AI, and mental health efforts are all advancing. Hii focuses on the bridge layer that remains underdeveloped: translating emerging evidence into practical frameworks for clinicians, families, organizations, and the public.</p>
-            <a class="home-section-link" href="/publications.html">View publications and research reports →</a>
-          </div>
-        </div>
-      </section>
-
-      <figure class="hii-landscape" aria-labelledby="orientation-caption">
-        <img src="https://hii-explainer-film.netlify.app/hii-observatory-landscape.webp" width="1536" height="864" alt="A quiet night horizon beneath a field of stars and faint interconnected orbital paths." loading="lazy" decoding="async" />
-        <figcaption id="orientation-caption">
-          <span class="section-kicker">Orientation</span>
-          <strong>The missing layer is relational.</strong>
-        </figcaption>
-      </figure>
-
-      <section class="visual-break section-shell" aria-labelledby="bridge-layer-title">
-        <div class="visual-break-copy">
-          <p class="section-kicker">The Bridge Layer</p>
-          <h2 class="section-title" id="bridge-layer-title">Hii connects domains that usually speak past one another.</h2>
-          <p>Research may identify a pattern. Clinicians may see it in practice. Families may feel it before they have language for it. Governance may arrive later. Hii exists to help those signals meet, translate, and become usable.</p>
-          <div class="section-actions"><a class="button button-secondary" href="/landscape-scan.html">See the Ecosystem</a></div>
-        </div>
-        <div class="bridge-orbit" aria-hidden="true">
-          <div class="orbit-ring orbit-ring-a"></div>
-          <div class="orbit-ring orbit-ring-b"></div>
-          <div class="orbit-ring orbit-ring-c"></div>
-          <div class="orbit-satellite orbit-satellite-a"></div>
-          <div class="orbit-satellite orbit-satellite-b"></div>
-          <div class="orbit-core"><span>Hii</span><small>Bridge layer</small></div>
-          <span class="orbit-node orbit-node-research">Research</span>
-          <span class="orbit-node orbit-node-clinical">Clinical practice</span>
-          <span class="orbit-node orbit-node-public">Public life</span>
-          <span class="orbit-node orbit-node-governance">Governance</span>
-        </div>
-      </section>
-
-      <section class="current-work section-shell" id="projects" aria-labelledby="work-title">
-        <div class="section-kicker">Current Work</div>
-        <h2 class="section-title" id="work-title">Early programs under development</h2>
-        <div class="work-list">
-          <article class="work-link-card"><span>01</span><h3><a href="/projects.html#landscape-intelligence">Landscape Intelligence Reports</a></h3><p>External scans mapping research centers, governance efforts, clinical models, public advocacy, and open questions across the human-AI ecosystem.</p></article>
-          <article class="work-link-card"><span>02</span><h3><a href="/projects.html#relationship-literacy">Human-AI Relationship Literacy</a></h3><p>Public education tools for understanding trust, dependency, collaboration, identity, and long-term AI use.</p></article>
-          <article class="work-link-card"><span>03</span><h3><a href="/projects.html#governance">Bridge-Layer Governance</a></h3><p>A translation lens connecting policy, ethics, public understanding, clinical signals, and lived human experience.</p></article>
-          <article class="work-link-card"><span>04</span><h3><a href="/clinician-pilot.html">When Clients Bring AI Into the Room</a></h3><p>A bounded 60-minute founding-clinician pilot with neutral intake language, assessment framing, risk boundaries, and structured feedback.</p></article>
-          <article class="work-link-card"><span>05</span><h3><a href="/relationship-as-unit-of-analysis.html">The Relationship as the Unit of Analysis</a></h3><p>A published conceptual and methods working paper for studying sustained human-AI interaction as a longitudinal system.</p></article>
-          <article class="work-link-card"><span>06</span><h3><a href="/world-model.html">World Model</a></h3><p>A human-reviewed systems map tracking high-signal changes, evidence strength, contradictions, convergence, and what to watch next.</p></article>
-        </div>
-        <div class="section-actions"><a class="button button-secondary" href="/projects.html">View All Projects</a></div>
-      </section>
-
-      <section class="about section-shell" id="about" aria-labelledby="about-title">
-        <div class="section-kicker">About Hii</div>
-        <div class="about-panel">
-          <h2 class="section-title" id="about-title">Hii is an emerging research and education institute focused on the human side of living alongside AI systems.</h2>
-          <p>The institute is being designed as a bridge between research, clinical practice, governance, public understanding, and institutional adaptation. Its focus is not hype, replacement, or certainty. Its focus is helping humans stay oriented, discerning, relationally grounded, and capable during the AI transition.</p>
-          <div class="section-actions"><a class="button button-secondary" href="/about.html">Why Hii Exists</a></div>
-        </div>
-      </section>
-
-      <section class="news section-shell" id="news" aria-labelledby="news-title">
-        <div class="section-kicker">News</div>
-        <div class="split compact">
-          <h2 class="section-title" id="news-title">The first public institutional timeline is now taking shape.</h2>
-          <div class="prose"><p>A new working paper defines the preserved relationship as a unit of analysis, the founding clinician pilot has a dedicated invitation page, and the World Model foundation is active.</p><a class="home-section-link" href="/news.html">Read Hii updates →</a></div>
-        </div>
-      </section>
-
-      <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
-        <div class="contact-card">
-          <p class="section-kicker">Contact / Follow</p>
-          <h2 class="section-title" id="contact-title">A new hello for a new world.</h2>
-          <p>Follow the emerging work at <a href="https://x.com/HumanAIResearch" rel="noopener noreferrer">@HumanAIResearch</a>. For inquiries: <a href="mailto:hello@hii.earth">hello@hii.earth</a>.</p>
-          <div class="contact-actions"><a class="button button-primary" href="https://x.com/HumanAIResearch" rel="noopener noreferrer">Follow @HumanAIResearch</a></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer section-shell">
-      <p>Hii · Hybrid Intelligence Institute</p>
-      <nav class="content-footer-nav" aria-label="Footer navigation"><a href="/research.html">Research</a><a href="/projects.html">Projects</a><a href="/about.html">About</a><a href="/press.html">Press</a><a href="#contact">Contact</a></nav>
-      <p><a href="https://x.com/HumanAIResearch" rel="noopener noreferrer">@HumanAIResearch</a> · Research, education, and public literacy for the AI transition.</p>
-    </footer>
-
-    <script src="/js/main.js"></script>
-  </body>
+        <p class="motion-hero__hint" data-hero-hint aria-live="polite">The observatory is opening.</p>
+      </div>
+    </section>
+  </main>
+  <div class="film-dialog" data-film-dialog hidden>
+    <div class="film-dialog__backdrop" data-close-film></div>
+    <section class="film-dialog__panel" role="dialog" aria-modal="true" aria-label="Hii film">
+      <button class="film-dialog__close" type="button" data-close-film aria-label="Close Hii film">Return to Hii</button>
+      <video class="film-dialog__video" data-film-video controls playsinline preload="metadata" poster="/hii-film-poster.jpg">
+        <source src="/hii-film-1080p.mp4" type="video/mp4" media="(min-width: 900px)" />
+        <source src="/hii-film-720p.mp4" type="video/mp4" />
+      </video>
+    </section>
+  </div>
+  <script src="/js/hii-hero.js"></script>
+</body>
 </html>
