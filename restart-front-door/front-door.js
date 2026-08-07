@@ -12,12 +12,43 @@
 
   if (!entry || !hero || !lensMap) return;
 
+  const HERO_FREEZE_AT = 12.2;
   let started = false;
+  let frozen = false;
 
   const settle = () => {
     entry.classList.add('is-ready');
     lenses.forEach((lens) => { lens.disabled = false; });
     fallback.hidden = true;
+  };
+
+  const freezeHero = () => {
+    if (frozen) return;
+    frozen = true;
+    hero.pause();
+    if (Math.abs(hero.currentTime - HERO_FREEZE_AT) > 0.015) {
+      try { hero.currentTime = HERO_FREEZE_AT; } catch (_) {}
+    }
+    settle();
+  };
+
+  const watchForFinalGraphic = () => {
+    if (typeof hero.requestVideoFrameCallback === 'function') {
+      const checkFrame = (_now, metadata) => {
+        if (metadata.mediaTime >= HERO_FREEZE_AT) {
+          freezeHero();
+          return;
+        }
+        hero.requestVideoFrameCallback(checkFrame);
+      };
+      hero.requestVideoFrameCallback(checkFrame);
+      return;
+    }
+
+    const checkTime = () => {
+      if (hero.currentTime >= HERO_FREEZE_AT) freezeHero();
+    };
+    hero.addEventListener('timeupdate', checkTime);
   };
 
   const returnToHii = () => {
@@ -53,12 +84,14 @@
 
     if (reduceMotion) {
       hero.pause();
-      hero.currentTime = Math.max(0, hero.duration - 0.08);
+      hero.currentTime = HERO_FREEZE_AT;
+      frozen = true;
       settle();
       return;
     }
 
     hero.currentTime = 0;
+    watchForFinalGraphic();
     const playAttempt = hero.play();
     if (playAttempt && typeof playAttempt.catch === 'function') {
       playAttempt.catch(() => {
@@ -81,10 +114,11 @@
 
   fallback.addEventListener('click', () => {
     fallback.hidden = true;
-    hero.play().catch(() => { fallback.hidden = false; });
+    if (!started) startHero();
+    else hero.play().catch(() => { fallback.hidden = false; });
   });
 
-  hero.addEventListener('ended', settle, { once: true });
+  hero.addEventListener('ended', freezeHero, { once: true });
   hero.addEventListener('error', () => {
     fallback.hidden = false;
     fallback.textContent = 'Reload Hii';
