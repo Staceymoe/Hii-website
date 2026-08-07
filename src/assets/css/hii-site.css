@@ -129,7 +129,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .map-time { top: 91%; left: 50%; }
 .map-world { top: 50%; left: 9%; }
 .relationship-map figcaption { max-width: 34rem; margin: 2rem auto 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
-.pathway-section, .themes-section, .evidence-section, .closing-section { padding-block: clamp(6rem, 11vw, 10rem); border-top: 1px solid var(--line); }
+.pathway-section, .themes-section, .evidence-section, .orientation-section, .questions-section, .evidence-literacy-section, .closing-section { padding-block: clamp(6rem, 11vw, 10rem); border-top: 1px solid var(--line); }
 .compact-heading { margin-bottom: 4rem; }
 .pathway-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .pathway-card { min-height: 24rem; padding: clamp(1.6rem, 3.5vw, 3rem); background: var(--ink); }
@@ -147,6 +147,31 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .artifact-card h3 { font-size: clamp(2rem, 4vw, 4rem); }
 .artifact-card > p:not(.artifact-type):not(.artifact-status), .artifact-card > a { grid-column: 2; }
 .text-link { width: fit-content; font-weight: 600; text-underline-offset: 0.3em; }
+.orientation-grid, .evidence-key { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.orientation-card, .evidence-key article { padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--ink); }
+.orientation-card { min-height: 23rem; }
+.orientation-label, .evidence-name { color: var(--champagne); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.orientation-card h3 { margin: 2.5rem 0 1.5rem; }
+.orientation-card > p:last-child, .evidence-key article > p:last-child { color: var(--ivory-soft); }
+.questions-section { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(3rem, 8vw, 8rem); }
+.disclosure-list { border-top: 1px solid var(--line); }
+.disclosure-list details { border-bottom: 1px solid var(--line); }
+.disclosure-list summary { position: relative; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; padding: 1.6rem 3rem 1.6rem 0; cursor: pointer; font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.4; list-style: none; }
+.disclosure-list summary::-webkit-details-marker { display: none; }
+.disclosure-list summary::after { content: "+"; position: absolute; top: 1.6rem; right: 0; color: var(--champagne); }
+.disclosure-list details[open] summary::after { content: "−"; }
+.disclosure-index { color: var(--champagne); font-size: 0.72rem; letter-spacing: 0.1em; }
+.disclosure-list details > p { max-width: 42rem; margin: 0 0 1.8rem 4rem; color: var(--ivory-soft); }
+.evidence-key article { min-height: 12rem; }
+.shared-artifact-heading { margin: clamp(6rem, 10vw, 9rem) 0 3rem; }
+.public-pathway-grid { grid-template-columns: repeat(6, 1fr); }
+.public-pathway-grid .pathway-card { grid-column: span 2; min-height: 22rem; }
+.public-pathway-grid .pathway-card:nth-last-child(-n + 2) { grid-column: span 3; }
+.public-pathway-grid .text-link { display: inline-block; margin-top: 1.5rem; }
+.film-orientation-section { border-top: 1px solid var(--line); }
+.film-orientation-inner { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(3rem, 8vw, 8rem); padding-block: clamp(5rem, 9vw, 8rem); }
+.film-orientation-inner > div:last-child { align-self: end; }
+.film-orientation-inner > div:last-child p { max-width: 38rem; margin-bottom: 2rem; color: var(--ivory-soft); }
 .boundary-section { background: var(--ivory); color: var(--ink); }
 .boundary-inner { padding-block: clamp(6rem, 13vw, 12rem); }
 .boundary-inner .eyebrow { color: #6c5d3e; }
@@ -157,7 +182,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .button-link { display: inline-block; padding: 0.9rem 1.2rem; color: var(--ink); background: var(--ivory); text-decoration: none; }
 .site-footer {
   display: grid;
-  grid-template-columns: 1.5fr 0.8fr 0.7fr;
+  grid-template-columns: 1.4fr 0.8fr 0.65fr 0.65fr;
   gap: 3rem;
   width: min(calc(100% - 3rem), var(--max));
   margin: 0 auto;
@@ -168,6 +193,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 }
 .site-footer p { max-width: 32rem; }
 .site-footer .footer-name { color: var(--ivory); font-weight: 600; }
+.site-footer .footer-label { margin-bottom: 0.5rem; color: var(--ivory); font-weight: 600; }
 .site-footer li + li { margin-top: 0.35rem; }
 .site-footer a { text-underline-offset: 0.25em; }
 .muted { color: var(--muted); }
@@ -181,6 +207,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .themes-section { padding-block: clamp(5rem, 8vw, 7.5rem); }
   .evidence-section { padding-block: clamp(5rem, 8vw, 7rem); }
   .literacy-section { padding-block: clamp(5rem, 8vw, 7rem); }
+  .orientation-section, .questions-section, .evidence-literacy-section, .understand-pathway-section { padding-block: clamp(5rem, 8vw, 7.5rem); }
   .boundary-inner { padding-block: clamp(5rem, 8vw, 8rem); }
 }
 @media (max-width: 760px) {
@@ -188,7 +215,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .world-hero { grid-template-columns: 1fr; min-height: auto; gap: 4rem; padding-block: 6rem; }
   h1 { font-size: clamp(3.2rem, 16vw, 5.2rem); }
   .relationship-intro, .literacy-section { grid-template-columns: 1fr; }
+  .questions-section, .film-orientation-inner { grid-template-columns: 1fr; }
+  .orientation-grid, .evidence-key { grid-template-columns: 1fr 1fr; }
   .pathway-grid { grid-template-columns: 1fr; }
+  .public-pathway-grid .pathway-card, .public-pathway-grid .pathway-card:nth-last-child(-n + 2) { grid-column: auto; }
   .pathway-card { min-height: auto; }
   .theme-row { grid-template-columns: 1fr; gap: 0.6rem; }
   .theme-row p { max-width: 38rem; }
@@ -202,6 +232,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   h1 { font-size: clamp(2.75rem, 12vw, 3.6rem); }
   .map-center { width: 7.2rem; }
   .map-node { font-size: 0.58rem; }
+  .orientation-grid, .evidence-key { grid-template-columns: 1fr; }
+  .orientation-card { min-height: auto; }
+  .disclosure-list summary { grid-template-columns: 2rem 1fr; }
+  .disclosure-list details > p { margin-left: 3rem; }
   .closing-actions { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {

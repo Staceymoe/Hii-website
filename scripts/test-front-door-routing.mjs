@@ -4,22 +4,26 @@ import vm from "node:vm";
 
 const source = await readFile(new URL("../restart-front-door/front-door.js", import.meta.url), "utf8");
 
-const runFrontDoor = (search) => {
-  const listeners = new Map();
+const runFrontDoor = (search, destination = "Understand") => {
   const classes = new Set();
   const historyCalls = [];
   let playCalls = 0;
   let pauseCalls = 0;
+  const assignments = [];
 
-  const element = (extra = {}) => ({
-    hidden: false,
-    disabled: true,
-    textContent: "",
-    classList: { add: (name) => classes.add(name), contains: (name) => classes.has(name) },
-    addEventListener: (type, callback) => listeners.set(type, callback),
-    closest: () => null,
-    ...extra
-  });
+  const element = (extra = {}) => {
+    const listeners = new Map();
+    return {
+      hidden: false,
+      disabled: true,
+      textContent: "",
+      listeners,
+      classList: { add: (name) => classes.add(name), contains: (name) => classes.has(name) },
+      addEventListener: (type, callback) => listeners.set(type, callback),
+      closest: () => null,
+      ...extra
+    };
+  };
 
   const hero = element({
     readyState: 1,
@@ -29,6 +33,8 @@ const runFrontDoor = (search) => {
   });
   const entry = element();
   const lens = element();
+  lens.dataset = { destination };
+  lens.closest = (selector) => selector === "[data-destination]" ? lens : null;
   const lensMap = element();
   const fallback = element();
   const destinationTest = element();
@@ -49,7 +55,7 @@ const runFrontDoor = (search) => {
   vm.runInNewContext(source, {
     URLSearchParams,
     window: {
-      location: { pathname: "/", search, hash: "" },
+      location: { pathname: "/", search, hash: "", assign: (href) => assignments.push(href) },
       matchMedia: () => ({ matches: false })
     },
     history: { replaceState: (...args) => historyCalls.push(args) },
@@ -60,7 +66,17 @@ const runFrontDoor = (search) => {
     }
   });
 
-  return { classes, fallback, hero, historyCalls, lens, pauseCalls, playCalls };
+  return {
+    assignments,
+    classes,
+    clickLens: () => lensMap.listeners.get("click")?.({ target: lens }),
+    fallback,
+    hero,
+    historyCalls,
+    lens,
+    pauseCalls,
+    playCalls
+  };
 };
 
 const direct = runFrontDoor("");
@@ -78,4 +94,12 @@ assert.equal(returned.lens.disabled, false, "a world return must enable the circ
 assert.equal(returned.fallback.hidden, true, "a world return must hide the autoplay fallback");
 assert.deepEqual(returned.historyCalls, [[null, "", "/"]], "the temporary return marker must be removed");
 
-console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s.");
+const understandRoute = runFrontDoor("?return=hii", "Understand");
+understandRoute.clickLens();
+assert.deepEqual(understandRoute.assignments, ["/understand/"], "Understand must route to its built world");
+
+const relateRoute = runFrontDoor("?return=hii", "Relate");
+relateRoute.clickLens();
+assert.deepEqual(relateRoute.assignments, ["/relationships/"], "Relate must retain its built-world route");
+
+console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s; Relate and Understand route correctly.");

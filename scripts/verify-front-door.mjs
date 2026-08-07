@@ -24,6 +24,10 @@ const allowedSeams = [
   {
     label: "Relate routing",
     content: "    else if (destination === 'Relate') window.location.assign('/relationships/');\n"
+  },
+  {
+    label: "Understand routing",
+    content: "    else if (destination === 'Understand') window.location.assign('/understand/');\n"
   }
 ];
 const bytes = async (relativePath) => readFile(path.join(root, relativePath));

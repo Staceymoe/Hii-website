@@ -46,20 +46,42 @@ const h1Count = (page.match(/<h1(?:\s|>)/g) || []).length;
 if (h1Count !== 1) fail(`relationships page has ${h1Count} h1 elements; expected 1`);
 else pass("relationships page has one h1");
 
-const hrefs = [...page.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
-for (const href of hrefs) {
-  if (/^(https?:|mailto:|#)/.test(href)) continue;
-  const clean = decodeURIComponent(href.split("#")[0].split("?")[0]);
-  if (!clean) continue;
-  const relative = clean.replace(/^\//, "");
-  const candidate = clean.endsWith("/") ? path.join(output, relative, "index.html") : path.join(output, relative);
-  try {
-    await access(candidate);
-  } catch {
-    fail(`internal link does not resolve in the build: ${href}`);
+const understandPath = "_site/understand/index.html";
+const understandPage = (await read(understandPath)).toString("utf8");
+const understandRequired = [
+  [/<title>Public Orientation and Literacy \| Hii<\/title>/, "page title"],
+  [/<link rel="canonical" href="https:\/\/hii\.earth\/understand\/">/, "canonical URL"],
+  [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
+  [/Every public claim should show what kind of claim it is\./, "evidence framework"],
+  [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
+  [/href="\/relationships\/"/, "Relationships cross-world link"],
+  [/class="disclosure-list"/, "accessible disclosure-list component"],
+  [/Public literacy should reduce both panic and false reassurance\./, "public boundary"]
+];
+for (const [pattern, label] of understandRequired) {
+  if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
+  else pass(`understand page includes ${label}`);
+}
+const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
+if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
+else pass("understand page has one h1");
+
+for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage]]) {
+  const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+  for (const href of hrefs) {
+    if (/^(https?:|mailto:|#)/.test(href)) continue;
+    const clean = decodeURIComponent(href.split("#")[0].split("?")[0]);
+    if (!clean) continue;
+    const relative = clean.replace(/^\//, "");
+    const candidate = clean.endsWith("/") ? path.join(output, relative, "index.html") : path.join(output, relative);
+    try {
+      await access(candidate);
+    } catch {
+      fail(`${pageLabel} internal link does not resolve in the build: ${href}`);
+    }
   }
 }
-if (!failures.some((item) => item.startsWith("internal link"))) pass("all relationships-page internal links resolve");
+if (!failures.some((item) => item.includes("internal link"))) pass("all world-page internal links resolve");
 
 const css = (await read("_site/assets/css/hii-site.css")).toString("utf8");
 if (!/@media \(prefers-reduced-motion: reduce\)/.test(css)) fail("shared CSS lacks a reduced-motion mode");
@@ -67,13 +89,13 @@ else pass("shared CSS includes reduced-motion handling");
 if (!/font-family: "Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
 else pass("shared CSS specifies Manrope");
 
-for (const unbuiltWorld of ["self", "home", "find", "connect", "cultivate", "create"]) {
+for (const unbuiltWorld of ["adaptation", "mental-health", "institutional-readiness", "governance", "research"]) {
   try {
     await access(path.join(output, unbuiltWorld));
     fail(`unapproved world route was built: /${unbuiltWorld}/`);
   } catch {}
 }
-pass("no additional world routes were generated");
+pass("no additional world routes beyond Relate and Understand were generated");
 
 const netlify = (await read("netlify.toml")).toString("utf8");
 if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
@@ -82,6 +104,12 @@ else pass("no Netlify redirects are active");
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
 if (!sitemap.includes("https://hii.earth/relationships/")) fail("sitemap omits /relationships/");
 else pass("sitemap includes /relationships/");
+if (!sitemap.includes("https://hii.earth/understand/")) fail("sitemap omits /understand/");
+else pass("sitemap includes /understand/");
+
+const builtFrontDoorJs = (await read("_site/front-door.js")).toString("utf8");
+if (!builtFrontDoorJs.includes("destination === 'Understand') window.location.assign('/understand/')")) fail("front door lacks the Understand routing seam");
+else pass("front door routes Understand to /understand/");
 
 const approvedSource = (await read("restart-front-door/index.html")).toString("utf8").replace(/\r\n/g, "\n");
 const approvedSourceHash = sha(approvedSource);
