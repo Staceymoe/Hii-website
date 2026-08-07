@@ -16,18 +16,18 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   await cp(path.join(root, entry.name), path.join(out, entry.name), { recursive: true });
 }
 
-// Reconstruct the web-optimized hero video from source-safe base64 chunks.
-// This keeps binary media out of text-only connector writes while producing a normal MP4 in the deploy output.
+// Reconstruct the lightweight review encode of the new motion hero from source-safe base64 chunks.
+// The full-resolution master remains preserved separately; this proxy exists only to make the draft interaction review deploy reliably.
 const mediaSource = path.join(root, 'site', 'media');
 const mediaChunks = (await readdir(mediaSource))
-  .filter(name => /^hero-v4\.part-\d+\.b64$/.test(name))
+  .filter(name => /^hero-v4\.preview-\d+\.b64$/.test(name))
   .sort();
 
-if (!mediaChunks.length) throw new Error('New Hii motion hero media chunks are missing. Build stopped.');
+if (!mediaChunks.length) throw new Error('New Hii motion hero preview media chunks are missing. Build stopped.');
 
 const encodedHero = (await Promise.all(mediaChunks.map(name => readFile(path.join(mediaSource, name), 'utf8')))).join('');
 const heroBuffer = Buffer.from(encodedHero, 'base64');
-if (heroBuffer.length < 500000) throw new Error('New Hii motion hero media appears incomplete. Build stopped.');
+if (heroBuffer.length < 150000) throw new Error('New Hii motion hero preview media appears incomplete. Build stopped.');
 
 await mkdir(path.join(out, 'assets'), { recursive: true });
 await writeFile(path.join(out, 'assets', 'hii-hero-v4-1080p.mp4'), heroBuffer);
