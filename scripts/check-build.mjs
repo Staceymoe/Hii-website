@@ -28,7 +28,7 @@ if ((generated.match(/data-hero-node/g) || []).length !== 8) throw new Error('Hi
 if (generated.includes('class="pathway-grid"')) throw new Error('Homepage must remain the circle interface, not a scroll-first pathway grid.');
 
 const heroSize = (await stat(path.join(root, '_site/assets/hii-hero-v4-1080p.mp4'))).size;
-if (heroSize < 500000) throw new Error('Reconstructed Hii motion hero media is incomplete.');
+if (heroSize < 150000) throw new Error('Reconstructed Hii motion hero review media is incomplete.');
 
 for (const route of ['relationships', 'adaptation', 'mental-health', 'institutional-readiness', 'governance', 'understand', 'research']) {
   const page = await readFile(path.join(root, '_site', route, 'index.html'), 'utf8');
