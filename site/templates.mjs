@@ -28,6 +28,7 @@ export function head({ title, description, path = '/' }) {
   <link rel="stylesheet" href="/css/site-expansion.css" />
   <link rel="stylesheet" href="/css/relational-system.css" />
   <link rel="stylesheet" href="/css/post-hero.css" />
+  <link rel="stylesheet" href="/css/hii-interface.css" />
 </head>`;
 }
 
