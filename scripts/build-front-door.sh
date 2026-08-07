@@ -16,8 +16,6 @@ cp hii-film-1080p.mp4 "$OUT/hii-film-1080p.mp4"
 cp hii-film-720p.mp4 "$OUT/hii-film-720p.mp4"
 cp hii-film-poster.jpg "$OUT/hii-film-poster.jpg"
 
-# Read-only retrieval of the approved-motion review proxy already preserved in Git.
-# The broken draft branch is never modified by this build.
 git fetch --quiet --depth=1 origin "$PART_BRANCH"
 : > "$OUT/assets/hii-hero-front-door.b64"
 for n in 00 01 02 03 04 05 06 07 08 09; do
@@ -28,15 +26,16 @@ base64 --decode "$OUT/assets/hii-hero-front-door.b64" > "$OUT/assets/hii-hero-fr
 rm "$OUT/assets/hii-hero-front-door.b64"
 
 ACTUAL_SHA="$(sha256sum "$OUT/assets/hii-hero-front-door.mp4" | awk '{print $1}')"
+SIZE="$(stat -c%s "$OUT/assets/hii-hero-front-door.mp4")"
+echo "Hero diagnostic: bytes=$SIZE sha256=$ACTUAL_SHA"
+
 if [[ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]]; then
   echo "Hero checksum mismatch. Refusing to deploy."
   exit 2
 fi
-
-SIZE="$(stat -c%s "$OUT/assets/hii-hero-front-door.mp4")"
 if [[ "$SIZE" -lt 200000 ]]; then
   echo "Hero file is incomplete. Refusing to deploy."
   exit 2
 fi
 
-echo "Clean Hii front door built. Hero bytes: $SIZE. Checksum verified."
+echo "Clean Hii front door built. Checksum verified."
