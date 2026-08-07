@@ -1,0 +1,153 @@
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --text: #f7f4ec;
+  --ivory: rgba(255, 248, 230, .92);
+  --champagne: rgba(224, 178, 110, .88);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); }
+body {
+  min-height: 100svh;
+  overflow: hidden;
+  font-family: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+}
+button { font: inherit; }
+.skip-link {
+  position: fixed;
+  top: .75rem;
+  left: .75rem;
+  z-index: 5000;
+  padding: .65rem .9rem;
+  border-radius: 999px;
+  background: var(--text);
+  color: #000;
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+.front-door {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+  overflow: hidden;
+}
+.front-door__stage {
+  position: relative;
+  width: min(100vw, calc(100svh * 16 / 9));
+  height: min(100svh, calc(100vw * 9 / 16));
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.front-door__motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #000;
+}
+.lens-map { position: absolute; inset: 0; pointer-events: none; }
+.lens-hit {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  cursor: default;
+  transition: border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+.front-door.is-ready .lens-map { pointer-events: auto; }
+.front-door.is-ready .lens-hit { opacity: 1; pointer-events: auto; cursor: pointer; }
+.front-door.is-ready .lens-hit:hover,
+.front-door.is-ready .lens-hit:focus-visible {
+  border-color: rgba(255, 248, 230, .62);
+  box-shadow: 0 0 0 4px rgba(255, 248, 230, .035), 0 0 34px rgba(224, 178, 110, .16);
+  outline: none;
+}
+/* Measured from the approved 16:9 final frame. */
+.lens-hit--relate { left: 49.9%; top: 13.2%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--study { left: 34.3%; top: 26.3%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--adapt { left: 65.4%; top: 26.3%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--understand { left: 30.4%; top: 55.6%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--care { left: 69.3%; top: 55.6%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--govern { left: 41.1%; top: 79.4%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--prepare { left: 58.7%; top: 79.4%; width: 9.4%; aspect-ratio: 1; }
+.lens-hit--film { left: 49.9%; top: 48.5%; width: 24%; aspect-ratio: 1; }
+.film-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+}
+.film-layer[hidden] { display: none; }
+.film-layer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .96);
+  backdrop-filter: blur(10px);
+}
+.film-layer__panel {
+  position: relative;
+  z-index: 1;
+  width: min(94vw, 1420px);
+  margin: 0;
+}
+.film-layer__video {
+  display: block;
+  width: 100%;
+  max-height: 84svh;
+  background: #000;
+}
+.return-to-hii {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 2;
+  min-height: 44px;
+  padding: .72rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .62);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, .88);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.return-to-hii:hover,
+.return-to-hii:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 248, 230, .58);
+  background: rgba(14, 18, 29, .78);
+  outline: none;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+@media (max-width: 760px) {
+  .return-to-hii { font-size: .66rem; padding: .65rem .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lens-hit { transition: none; }
+}
