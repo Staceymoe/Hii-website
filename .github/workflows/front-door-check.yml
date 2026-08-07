@@ -1,0 +1,29 @@
+name: Hii Front Door Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'frontdoor/**'
+      - 'scripts/build-front-door.sh'
+      - 'netlify.toml'
+      - '.github/workflows/front-door-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-front-door:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build clean front door
+        run: bash scripts/build-front-door.sh
+      - name: Verify required files
+        run: |
+          test -s _frontdoor/index.html
+          test -s _frontdoor/hero-front-door.css
+          test -s _frontdoor/hero-front-door.js
+          test -s _frontdoor/assets/hii-hero-front-door.mp4
