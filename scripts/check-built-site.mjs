@@ -197,6 +197,8 @@ pass("no additional world routes beyond Relate and Understand were generated");
 const netlify = (await read("netlify.toml")).toString("utf8");
 if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
 else pass("no Netlify redirects are active");
+if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf"[\s\S]*X-Frame-Options = "SAMEORIGIN"[\s\S]*Content-Security-Policy = "frame-ancestors 'self'"/.test(netlify)) fail("canonical paper lacks a same-origin-only embedding policy");
+else pass("canonical paper permits only same-origin embedding");
 
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
 if (!sitemap.includes("https://hii.earth/relationships/")) fail("sitemap omits /relationships/");

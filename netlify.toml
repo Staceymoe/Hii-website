@@ -14,3 +14,9 @@
   for = "/media/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/assets/documents/relationship-unit-working-paper-v0.2.pdf"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    Content-Security-Policy = "frame-ancestors 'self'"
