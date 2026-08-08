@@ -100,12 +100,12 @@ if (!failures.some((item) => item.includes("approved Relate asset"))) pass("appr
 if (/<video|\.mp4/i.test(page)) fail("relationships page uses video before the clean hero export is supplied");
 else pass("relationships page uses the approved still while the clean hero video is pending");
 
-const paperPath = "_site/relationship-as-unit-of-analysis/index.html";
+const paperPath = "_site/relationships/the-relationship-as-unit-of-analysis/index.html";
 const paperPage = (await read(paperPath)).toString("utf8");
 const paperRequired = [
   [/<title>The Relationship as the Unit of Analysis \| Hii<\/title>/, "page title"],
   [/<meta name="robots" content="noindex">/, "temporary noindex"],
-  [/<link rel="canonical" href="https:\/\/hii\.earth\/relationship-as-unit-of-analysis\/">/, "canonical URL"],
+  [/<link rel="canonical" href="https:\/\/hii\.earth\/relationships\/the-relationship-as-unit-of-analysis\/">/, "canonical URL"],
   [/What it studies/, "What it studies card"],
   [/How it can be tested/, "How it can be tested card"],
   [/Why it matters/, "Why it matters card"],

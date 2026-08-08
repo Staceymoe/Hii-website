@@ -16,7 +16,7 @@ The approved source is in `restart-front-door/`. Do not change its HTML, CSS, me
 
 - `/` — checksum-locked approved front door
 - `/relationships/` — approved consolidated Relate world
-- `/relationship-as-unit-of-analysis/` — Relate paper overview; final public status and PDF pending
+- `/relationships/the-relationship-as-unit-of-analysis/` — Relate paper overview; final public status and PDF pending
 - `/relationships/research-inquiry/` — Relate inquiry form foundation; submissions disabled until the approved privacy notice is connected
 - `/understand/` — frozen pending the next page-by-page review
 - Existing `.html` pages — retained as migration sources and temporary destinations

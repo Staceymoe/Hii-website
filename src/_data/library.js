@@ -9,12 +9,12 @@ export default {
         pendingApprovedWording: true
       },
       summary: "Hii proposes the relationship itself as the unit of analysis when human-AI interaction becomes sustained, recursive, and consequential.",
-      href: "/relationship-as-unit-of-analysis/",
+      href: "/relationships/the-relationship-as-unit-of-analysis/",
       externalHref: null,
       worlds: ["relate"],
       provenance: {
         sourceLabel: "Existing Hii publication",
-        canonicalHref: "/relationship-as-unit-of-analysis/"
+        canonicalHref: "/relationships/the-relationship-as-unit-of-analysis/"
       }
     },
     epistemicGuardrails: {
