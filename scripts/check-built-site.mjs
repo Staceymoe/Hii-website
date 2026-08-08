@@ -110,9 +110,15 @@ const paperRequired = [
   [/<meta name="robots" content="noindex">/, "temporary noindex"],
   [/<link rel="canonical" href="https:\/\/hii\.earth\/relationships\/the-relationship-as-unit-of-analysis\/">/, "canonical URL"],
   [/Conceptual and methods paper\. Not peer reviewed\. No formal case findings are reported\./, "approved paper status"],
-  [/<iframe[^>]+class="paper-document-frame"/, "embedded working paper"],
-  [/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/preview/, "canonical embedded document"],
+  [/<iframe[^>]+class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"],
+  [/href="\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf" download/, "downloadable canonical PDF"],
   [/href="https:\/\/docs\.google\.com\/document\/d\/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/edit"/, "direct paper link"],
+  [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
+  [/approximately 18-month/, "approved longitudinal duration"],
+  [/Human participant[\s\S]*AI and product state[\s\S]*Preservation infrastructure[\s\S]*Interaction history[\s\S]*External context/, "five-part relational system"],
+  [/Observed longitudinal case[\s\S]*Systematic preservation[\s\S]*Candidate pattern identification[\s\S]*Falsifiable methods framework[\s\S]*Formal empirical study/, "archive-to-program progression"],
+  [/Archive readiness[\s\S]*Preregistered sampling[\s\S]*Independent blind coding[\s\S]*Perturbation and substitution tests[\s\S]*Prospective multi-case research/, "methods and falsification stages"],
+  [/Cite this paper/, "citation guidance"],
   [/href="\/\?return=hii">Return to Hii/, "static Return to Hii control"]
 ];
 for (const [pattern, label] of paperRequired) {
@@ -123,6 +129,17 @@ if ((paperPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("paper
 else pass("paper page repeats Back to Relate controls");
 if (/Study what happens between people and systems across time|relationship-time-model/.test(paperPage)) fail("paper page retains the superseded repeated model section");
 else pass("paper page removes the superseded repeated model section");
+if (/\/preview|100s of thousands|71%|132 key signals/i.test(paperPage)) fail("paper page contains a superseded viewer or unverified quantitative claim");
+else pass("paper page omits the superseded viewer and unverified quantitative claims");
+const paperH1Count = (paperPage.match(/<h1(?:\s|>)/g) || []).length;
+if (paperH1Count !== 1) fail(`paper page has ${paperH1Count} h1 elements; expected 1`);
+else pass("paper page has one h1");
+try {
+  await access(path.join(root, "_site/assets/documents/relationship-unit-working-paper-v0.2.pdf"));
+  pass("canonical paper PDF is present in the build");
+} catch {
+  fail("canonical paper PDF is missing from the build");
+}
 
 const inquiryPath = "_site/relationships/research-inquiry/index.html";
 const inquiryPage = (await read(inquiryPath)).toString("utf8");
