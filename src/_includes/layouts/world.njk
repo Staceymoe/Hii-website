@@ -27,5 +27,6 @@
       {{ content | safe }}
     </main>
     {% include "components/site-footer.njk" %}
+    {% if pageScript %}<script src="{{ pageScript }}" defer></script>{% endif %}
   </body>
 </html>

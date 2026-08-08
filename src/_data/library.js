@@ -5,12 +5,13 @@ export default {
       type: "working-paper",
       title: "The Relationship as the Unit of Analysis",
       status: {
-        display: null,
-        pendingApprovedWording: true
+        display: "Conceptual and methods paper. Not peer reviewed. No formal case findings are reported.",
+        pendingApprovedWording: false
       },
       summary: "Hii proposes the relationship itself as the unit of analysis when human-AI interaction becomes sustained, recursive, and consequential.",
       href: "/relationships/the-relationship-as-unit-of-analysis/",
-      externalHref: null,
+      externalHref: "https://docs.google.com/document/d/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI/edit",
+      embedHref: "https://docs.google.com/document/d/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI/preview",
       worlds: ["relate"],
       provenance: {
         sourceLabel: "Existing Hii publication",

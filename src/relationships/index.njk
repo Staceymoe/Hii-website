@@ -1,8 +1,9 @@
 ---
 layout: layouts/world.njk
 title: Human-AI Relationships
-description: Hii studies what changes when relationships with AI become sustained, personal, and consequential.
+description: Hii exists to help people navigate a historic transition without losing themselves or one another.
 permalink: /relationships/index.html
+pageScript: /assets/js/relate-hero.js
 ---
 {% set world = worlds.relate %}
 {% set paper = library.artifacts.relationshipUnitPaper %}
@@ -15,10 +16,24 @@ permalink: /relationships/index.html
     <h1 id="relate-title">{{ world.title }}</h1>
     <p class="lede">{{ world.introduction }}</p>
   </div>
-  <figure class="relate-hero-visual" data-relate-hero-media="poster-only">
-    <img src="/assets/media/relate/human-ai-relationship-still.png" width="1600" height="900" alt="A human profile and an AI profile face one another across a shared field of branching and geometric connections." loading="eager" fetchpriority="high" decoding="async">
+  <figure class="relate-hero-visual">
+    <video data-relate-motion muted loop playsinline preload="metadata" poster="/assets/media/relate/human-ai-relationship-still.png" aria-label="A human profile and an AI profile face one another while branching and geometric connections move through their shared relational field.">
+      <source src="/assets/media/relate/human-ai-relationship.mp4" type="video/mp4">
+    </video>
     <figcaption>Reciprocal influence across a shared relational field.</figcaption>
   </figure>
+</section>
+<section class="research-inquiry-section relate-early-inquiry" aria-labelledby="research-inquiry-heading">
+  <div class="section-shell research-inquiry-inner">
+    <div>
+      <p class="eyebrow">Research inquiry</p>
+      <h2 id="research-inquiry-heading">Begin a focused conversation with Hii.</h2>
+    </div>
+    <div>
+      <p>For research collaboration, clinician education or training, speaking or media, partnership or funding, and paper or resource inquiries.</p>
+      <a class="button-link" href="{{ inquiry.href }}">Research inquiry</a>
+    </div>
+  </div>
 </section>
 
 <section class="section-shell relationship-intro" aria-labelledby="relationship-system-heading">
@@ -78,17 +93,4 @@ permalink: /relationships/index.html
       {% if publication.href %}<a class="text-link" href="{{ publication.href }}">View book <span aria-hidden="true">↗</span></a>{% endif %}
     </div>
   </article>
-</section>
-
-<section class="research-inquiry-section" aria-labelledby="research-inquiry-heading">
-  <div class="section-shell research-inquiry-inner">
-    <div>
-      <p class="eyebrow">Research inquiry</p>
-      <h2 id="research-inquiry-heading">Begin a focused conversation with Hii.</h2>
-    </div>
-    <div>
-      <p>For research collaboration, clinician education or training, speaking or media, partnership or funding, and paper or resource inquiries.</p>
-      <a class="button-link" href="{{ inquiry.href }}">Research inquiry</a>
-    </div>
-  </div>
 </section>

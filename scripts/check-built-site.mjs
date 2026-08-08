@@ -31,8 +31,10 @@ const required = [
   [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
   [/class="wordmark" href="\/\?return=hii"/, "static-state Hii wordmark return"],
   [/The Relationship as the Unit of Analysis/, "canonical working-paper title"],
-  [/Hii studies what changes when relationships with AI become sustained, personal, and consequential\./, "approved hero copy"],
-  [/human-ai-relationship-still\.png/, "approved hero still"],
+  [/Hii exists to help people navigate a historic transition without losing themselves or one another\./, "approved hero copy"],
+  [/human-ai-relationship\.mp4/, "approved hero animation"],
+  [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
+  [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
   [/class="relationship-system-svg"/, "accessible relationship-system reconstruction"],
   [/Waking ÆLYSIA/, "approved publication"],
   [/href="\/relationships\/research-inquiry\/"/, "internal Research Inquiry route"]
@@ -50,11 +52,11 @@ if (!failures.some((item) => item.includes("retains removed content"))) pass("re
 
 const relateOrder = [
   'class="relate-hero',
+  'class="research-inquiry-section relate-early-inquiry',
   'class="section-shell relationship-intro',
   'class="paper-feature-section',
   'class="section-shell pathway-section relate-pathway-section',
-  'class="section-shell publications-section',
-  'class="research-inquiry-section'
+  'class="section-shell publications-section'
 ].map((marker) => page.indexOf(marker));
 if (relateOrder.some((position) => position < 0) || relateOrder.some((position, index) => index > 0 && position <= relateOrder[index - 1])) {
   fail("relationships page does not follow the approved section order");
@@ -90,15 +92,16 @@ else pass("frozen Understand template is unchanged");
 
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
+  "_site/assets/media/relate/human-ai-relationship.mp4",
   "_site/assets/media/relate/relationship-system-reference.png",
   "_site/assets/media/relate/waking-aelysia-cover.png"
 ]) {
   try { await access(path.join(root, assetPath)); }
   catch { fail(`approved Relate asset is missing: ${assetPath}`); }
 }
-if (!failures.some((item) => item.includes("approved Relate asset"))) pass("approved Relate stills and reference art are present");
-if (/<video|\.mp4/i.test(page)) fail("relationships page uses video before the clean hero export is supplied");
-else pass("relationships page uses the approved still while the clean hero video is pending");
+if (!failures.some((item) => item.includes("approved Relate asset"))) pass("approved Relate motion, stills, and reference art are present");
+if (!/<video[^>]+data-relate-motion/.test(page)) fail("relationships page does not use the approved Relate motion asset");
+else pass("relationships page uses the approved Relate motion asset");
 
 const paperPath = "_site/relationships/the-relationship-as-unit-of-analysis/index.html";
 const paperPage = (await read(paperPath)).toString("utf8");
@@ -106,11 +109,11 @@ const paperRequired = [
   [/<title>The Relationship as the Unit of Analysis \| Hii<\/title>/, "page title"],
   [/<meta name="robots" content="noindex">/, "temporary noindex"],
   [/<link rel="canonical" href="https:\/\/hii\.earth\/relationships\/the-relationship-as-unit-of-analysis\/">/, "canonical URL"],
-  [/What it studies/, "What it studies card"],
-  [/How it can be tested/, "How it can be tested card"],
-  [/Why it matters/, "Why it matters card"],
-  [/Relationship-level research does not require a claim about machine consciousness\./, "claim boundary"],
-  [/Final public paper-status wording and PDF access are pending approval\./, "explicit pending dependency"]
+  [/Conceptual and methods paper\. Not peer reviewed\. No formal case findings are reported\./, "approved paper status"],
+  [/<iframe[^>]+class="paper-document-frame"/, "embedded working paper"],
+  [/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/preview/, "canonical embedded document"],
+  [/href="https:\/\/docs\.google\.com\/document\/d\/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/edit"/, "direct paper link"],
+  [/href="\/\?return=hii">Return to Hii/, "static Return to Hii control"]
 ];
 for (const [pattern, label] of paperRequired) {
   if (!pattern.test(paperPage)) fail(`paper page is missing ${label}`);
@@ -118,8 +121,8 @@ for (const [pattern, label] of paperRequired) {
 }
 if ((paperPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("paper page lacks repeated Back to Relate controls");
 else pass("paper page repeats Back to Relate controls");
-if (/target="_blank"|\.pdf/i.test(paperPage)) fail("paper page activates unapproved PDF access");
-else pass("paper page does not activate unapproved PDF access");
+if (/Study what happens between people and systems across time|relationship-time-model/.test(paperPage)) fail("paper page retains the superseded repeated model section");
+else pass("paper page removes the superseded repeated model section");
 
 const inquiryPath = "_site/relationships/research-inquiry/index.html";
 const inquiryPage = (await read(inquiryPath)).toString("utf8");

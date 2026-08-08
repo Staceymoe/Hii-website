@@ -6,7 +6,7 @@ export default {
     route: "/relationships/",
     eyebrow: "Relate",
     published: true,
-    introduction: "Hii studies what changes when relationships with AI become sustained, personal, and consequential.",
+    introduction: "Hii exists to help people navigate a historic transition without losing themselves or one another.",
     question: "What changes when interaction with AI becomes sustained, personal, recursive, and consequential?",
     focus: ["trust", "attachment", "identity", "continuity", "dependency", "co-adaptation", "rupture", "repair", "distributed cognitive work"],
     pathways: [
