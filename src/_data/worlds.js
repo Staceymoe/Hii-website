@@ -6,7 +6,7 @@ export default {
     route: "/relationships/",
     eyebrow: "Relate",
     published: true,
-    introduction: "Hii studies what changes when interaction with AI becomes sustained, personal, recursive, and consequential rather than occasional tool use.",
+    introduction: "Hii studies what changes when relationships with AI become sustained, personal, and consequential.",
     question: "What changes when interaction with AI becomes sustained, personal, recursive, and consequential?",
     focus: ["trust", "attachment", "identity", "continuity", "dependency", "co-adaptation", "rupture", "repair", "distributed cognitive work"],
     pathways: [
@@ -22,6 +22,12 @@ export default {
         title: "I encounter this in professional practice",
         text: "Consider meaning, function, agency, vulnerability, and risk without automatic endorsement or pathologizing."
       }
+    ],
+    systemFactors: [
+      { id: "human", label: "Human Context" },
+      { id: "ai", label: "AI System" },
+      { id: "social", label: "Social World" },
+      { id: "time", label: "Time" }
     ],
     themes: [
       {

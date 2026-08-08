@@ -1,0 +1,64 @@
+---
+layout: layouts/world.njk
+title: The Relationship as the Unit of Analysis
+description: Hii proposes the relationship itself as a unit of analysis for sustained, recursive, and consequential human-AI interaction.
+permalink: /relationship-as-unit-of-analysis/index.html
+robots: noindex
+---
+{% set paper = library.artifacts.relationshipUnitPaper %}
+{% set world = worlds.relate %}
+
+<article class="paper-page">
+  <header class="section-shell internal-page-hero">
+    <a class="back-link" href="/relationships/">← Back to Relate</a>
+    <p class="eyebrow">Hii paper</p>
+    <h1>{{ paper.title }}</h1>
+    <p class="lede">{{ paper.summary }}</p>
+    {% if paper.status.display %}<p class="artifact-status">{{ paper.status.display }}</p>{% endif %}
+  </header>
+
+  <section class="section-shell paper-model-section" aria-labelledby="paper-model-heading">
+    <div class="section-heading">
+      <p class="eyebrow">Research object</p>
+      <h2 id="paper-model-heading">Study what happens between people and systems across time.</h2>
+    </div>
+    {% include "components/relationship-time-model.njk" %}
+  </section>
+
+  <section class="section-shell paper-questions-section" aria-labelledby="paper-questions-heading">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">The proposal</p>
+      <h2 id="paper-questions-heading">A research object that can be examined and tested.</h2>
+    </div>
+    <div class="paper-question-grid">
+      <article><p class="pathway-number">01</p><h3>What it studies</h3><p>Sustained interaction as a system that includes the human participant, changing AI instances, archives, interfaces, social context, and time.</p></article>
+      <article><p class="pathway-number">02</p><h3>How it can be tested</h3><p>Preregistered perturbations, independent coding, substitution tests, negative-case analysis, comparison conditions, and publishable null results.</p></article>
+      <article><p class="pathway-number">03</p><h3>Why it matters</h3><p>Accumulated trust, personalization, dependency, model migration, continuity failure, and repair may not be visible in a single interaction.</p></article>
+    </div>
+  </section>
+
+  <section class="section-shell paper-dimensions-section" aria-labelledby="paper-dimensions-heading">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Across the relationship</p>
+      <h2 id="paper-dimensions-heading">Four dimensions held in view.</h2>
+    </div>
+    <div class="paper-dimension-grid">
+      {% for theme in world.themes %}
+        <article><p class="pathway-number" aria-hidden="true">0{{ loop.index }}</p><h3>{{ theme.title }}</h3><p>{{ theme.text }}</p></article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="paper-boundary-section" aria-labelledby="paper-boundary-heading">
+    <div class="section-shell paper-boundary-inner">
+      <p class="eyebrow">Claim boundary</p>
+      <h2 id="paper-boundary-heading">Relationship-level research does not require a claim about machine consciousness.</h2>
+      <p>The interaction system can be studied through its effects on meaning, behavior, agency, vulnerability, and function while questions of ontology remain open and clearly distinguished from evidence.</p>
+      <p class="pending-status" role="status">Final public paper-status wording and PDF access are pending approval.</p>
+    </div>
+  </section>
+
+  <footer class="section-shell internal-page-return">
+    <a class="back-link" href="/relationships/">← Back to Relate</a>
+  </footer>
+</article>

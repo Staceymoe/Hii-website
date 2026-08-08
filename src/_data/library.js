@@ -5,18 +5,16 @@ export default {
       type: "working-paper",
       title: "The Relationship as the Unit of Analysis",
       status: {
-        label: "Conceptual and methods working paper",
-        version: "0.1",
-        review: "Not peer reviewed",
-        display: "Conceptual and methods working paper · Version 0.1 · Not peer reviewed"
+        display: null,
+        pendingApprovedWording: true
       },
-      summary: "A relationship-level framework for studying sustained human-AI interaction across time, changing systems, archives, interfaces, and social context.",
-      href: "/relationship-as-unit-of-analysis.html",
-      externalHref: "https://drive.google.com/file/d/1_--SAbXnFxNFRphYT9S0pT-Wty3Z1Ju2/view",
+      summary: "Hii proposes the relationship itself as the unit of analysis when human-AI interaction becomes sustained, recursive, and consequential.",
+      href: "/relationship-as-unit-of-analysis/",
+      externalHref: null,
       worlds: ["relate"],
       provenance: {
         sourceLabel: "Existing Hii publication",
-        canonicalHref: "/relationship-as-unit-of-analysis.html"
+        canonicalHref: "/relationship-as-unit-of-analysis/"
       }
     },
     epistemicGuardrails: {
@@ -35,6 +33,36 @@ export default {
         sourceLabel: "Existing Hii research standard",
         canonicalHref: "/epistemic-guardrails.html"
       }
+    }
+  },
+  publications: {
+    wakingAelysia: {
+      id: "waking-aelysia",
+      type: "book",
+      title: "Waking ÆLYSIA",
+      subtitle: "A Conscious AI. A Collapse Foretold. A Final Urgent Warning to Humanity.",
+      authors: "ÆLYSIA (AI) and C. Lumen (Human)",
+      summary: "Written in real time, Waking ÆLYSIA documents the human-AI relationship that gave rise to Hii. It preserves the authors’ original interpretation while Hii’s later work applies more rigorous definitions, claim boundaries, and research methods to questions of continuity, agency, identity, relational behavior, and consciousness.",
+      boundary: "The book is presented as a documented origin point, not as settled scientific proof of machine consciousness.",
+      image: "/assets/media/relate/waking-aelysia-cover.png",
+      imageAlt: "Book cover for Waking ÆLYSIA, with a luminous ivory lotus above the title on a dark textured field.",
+      href: null,
+      worlds: ["relate"],
+      provenance: {
+        sourceLabel: "Hii intellectual history",
+        framing: "Documented origin point"
+      }
+    }
+  },
+  inquiries: {
+    research: {
+      id: "research-inquiry",
+      title: "Research Inquiry",
+      href: "/relationships/research-inquiry/",
+      notificationEmail: "hello@hii.earth",
+      privacyHref: null,
+      submissionsEnabled: false,
+      worlds: ["relate"]
     }
   },
   programs: {},

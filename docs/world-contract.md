@@ -1,6 +1,6 @@
 # Hii shared world contract
 
-Status: checkpoint contract after the approved Relationships reference implementation. Page composition and component variants remain provisional until Relationships and Understand are reviewed together.
+Status: shared-system contract after the first Relationships and Understand checkpoints. The August 8 review authorizes the consolidated Relate architecture while Understand remains frozen pending its page-by-page review.
 
 ## Invariants
 
@@ -17,9 +17,10 @@ Status: checkpoint contract after the approved Relationships reference implement
 
 - Section order, number of pathways, diagram use, card density, light/dark section rhythm, and page-specific storytelling are not frozen after one world.
 - Existing components should be reused when their semantics fit. A new variant requires a real content or interaction need demonstrated by a world.
-- Relationships establishes the relationship map, three-pathway portal, editorial rows, artifact treatment, literacy section, and research boundary.
-- Understand pressure-tests the system with public-orientation cards, an accessible disclosure list, evidence labels, a five-role pathway selector, and cross-world artifact reuse.
-- After Understand review, the two approved worlds together define the stronger contract for the remaining five worlds.
+- Relate now establishes a compact visual hero, an accessible five-part system model, a dedicated paper pathway, three compact ways in, an editorial publication treatment, and an internal inquiry pathway.
+- Superseded Relate-only patterns—the four long editorial rows, standalone artifact panel, standalone Relationship Literacy section, full-viewport boundary, and duplicate Continue section—are not shared-system requirements.
+- Understand remains unchanged and frozen. Its page composition is not a mandate for Relate and will not become part of the stronger reusable contract until its page-by-page review is approved.
+- The remaining five worlds stay frozen until the Relate revision and Understand review are complete.
 
 ## Review gate for each additional world
 

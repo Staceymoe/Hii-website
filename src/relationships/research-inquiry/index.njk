@@ -1,0 +1,50 @@
+---
+layout: layouts/world.njk
+title: Research Inquiry
+description: Contact Hii about research collaboration, education or training, speaking or media, partnership or funding, and papers or resources.
+permalink: /relationships/research-inquiry/index.html
+robots: noindex
+---
+{% set inquiry = library.inquiries.research %}
+
+<article class="inquiry-page">
+  <header class="section-shell internal-page-hero inquiry-page-hero">
+    <a class="back-link" href="/relationships/">← Back to Relate</a>
+    <p class="eyebrow">Relate</p>
+    <h1>Research Inquiry</h1>
+    <p class="lede">For research collaboration, clinician education or training, speaking or media, partnership or funding, and paper or resource inquiries.</p>
+  </header>
+
+  <section class="section-shell inquiry-form-section" aria-labelledby="inquiry-form-heading">
+    <div class="inquiry-form-heading">
+      <p class="eyebrow">Inquiry form</p>
+      <h2 id="inquiry-form-heading">What would you like to explore?</h2>
+      <p>This form is for research and organizational inquiries, not clinical support. Do not submit confidential, patient-identifying, crisis, or emergency information.</p>
+      {% if not inquiry.submissionsEnabled %}<p class="pending-status" role="status">Submissions are not yet enabled. The approved privacy notice must be connected before this form can accept information.</p>{% endif %}
+    </div>
+
+    <form class="research-inquiry-form"{% if inquiry.submissionsEnabled %} name="research-inquiry" method="post" data-netlify="true" netlify-honeypot="company-website" action="/relationships/research-inquiry/thanks/"{% endif %}>
+      <fieldset{% if not inquiry.submissionsEnabled %} disabled{% endif %}>
+        <legend>Research inquiry details</legend>
+        <div class="form-grid">
+          <label><span>Full name <strong aria-hidden="true">*</strong></span><input type="text" name="full-name" autocomplete="name" required></label>
+          <label><span>Email address <strong aria-hidden="true">*</strong></span><input type="email" name="email" autocomplete="email" required></label>
+          <label><span>Role or title <strong aria-hidden="true">*</strong></span><input type="text" name="role" autocomplete="organization-title" placeholder="Independent is welcome" required></label>
+          <label><span>Organization or affiliation</span><input type="text" name="organization" autocomplete="organization"></label>
+          <label><span>Phone number</span><input type="tel" name="phone" autocomplete="tel"></label>
+          <label><span>Website or LinkedIn profile</span><input type="url" name="website" autocomplete="url"></label>
+          <label class="form-field-wide"><span>Area of interest <strong aria-hidden="true">*</strong></span><select name="area-of-interest" required><option value="">Select one</option><option>Research collaboration</option><option>Clinician education or training</option><option>Speaking or media</option><option>Partnership or funding</option><option>Paper or resource inquiry</option><option>Other</option></select></label>
+          <label class="form-field-wide"><span>What would you like to explore? <strong aria-hidden="true">*</strong></span><textarea name="message" rows="6" required></textarea></label>
+        </div>
+        {% if inquiry.privacyHref %}
+          <label class="consent-field"><input type="checkbox" name="consent" required><span>I consent to Hii using this information to respond to my inquiry. Read the <a href="{{ inquiry.privacyHref }}">privacy notice</a>.</span></label>
+        {% endif %}
+        <button class="button-link form-submit" type="submit"{% if not inquiry.submissionsEnabled %} disabled{% endif %}>Submit inquiry</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <footer class="section-shell internal-page-return">
+    <a class="back-link" href="/relationships/">← Back to Relate</a>
+  </footer>
+</article>

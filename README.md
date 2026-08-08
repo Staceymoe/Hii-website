@@ -10,14 +10,17 @@ approved front door (/)
   -> shared Eleventy world and utility system
 ```
 
-The approved source is in `restart-front-door/`. Do not change its HTML, CSS, media, timing, geometry, film behavior, or front-door interactions. The only authorized JavaScript difference is the Relate destination route to `/relationships/`. `scripts/verify-front-door.mjs` enforces that boundary.
+The approved source is in `restart-front-door/`. Do not change its HTML, CSS, media, timing, geometry, film behavior, or front-door interactions. The only authorized JavaScript differences are the narrow Relate and Understand destination routes plus the explicit static-return state. `scripts/verify-front-door.mjs` enforces that boundary.
 
 ## Current implementation scope
 
 - `/` — checksum-locked approved front door
-- `/relationships/` — Relate reference world
+- `/relationships/` — approved consolidated Relate world
+- `/relationship-as-unit-of-analysis/` — Relate paper overview; final public status and PDF pending
+- `/relationships/research-inquiry/` — Relate inquiry form foundation; submissions disabled until the approved privacy notice is connected
+- `/understand/` — frozen pending the next page-by-page review
 - Existing `.html` pages — retained as migration sources and temporary destinations
-- Other six worlds — intentionally not generated
+- Other five worlds — intentionally not generated
 - Legacy redirects — intentionally not configured
 
 ## Local development

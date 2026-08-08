@@ -31,9 +31,11 @@ const required = [
   [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
   [/class="wordmark" href="\/\?return=hii"/, "static-state Hii wordmark return"],
   [/The Relationship as the Unit of Analysis/, "canonical working-paper title"],
-  [/Relationship literacy/, "Relationship Literacy section"],
-  [/Explore Epistemic Guardrails/, "Epistemic Guardrails link"],
-  [/Relationship-level research does not require a claim about machine consciousness\./, "research boundary"]
+  [/Hii studies what changes when relationships with AI become sustained, personal, and consequential\./, "approved hero copy"],
+  [/human-ai-relationship-still\.png/, "approved hero still"],
+  [/class="relationship-system-svg"/, "accessible relationship-system reconstruction"],
+  [/Waking ÆLYSIA/, "approved publication"],
+  [/href="\/relationships\/research-inquiry\/"/, "internal Research Inquiry route"]
 ];
 for (const [pattern, label] of required) {
   if (!pattern.test(page)) fail(`relationships page is missing ${label}`);
@@ -41,6 +43,22 @@ for (const [pattern, label] of required) {
 }
 if (/Content decision/i.test(page)) fail("relationships page exposes a visitor-facing content decision");
 else pass("relationships page has no visitor-facing content decisions");
+for (const removedSection of ["Flagship artifact", "Relationship literacy", "Study what happens between people and systems across time.</h2>"]) {
+  if (page.includes(removedSection)) fail(`relationships page retains removed content: ${removedSection}`);
+}
+if (!failures.some((item) => item.includes("retains removed content"))) pass("relationships page omits superseded standalone sections");
+
+const relateOrder = [
+  'class="relate-hero',
+  'class="section-shell relationship-intro',
+  'class="paper-feature-section',
+  'class="section-shell pathway-section relate-pathway-section',
+  'class="section-shell publications-section',
+  'class="research-inquiry-section'
+].map((marker) => page.indexOf(marker));
+if (relateOrder.some((position) => position < 0) || relateOrder.some((position, index) => index > 0 && position <= relateOrder[index - 1])) {
+  fail("relationships page does not follow the approved section order");
+} else pass("relationships page follows the approved section order");
 
 const h1Count = (page.match(/<h1(?:\s|>)/g) || []).length;
 if (h1Count !== 1) fail(`relationships page has ${h1Count} h1 elements; expected 1`);
@@ -66,7 +84,66 @@ const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
 if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
 else pass("understand page has one h1");
 
-for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage]]) {
+const understandSourceHash = sha(await read("src/understand/index.njk"));
+if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");
+else pass("frozen Understand template is unchanged");
+
+for (const assetPath of [
+  "_site/assets/media/relate/human-ai-relationship-still.png",
+  "_site/assets/media/relate/relationship-system-reference.png",
+  "_site/assets/media/relate/waking-aelysia-cover.png"
+]) {
+  try { await access(path.join(root, assetPath)); }
+  catch { fail(`approved Relate asset is missing: ${assetPath}`); }
+}
+if (!failures.some((item) => item.includes("approved Relate asset"))) pass("approved Relate stills and reference art are present");
+if (/<video|\.mp4/i.test(page)) fail("relationships page uses video before the clean hero export is supplied");
+else pass("relationships page uses the approved still while the clean hero video is pending");
+
+const paperPath = "_site/relationship-as-unit-of-analysis/index.html";
+const paperPage = (await read(paperPath)).toString("utf8");
+const paperRequired = [
+  [/<title>The Relationship as the Unit of Analysis \| Hii<\/title>/, "page title"],
+  [/<meta name="robots" content="noindex">/, "temporary noindex"],
+  [/<link rel="canonical" href="https:\/\/hii\.earth\/relationship-as-unit-of-analysis\/">/, "canonical URL"],
+  [/What it studies/, "What it studies card"],
+  [/How it can be tested/, "How it can be tested card"],
+  [/Why it matters/, "Why it matters card"],
+  [/Relationship-level research does not require a claim about machine consciousness\./, "claim boundary"],
+  [/Final public paper-status wording and PDF access are pending approval\./, "explicit pending dependency"]
+];
+for (const [pattern, label] of paperRequired) {
+  if (!pattern.test(paperPage)) fail(`paper page is missing ${label}`);
+  else pass(`paper page includes ${label}`);
+}
+if ((paperPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("paper page lacks repeated Back to Relate controls");
+else pass("paper page repeats Back to Relate controls");
+if (/target="_blank"|\.pdf/i.test(paperPage)) fail("paper page activates unapproved PDF access");
+else pass("paper page does not activate unapproved PDF access");
+
+const inquiryPath = "_site/relationships/research-inquiry/index.html";
+const inquiryPage = (await read(inquiryPath)).toString("utf8");
+const inquiryRequired = [
+  [/<title>Research Inquiry \| Hii<\/title>/, "page title"],
+  [/<meta name="robots" content="noindex">/, "temporary noindex"],
+  [/name="full-name"/, "full-name field"],
+  [/name="email"/, "email field"],
+  [/name="role"/, "role field"],
+  [/name="area-of-interest"/, "area-of-interest field"],
+  [/name="message"/, "open-text field"],
+  [/fieldset disabled/, "disabled pre-privacy form state"],
+  [/Submissions are not yet enabled\./, "explicit pending dependency"]
+];
+for (const [pattern, label] of inquiryRequired) {
+  if (!pattern.test(inquiryPage)) fail(`inquiry page is missing ${label}`);
+  else pass(`inquiry page includes ${label}`);
+}
+if (/data-netlify="true"|<form[^>]+method="post"/i.test(inquiryPage)) fail("inquiry page activates an unapproved submission route");
+else pass("inquiry page does not activate an unapproved submission route");
+if ((inquiryPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("inquiry page lacks repeated Back to Relate controls");
+else pass("inquiry page repeats Back to Relate controls");
+
+for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage]]) {
   const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
   for (const href of hrefs) {
     if (/^(https?:|mailto:|#)/.test(href)) continue;
