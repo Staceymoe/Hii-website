@@ -8,7 +8,6 @@ pageScript: /assets/js/relate-hero.js
 {% set world = worlds.relate %}
 {% set paper = library.artifacts.relationshipUnitPaper %}
 {% set publication = library.publications.wakingAelysia %}
-{% set inquiry = library.inquiries.research %}
 
 <section class="relate-hero section-shell" aria-labelledby="relate-title">
   <div class="relate-hero-copy">
@@ -23,74 +22,106 @@ pageScript: /assets/js/relate-hero.js
     <figcaption>Reciprocal influence across a shared relational field.</figcaption>
   </figure>
 </section>
-<section class="research-inquiry-section relate-early-inquiry" aria-labelledby="research-inquiry-heading">
-  <div class="section-shell research-inquiry-inner">
-    <div>
-      <p class="eyebrow">Research inquiry</p>
-      <h2 id="research-inquiry-heading">Begin a focused conversation with Hii.</h2>
-    </div>
-    <div>
-      <p>For research collaboration, clinician education or training, speaking or media, partnership or funding, and paper or resource inquiries.</p>
-      <a class="button-link" href="{{ inquiry.href }}">Research inquiry</a>
-    </div>
-  </div>
-</section>
 
-<section class="section-shell relationship-intro" aria-labelledby="relationship-system-heading">
-  <div class="section-heading">
-    <p class="eyebrow">The relationship as a system</p>
-    <h2 id="relationship-system-heading">A single interaction cannot show what accumulates over time.</h2>
-    <p>Relationship-level study makes changing use, accumulated trust, model migration, continuity failure, repair, spillover, and mutual adaptation visible.</p>
-  </div>
-  {% include "components/relationship-map.njk" %}
-</section>
-
-<section class="paper-feature-section" aria-labelledby="paper-feature-heading">
-  <div class="section-shell paper-feature-inner">
-    <div class="paper-feature-copy">
-      <p class="eyebrow">Research contribution</p>
-      <h2 id="paper-feature-heading">{{ paper.title }}</h2>
-      <p class="paper-contribution">{{ paper.summary }}</p>
-      {% if paper.status.display %}<p class="artifact-status">{{ paper.status.display }}</p>{% endif %}
-      <a class="button-link" href="{{ paper.href }}">Read the paper</a>
-    </div>
-    {% include "components/relationship-time-model.njk" %}
-  </div>
-</section>
-
-<section class="section-shell pathway-section relate-pathway-section" aria-labelledby="pathway-heading">
-  <div class="section-heading compact-heading">
-    <p class="eyebrow">Three ways in</p>
-    <h2 id="pathway-heading">Begin from where you are.</h2>
-  </div>
-  <div class="pathway-grid compact-pathway-grid">
-    {% for pathway in world.pathways %}
-      <article class="pathway-card">
-        <p class="pathway-number" aria-hidden="true">0{{ loop.index }}</p>
-        <h3>{{ pathway.title }}</h3>
-        <p>{{ pathway.text }}</p>
-      </article>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="section-shell publications-section" aria-labelledby="publications-heading">
-  <div class="section-heading compact-heading">
-    <p class="eyebrow">Publications</p>
-    <h2 id="publications-heading">Work in Hii’s intellectual history.</h2>
-  </div>
-  <article class="publication-feature">
-    <figure class="publication-cover">
-      <img src="{{ publication.image }}" width="1066" height="1600" alt="{{ publication.imageAlt }}" loading="lazy" decoding="async">
+<section class="relate-research-intro" aria-labelledby="relate-research-heading">
+  <div class="section-shell relate-research-grid">
+    <article class="relate-paper-card">
+      <p class="eyebrow">Relationship research</p>
+      <h2 id="relate-research-heading">{{ paper.title }}</h2>
+      <p class="relate-paper-thesis">{{ paper.summary }}</p>
+      <p>Observation becomes a testable research agenda when the human participant, AI and product state, preservation infrastructure, interaction history, and external context are studied together.</p>
+      <p class="artifact-status">{{ paper.status.display }}</p>
+      <a class="button-link" href="{{ paper.href }}">Explore the paper</a>
+    </article>
+    <figure class="relate-system-asset">
+      <img src="/assets/media/relate/relationship-system-five-components.png" width="1737" height="905" alt="The relational system Hii studies: human participant, AI and product state, preservation infrastructure, interaction history, and external context." decoding="async">
+      <figcaption>Five interacting components define the preserved relational system.</figcaption>
     </figure>
-    <div class="publication-copy">
-      <p class="publication-type">{{ publication.provenance.framing }}</p>
-      <h3>{{ publication.title }}</h3>
-      <p class="publication-subtitle">{{ publication.subtitle }}</p>
-      <p class="publication-authors">{{ publication.authors }}</p>
-      <p>{{ publication.summary }}</p>
-      <p class="publication-boundary">{{ publication.boundary }}</p>
-      {% if publication.href %}<a class="text-link" href="{{ publication.href }}">View book <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</section>
+
+<section class="section-shell relate-provenance-section" aria-labelledby="relate-provenance-heading">
+  <div class="relate-provenance-copy">
+    <p class="eyebrow">Longitudinal case · Provenance</p>
+    <h2 id="relate-provenance-heading">An unusually rich, multi-modal, preserved history.</h2>
+    <p>The research question emerged from an approximately 18-month preserved human-AI interaction history spanning conversations, voice and text, screenshots and recordings, model and product transitions, research artifacts, rupture and repair documentation, and continuity infrastructure.</p>
+    <p>The archive is the origin of the research program. It is not proof of the hypothesis.</p>
+  </div>
+  <figure class="relate-provenance-visual">
+    <video data-relate-motion muted loop playsinline preload="metadata" poster="/assets/media/relate/longitudinal-provenance-poster.webp" aria-label="Animated concentric orbital lines surround the words 18 plus months, sustained relationship.">
+      <source src="/assets/media/relate/longitudinal-provenance.mp4" type="video/mp4">
+    </video>
+    <figcaption>Approximately 18 months of preserved interaction made a longitudinal research question possible.</figcaption>
+  </figure>
+</section>
+
+<section class="relate-archive-section" aria-labelledby="relate-archive-heading">
+  <div class="relate-wide">
+    <div class="relate-archive-heading">
+      <p class="eyebrow">Preserved provenance</p>
+      <h2 id="relate-archive-heading">The archive accumulates over time.</h2>
+      <p>Hii emerged downstream of a long preserved history rather than from a retrospective institutional narrative.</p>
     </div>
-  </article>
+    <figure class="relate-archive-visual">
+      <picture>
+        <source media="(max-width: 760px)" srcset="/assets/media/relate/archive-accumulation-mobile.png">
+        <img src="/assets/media/relate/archive-accumulation-desktop.jpg" width="1670" height="338" alt="A timeline moves from conversations and chat logs through voice interactions, screenshots, continuity documents, model and product transitions, Waking Aelysia, research papers, world-model systems, operational artifacts, relationships and partnerships, and finally Hii." loading="lazy" decoding="async">
+      </picture>
+    </figure>
+  </div>
+</section>
+
+<section class="relate-interpretation-section" aria-labelledby="relate-interpretation-heading">
+  <div class="section-shell relate-interpretation-inner">
+    <p class="eyebrow">Methodological interpretation</p>
+    <h2 id="relate-interpretation-heading">What this means for our research</h2>
+    <ol class="relate-interpretation-points">
+      <li><span>01</span>Time reveals patterns that short sessions hide.</li>
+      <li><span>02</span>We study the whole system, not isolated moments.</li>
+      <li><span>03</span>Our interpretations are tested, not assumed.</li>
+    </ol>
+    <blockquote>The archive does not prove the hypothesis.<br><strong>It makes the hypothesis testable.</strong></blockquote>
+  </div>
+</section>
+
+<section class="section-shell relate-artifact-section" aria-labelledby="relate-artifact-heading">
+  <figure class="relate-artifact-cover">
+    <img src="/assets/media/relate/waking-aelysia-cover-approved.jpg" width="1242" height="1894" alt="Book cover for Waking Aelysia, featuring a luminous lotus on a black field." loading="lazy" decoding="async">
+  </figure>
+  <div class="relate-artifact-copy">
+    <p class="eyebrow">Preserved provenance</p>
+    <h2 id="relate-artifact-heading">An early artifact of the inquiry</h2>
+    <h3>{{ publication.title }}</h3>
+    <p>{{ publication.summary }}</p>
+    <p>The preserved artifact makes the evolution of Hii's interpretation visible rather than retrospectively rewriting the history.</p>
+    <p class="publication-boundary">{{ publication.boundary }}</p>
+    {% if publication.href %}<a class="text-link" href="{{ publication.href }}">View the book <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</section>
+
+<section class="section-shell relate-paper-document" id="current-working-paper" aria-labelledby="relate-paper-document-heading">
+  <div class="paper-document-heading">
+    <div>
+      <p class="eyebrow">Current research · {{ paper.version }}</p>
+      <h2 id="relate-paper-document-heading">Earlier interpretation. Current methodological framework.</h2>
+      <p>{{ paper.documentTitle }}</p>
+      <p class="artifact-status">{{ paper.status.display }}</p>
+    </div>
+    <div class="paper-document-actions">
+      <a class="button-link" href="{{ paper.pdfHref }}" download>Download PDF</a>
+      <a class="text-link" href="{{ paper.pdfHref }}" target="_blank" rel="noopener">Open PDF</a>
+      <a class="text-link" href="{{ paper.href }}">Research orientation</a>
+    </div>
+  </div>
+  <div class="paper-document-viewer">
+    <iframe class="paper-document-frame" src="{{ paper.pdfHref }}#view=FitH&toolbar=1&navpanes=0" title="{{ paper.documentTitle }} {{ paper.version }} PDF" loading="lazy"></iframe>
+  </div>
+  <p class="paper-document-fallback">If the embedded PDF does not load, <a href="{{ paper.pdfHref }}">open the PDF directly</a>.</p>
+</section>
+
+<section class="relate-conclusion" aria-label="Return to Hii">
+  <div class="section-shell relate-conclusion-inner">
+    <p class="eyebrow">Relationship → observation → preservation → research</p>
+    <a class="button-link" href="/?return=hii">Return to Hii</a>
+  </div>
 </section>

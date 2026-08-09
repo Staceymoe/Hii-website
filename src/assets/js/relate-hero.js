@@ -1,18 +1,21 @@
 (() => {
-  const video = document.querySelector("[data-relate-motion]");
-  if (!video) return;
+  const videos = [...document.querySelectorAll("[data-relate-motion]")];
+  if (!videos.length) return;
 
   const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const applyMotionPreference = () => {
-    if (motionPreference.matches) {
-      video.pause();
-      video.removeAttribute("autoplay");
-      return;
-    }
+    videos.forEach((video) => {
+      if (motionPreference.matches) {
+        video.pause();
+        video.removeAttribute("autoplay");
+        video.currentTime = 0;
+        return;
+      }
 
-    video.setAttribute("autoplay", "");
-    video.play().catch(() => {});
+      video.setAttribute("autoplay", "");
+      video.play().catch(() => {});
+    });
   };
 
   applyMotionPreference();

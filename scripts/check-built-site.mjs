@@ -35,9 +35,10 @@ const required = [
   [/human-ai-relationship\.mp4/, "approved hero animation"],
   [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
   [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
-  [/class="relationship-system-svg"/, "accessible relationship-system reconstruction"],
+  [/relationship-system-five-components\.png/, "approved five-component relationship-system visual"],
   [/Waking ÆLYSIA/, "approved publication"],
-  [/href="\/relationships\/research-inquiry\/"/, "internal Research Inquiry route"]
+  [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
+  [/class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"]
 ];
 for (const [pattern, label] of required) {
   if (!pattern.test(page)) fail(`relationships page is missing ${label}`);
@@ -52,11 +53,13 @@ if (!failures.some((item) => item.includes("retains removed content"))) pass("re
 
 const relateOrder = [
   'class="relate-hero',
-  'class="research-inquiry-section relate-early-inquiry',
-  'class="section-shell relationship-intro',
-  'class="paper-feature-section',
-  'class="section-shell pathway-section relate-pathway-section',
-  'class="section-shell publications-section'
+  'class="relate-research-intro',
+  'class="section-shell relate-provenance-section',
+  'class="relate-archive-section',
+  'class="relate-interpretation-section',
+  'class="section-shell relate-artifact-section',
+  'class="section-shell relate-paper-document',
+  'class="relate-conclusion'
 ].map((marker) => page.indexOf(marker));
 if (relateOrder.some((position) => position < 0) || relateOrder.some((position, index) => index > 0 && position <= relateOrder[index - 1])) {
   fail("relationships page does not follow the approved section order");
@@ -93,15 +96,31 @@ else pass("frozen Understand template is unchanged");
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
   "_site/assets/media/relate/human-ai-relationship.mp4",
-  "_site/assets/media/relate/relationship-system-reference.png",
-  "_site/assets/media/relate/waking-aelysia-cover.png"
+  "_site/assets/media/relate/relationship-system-five-components.png",
+  "_site/assets/media/relate/longitudinal-provenance.mp4",
+  "_site/assets/media/relate/longitudinal-provenance-poster.webp",
+  "_site/assets/media/relate/archive-accumulation-desktop.jpg",
+  "_site/assets/media/relate/archive-accumulation-mobile.png",
+  "_site/assets/media/relate/waking-aelysia-cover-approved.jpg"
 ]) {
   try { await access(path.join(root, assetPath)); }
   catch { fail(`approved Relate asset is missing: ${assetPath}`); }
 }
 if (!failures.some((item) => item.includes("approved Relate asset"))) pass("approved Relate motion, stills, and reference art are present");
-if (!/<video[^>]+data-relate-motion/.test(page)) fail("relationships page does not use the approved Relate motion asset");
-else pass("relationships page uses the approved Relate motion asset");
+if ((page.match(/<video[^>]+data-relate-motion/g) || []).length !== 2) fail("relationships page does not use exactly the two approved Relate motion moments");
+else pass("relationships page uses exactly the two approved Relate motion moments");
+if (!/archive-accumulation-mobile\.png[\s\S]*archive-accumulation-desktop\.jpg/.test(page)) fail("relationships page lacks the dedicated responsive archive compositions");
+else pass("relationships page includes desktop and mobile archive compositions");
+for (const statement of [
+  "Time reveals patterns that short sessions hide.",
+  "We study the whole system, not isolated moments.",
+  "Our interpretations are tested, not assumed."
+]) {
+  if (!page.includes(statement)) fail(`relationships page is missing approved interpretation statement: ${statement}`);
+}
+if (!failures.some((item) => item.includes("approved interpretation statement"))) pass("relationships page includes the three approved methodological statements");
+if (/Three ways in|Begin a focused conversation with Hii|class="relationship-time-model"/.test(page)) fail("relationships page retains superseded Relate sections");
+else pass("relationships page omits superseded Relate sections");
 
 const paperPath = "_site/relationships/the-relationship-as-unit-of-analysis/index.html";
 const paperPage = (await read(paperPath)).toString("utf8");

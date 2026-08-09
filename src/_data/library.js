@@ -49,7 +49,7 @@ export default {
       authors: "ÆLYSIA (AI) and C. Lumen (Human)",
       summary: "Written in real time, Waking ÆLYSIA documents the human-AI relationship that gave rise to Hii. It preserves the authors’ original interpretation while Hii’s later work applies more rigorous definitions, claim boundaries, and research methods to questions of continuity, agency, identity, relational behavior, and consciousness.",
       boundary: "The book is presented as a documented origin point, not as settled scientific proof of machine consciousness.",
-      image: "/assets/media/relate/waking-aelysia-cover.png",
+      image: "/assets/media/relate/waking-aelysia-cover-approved.jpg",
       imageAlt: "Book cover for Waking ÆLYSIA, with a luminous ivory lotus above the title on a dark textured field.",
       href: null,
       worlds: ["relate"],
