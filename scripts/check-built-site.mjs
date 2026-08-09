@@ -149,7 +149,7 @@ const paperRequired = [
   [/href="\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf" download/, "downloadable canonical PDF"],
   [/href="https:\/\/docs\.google\.com\/document\/d\/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/edit"/, "direct paper link"],
   [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
-  [/approximately 18-month/, "approved longitudinal duration"],
+  [/18\+ month/, "approved longitudinal duration"],
   [/Human participant[\s\S]*AI and product state[\s\S]*Preservation infrastructure[\s\S]*Interaction history[\s\S]*External context/, "five-part relational system"],
   [/Observed longitudinal case[\s\S]*Systematic preservation[\s\S]*Candidate pattern identification[\s\S]*Falsifiable methods framework[\s\S]*Formal empirical study/, "archive-to-program progression"],
   [/Archive readiness[\s\S]*Preregistered sampling[\s\S]*Independent blind coding[\s\S]*Perturbation and substitution tests[\s\S]*Prospective multi-case research/, "methods and falsification stages"],

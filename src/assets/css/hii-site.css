@@ -289,7 +289,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 34%; height: auto; border: 1px solid var(--line); transform: translate(-50%, -50%); }
 .relate-provenance-callout-list { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 .relate-provenance-visual figcaption { max-width: 33rem; margin: 0.5rem auto 0; color: var(--ivory); font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.08; letter-spacing: -0.035em; text-align: center; }
-.relate-archive-section { padding-block: clamp(3.5rem, 6vw, 5.5rem); background: #05080c; border-block: 1px solid var(--line); }
+.relate-archive-section { padding-block: clamp(4.5rem, 7vw, 6.5rem); background: #05080c; border-block: 1px solid var(--line); }
 .relate-wide { width: min(calc(100% - 2rem), 104rem); margin-inline: auto; }
 .relate-archive-heading { width: min(calc(100% - 1rem), var(--max)); margin: 0 auto clamp(2.5rem, 4vw, 4rem); }
 .relate-archive-heading h2 { max-width: 38ch; font-size: clamp(1.75rem, 2.5vw, 2.8rem); line-height: 1.2; }
@@ -536,7 +536,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-interpretation-mobile-title { margin: 0 0 2.5rem; font-size: clamp(2.4rem, 11vw, 3.4rem); line-height: 1.05; letter-spacing: -0.04em; }
   .relate-interpretation-mobile-grid { display: grid; gap: 1px; background: rgba(8,11,16,0.18); border: 1px solid rgba(8,11,16,0.18); }
   .relate-interpretation-mobile-grid p { margin: 0; padding: 1.5rem; background: var(--ivory); font-size: 1.05rem; }
-  .relate-interpretation-mobile-grid span { display: block; margin-bottom: 1rem; font-size: 2rem; }
+  .relate-interpretation-mobile-icon { display: block; width: 7rem; height: 5.5rem; margin: 0 auto 1.2rem; background-image: url("/assets/media/relate/research-meaning.png"); background-repeat: no-repeat; background-size: 37.5rem auto; }
+  .relate-interpretation-mobile-icon--time { background-position: -6.4rem -5.6rem; }
+  .relate-interpretation-mobile-icon--system { background-position: -15.7rem -5.6rem; }
+  .relate-interpretation-mobile-icon--testing { background-position: -25.8rem -5.2rem; }
   .relate-interpretation-boundary { margin: 2rem 0 0; padding: 1.2rem; color: var(--ivory); background: var(--ink); text-align: center; }
   .relate-archive-section { padding-block: 3.5rem; }
   .relate-wide { width: min(calc(100% - 2rem), 104rem); }
