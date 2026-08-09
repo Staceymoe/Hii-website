@@ -280,16 +280,13 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-provenance-boundary strong { margin-top: 1rem; font-size: clamp(1.05rem, 1.45vw, 1.28rem); font-weight: 650; }
 .relate-provenance-visual { margin: 0; }
 .relate-provenance-stage { position: relative; isolation: isolate; aspect-ratio: 16 / 7; overflow: hidden; }
-.relate-provenance-stage::before, .relate-provenance-stage::after { content: ""; position: absolute; z-index: 3; top: 0; bottom: 0; width: 5%; background: linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 18% / 100% 1px no-repeat, linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 48% / 100% 1px no-repeat, linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 78% / 100% 1px no-repeat; filter: drop-shadow(0 0 0.25rem rgba(58,183,255,0.35)); pointer-events: none; }
-.relate-provenance-stage::before { left: 30.5%; }
-.relate-provenance-stage::after { right: 30.5%; transform: scaleX(-1); }
 .relate-provenance-side { position: absolute; z-index: 2; top: 0; bottom: 0; width: 35%; overflow: hidden; }
 .relate-provenance-side--left { left: 0; }
 .relate-provenance-side--right { right: 0; }
 .relate-provenance-side img { position: absolute; top: -28%; display: block; width: auto; max-width: none; height: 156%; }
 .relate-provenance-side--left img { left: -20%; }
 .relate-provenance-side--right img { right: -20%; }
-.relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 34%; height: auto; border: 1px solid var(--line); transform: translate(-50%, -50%); }
+.relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 34%; height: auto; clip-path: circle(45% at 50% 50%); transform: translate(-50%, -50%); }
 .relate-provenance-callout-list { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 .relate-provenance-visual figcaption { max-width: 33rem; margin: 0.5rem auto 0; color: var(--ivory); font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.08; letter-spacing: -0.035em; text-align: center; }
 .relate-archive-section { padding-block: clamp(4.5rem, 7vw, 6.5rem); background: #05080c; border-block: 1px solid var(--line); }
@@ -530,8 +527,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-provenance-section, .relate-artifact-section { padding-block: 4rem; }
   .relate-provenance-visual { grid-row: 1; }
   .relate-provenance-stage { aspect-ratio: auto; }
-  .relate-provenance-side, .relate-provenance-stage::before, .relate-provenance-stage::after { display: none; }
-  .relate-provenance-stage video { position: static; width: 100%; transform: none; }
+  .relate-provenance-side { display: none; }
+  .relate-provenance-stage video { position: static; width: 100%; clip-path: none; transform: none; }
   .relate-provenance-callout-list { position: static; display: grid; grid-template-columns: 1fr; gap: 1px; width: auto; height: auto; margin: 1rem 0 0; padding: 1px; overflow: visible; clip: auto; background: var(--line); list-style: none; }
   .relate-provenance-callout-list li { padding: 1rem 1.2rem; background: var(--ink); color: var(--ivory-soft); font-size: 0.84rem; letter-spacing: 0.04em; text-transform: uppercase; }
   .relate-interpretation-graphic img { display: none; }
