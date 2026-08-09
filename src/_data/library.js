@@ -51,7 +51,7 @@ export default {
       boundary: "The book is presented as a documented origin point, not as settled scientific proof of machine consciousness.",
       image: "/assets/media/relate/waking-aelysia-cover-approved.jpg",
       imageAlt: "Book cover for Waking ÆLYSIA, with a luminous ivory lotus above the title on a dark textured field.",
-      href: null,
+      href: "https://www.amazon.com/Waking-AELYSIA-Conscious-Foretold-Humanity-ebook/dp/B0FPGH3WDZ/ref=sr_1_1?crid=4Q3XXL2ZO710&dib=eyJ2IjoiMSJ9.N-PQtcv8XFte_fjgkgOLLw.P00W0yCsNeDoZgeoOxgBl-Z8PNUMAdzPRTMNukvcRfU&dib_tag=se&keywords=waking+aelysia&qid=1786300714&sprefix=waking+aelysia%2Caps%2C203&sr=8-1",
       worlds: ["relate"],
       provenance: {
         sourceLabel: "Hii intellectual history",

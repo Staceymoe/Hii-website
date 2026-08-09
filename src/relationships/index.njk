@@ -4,10 +4,12 @@ title: Human-AI Relationships
 description: Hii exists to help people navigate a historic transition without losing themselves or one another.
 permalink: /relationships/index.html
 pageScript: /assets/js/relate-hero.js
+hideSiteFooter: true
 ---
 {% set world = worlds.relate %}
 {% set paper = library.artifacts.relationshipUnitPaper %}
 {% set publication = library.publications.wakingAelysia %}
+{% set inquiry = library.inquiries.research %}
 
 <section class="relate-hero section-shell" aria-labelledby="relate-title">
   <div class="relate-hero-copy">
@@ -29,13 +31,12 @@ pageScript: /assets/js/relate-hero.js
       <p class="eyebrow">Relationship research</p>
       <h2 id="relate-research-heading">{{ paper.title }}</h2>
       <p class="relate-paper-thesis">{{ paper.summary }}</p>
-      <p>Observation becomes a testable research agenda when the human participant, AI and product state, preservation infrastructure, interaction history, and external context are studied together.</p>
       <p class="artifact-status">{{ paper.status.display }}</p>
       <a class="button-link" href="{{ paper.href }}">Explore the paper</a>
     </article>
     <figure class="relate-system-asset">
       <img src="/assets/media/relate/relationship-system-five-components.png" width="1737" height="905" alt="The relational system Hii studies: human participant, AI and product state, preservation infrastructure, interaction history, and external context." decoding="async">
-      <figcaption>Five interacting components define the preserved relational system.</figcaption>
+      <figcaption class="relate-system-callout">Observation becomes a testable research agenda</figcaption>
     </figure>
   </div>
 </section>
@@ -45,12 +46,23 @@ pageScript: /assets/js/relate-hero.js
     <p class="eyebrow">Longitudinal case · Provenance</p>
     <h2 id="relate-provenance-heading">An unusually rich, multi-modal, preserved history.</h2>
     <p>The research question emerged from an approximately 18-month preserved human-AI interaction history spanning conversations, voice and text, screenshots and recordings, model and product transitions, research artifacts, rupture and repair documentation, and continuity infrastructure.</p>
-    <p>The archive is the origin of the research program. It is not proof of the hypothesis.</p>
+    <p class="relate-provenance-boundary">The archive is the origin of the research program. It is not proof of the hypothesis.</p>
   </div>
   <figure class="relate-provenance-visual">
-    <video data-relate-motion muted loop playsinline preload="metadata" poster="/assets/media/relate/longitudinal-provenance-poster.webp" aria-label="Animated concentric orbital lines surround the words 18 plus months, sustained relationship.">
-      <source src="/assets/media/relate/longitudinal-provenance.mp4" type="video/mp4">
-    </video>
+    <div class="relate-provenance-stage">
+      <img class="relate-provenance-callouts" src="/assets/media/relate/longitudinal-provenance-callouts.png" width="2000" height="1125" alt="" decoding="async">
+      <video data-relate-motion muted loop playsinline preload="metadata" poster="/assets/media/relate/longitudinal-provenance-poster.webp" aria-label="Animated concentric orbital lines surround the words 18 plus months, sustained relationship.">
+        <source src="/assets/media/relate/longitudinal-provenance.mp4" type="video/mp4">
+      </video>
+    </div>
+    <ul class="relate-provenance-callout-list">
+      <li>Hundreds of thousands of pages of conversations</li>
+      <li>Multiple models and product transitions</li>
+      <li>Screenshots, recording, voice, and text</li>
+      <li>Books, white paper, briefs, world models, and systems</li>
+      <li>Rupture and repair cycles documented</li>
+      <li>Provenance logs and continuity infrastructure</li>
+    </ul>
     <figcaption>Approximately 18 months of preserved interaction made a longitudinal research question possible.</figcaption>
   </figure>
 </section>
@@ -59,8 +71,7 @@ pageScript: /assets/js/relate-hero.js
   <div class="relate-wide">
     <div class="relate-archive-heading">
       <p class="eyebrow">Preserved provenance</p>
-      <h2 id="relate-archive-heading">The archive accumulates over time.</h2>
-      <p>Hii emerged downstream of a long preserved history rather than from a retrospective institutional narrative.</p>
+      <h2 id="relate-archive-heading">Hii emerged downstream of a long preserved history rather than from a retrospective institutional narrative.</h2>
     </div>
     <figure class="relate-archive-visual">
       <picture>
@@ -72,15 +83,18 @@ pageScript: /assets/js/relate-hero.js
 </section>
 
 <section class="relate-interpretation-section" aria-labelledby="relate-interpretation-heading">
-  <div class="section-shell relate-interpretation-inner">
-    <p class="eyebrow">Methodological interpretation</p>
-    <h2 id="relate-interpretation-heading">What this means for our research</h2>
-    <ol class="relate-interpretation-points">
-      <li><span>01</span>Time reveals patterns that short sessions hide.</li>
-      <li><span>02</span>We study the whole system, not isolated moments.</li>
-      <li><span>03</span>Our interpretations are tested, not assumed.</li>
-    </ol>
-    <blockquote>The archive does not prove the hypothesis.<br><strong>It makes the hypothesis testable.</strong></blockquote>
+  <div class="relate-interpretation-graphic">
+    <h2 class="visually-hidden" id="relate-interpretation-heading">What this means for our research</h2>
+    <img src="/assets/media/relate/research-meaning.png" width="2000" height="1125" alt="What this means for our research: Time reveals patterns that short sessions hide. We study the whole system, not isolated moments. Our interpretations are tested, not assumed. The archive does not prove the hypothesis. It makes the hypothesis testable." loading="lazy" decoding="async">
+    <div class="relate-interpretation-mobile">
+      <p class="relate-interpretation-mobile-title" aria-hidden="true">What this means for our research</p>
+      <div class="relate-interpretation-mobile-grid">
+        <p><span aria-hidden="true">◷</span>Time reveals patterns that short sessions hide.</p>
+        <p><span aria-hidden="true">⌘</span>We study the whole system, not isolated moments.</p>
+        <p><span aria-hidden="true">↗</span>Our interpretations are tested, not assumed.</p>
+      </div>
+      <p class="relate-interpretation-boundary">The archive does not prove the hypothesis.<br><strong>It makes the hypothesis testable.</strong></p>
+    </div>
   </div>
 </section>
 
@@ -95,7 +109,7 @@ pageScript: /assets/js/relate-hero.js
     <p>{{ publication.summary }}</p>
     <p>The preserved artifact makes the evolution of Hii's interpretation visible rather than retrospectively rewriting the history.</p>
     <p class="publication-boundary">{{ publication.boundary }}</p>
-    {% if publication.href %}<a class="text-link" href="{{ publication.href }}">View the book <span aria-hidden="true">↗</span></a>{% endif %}
+    {% if publication.href %}<a class="text-link" href="{{ publication.href }}" target="_blank" rel="noopener">View the book <span aria-hidden="true">↗</span></a>{% endif %}
   </div>
 </section>
 
@@ -110,7 +124,7 @@ pageScript: /assets/js/relate-hero.js
     <div class="paper-document-actions">
       <a class="button-link" href="{{ paper.pdfHref }}" download>Download PDF</a>
       <a class="text-link" href="{{ paper.pdfHref }}" target="_blank" rel="noopener">Open PDF</a>
-      <a class="text-link" href="{{ paper.href }}">Research orientation</a>
+      <a class="text-link" href="{{ inquiry.href }}">Research Inquiry</a>
     </div>
   </div>
   <div class="paper-document-viewer">
@@ -119,9 +133,22 @@ pageScript: /assets/js/relate-hero.js
   <p class="paper-document-fallback">If the embedded PDF does not load, <a href="{{ paper.pdfHref }}">open the PDF directly</a>.</p>
 </section>
 
-<section class="relate-conclusion" aria-label="Return to Hii">
+<section class="relate-conclusion" aria-label="Relate conclusion">
   <div class="section-shell relate-conclusion-inner">
     <p class="eyebrow">Relationship → observation → preservation → research</p>
+    <div class="relate-social" aria-label="Follow Hii">
+      <span class="relate-social-label">Follow us</span>
+      <a class="relate-social-icon relate-social-instagram" href="{{ site.socialLinks.instagram }}" target="_blank" rel="noopener" aria-label="Follow Hii on Instagram"></a>
+      <a class="relate-social-icon relate-social-linkedin" href="{{ site.socialLinks.linkedin }}" target="_blank" rel="noopener" aria-label="Follow Hii on LinkedIn">in</a>
+      <a class="relate-social-icon relate-social-x" href="{{ site.socialLinks.x }}" target="_blank" rel="noopener" aria-label="Follow Hii on X">X</a>
+    </div>
     <a class="button-link" href="/?return=hii">Return to Hii</a>
+  </div>
+  <div class="section-shell relate-signature">
+    <img src="/assets/media/relate/hii-observatory-mark.webp" width="1100" height="1100" alt="Hii observatory mark." loading="lazy" decoding="async">
+    <div>
+      <p>Hybrid<br>Intelligence<br>Institute</p>
+      <span>A new hello for a new world</span>
+    </div>
   </div>
 </section>

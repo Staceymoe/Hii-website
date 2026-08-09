@@ -36,7 +36,15 @@ const required = [
   [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
   [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
   [/relationship-system-five-components\.png/, "approved five-component relationship-system visual"],
+  [/Observation becomes a testable research agenda/, "research-agenda callout"],
+  [/longitudinal-provenance-callouts\.png/, "approved longitudinal provenance callouts"],
+  [/research-meaning\.png/, "approved research-meaning graphic"],
   [/Waking ÆLYSIA/, "approved publication"],
+  [/amazon\.com\/Waking-AELYSIA[\s\S]*\/dp\/B0FPGH3WDZ\//, "Waking AELYSIA Amazon destination"],
+  [/href="\/relationships\/research-inquiry\/">Research Inquiry/, "Research Inquiry action"],
+  [/instagram\.com\/hybridintelligenceinstitute\//, "Instagram destination"],
+  [/linkedin\.com\/company\/hybrid-intelligence-institute\//, "LinkedIn destination"],
+  [/x\.com\/HumanAIResearch/, "X destination"],
   [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
   [/class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"]
 ];
@@ -46,6 +54,10 @@ for (const [pattern, label] of required) {
 }
 if (/Content decision/i.test(page)) fail("relationships page exposes a visitor-facing content decision");
 else pass("relationships page has no visitor-facing content decisions");
+if (/Research orientation/i.test(page)) fail("relationships page retains the superseded Research orientation action");
+else pass("relationships page replaces Research orientation with Research Inquiry");
+if (/class="site-footer"/.test(page)) fail("relationships page includes the generic shared footer");
+else pass("relationships page uses its Relate-specific conclusion instead of the generic shared footer");
 for (const removedSection of ["Flagship artifact", "Relationship literacy", "Study what happens between people and systems across time.</h2>"]) {
   if (page.includes(removedSection)) fail(`relationships page retains removed content: ${removedSection}`);
 }
@@ -99,6 +111,9 @@ for (const assetPath of [
   "_site/assets/media/relate/relationship-system-five-components.png",
   "_site/assets/media/relate/longitudinal-provenance.mp4",
   "_site/assets/media/relate/longitudinal-provenance-poster.webp",
+  "_site/assets/media/relate/longitudinal-provenance-callouts.png",
+  "_site/assets/media/relate/research-meaning.png",
+  "_site/assets/media/relate/hii-observatory-mark.webp",
   "_site/assets/media/relate/archive-accumulation-desktop.jpg",
   "_site/assets/media/relate/archive-accumulation-mobile.png",
   "_site/assets/media/relate/waking-aelysia-cover-approved.jpg"
@@ -171,7 +186,8 @@ const inquiryRequired = [
   [/name="area-of-interest"/, "area-of-interest field"],
   [/name="message"/, "open-text field"],
   [/fieldset disabled/, "disabled pre-privacy form state"],
-  [/Submissions are not yet enabled\./, "explicit pending dependency"]
+  [/Submissions are not yet enabled\./, "explicit pending dependency"],
+  [/href="\/\?return=hii">Return to Hii/, "static Return to Hii control"]
 ];
 for (const [pattern, label] of inquiryRequired) {
   if (!pattern.test(inquiryPage)) fail(`inquiry page is missing ${label}`);

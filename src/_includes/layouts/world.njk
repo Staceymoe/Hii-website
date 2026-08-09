@@ -26,7 +26,7 @@
     <main id="main-content" tabindex="-1">
       {{ content | safe }}
     </main>
-    {% include "components/site-footer.njk" %}
+    {% if not hideSiteFooter %}{% include "components/site-footer.njk" %}{% endif %}
     {% if pageScript %}<script src="{{ pageScript }}" defer></script>{% endif %}
   </body>
 </html>
