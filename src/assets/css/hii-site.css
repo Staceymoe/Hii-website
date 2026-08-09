@@ -280,12 +280,15 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-provenance-boundary strong { margin-top: 1rem; font-size: clamp(1.05rem, 1.45vw, 1.28rem); font-weight: 650; }
 .relate-provenance-visual { margin: 0; }
 .relate-provenance-stage { position: relative; isolation: isolate; aspect-ratio: 16 / 7; overflow: hidden; }
-.relate-provenance-side { position: absolute; z-index: 2; top: 0; bottom: 0; width: 34%; overflow: hidden; }
+.relate-provenance-stage::before, .relate-provenance-stage::after { content: ""; position: absolute; z-index: 3; top: 0; bottom: 0; width: 5%; background: linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 18% / 100% 1px no-repeat, linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 48% / 100% 1px no-repeat, linear-gradient(90deg, rgba(239,179,71,0.78), rgba(58,183,255,0.68)) 0 78% / 100% 1px no-repeat; filter: drop-shadow(0 0 0.25rem rgba(58,183,255,0.35)); pointer-events: none; }
+.relate-provenance-stage::before { left: 30.5%; }
+.relate-provenance-stage::after { right: 30.5%; transform: scaleX(-1); }
+.relate-provenance-side { position: absolute; z-index: 2; top: 0; bottom: 0; width: 35%; overflow: hidden; }
 .relate-provenance-side--left { left: 0; }
 .relate-provenance-side--right { right: 0; }
 .relate-provenance-side img { position: absolute; top: -28%; display: block; width: auto; max-width: none; height: 156%; }
-.relate-provenance-side--left img { left: -27%; }
-.relate-provenance-side--right img { right: -27%; }
+.relate-provenance-side--left img { left: -20%; }
+.relate-provenance-side--right img { right: -20%; }
 .relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 34%; height: auto; border: 1px solid var(--line); transform: translate(-50%, -50%); }
 .relate-provenance-callout-list { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 .relate-provenance-visual figcaption { max-width: 33rem; margin: 0.5rem auto 0; color: var(--ivory); font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.08; letter-spacing: -0.035em; text-align: center; }
@@ -321,8 +324,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-conclusion { border-top: 1px solid var(--line); }
 .relate-conclusion-inner { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding-block: clamp(3rem, 5vw, 4.5rem); }
 .relate-conclusion-inner .eyebrow { margin: 0; }
-.relate-social { display: flex; align-items: center; gap: 1rem; }
-.relate-social-label { margin-right: 0.3rem; font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 500; text-transform: uppercase; }
+.relate-social { display: grid; grid-template-columns: repeat(3, 2.5rem); justify-content: center; justify-items: center; gap: 0.7rem 1rem; }
+.relate-social-label { grid-column: 1 / -1; margin: 0; font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 500; text-align: center; text-transform: uppercase; white-space: nowrap; }
 .relate-social-icon { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; font-size: 1.65rem; font-weight: 500; line-height: 1; text-decoration: none; }
 .relate-social-instagram { position: relative; }
 .relate-social-instagram::before { content: ""; position: absolute; inset: 0.25rem; border: 2px solid currentColor; border-radius: 0.55rem; }
@@ -527,7 +530,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-provenance-section, .relate-artifact-section { padding-block: 4rem; }
   .relate-provenance-visual { grid-row: 1; }
   .relate-provenance-stage { aspect-ratio: auto; }
-  .relate-provenance-side { display: none; }
+  .relate-provenance-side, .relate-provenance-stage::before, .relate-provenance-stage::after { display: none; }
   .relate-provenance-stage video { position: static; width: 100%; transform: none; }
   .relate-provenance-callout-list { position: static; display: grid; grid-template-columns: 1fr; gap: 1px; width: auto; height: auto; margin: 1rem 0 0; padding: 1px; overflow: visible; clip: auto; background: var(--line); list-style: none; }
   .relate-provenance-callout-list li { padding: 1rem 1.2rem; background: var(--ink); color: var(--ivory-soft); font-size: 0.84rem; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -537,7 +540,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-interpretation-mobile-grid { display: grid; gap: 1px; background: rgba(8,11,16,0.18); border: 1px solid rgba(8,11,16,0.18); }
   .relate-interpretation-mobile-grid p { margin: 0; padding: 1.5rem; background: var(--ivory); font-size: 1.05rem; }
   .relate-interpretation-mobile-icon { display: block; width: 7rem; height: 5.5rem; margin: 0 auto 1.2rem; background-image: url("/assets/media/relate/research-meaning.png"); background-repeat: no-repeat; background-size: 37.5rem auto; }
-  .relate-interpretation-mobile-icon--time { background-position: -6.4rem -5.6rem; }
+  .relate-interpretation-mobile-icon--time { background-position: -5.3rem -5.6rem; }
   .relate-interpretation-mobile-icon--system { background-position: -15.7rem -5.6rem; }
   .relate-interpretation-mobile-icon--testing { background-position: -25.8rem -5.2rem; }
   .relate-interpretation-boundary { margin: 2rem 0 0; padding: 1.2rem; color: var(--ivory); background: var(--ink); text-align: center; }
@@ -551,9 +554,9 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-artifact-cover { width: min(62vw, 16rem); }
   .relate-paper-document .paper-document-heading { display: block; }
   .relate-paper-document .paper-document-actions { justify-content: flex-start; margin-top: 1.5rem; }
-  .relate-paper-document .paper-document-frame { min-height: 42rem; }
+  .relate-paper-document .paper-document-viewer, .relate-paper-document .paper-document-fallback { display: none; }
   .relate-conclusion-inner { grid-template-columns: 1fr; align-items: flex-start; }
-  .relate-social { flex-wrap: wrap; }
+  .relate-social { justify-content: center; }
   .relate-signature { align-items: flex-start; }
   .paper-feature-inner, .research-inquiry-inner, .paper-model-section, .inquiry-form-section { grid-template-columns: 1fr; }
   .publication-feature { grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1.55fr); gap: 2rem; align-items: start; }
