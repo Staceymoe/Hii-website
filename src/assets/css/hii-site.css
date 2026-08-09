@@ -274,13 +274,16 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-provenance-section { display: grid; grid-template-columns: minmax(26rem, 0.72fr) minmax(32rem, 1.28fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: center; padding-block: clamp(4.5rem, 8vw, 7rem); }
 .relate-provenance-copy h2 { max-width: 14ch; font-size: clamp(2.7rem, 3.7vw, 3.8rem); }
 .relate-provenance-copy > p:not(.eyebrow) { max-width: 39rem; color: var(--ivory-soft); }
-.relate-provenance-boundary { margin-top: 2rem; font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 600; line-height: 1.45; }
+.relate-provenance-boundary { margin-top: 2.5rem; line-height: 1.2; }
+.relate-provenance-boundary span, .relate-provenance-boundary strong { display: block; }
+.relate-provenance-boundary span { max-width: 18ch; font-size: clamp(1.55rem, 2.15vw, 2.15rem); font-weight: 400; letter-spacing: -0.035em; }
+.relate-provenance-boundary strong { margin-top: 1rem; font-size: clamp(1.05rem, 1.45vw, 1.28rem); font-weight: 650; }
 .relate-provenance-visual { margin: 0; }
-.relate-provenance-stage { position: relative; aspect-ratio: 2000 / 1125; }
-.relate-provenance-callouts { position: relative; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain; }
-.relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 36%; height: auto; border: 1px solid var(--line); transform: translate(-50%, -50%); }
+.relate-provenance-stage { position: relative; isolation: isolate; aspect-ratio: 4999 / 2812; }
+.relate-provenance-callouts { position: relative; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: screen; }
+.relate-provenance-stage video { position: absolute; z-index: 1; top: 50%; left: 50%; display: block; width: 34%; height: auto; border: 1px solid var(--line); transform: translate(-50%, -50%); }
 .relate-provenance-callout-list { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
-.relate-provenance-visual figcaption { max-width: 34rem; margin: 0.8rem auto 0; color: var(--muted); font-size: 0.82rem; text-align: center; }
+.relate-provenance-visual figcaption { max-width: 33rem; margin: 0.5rem auto 0; color: var(--ivory); font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.08; letter-spacing: -0.035em; text-align: center; }
 .relate-archive-section { padding-block: clamp(3.5rem, 6vw, 5.5rem); background: #05080c; border-block: 1px solid var(--line); }
 .relate-wide { width: min(calc(100% - 2rem), 104rem); margin-inline: auto; }
 .relate-archive-heading { width: min(calc(100% - 1rem), var(--max)); margin: 0 auto clamp(2.5rem, 4vw, 4rem); }
@@ -316,9 +319,9 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-social { display: flex; align-items: center; gap: 1rem; }
 .relate-social-label { margin-right: 0.3rem; font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 500; text-transform: uppercase; }
 .relate-social-icon { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; font-size: 1.65rem; font-weight: 500; line-height: 1; text-decoration: none; }
-.relate-social-instagram { position: relative; width: 2rem; border: 2px solid currentColor; border-radius: 0.55rem; }
-.relate-social-instagram::before { content: ""; width: 0.75rem; aspect-ratio: 1; border: 2px solid currentColor; border-radius: 50%; }
-.relate-social-instagram::after { content: ""; position: absolute; top: 0.28rem; right: 0.28rem; width: 0.25rem; aspect-ratio: 1; background: currentColor; border-radius: 50%; }
+.relate-social-instagram { position: relative; }
+.relate-social-instagram::before { content: ""; position: absolute; inset: 0.25rem; border: 2px solid currentColor; border-radius: 0.55rem; }
+.relate-social-instagram::after { content: ""; position: absolute; top: 0.62rem; right: 0.62rem; width: 0.24rem; aspect-ratio: 1; background: currentColor; border-radius: 50%; box-shadow: -0.5rem 0.5rem 0 -0.08rem var(--ink), -0.5rem 0.5rem 0 0.04rem currentColor; }
 .relate-social-linkedin { color: var(--ink); background: var(--ivory); border-radius: 0.1rem; font-size: 1.25rem; font-weight: 600; }
 .relate-social-x { font-size: 1.8rem; }
 .relate-signature { display: flex; align-items: center; gap: 1.2rem; padding-block: 2rem 3rem; border-top: 1px solid var(--line); }

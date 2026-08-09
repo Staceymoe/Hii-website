@@ -37,6 +37,7 @@ const required = [
   [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
   [/relationship-system-five-components\.png/, "approved five-component relationship-system visual"],
   [/Observation becomes a testable research agenda/, "research-agenda callout"],
+  [/href="#current-working-paper">Explore the paper/, "same-page embedded-paper action"],
   [/longitudinal-provenance-callouts\.png/, "approved longitudinal provenance callouts"],
   [/research-meaning\.png/, "approved research-meaning graphic"],
   [/Waking ÆLYSIA/, "approved publication"],
