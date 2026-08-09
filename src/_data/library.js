@@ -68,8 +68,66 @@ export default {
       privacyHref: null,
       submissionsEnabled: false,
       worlds: ["relate"]
+    },
+    care: {
+      id: "care-inquiry",
+      title: "Care and clinician education inquiry",
+      href: "mailto:staceymoe@hii.earth?subject=Hii%20CARE%20Inquiry",
+      notificationEmail: "staceymoe@hii.earth",
+      worlds: ["care"]
     }
   },
-  programs: {},
+  programs: {
+    facilitatedRoundtable: {
+      id: "facilitated-roundtable",
+      type: "facilitated-engagement",
+      title: "Facilitated Roundtable or Listening Session",
+      status: { label: "available-by-inquiry", display: "Available now by inquiry" },
+      format: "60–90 minutes · Virtual or in person",
+      summary: "A structured conversation for clinicians, educators, community groups, caregivers, or leadership teams, followed by a concise synthesis of themes, needs, open questions, and possible next steps.",
+      boundary: "No protected health information. No claim that a prior Hii clinician roundtable has occurred.",
+      worlds: ["care", "prepare"]
+    },
+    introductoryWorkshop: {
+      id: "introductory-workshop",
+      type: "educational-engagement",
+      title: "Customized Introductory Workshop or Briefing",
+      status: { label: "available-by-inquiry", display: "Available now by inquiry" },
+      format: "45–60 minutes plus discussion",
+      summary: "A tailored, evidence-aware introduction to human–AI relationship literacy, clinician preparedness, practical AI navigation, or preserving agency and judgment while using AI.",
+      boundary: "Educational, not therapy, clinical supervision, medical advice, accreditation, or CE/CME credit.",
+      worlds: ["care", "understand", "prepare"]
+    },
+    advisorySession: {
+      id: "advisory-session",
+      type: "strategic-engagement",
+      title: "Founder-Led Advisory or Strategy Session",
+      status: { label: "available-by-inquiry", display: "Available now by inquiry" },
+      format: "60–90 minutes",
+      summary: "A focused working session to identify education needs, clarify risks and opportunities, shape a bounded pilot, or design humane safeguards and next steps.",
+      boundary: "Educational and strategic guidance, not legal, medical, clinical, or technical implementation advice.",
+      worlds: ["care", "prepare", "govern"]
+    },
+    clinicianPilot: {
+      id: "clinician-education-pilot",
+      type: "founding-pilot",
+      title: "When AI Enters the Therapy Room",
+      status: { label: "pilot-development", display: "Founding clinician pilot · In development" },
+      format: "60 minutes · Zoom or hosted teaching session",
+      summary: "A bounded educational session for mental health clinicians treating adults, using neutral intake questions, a three-lens frame, standard clinical red flags, and structured feedback.",
+      boundary: "No-fee validation pilot. Not a validated training, diagnostic instrument, clinical protocol, certification, or CE/CME program.",
+      worlds: ["care"]
+    },
+    publicLearningSessions: {
+      id: "public-learning-sessions",
+      type: "public-education-concept",
+      title: "Public Zoom Learning Sessions",
+      status: { label: "concept-development", display: "In development · No dates posted" },
+      format: "Format, schedule, registration, and pricing not yet published",
+      summary: "Bounded learning conversations are being explored for individuals and families seeking language and orientation around AI-mediated emotional life.",
+      boundary: "Educational only. Not therapy, diagnosis, crisis support, or individualized clinical guidance.",
+      worlds: ["care", "understand"]
+    }
+  },
   updates: {}
 };

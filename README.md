@@ -10,7 +10,7 @@ approved front door (/)
   -> shared Eleventy world and utility system
 ```
 
-The approved source is in `restart-front-door/`. Do not change its HTML, CSS, media, timing, geometry, film behavior, or front-door interactions. The only authorized JavaScript differences are the narrow Relate and Understand destination routes plus the explicit static-return state. `scripts/verify-front-door.mjs` enforces that boundary.
+The approved source is in `restart-front-door/`. Do not change its HTML, CSS, media, timing, geometry, film behavior, or front-door interactions. The only authorized JavaScript differences are the narrow Relate, Care, and Understand destination routes plus the explicit static-return state. `scripts/verify-front-door.mjs` enforces that boundary.
 
 ## Current implementation scope
 
@@ -18,9 +18,10 @@ The approved source is in `restart-front-door/`. Do not change its HTML, CSS, me
 - `/relationships/` — approved consolidated Relate world
 - `/relationships/the-relationship-as-unit-of-analysis/` — embedded Relate working paper with approved public status language
 - `/relationships/research-inquiry/` — Relate inquiry form foundation; submissions disabled until the approved privacy notice is connected
+- `/mental-health/` — draft Care world with clinician education, fee-ready engagements, pilot boundaries, and future public-session status
 - `/understand/` — frozen pending the next page-by-page review
 - Existing `.html` pages — retained as migration sources and temporary destinations
-- Other five worlds — intentionally not generated
+- Other four worlds — intentionally not generated
 - Legacy redirects — intentionally not configured
 
 ## Local development
@@ -48,6 +49,8 @@ The generated site is written to `_site/`. Netlify uses the same protected stagi
 - `src/_includes/layouts/` — shared layouts
 
 Artifacts, programs, and updates should each have one canonical record in `library.js`, with world associations recorded as data. Do not duplicate records to place the same material in multiple worlds.
+
+Before adding a visual, check the designated Hii website asset library for an appropriate approved asset. Every visual entering the repository must be renamed immediately using section, subject, asset type, and version. Filenames must distinguish `candidate`, `approved`, `concept`, and `final` status. Do not infer approval from presence in Drive, Library, chat, or the repository.
 
 ## Protection and checks
 

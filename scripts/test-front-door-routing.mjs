@@ -102,4 +102,8 @@ const relateRoute = runFrontDoor("?return=hii", "Relate");
 relateRoute.clickLens();
 assert.deepEqual(relateRoute.assignments, ["/relationships/"], "Relate must retain its built-world route");
 
-console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s; Relate and Understand route correctly.");
+const careRoute = runFrontDoor("?return=hii", "Care");
+careRoute.clickLens();
+assert.deepEqual(careRoute.assignments, ["/mental-health/"], "Care must route to its built world");
+
+console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s; Relate, Care, and Understand route correctly.");

@@ -1,0 +1,163 @@
+---
+layout: layouts/world.njk
+title: Mental Health and Clinical Practice
+description: Hii helps clinicians and communities develop careful language, practical questions, and bounded education for human-AI relationships entering emotional and clinical life.
+permalink: /mental-health/index.html
+---
+{% set world = worlds.care %}
+{% set inquiry = library.inquiries.care %}
+{% set roundtable = library.programs.facilitatedRoundtable %}
+{% set workshop = library.programs.introductoryWorkshop %}
+{% set advisory = library.programs.advisorySession %}
+{% set pilot = library.programs.clinicianPilot %}
+{% set publicSessions = library.programs.publicLearningSessions %}
+
+<section class="care-hero section-shell" aria-labelledby="care-title">
+  <div class="care-hero-copy">
+    <p class="eyebrow">{{ world.eyebrow }}</p>
+    <h1 id="care-title">When AI enters the therapy room.</h1>
+    <p class="lede">Patients are already using AI for emotional regulation, reassurance, decision support, companionship, identity exploration, and meaning-making. The task is not to dismiss that reality or accept every interpretation of it.</p>
+    <p class="care-hero-thesis">The task is to understand what the interaction is doing.</p>
+  </div>
+  <figure class="care-hero-visual">
+    <div class="care-hero-crop">
+      <img src="/assets/media/care/care-clinician-chair-circle-candidate-v1.png" width="1536" height="1024" alt="An empty circle of clinician chairs around a restrained field of warm orbital light, overlooking a quiet evening horizon.">
+    </div>
+    <figcaption>Candidate visual direction · A room prepared for careful conversation.</figcaption>
+  </figure>
+</section>
+
+<section class="care-practice-section">
+  <div class="section-shell care-practice-inner">
+    <p class="eyebrow">Care is how we practice our mission</p>
+    <h2>We make space for better questions before certainty hardens.</h2>
+    <p>Hii translates research and longitudinal observation into neutral language, practical tools, clinician education, facilitated conversations, and bounded programs. The aim is to preserve agency, judgment, relationships, meaning, and clinical dignity while the environment changes.</p>
+    <ul class="care-principles" aria-label="CARE principles">
+      {% for principle in world.principles %}<li>{{ principle }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section-shell care-lenses-section" aria-labelledby="care-lenses-heading">
+  <div class="care-section-heading">
+    <p class="eyebrow">A wider clinical lens</p>
+    <h2 id="care-lenses-heading">Hold three possibilities in view at once.</h2>
+    <p>This is an educational frame, not a screening tool or replacement for clinical assessment.</p>
+  </div>
+  <div class="care-lens-grid">
+    {% for lens in world.lenses %}
+      <article class="care-lens-card">
+        <span aria-hidden="true">0{{ loop.index }}</span>
+        <p class="care-card-label">{{ lens.label }}</p>
+        <h3>{{ lens.title }}</h3>
+        <p>{{ lens.text }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="care-questions-section">
+  <div class="section-shell care-questions-inner">
+    <div class="care-questions-copy">
+      <p class="eyebrow">A practical starting point</p>
+      <h2>Bring the chatbot into the room without bringing shame with it.</h2>
+      <p>Patients are more likely to disclose honestly when AI use is approached with curiosity rather than automatic endorsement or pathologizing.</p>
+      <p class="care-tone-note">Normalize disclosure without normalizing every pattern.</p>
+    </div>
+    <ol class="care-question-list">
+      {% for question in world.neutralQuestions %}<li><span>0{{ loop.index }}</span>{{ question }}</li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section-shell care-offers-section" aria-labelledby="care-offers-heading">
+  <div class="care-section-heading care-offers-heading">
+    <p class="eyebrow">Ways to work with Hii now</p>
+    <h2 id="care-offers-heading">Start with the conversation your organization actually needs.</h2>
+    <p>Fees are quoted per engagement based on format, audience, preparation, customization, travel, and post-session deliverables. Hii is not publishing a fixed rate card until paid deliveries establish real market evidence.</p>
+  </div>
+  <div class="care-offer-grid">
+    {% for program in [roundtable, workshop, advisory] %}
+      <article class="care-offer-card">
+        <p class="care-program-status">{{ program.status.display }}</p>
+        <h3>{{ program.title }}</h3>
+        <p class="care-program-format">{{ program.format }}</p>
+        <p>{{ program.summary }}</p>
+        <p class="care-program-boundary">{{ program.boundary }}</p>
+      </article>
+    {% endfor %}
+  </div>
+  <a class="button-link" href="{{ inquiry.href }}">Discuss an engagement</a>
+</section>
+
+<section class="care-pilot-section">
+  <div class="section-shell care-pilot-inner">
+    <div>
+      <p class="eyebrow">{{ pilot.status.display }}</p>
+      <h2>{{ pilot.title }}</h2>
+      <p class="care-program-format">{{ pilot.format }}</p>
+      <p>{{ pilot.summary }}</p>
+      <p class="care-program-boundary">{{ pilot.boundary }}</p>
+      <a class="text-link" href="{{ inquiry.href }}">Ask about the founding pilot <span aria-hidden="true">↗</span></a>
+    </div>
+    <aside class="care-pilot-scope" aria-label="Founding pilot scope">
+      <p class="care-card-label">The session includes</p>
+      <ul>
+        <li>Neutral intake questions</li>
+        <li>Clinical risk, situational overwhelm, and interaction effects</li>
+        <li>Provisional benefit and risk hypotheses</li>
+        <li>Standard clinical red flags</li>
+        <li>Structured participant feedback</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section-shell care-field-brief-section" aria-labelledby="care-field-brief-heading">
+  <figure class="care-field-brief-visual">
+    <img src="/assets/media/care/care-field-brief-concept-mockup-v1.jpg" width="1536" height="1024" alt="Concept mockup of a future Hii field brief on a desk beside a notebook and coffee.">
+    <figcaption>Concept mockup · No completed roundtable findings or Field Brief are being represented.</figcaption>
+  </figure>
+  <div class="care-field-brief-copy">
+    <p class="eyebrow">Proposed output</p>
+    <h2 id="care-field-brief-heading">A Field Brief can follow a completed roundtable.</h2>
+    <p>A future brief may preserve themes, questions, preliminary observations, practical language, and next steps from a facilitated conversation. It will be published only after the event occurs, the source boundary is clear, and participants understand how the synthesis will be used.</p>
+    <p class="care-program-boundary">The current image is a design concept, not evidence that a Milwaukee clinician roundtable occurred in July 2026.</p>
+  </div>
+</section>
+
+<section class="care-public-section">
+  <div class="section-shell care-public-inner">
+    <div>
+      <p class="eyebrow">For individuals and families</p>
+      <h2>{{ publicSessions.title }}</h2>
+    </div>
+    <div>
+      <p class="care-program-status">{{ publicSessions.status.display }}</p>
+      <p>{{ publicSessions.summary }}</p>
+      <p class="care-program-format">{{ publicSessions.format }}</p>
+      <p class="care-program-boundary">{{ publicSessions.boundary }}</p>
+      <a class="text-link" href="{{ inquiry.href }}">Ask about future public sessions <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="care-boundary-section">
+  <div class="section-shell care-boundary-inner">
+    <p class="eyebrow">Public boundary</p>
+    <h2>Hii provides education and orientation, not clinical care.</h2>
+    <p>Hii does not provide therapy, diagnosis, medical advice, crisis services, clinical supervision, certification, accreditation, or CE/CME credit. Nothing on this page replaces professional judgment or an established standard of care.</p>
+    <p>If you need immediate or crisis support, contact an appropriate local emergency or crisis service.</p>
+  </div>
+</section>
+
+<section class="section-shell care-closing-section" aria-labelledby="care-closing-heading">
+  <div>
+    <p class="eyebrow">We make the space. You bring the wisdom.</p>
+    <h2 id="care-closing-heading">Together, we care.</h2>
+  </div>
+  <div class="care-closing-actions">
+    <a class="button-link" href="{{ inquiry.href }}">Begin a CARE conversation</a>
+    <a class="text-link" href="/?return=hii">Return to Hii</a>
+  </div>
+</section>

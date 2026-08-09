@@ -26,6 +26,10 @@ const allowedSeams = [
     content: "    else if (destination === 'Relate') window.location.assign('/relationships/');\n"
   },
   {
+    label: "Care routing",
+    content: "    else if (destination === 'Care') window.location.assign('/mental-health/');\n"
+  },
+  {
     label: "Understand routing",
     content: "    else if (destination === 'Understand') window.location.assign('/understand/');\n"
   }

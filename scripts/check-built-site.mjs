@@ -199,7 +199,40 @@ else pass("inquiry page does not activate an unapproved submission route");
 if ((inquiryPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("inquiry page lacks repeated Back to Relate controls");
 else pass("inquiry page repeats Back to Relate controls");
 
-for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage]]) {
+const carePath = "_site/mental-health/index.html";
+const carePage = (await read(carePath)).toString("utf8");
+const careRequired = [
+  [/<title>Mental Health and Clinical Practice \| Hii<\/title>/, "page title"],
+  [/<link rel="canonical" href="https:\/\/hii\.earth\/mental-health\/">/, "canonical URL"],
+  [/href="\/\?return=hii">Return to Hii/, "static Return to Hii control"],
+  [/When AI enters the therapy room\./, "clinician-first hero"],
+  [/Clinical risk[\s\S]*Situational overwhelm[\s\S]*Interaction effects/, "three-lens frame"],
+  [/Available now by inquiry/, "fee-ready engagement status"],
+  [/Founding clinician pilot · In development/, "pilot status"],
+  [/No-fee validation pilot\./, "pilot fee boundary"],
+  [/In development · No dates posted/, "public-session status"],
+  [/No completed roundtable findings or Field Brief are being represented\./, "Field Brief concept boundary"],
+  [/not evidence that a Milwaukee clinician roundtable occurred in July 2026\./, "roundtable provenance boundary"],
+  [/does not provide therapy, diagnosis, medical advice, crisis services/, "public clinical boundary"],
+  [/mailto:staceymoe@hii\.earth\?subject=Hii%20CARE%20Inquiry/, "CARE inquiry destination"]
+];
+for (const [pattern, label] of careRequired) {
+  if (!pattern.test(carePage)) fail(`care page is missing ${label}`);
+  else pass(`care page includes ${label}`);
+}
+const careH1Count = (carePage.match(/<h1(?:\s|>)/g) || []).length;
+if (careH1Count !== 1) fail(`care page has ${careH1Count} h1 elements; expected 1`);
+else pass("care page has one h1");
+for (const assetPath of [
+  "_site/assets/media/care/care-clinician-chair-circle-candidate-v1.png",
+  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg"
+]) {
+  try { await access(path.join(root, assetPath)); }
+  catch { fail(`Care asset is missing: ${assetPath}`); }
+}
+if (!failures.some((item) => item.includes("Care asset"))) pass("named Care candidate and concept assets are present");
+
+for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
   const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
   for (const href of hrefs) {
     if (/^(https?:|mailto:|#)/.test(href)) continue;
@@ -222,13 +255,13 @@ else pass("shared CSS includes reduced-motion handling");
 if (!/font-family: "Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
 else pass("shared CSS specifies Manrope");
 
-for (const unbuiltWorld of ["adaptation", "mental-health", "institutional-readiness", "governance", "research"]) {
+for (const unbuiltWorld of ["adaptation", "institutional-readiness", "governance", "research"]) {
   try {
     await access(path.join(output, unbuiltWorld));
     fail(`unapproved world route was built: /${unbuiltWorld}/`);
   } catch {}
 }
-pass("no additional world routes beyond Relate and Understand were generated");
+pass("no additional world routes beyond Relate, Care, and Understand were generated");
 
 const netlify = (await read("netlify.toml")).toString("utf8");
 if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
@@ -239,12 +272,16 @@ else pass("canonical paper permits only same-origin embedding");
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
 if (!sitemap.includes("https://hii.earth/relationships/")) fail("sitemap omits /relationships/");
 else pass("sitemap includes /relationships/");
+if (!sitemap.includes("https://hii.earth/mental-health/")) fail("sitemap omits /mental-health/");
+else pass("sitemap includes /mental-health/");
 if (!sitemap.includes("https://hii.earth/understand/")) fail("sitemap omits /understand/");
 else pass("sitemap includes /understand/");
 
 const builtFrontDoorJs = (await read("_site/front-door.js")).toString("utf8");
 if (!builtFrontDoorJs.includes("destination === 'Understand') window.location.assign('/understand/')")) fail("front door lacks the Understand routing seam");
 else pass("front door routes Understand to /understand/");
+if (!builtFrontDoorJs.includes("destination === 'Care') window.location.assign('/mental-health/')")) fail("front door lacks the Care routing seam");
+else pass("front door routes Care to /mental-health/");
 
 const approvedSource = (await read("restart-front-door/index.html")).toString("utf8").replace(/\r\n/g, "\n");
 const approvedSourceHash = sha(approvedSource);

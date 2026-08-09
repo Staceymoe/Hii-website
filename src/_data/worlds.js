@@ -52,6 +52,47 @@ export default {
       }
     ]
   },
+  care: {
+    id: "care",
+    portalLabel: "Care",
+    title: "Mental Health and Clinical Practice",
+    route: "/mental-health/",
+    eyebrow: "Care",
+    published: true,
+    introduction: "Hii turns emerging research and observation into practical language, education, and bounded support for people navigating AI-mediated emotional life.",
+    question: "How do we meet what is already entering the therapy room with curiosity, clinical judgment, and care?",
+    lenses: [
+      {
+        label: "Clinical risk",
+        title: "Keep established assessment in view",
+        text: "Sleep disruption, loss of functioning, escalating paranoia, fixed beliefs, severe isolation, and threats of harm remain clinical concerns regardless of whether AI is involved."
+      },
+      {
+        label: "Situational overwhelm",
+        title: "Assess distress in context",
+        text: "Rapid change, information overload, economic pressure, social fragmentation, and uncertainty may be genuinely destabilizing. Context does not erase symptoms, and symptoms do not erase context."
+      },
+      {
+        label: "Interaction effects",
+        title: "Ask what the relationship is doing",
+        text: "AI use may support reflection and action, reinforce rumination or reassurance loops, alter relational expectations, or become a primary stabilizing structure. Sequence and function matter."
+      }
+    ],
+    neutralQuestions: [
+      "What do you usually turn to AI for?",
+      "Do you feel calmer or more activated after using it?",
+      "Does it help you take action, or keep you thinking longer?",
+      "Does it help you connect with other people, or replace connection with other people?",
+      "Do you feel more agency after using it, or less?"
+    ],
+    principles: [
+      "Curious, not critical",
+      "Careful, not automatic",
+      "Relational, not reductive",
+      "Evidence-informed",
+      "Human-centered"
+    ]
+  },
   understand: {
     id: "understand",
     portalLabel: "Understand",
