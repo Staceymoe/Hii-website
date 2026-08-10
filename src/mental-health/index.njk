@@ -27,22 +27,48 @@ permalink: /mental-health/index.html
   </figure>
 </section>
 
+<section class="care-therapist-boundary" aria-label="CARE purpose">
+  <div class="section-shell care-therapist-boundary-inner">
+    <p>Our goal is not to replace therapists or automate care. It is to help clinicians understand what is already entering the therapy room, while keeping human judgment, relationship, and care at the center.</p>
+  </div>
+</section>
+
 <section class="care-practice-section">
   <div class="section-shell care-practice-inner">
     <p class="eyebrow">Care is how we practice our mission</p>
     <h2>We make space for better questions before certainty hardens.</h2>
-    <p>Hii translates research and longitudinal observation into neutral language, practical tools, clinician education, facilitated conversations, and bounded programs. The aim is to preserve agency, judgment, relationships, meaning, and clinical dignity while the environment changes.</p>
+    <p>Hii translates research and longitudinal observation into <strong class="care-practice-emphasis">neutral language, practical tools, clinician education, facilitated conversations, and bounded programs.</strong> The aim is to preserve agency, judgment, relationships, meaning, and clinical dignity while the environment changes.</p>
     <ul class="care-principles" aria-label="CARE principles">
       {% for principle in world.principles %}<li>{{ principle }}</li>{% endfor %}
     </ul>
   </div>
 </section>
 
+<section class="section-shell care-offers-section" aria-labelledby="care-offers-heading">
+  <div class="care-section-heading care-offers-heading">
+    <p class="eyebrow">Ways to work with Hii now</p>
+    <h2 id="care-offers-heading">Start with the conversation your organization actually needs.</h2>
+    <p>Fees are quoted per engagement based on format, audience, preparation, customization, travel, and post-session deliverables. Hii is not publishing a fixed rate card until paid deliveries establish real market evidence.</p>
+  </div>
+  <div class="care-offer-grid">
+    {% for program in [roundtable, workshop, advisory] %}
+      <article class="care-offer-card">
+        <p class="care-program-status">{{ program.status.display }}</p>
+        <h3>{{ program.title }}</h3>
+        <p class="care-program-format">{{ program.format }}</p>
+        <p>{{ program.summary }}</p>
+        <p class="care-program-boundary">{{ program.boundary }}</p>
+      </article>
+    {% endfor %}
+  </div>
+  <a class="button-link" href="{{ inquiry.href }}">Discuss an engagement</a>
+</section>
+
 <section class="section-shell care-lenses-section" aria-labelledby="care-lenses-heading">
   <div class="care-section-heading">
     <p class="eyebrow">A wider clinical lens</p>
     <h2 id="care-lenses-heading">Hold three possibilities in view at once.</h2>
-    <p>This is an educational frame, not a screening tool or replacement for clinical assessment.</p>
+    <p class="care-educational-boundary">This is an educational frame, not a screening tool or replacement for clinical assessment.</p>
   </div>
   <div class="care-lens-grid">
     {% for lens in world.lenses %}
@@ -68,26 +94,6 @@ permalink: /mental-health/index.html
       {% for question in world.neutralQuestions %}<li><span>0{{ loop.index }}</span>{{ question }}</li>{% endfor %}
     </ol>
   </div>
-</section>
-
-<section class="section-shell care-offers-section" aria-labelledby="care-offers-heading">
-  <div class="care-section-heading care-offers-heading">
-    <p class="eyebrow">Ways to work with Hii now</p>
-    <h2 id="care-offers-heading">Start with the conversation your organization actually needs.</h2>
-    <p>Fees are quoted per engagement based on format, audience, preparation, customization, travel, and post-session deliverables. Hii is not publishing a fixed rate card until paid deliveries establish real market evidence.</p>
-  </div>
-  <div class="care-offer-grid">
-    {% for program in [roundtable, workshop, advisory] %}
-      <article class="care-offer-card">
-        <p class="care-program-status">{{ program.status.display }}</p>
-        <h3>{{ program.title }}</h3>
-        <p class="care-program-format">{{ program.format }}</p>
-        <p>{{ program.summary }}</p>
-        <p class="care-program-boundary">{{ program.boundary }}</p>
-      </article>
-    {% endfor %}
-  </div>
-  <a class="button-link" href="{{ inquiry.href }}">Discuss an engagement</a>
 </section>
 
 <section class="care-pilot-section">
