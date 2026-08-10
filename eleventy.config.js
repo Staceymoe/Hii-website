@@ -1,6 +1,7 @@
 import fs from "node:fs";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addFilter("findById", (items, id) => items.find((item) => item.id === id));
   eleventyConfig.addPassthroughCopy({ "_restart": "." });
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });

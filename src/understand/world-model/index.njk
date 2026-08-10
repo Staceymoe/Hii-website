@@ -1,0 +1,104 @@
+---
+layout: layouts/world.njk
+title: The Hii World Model
+description: An unreleased whole-system preview of the Hii World Model and its eight editorial domains.
+permalink: /understand/world-model/index.html
+robots: noindex, nofollow
+bodyClass: world-model-preview-body
+pageScript: /assets/js/world-model-preview.js
+---
+<div class="wm-preview-ribbon" role="status">{{ worldModelPreview.status }} · No public release data</div>
+
+<section class="wm-map-hero section-shell">
+  <aside class="wm-map-intro">
+    <a class="wm-back-link" href="/understand/">← Back to Understand</a>
+    <p class="eyebrow">Whole-system orientation</p>
+    <h1>The Hii World Model</h1>
+    <p class="lede">A living map of the AI transition and its impact on humanity. Explore how domains connect, influence one another, and evolve over time.</p>
+    <details class="wm-how-it-works">
+      <summary>How this model works</summary>
+      <p>The map renders editorial domains and reviewed relationships from versioned records. Line treatment describes relationship trajectory, not evidence strength or overall model quality.</p>
+    </details>
+    <nav class="wm-map-modes" aria-label="Explore the system">
+      <p class="eyebrow">Explore the system</p>
+      <a class="is-current" href="#world-map">World map <small>See how everything connects</small></a>
+      <a href="#domain-list">Domains <small>Explore each domain in depth</small></a>
+      <a href="#relationship-list">Connections <small>View candidate relationships</small></a>
+      <a href="#model-boundary">Evidence <small>Understand the release boundary</small></a>
+    </nav>
+  </aside>
+
+  <div id="world-map" class="wm-map-column">
+    <div class="wm-radial-map" aria-label="Eight World Model domains arranged around the AI transition">
+      <div class="wm-map-rings" aria-hidden="true"></div>
+      <svg class="wm-map-lines" viewBox="0 0 800 800" role="img" aria-label="Three candidate emerging relationships connect AI Capabilities, Human Judgment and Agency, Information Environment, and Education and Learning">
+        <path class="trajectory-emerging" d="M400 128 Q565 210 642 330" />
+        <path class="trajectory-emerging" d="M642 330 Q510 350 400 400" />
+        <path class="trajectory-emerging" d="M400 128 Q330 420 400 672" />
+      </svg>
+      <div class="wm-map-center"><span>The</span><strong>AI Transition</strong><small>Editorial framing</small></div>
+      {% for domain in worldModelPreview.domains %}
+        <a class="wm-map-node wm-node-{{ loop.index }} tone-{{ domain.tone }}" href="/understand/world-model/domains/{{ domain.id }}/">
+          <span>{{ domain.glyph }}</span>
+          <strong>{{ domain.name }}</strong>
+        </a>
+      {% endfor %}
+    </div>
+    <div class="wm-trajectory-legend" aria-label="Relationship trajectory legend">
+      <span><i class="line-emerging"></i> Emerging</span>
+      <span><i class="line-strengthening"></i> Strengthening</span>
+      <span><i class="line-stable"></i> Stable</span>
+      <span><i class="line-disputed"></i> Disputed</span>
+    </div>
+  </div>
+</section>
+
+<section id="domain-list" class="wm-domain-section section-shell" aria-labelledby="domains-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">Eight initial domains</p>
+    <h2 id="domains-heading">One transition. Eight human systems in motion.</h2>
+    <p>The domains are editorial lenses, not scientific truths. Their stable identities allow the model to evolve without losing continuity.</p>
+  </div>
+  <div class="wm-domain-grid">
+    {% for domain in worldModelPreview.domains %}
+      <a class="wm-domain-card tone-{{ domain.tone }}" href="/understand/world-model/domains/{{ domain.id }}/">
+        <span>{{ domain.glyph }}</span>
+        <p>0{{ loop.index }}</p>
+        <h3>{{ domain.name }}</h3>
+        <small>{{ domain.short }}</small>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="relationship-list" class="wm-relationship-section">
+  <div class="section-shell wm-relationship-inner">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Candidate connections</p>
+      <h2>Relationships are where change becomes visible.</h2>
+      <p>Only the first orientation question has a proposed evidence packet. These three connections remain unreleased.</p>
+    </div>
+    <div class="wm-relationship-list">
+      {% for relationship in worldModelPreview.relationships %}
+        {% set fromDomain = worldModelPreview.domains | findById(relationship.from) %}
+        {% set toDomain = worldModelPreview.domains | findById(relationship.to) %}
+        <article>
+          <div class="wm-relationship-pair"><strong>{{ fromDomain.name }}</strong><span>↔</span><strong>{{ toDomain.name }}</strong></div>
+          <p>{{ relationship.mechanism }}</p>
+          <dl><div><dt>Trajectory</dt><dd>{{ relationship.trajectory }}</dd></div><div><dt>Strength</dt><dd>{{ relationship.strength }}</dd></div></dl>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="model-boundary" class="wm-about-model section-shell">
+  <p class="eyebrow">About this preview</p>
+  <h2>The public model changes only through human-reviewed releases.</h2>
+  <div>
+    <p>Research automation may discover sources and prepare proposals. It cannot silently rewrite the public model, create a global confidence score, or authorize publication.</p>
+    <p><strong>{{ worldModelPreview.status }}</strong><br>{{ worldModelPreview.reviewed }}</p>
+  </div>
+</section>
+
+<section class="wm-system-close"><p>See the whole system. <span>•</span> Make sense of what is happening. <span>•</span> Stay oriented. <span>•</span> Act wisely together.</p></section>

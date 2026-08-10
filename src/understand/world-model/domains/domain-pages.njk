@@ -1,0 +1,36 @@
+---
+pagination:
+  data: worldModelPreview.domains
+  size: 1
+  alias: domain
+permalink: /understand/world-model/domains/{{ domain.id }}/index.html
+layout: layouts/world.njk
+eleventyComputed:
+  title: "{{ domain.name }} | Hii World Model Preview"
+  description: "Unreleased Hii World Model domain preview: {{ domain.short }}"
+robots: noindex, nofollow
+bodyClass: world-model-preview-body
+---
+<div class="wm-preview-ribbon" role="status">{{ worldModelPreview.status }} · Domain preview</div>
+<section class="wm-domain-detail section-shell">
+  <a class="wm-back-link" href="/understand/world-model/">← Back to the World Model</a>
+  <div class="wm-domain-detail-heading tone-{{ domain.tone }}">
+    <span>{{ domain.glyph }}</span>
+    <div><p class="eyebrow">World Model domain</p><h1>{{ domain.name }}</h1><p class="lede">{{ domain.short }}</p></div>
+  </div>
+  <div class="wm-domain-detail-grid">
+    <article><p class="eyebrow">Current status</p><h2>Structure approved. Public evidence not released.</h2><p>This preview establishes the stable domain path and the progressive-disclosure experience. It does not manufacture findings to fill the design.</p></article>
+    <article><p class="eyebrow">Connected records</p>
+      <ul>
+        {% set relatedCount = 0 %}
+        {% for relationship in worldModelPreview.relationships %}
+          {% if relationship.from == domain.id or relationship.to == domain.id %}
+            {% set relatedCount = relatedCount + 1 %}<li>{{ relationship.mechanism }}</li>
+          {% endif %}
+        {% endfor %}
+        {% if relatedCount == 0 %}<li>No proposed relationships are available for this domain yet.</li>{% endif %}
+      </ul>
+    </article>
+  </div>
+  <a class="button-link wm-primary-action" href="/understand/world-model/">Return to the whole system</a>
+</section>
