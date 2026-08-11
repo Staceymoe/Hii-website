@@ -220,6 +220,9 @@ const careRequired = [
   [/No completed roundtable findings or Field Brief are being represented\./, "Field Brief concept boundary"],
   [/not evidence that a Milwaukee clinician roundtable occurred in July 2026\./, "roundtable provenance boundary"],
   [/does not provide therapy, diagnosis, medical advice, crisis services/, "public clinical boundary"],
+  [/more than 18 months of longitudinal human-AI interaction/, "approved longitudinal credibility note"],
+  [/href="\/relationships\/#relate-provenance-heading"/, "Relate longitudinal-section link"],
+  [/href="\/relationships\/the-relationship-as-unit-of-analysis\/#read-the-paper"/, "in-site paper-reader link"],
   [/mailto:staceymoe@hii\.earth\?subject=Hii%20CARE%20Inquiry/, "CARE inquiry destination"]
 ];
 for (const [pattern, label] of careRequired) {
