@@ -742,21 +742,31 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-social { justify-content: center; }
   .relate-signature { align-items: flex-start; }
   .care-hero, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
-  .care-hero { gap: 2rem; padding-block: 2.5rem 3.5rem; }
-  .care-hero h1 { font-size: clamp(3rem, 14vw, 4.8rem); }
-  .care-hero-visual { grid-row: 1; }
-  .care-hero-bridge { grid-column: auto; align-items: flex-start; flex-direction: column; gap: 1.25rem; }
-  .care-hero-crop { aspect-ratio: 16 / 8; }
-  .care-therapist-statement { padding: 1.4rem; font-size: clamp(1.25rem, 6vw, 1.65rem); }
-  .care-opening-invitation { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3.5rem; }
-  .care-opening-invitation h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
+  .care-hero { gap: 1.75rem; padding-block: 2rem 3rem; }
+  .care-hero-copy { grid-row: 1; }
+  .care-hero h1 { max-width: 11ch; margin-bottom: 1.25rem; font-size: clamp(2.8rem, 11vw, 3.7rem); line-height: 1.02; }
+  .care-hero .lede { font-size: clamp(1.05rem, 4.5vw, 1.2rem); line-height: 1.62; }
+  .care-hero-visual { grid-row: 2; margin: 0; }
+  .care-hero-bridge { grid-row: 3; grid-column: auto; align-items: flex-start; flex-direction: column; gap: 1rem; padding-top: 1.75rem; }
+  .care-hero-thesis { font-size: clamp(1.65rem, 7vw, 2rem); }
+  .care-hero-action { margin: 0; font-size: 0.95rem; }
+  .care-hero-crop { aspect-ratio: 16 / 9; }
+  .care-hero-crop img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: none; }
+  .care-therapist-boundary-inner { padding-block: 2.75rem 3.25rem; }
+  .care-therapist-statement { padding: 1.25rem; font-size: clamp(1.08rem, 4.6vw, 1.3rem); line-height: 1.5; }
+  .care-opening-invitation { grid-template-columns: 1fr; gap: 1rem; margin-top: 2.75rem; padding-top: 2.25rem; }
+  .care-opening-invitation h2 { max-width: 9ch; font-size: clamp(2.8rem, 11vw, 3.65rem); line-height: 1; }
+  .care-practice-inner, .care-lenses-section, .care-offers-section, .care-questions-inner, .care-pilot-inner, .care-field-brief-section { padding-block: 3.75rem; }
+  .care-public-inner, .care-boundary-inner, .care-closing-section { padding-block: 3.5rem; }
+  .care-practice-inner h2, .care-pilot-inner h2 { font-size: clamp(2.5rem, 10.5vw, 3.35rem); }
+  .care-closing-section h2 { font-size: clamp(2.75rem, 11vw, 3.65rem); }
   .care-principles, .care-lens-grid, .care-offer-grid { grid-template-columns: 1fr; }
   .care-principles li, .care-lens-card, .care-offer-card { min-height: auto; }
   .care-principles li { padding: 1.15rem 1.25rem; }
   .care-card-label, .care-offer-card h3 { margin-top: 1.8rem; }
   .care-questions-inner { gap: 3rem; }
   .care-offers-heading { display: block; }
-  .care-conversation-signal { width: min(72vw, 20rem); margin: 2.75rem auto 0; }
+  .care-conversation-signal { width: min(64vw, 17rem); margin: 2.25rem auto 0; }
   .care-pilot-scope { align-self: auto; }
   .care-field-brief-visual { grid-row: 1; }
   .care-closing-actions { justify-content: flex-start; }
@@ -808,8 +818,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .time-model-field { width: 90%; height: 10rem; padding-top: 1rem; font-size: 0.58rem; }
   .time-model-node-one { left: 7%; }
   .time-model-node-four { left: 93%; }
-  .care-hero-crop { aspect-ratio: 4 / 3; }
-  .care-hero-crop img { width: 270%; transform: translateX(-49%); }
+  .care-hero-crop { aspect-ratio: 16 / 9; }
   .care-question-list li { grid-template-columns: 2.25rem 1fr; }
   .care-closing-actions { align-items: flex-start; flex-direction: column; }
   .roundtable-session-grid, .roundtable-question-grid { grid-template-columns: 1fr; }
