@@ -1,0 +1,59 @@
+---
+layout: layouts/world.njk
+title: Clinician Roundtable Interest Form
+description: Express interest in an Hii founding clinician roundtable on AI in therapy and clinical practice.
+permalink: /mental-health/roundtable/interest/index.html
+pageScript: /assets/js/roundtable-interest.js
+robots: noindex
+---
+
+<article class="roundtable-interest-page">
+  <header class="section-shell internal-page-hero roundtable-interest-hero">
+    <a class="back-link" href="/mental-health/roundtable/">← Back to the roundtable</a>
+    <p class="eyebrow">Founding clinician roundtable</p>
+    <h1>Express your interest</h1>
+    <p class="lede">Tell us a little about your work and which session you prefer. Hii will follow up from hello@hii.earth. Submitting this form does not automatically confirm a seat.</p>
+  </header>
+
+  <section class="section-shell inquiry-form-section roundtable-form-section" aria-labelledby="roundtable-form-heading">
+    <div class="inquiry-form-heading">
+      <p class="eyebrow">Interest form</p>
+      <h2 id="roundtable-form-heading">What are you encountering?</h2>
+      <p>Please describe patterns only. Do not include client or patient names, identifying details, protected health information, crisis information, or confidential records.</p>
+    </div>
+
+    <form class="research-inquiry-form" name="clinician-roundtable-interest" method="post" data-netlify="true" netlify-honeypot="company-website" action="/mental-health/roundtable/thanks/">
+      <input type="hidden" name="form-name" value="clinician-roundtable-interest">
+      <p class="form-honeypot"><label>Do not fill this out if you are human: <input name="company-website"></label></p>
+      <fieldset>
+        <legend>Clinician roundtable interest</legend>
+        <div class="form-grid">
+          <label><span>Full name <strong aria-hidden="true">*</strong></span><input type="text" name="full-name" autocomplete="name" required></label>
+          <label><span>Email address <strong aria-hidden="true">*</strong></span><input type="email" name="email" autocomplete="email" required></label>
+          <label><span>Professional role or credentials <strong aria-hidden="true">*</strong></span><input type="text" name="role-credentials" autocomplete="organization-title" required></label>
+          <label><span>Organization or practice</span><input type="text" name="organization" autocomplete="organization"></label>
+          <label><span>Phone number</span><input type="tel" name="phone" autocomplete="tel"></label>
+          <label><span>City and state <strong aria-hidden="true">*</strong></span><input type="text" name="city-state" autocomplete="address-level2" required></label>
+          <label class="form-field-wide"><span>Preferred session <strong aria-hidden="true">*</strong></span><select id="preferred-session" name="preferred-session" required><option value="">Select one</option><option value="milwaukee">Milwaukee · September 9 · 6:00 PM Central</option><option value="zoom">Zoom · September 10 · 12:00 PM Central</option><option value="either">Either session works</option></select></label>
+          <label class="form-field-wide"><span>Practice setting or specialty</span><input type="text" name="practice-setting-specialty"></label>
+          <fieldset class="form-field-wide form-choice-group">
+            <legend>Have AI-related experiences appeared in your clinical work? <strong aria-hidden="true">*</strong></legend>
+            <label><input type="radio" name="ai-in-clinical-work" value="yes" required> Yes</label>
+            <label><input type="radio" name="ai-in-clinical-work" value="not-sure"> Not sure</label>
+            <label><input type="radio" name="ai-in-clinical-work" value="not-yet"> Not yet, but I want to prepare</label>
+          </fieldset>
+          <label class="form-field-wide"><span>What are you encountering?</span><textarea name="what-they-are-encountering" rows="5" aria-describedby="phi-reminder"></textarea><small id="phi-reminder">Patterns only. Do not include identifying or protected health information.</small></label>
+          <label class="form-field-wide"><span>What do you hope the roundtable addresses?</span><textarea name="what-they-hope-to-address" rows="4"></textarea></label>
+          <label class="form-field-wide"><span>How did you hear about the roundtable?</span><input type="text" name="referral-source"></label>
+        </div>
+        <label class="consent-field"><input type="checkbox" name="contact-permission" required><span>I give Hii permission to contact me about this roundtable and understand that expressing interest does not confirm a seat.</span></label>
+        <label class="consent-field"><input type="checkbox" name="no-phi-confirmation" required><span>I confirm that I have not included client names, identifying details, or protected health information.</span></label>
+        <button class="button-link form-submit" type="submit">Submit interest</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <footer class="section-shell internal-page-return">
+    <a class="back-link" href="/mental-health/">← Back to CARE</a>
+  </footer>
+</article>
