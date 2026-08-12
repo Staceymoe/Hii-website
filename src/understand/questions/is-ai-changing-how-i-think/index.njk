@@ -1,0 +1,108 @@
+---
+layout: layouts/world.njk
+title: Is AI changing how I think?
+description: An unreleased Hii research preview about cognitive offloading, assisted performance, judgment, and independent practice.
+permalink: /understand/questions/is-ai-changing-how-i-think/index.html
+robots: noindex, nofollow
+bodyClass: world-model-preview-body
+pageScript: /assets/js/world-model-preview.js
+---
+{% set pilot = worldModelPreview.pilot %}
+
+<div class="wm-preview-ribbon" role="status">{{ worldModelPreview.status }} · Not public research</div>
+
+<section class="wm-question-hero section-shell">
+  <a class="wm-back-link" href="/understand/">← Back to Understand</a>
+  <div class="wm-question-heading">
+    <div>
+      <p class="eyebrow">Human orientation · Research preview</p>
+      <h1>{{ pilot.question }}</h1>
+      <p class="lede">{{ pilot.orientation }}</p>
+    </div>
+    <button class="wm-outline-button" type="button" data-copy-link>Share this preview</button>
+  </div>
+</section>
+
+<section class="wm-question-panels section-shell" aria-label="Orientation summary">
+  <article class="wm-evidence-panel wm-panel-blue">
+    <p class="wm-panel-kicker">What we know</p>
+    <p class="wm-panel-support">Research with meaningful support.</p>
+    <ul>{% for item in pilot.whatWeKnow %}<li>{{ item }}</li>{% endfor %}</ul>
+    <details><summary>Evidence boundary</summary><p>These are candidate summaries derived from a proposed evidence packet. They have not been promoted into a public Hii release.</p></details>
+  </article>
+  <article class="wm-evidence-panel wm-panel-amber">
+    <p class="wm-panel-kicker">What may be changing</p>
+    <p class="wm-panel-support">Signals we are watching closely.</p>
+    <ul>{% for item in pilot.whatMayBeChanging %}<li>{{ item }}</li>{% endfor %}</ul>
+    <a class="text-link" href="#signals">See emerging signals <span aria-hidden="true">↓</span></a>
+  </article>
+  <article class="wm-evidence-panel wm-panel-teal">
+    <p class="wm-panel-kicker">What to notice</p>
+    <p class="wm-panel-support">Questions to observe your experience.</p>
+    <ul>{% for item in pilot.whatToNotice %}<li>{{ item }}</li>{% endfor %}</ul>
+  </article>
+</section>
+
+<section class="wm-takeaway section-shell" aria-labelledby="takeaway-heading">
+  <div class="wm-takeaway-mark" aria-hidden="true">◎</div>
+  <div>
+    <p class="eyebrow">Key takeaway</p>
+    <h2 id="takeaway-heading">{{ pilot.takeaway }}</h2>
+  </div>
+  <div class="wm-confidence-note">
+    <span>Record-level confidence</span>
+    <strong>High</strong>
+    <p>{{ pilot.takeawayConfidence }}</p>
+  </div>
+</section>
+
+<section class="wm-question-connections section-shell" aria-labelledby="connections-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">See the connections</p>
+    <h2 id="connections-heading">This question touches four parts of the World Model.</h2>
+  </div>
+  <div class="wm-domain-strip">
+    {% for domain in worldModelPreview.domains %}
+      {% if domain.id in pilot.domainIds %}
+        <a class="wm-domain-chip tone-{{ domain.tone }}" href="/understand/world-model/domains/{{ domain.id }}/">
+          <span>{{ domain.glyph }}</span>
+          <strong>{{ domain.name }}</strong>
+          <small>{{ domain.short }}</small>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <a class="button-link wm-primary-action" href="/understand/world-model/?from={{ pilot.slug }}">Explore the World Model</a>
+</section>
+
+<section id="signals" class="wm-signal-section section-shell" aria-labelledby="signals-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">Recent signals</p>
+    <h2 id="signals-heading">Research findings and open questions worth watching.</h2>
+  </div>
+  <div class="wm-signal-grid">
+    {% for signal in pilot.signals %}
+      <article>
+        <p class="wm-signal-state">{{ signal.state }}</p>
+        <h3>{{ signal.title }}</h3>
+        <p>{{ signal.summary }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wm-watch-section">
+  <div class="section-shell wm-watch-inner">
+    <div>
+      <p class="eyebrow">What we are watching next</p>
+      <h2>What would change our understanding?</h2>
+    </div>
+    <ul>{% for item in pilot.watch %}<li>{{ item }}</li>{% endfor %}</ul>
+  </div>
+</section>
+
+<section class="wm-boundary section-shell">
+  <p><strong>Preview boundary:</strong> Hii does not give personal advice. This page summarizes proposed research records for design review. It is not a released Hii finding.</p>
+  <details><summary>Limitations in this preview</summary><ul>{% for item in pilot.limitations %}<li>{{ item }}</li>{% endfor %}</ul></details>
+  <p>{{ worldModelPreview.reviewed }}</p>
+</section>

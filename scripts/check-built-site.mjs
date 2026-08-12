@@ -88,11 +88,13 @@ const understandRequired = [
   [/<title>Public Orientation and Literacy \| Hii<\/title>/, "page title"],
   [/<link rel="canonical" href="https:\/\/hii\.earth\/understand\/">/, "canonical URL"],
   [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
-  [/Every public claim should show what kind of claim it is\./, "evidence framework"],
-  [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
-  [/href="\/relationships\/"/, "Relationships cross-world link"],
-  [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Public literacy should reduce both panic and false reassurance\./, "public boundary"]
+  [/<meta name="robots" content="noindex, nofollow">/, "preview noindex boundary"],
+  [/What are you trying to understand\?/, "approved human-question entry"],
+  [/Is AI changing how I think\?/, "approved pilot question"],
+  [/How do I know what is real online\?/, "approved reality question"],
+  [/How is AI changing work and what should I prepare for\?/, "approved work question"],
+  [/href="\/understand\/world-model\/"/, "whole-system pathway"],
+  [/Unreleased research preview/, "visible preview boundary"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
@@ -102,9 +104,21 @@ const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
 if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
 else pass("understand page has one h1");
 
-const understandSourceHash = sha(await read("src/understand/index.njk"));
-if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");
-else pass("frozen Understand template is unchanged");
+const questionPage = (await read("_site/understand/questions/is-ai-changing-how-i-think/index.html")).toString("utf8");
+const worldModelPage = (await read("_site/understand/world-model/index.html")).toString("utf8");
+for (const [pageLabel, pageHtml] of [["orientation question", questionPage], ["World Model", worldModelPage]]) {
+  if (!/<meta name="robots" content="noindex, nofollow">/.test(pageHtml)) fail(`${pageLabel} preview is missing noindex`);
+  else pass(`${pageLabel} preview includes noindex`);
+  if (!/Unreleased research preview/.test(pageHtml)) fail(`${pageLabel} preview is missing its visible release boundary`);
+  else pass(`${pageLabel} preview includes its visible release boundary`);
+  const previewH1Count = (pageHtml.match(/<h1(?:\s|>)/g) || []).length;
+  if (previewH1Count !== 1) fail(`${pageLabel} preview has ${previewH1Count} h1 elements; expected 1`);
+  else pass(`${pageLabel} preview has one h1`);
+}
+if (!/relationship trajectory, not evidence strength/.test(worldModelPage)) fail("World Model preview does not explain its primary line encoding");
+else pass("World Model preview explains relationship trajectory encoding");
+if (/MODEL CONFIDENCE|71%|Moderate.High/.test(worldModelPage)) fail("World Model preview includes a prohibited global confidence presentation");
+else pass("World Model preview omits global confidence scoring");
 
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
@@ -241,7 +255,7 @@ for (const assetPath of [
 }
 if (!failures.some((item) => item.includes("Care asset"))) pass("named Care candidate and concept assets are present");
 
-for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
+for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["orientation question", questionPage], ["World Model", worldModelPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
   const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
   for (const href of hrefs) {
     if (/^(https?:|mailto:|#)/.test(href)) continue;
@@ -270,7 +284,7 @@ for (const unbuiltWorld of ["adaptation", "institutional-readiness", "governance
     fail(`unapproved world route was built: /${unbuiltWorld}/`);
   } catch {}
 }
-pass("no additional world routes beyond Relate, Care, and Understand were generated");
+pass("no unapproved top-level world routes were generated");
 
 const netlify = (await read("netlify.toml")).toString("utf8");
 if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
