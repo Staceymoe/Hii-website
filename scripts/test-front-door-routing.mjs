@@ -94,16 +94,20 @@ assert.equal(returned.lens.disabled, false, "a world return must enable the circ
 assert.equal(returned.fallback.hidden, true, "a world return must hide the autoplay fallback");
 assert.deepEqual(returned.historyCalls, [[null, "", "/"]], "the temporary return marker must be removed");
 
-const understandRoute = runFrontDoor("?return=hii", "Understand");
-understandRoute.clickLens();
-assert.deepEqual(understandRoute.assignments, ["/understand/"], "Understand must route to its built world");
+const expectedRoutes = new Map([
+  ["Relate", "/relationships/"],
+  ["Adapt", "/adaptation/"],
+  ["Care", "/mental-health/"],
+  ["Prepare", "/institutional-readiness/"],
+  ["Govern", "/governance/"],
+  ["Understand", "/understand/"],
+  ["Study", "/research/"]
+]);
 
-const relateRoute = runFrontDoor("?return=hii", "Relate");
-relateRoute.clickLens();
-assert.deepEqual(relateRoute.assignments, ["/relationships/"], "Relate must retain its built-world route");
+for (const [destination, route] of expectedRoutes) {
+  const routed = runFrontDoor("?return=hii", destination);
+  routed.clickLens();
+  assert.deepEqual(routed.assignments, [route], `${destination} must route to ${route}`);
+}
 
-const careRoute = runFrontDoor("?return=hii", "Care");
-careRoute.clickLens();
-assert.deepEqual(careRoute.assignments, ["/mental-health/"], "Care must route to its built world");
-
-console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s; Relate, Care, and Understand route correctly.");
+console.log("Front-door routing regression verified: direct entry plays; world return settles at 12.2s; all seven worlds route correctly.");
