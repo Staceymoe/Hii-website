@@ -75,8 +75,9 @@ for (const seam of allowedSeams) {
   }
   lockedJavascript = lockedJavascript.replace(seam.content, "");
 }
-if (sha(lockedJavascript) !== approved.normalizedJs) {
-  throw new Error(`${jsPath} differs from the approved file outside the routing and return-state seams.`);
+const lockedHash = sha(lockedJavascript);
+if (lockedHash !== approved.normalizedJs) {
+  throw new Error(`${jsPath} differs from the approved file outside the routing and return-state seams. Expected ${approved.normalizedJs}; got ${lockedHash}; normalized bytes ${lockedJavascript.length}.`);
 }
 
 if (!sourceOnly) {
