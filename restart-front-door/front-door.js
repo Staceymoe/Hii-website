@@ -17,8 +17,9 @@
   const applyMobileFrontDoorScale = () => {
     if (!stage) return;
     const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
-    stage.style.transform = mobilePortrait ? 'scale(1.52)' : '';
+    stage.style.transform = mobilePortrait ? 'scale(1.93)' : '';
     stage.style.transformOrigin = mobilePortrait ? 'center center' : '';
+    if (hero.style) hero.style.clipPath = mobilePortrait ? 'polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 23%, 28% 23%)' : '';
   };
   applyMobileFrontDoorScale();
   if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);
