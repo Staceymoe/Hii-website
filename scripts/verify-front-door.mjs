@@ -19,7 +19,7 @@ const allowedSeams = [
   },
   {
     label: "mobile portrait front-door scaling",
-    content: "  const stage = document.querySelector('.hero-stage');\n  const applyMobileFrontDoorScale = () => {\n    if (!stage) return;\n    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;\n    stage.style.transform = mobilePortrait ? 'scale(1.38)' : '';\n    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';\n  };\n  applyMobileFrontDoorScale();\n  if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);\n\n"
+    content: "  const stage = document.querySelector('.hero-stage');\n  const applyMobileFrontDoorScale = () => {\n    if (!stage) return;\n    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;\n    stage.style.transform = mobilePortrait ? 'scale(1.52)' : '';\n    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';\n  };\n  applyMobileFrontDoorScale();\n  if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);\n\n"
   },
   {
     label: "return-state static settlement",
