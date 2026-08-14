@@ -264,13 +264,24 @@ else pass("shared CSS includes reduced-motion handling");
 if (!/font-family: "Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
 else pass("shared CSS specifies Manrope");
 
-for (const unbuiltWorld of ["adaptation", "institutional-readiness", "governance", "research"]) {
+const previewWorlds = [
+  ["adaptation", "Human Adaptation"],
+  ["institutional-readiness", "Institutional Readiness"],
+  ["governance", "Governance Translation"],
+  ["research", "Research, Evidence, and Publications"]
+];
+for (const [route, title] of previewWorlds) {
+  const previewPath = `_site/${route}/index.html`;
   try {
-    await access(path.join(output, unbuiltWorld));
-    fail(`unapproved world route was built: /${unbuiltWorld}/`);
-  } catch {}
+    const previewPage = (await read(previewPath)).toString("utf8");
+    if (!previewPage.includes(`<h1>${title}</h1>`)) fail(`/${route}/ preview is missing its world title`);
+    if (!previewPage.includes("World in development")) fail(`/${route}/ preview is missing its bounded development status`);
+    if (!previewPage.includes("Hii is the bridge between research and real-world human adaptation to AI.")) fail(`/${route}/ preview is missing the approved bridge framing`);
+  } catch {
+    fail(`approved developing world route was not built: /${route}/`);
+  }
 }
-pass("no additional world routes beyond Relate, Care, and Understand were generated");
+if (!failures.some((item) => item.includes("developing world route") || item.includes("preview is missing"))) pass("all four developing world preview routes were generated with bounded Hii framing");
 
 const netlify = (await read("netlify.toml")).toString("utf8");
 if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
@@ -279,18 +290,25 @@ if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf"[\s
 else pass("canonical paper permits only same-origin embedding");
 
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
-if (!sitemap.includes("https://hii.earth/relationships/")) fail("sitemap omits /relationships/");
-else pass("sitemap includes /relationships/");
-if (!sitemap.includes("https://hii.earth/mental-health/")) fail("sitemap omits /mental-health/");
-else pass("sitemap includes /mental-health/");
-if (!sitemap.includes("https://hii.earth/understand/")) fail("sitemap omits /understand/");
-else pass("sitemap includes /understand/");
+for (const route of ["relationships", "mental-health", "understand", "adaptation", "institutional-readiness", "governance", "research"]) {
+  if (!sitemap.includes(`https://hii.earth/${route}/`)) fail(`sitemap omits /${route}/`);
+  else pass(`sitemap includes /${route}/`);
+}
 
 const builtFrontDoorJs = (await read("_site/front-door.js")).toString("utf8");
-if (!builtFrontDoorJs.includes("destination === 'Understand') window.location.assign('/understand/')")) fail("front door lacks the Understand routing seam");
-else pass("front door routes Understand to /understand/");
-if (!builtFrontDoorJs.includes("destination === 'Care') window.location.assign('/mental-health/')")) fail("front door lacks the Care routing seam");
-else pass("front door routes Care to /mental-health/");
+const frontDoorRoutes = [
+  ["Relate", "/relationships/"],
+  ["Adapt", "/adaptation/"],
+  ["Care", "/mental-health/"],
+  ["Prepare", "/institutional-readiness/"],
+  ["Govern", "/governance/"],
+  ["Understand", "/understand/"],
+  ["Study", "/research/"]
+];
+for (const [destination, route] of frontDoorRoutes) {
+  if (!builtFrontDoorJs.includes(`destination === '${destination}') window.location.assign('${route}')`)) fail(`front door lacks the ${destination} routing seam`);
+  else pass(`front door routes ${destination} to ${route}`);
+}
 
 const approvedSource = (await read("restart-front-door/index.html")).toString("utf8").replace(/\r\n/g, "\n");
 const approvedSourceHash = sha(approvedSource);
