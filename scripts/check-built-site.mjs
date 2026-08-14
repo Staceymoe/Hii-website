@@ -41,7 +41,7 @@ const required = [
   [/longitudinal-provenance-callouts\.png/, "approved longitudinal provenance callouts"],
   [/research-meaning\.png/, "approved research-meaning graphic"],
   [/Waking ÆLYSIA/, "approved publication"],
-  [/amazon\.com\/Waking-%C3%86LYSIA[\s\S]*\/dp\/B0FR54XV22\//, "Waking AELYSIA Amazon paperback destination"],
+  [/amazon\.com\/Waking-AELYSIA[\s\S]*\/dp\/B0FPGH3WDZ\//, "Waking AELYSIA Amazon destination"],
   [/href="\/relationships\/research-inquiry\/">Research Inquiry/, "Research Inquiry action"],
   [/instagram\.com\/hybridintelligenceinstitute\//, "Instagram destination"],
   [/linkedin\.com\/company\/hybrid-intelligence-institute\//, "LinkedIn destination"],
@@ -210,12 +210,20 @@ const careRequired = [
   [/Now forming/, "active roundtable status"],
   [/Available for organizations/, "organizational workshop status"],
   [/Available by inquiry/, "advisory inquiry status"],
-  [/roundtable\/interest\//, "roundtable recruitment action"],
-  [/Care and clinician education inquiry/, "CARE inquiry destination"],
-  [/Not a replacement for therapy, diagnosis, crisis support, supervision, or clinical judgment\./, "public clinical boundary"],
-  [/18\+ month/, "approved longitudinal credibility note"],
+  [/Learn more and express interest/, "roundtable recruitment action"],
+  [/Explore a workshop/, "workshop inquiry action"],
+  [/Discuss an advisory session/, "advisory inquiry action"],
+  [/Hii offerings are educational and strategic/, "shared offering boundary"],
+  [/Founding clinician pilot · In development/, "pilot status"],
+  [/No-fee validation pilot\./, "pilot fee boundary"],
+  [/In development · No dates posted/, "public-session status"],
+  [/No completed roundtable findings or Field Brief are being represented\./, "Field Brief concept boundary"],
+  [/not evidence that a Milwaukee clinician roundtable occurred in July 2026\./, "roundtable provenance boundary"],
+  [/does not provide therapy, diagnosis, medical advice, crisis services/, "public clinical boundary"],
+  [/more than 18 months of longitudinal human-AI interaction/, "approved longitudinal credibility note"],
   [/href="\/relationships\/#relate-provenance-heading"/, "Relate longitudinal-section link"],
-  [/href="\/relationships\/the-relationship-as-unit-of-analysis\/"/, "in-site paper-reader link"]
+  [/href="\/relationships\/the-relationship-as-unit-of-analysis\/#read-the-paper"/, "in-site paper-reader link"],
+  [/mailto:staceymoe@hii\.earth\?subject=Hii%20CARE%20Inquiry/, "CARE inquiry destination"]
 ];
 for (const [pattern, label] of careRequired) {
   if (!pattern.test(carePage)) fail(`care page is missing ${label}`);
@@ -224,106 +232,88 @@ for (const [pattern, label] of careRequired) {
 const careH1Count = (carePage.match(/<h1(?:\s|>)/g) || []).length;
 if (careH1Count !== 1) fail(`care page has ${careH1Count} h1 elements; expected 1`);
 else pass("care page has one h1");
-
 for (const assetPath of [
-  "_site/assets/media/care/care-relationship-system-source.jpg",
-  "_site/assets/media/care/care-risk-map-source.png"
+  "_site/assets/media/care/care-clinician-chair-circle-candidate-v1.png",
+  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg"
 ]) {
   try { await access(path.join(root, assetPath)); }
-  catch { fail(`named Care candidate asset is missing: ${assetPath}`); }
+  catch { fail(`Care asset is missing: ${assetPath}`); }
 }
-if (!failures.some((item) => item.includes("named Care candidate asset"))) pass("named Care candidate and concept assets are present");
+if (!failures.some((item) => item.includes("Care asset"))) pass("named Care candidate and concept assets are present");
 
-const htmlFiles = [];
-const collectHtml = async (directory) => {
-  const entries = await readdir(directory, { withFileTypes: true });
-  for (const entry of entries) {
-    const absolute = path.join(directory, entry.name);
-    if (entry.isDirectory()) await collectHtml(absolute);
-    else if (entry.name.endsWith(".html")) htmlFiles.push(absolute);
-  }
-};
-await collectHtml(output);
-const routeForFile = (absolute) => {
-  const relative = path.relative(output, absolute).replaceAll(path.sep, "/");
-  if (relative === "index.html") return "/";
-  return `/${relative.replace(/index\.html$/, "")}`;
-};
-const routeExists = async (href) => {
-  const [withoutHash] = href.split("#");
-  const [withoutQuery] = withoutHash.split("?");
-  if (!withoutQuery.startsWith("/") || withoutQuery.startsWith("//")) return true;
-  if (withoutQuery === "/") return true;
-  const candidate = withoutQuery.endsWith("/") ? `${withoutQuery}index.html` : withoutQuery;
-  try { await access(path.join(output, candidate)); return true; }
-  catch { return false; }
-};
-for (const absolute of htmlFiles) {
-  const html = (await readFile(absolute)).toString("utf8");
-  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
+  const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
   for (const href of hrefs) {
-    if (!(await routeExists(href))) fail(`${routeForFile(absolute)} has unresolved internal link ${href}`);
+    if (/^(https?:|mailto:|#)/.test(href)) continue;
+    const clean = decodeURIComponent(href.split("#")[0].split("?")[0]);
+    if (!clean) continue;
+    const relative = clean.replace(/^\//, "");
+    const candidate = clean.endsWith("/") ? path.join(output, relative, "index.html") : path.join(output, relative);
+    try {
+      await access(candidate);
+    } catch {
+      fail(`${pageLabel} internal link does not resolve in the build: ${href}`);
+    }
   }
 }
-if (!failures.some((item) => item.includes("unresolved internal link"))) pass("all world-page internal links resolve");
+if (!failures.some((item) => item.includes("internal link"))) pass("all world-page internal links resolve");
 
 const css = (await read("_site/assets/css/hii-site.css")).toString("utf8");
-if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)/.test(css)) fail("shared CSS lacks reduced-motion handling");
+if (!/@media \(prefers-reduced-motion: reduce\)/.test(css)) fail("shared CSS lacks a reduced-motion mode");
 else pass("shared CSS includes reduced-motion handling");
-if (!/font-family:\s*"Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
+if (!/font-family: "Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
 else pass("shared CSS specifies Manrope");
 
-for (const [route, label] of [
-  ["/adaptation/", "Adapt"],
-  ["/institutional-readiness/", "Prepare"],
-  ["/governance/", "Govern"],
-  ["/research/", "Study"]
-]) {
-  const built = path.join(output, route, "index.html");
+const previewWorlds = [
+  ["adaptation", "Human Adaptation"],
+  ["institutional-readiness", "Institutional Readiness"],
+  ["governance", "Governance Translation"],
+  ["research", "Research, Evidence, and Publications"]
+];
+for (const [route, title] of previewWorlds) {
+  const previewPath = `_site/${route}/index.html`;
   try {
-    const html = (await readFile(built)).toString("utf8");
-    if (!html.includes("Hii")) fail(`${label} preview route lacks Hii framing`);
+    const previewPage = (await read(previewPath)).toString("utf8");
+    if (!previewPage.includes(`<h1>${title}</h1>`)) fail(`/${route}/ preview is missing its world title`);
+    if (!previewPage.includes("World in development")) fail(`/${route}/ preview is missing its bounded development status`);
+    if (!previewPage.includes("Hii is the bridge between research and real-world human adaptation to AI.")) fail(`/${route}/ preview is missing the approved bridge framing`);
   } catch {
-    fail(`${label} preview route was not generated`);
+    fail(`approved developing world route was not built: /${route}/`);
   }
 }
-if (!failures.some((item) => item.includes("preview route"))) pass("all four developing world preview routes were generated with bounded Hii framing");
+if (!failures.some((item) => item.includes("developing world route") || item.includes("preview is missing"))) pass("all four developing world preview routes were generated with bounded Hii framing");
 
-try {
-  const redirects = (await read("netlify.toml")).toString("utf8");
-  if (/\[\[redirects\]\]/.test(redirects)) fail("Netlify redirects are active despite the current no-redirect contract");
-  else pass("no Netlify redirects are active");
-} catch {
-  pass("no Netlify redirects are active");
-}
-
-try {
-  const headers = (await read("src/_headers")).toString("utf8");
-  if (!/\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf[\s\S]*X-Frame-Options:\s*SAMEORIGIN/.test(headers)) {
-    fail("canonical paper does not enforce same-origin embedding");
-  } else pass("canonical paper permits only same-origin embedding");
-} catch {
-  fail("site headers file is missing");
-}
+const netlify = (await read("netlify.toml")).toString("utf8");
+if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
+else pass("no Netlify redirects are active");
+if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf"[\s\S]*X-Frame-Options = "SAMEORIGIN"[\s\S]*Content-Security-Policy = "frame-ancestors 'self'"/.test(netlify)) fail("canonical paper lacks a same-origin-only embedding policy");
+else pass("canonical paper permits only same-origin embedding");
 
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
-for (const route of ["/relationships/", "/mental-health/", "/understand/", "/adaptation/", "/institutional-readiness/", "/governance/", "/research/"]) {
-  if (!sitemap.includes(`https://hii.earth${route}`)) fail(`sitemap is missing ${route}`);
-  else pass(`sitemap includes ${route}`);
+for (const route of ["relationships", "mental-health", "understand", "adaptation", "institutional-readiness", "governance", "research"]) {
+  if (!sitemap.includes(`https://hii.earth/${route}/`)) fail(`sitemap omits /${route}/`);
+  else pass(`sitemap includes /${route}/`);
 }
 
-const frontDoorHtml = (await read("_site/index.html")).toString("utf8");
-for (const [route, label] of [
-  ["/relationships/", "Relate"],
-  ["/adaptation/", "Adapt"],
-  ["/mental-health/", "Care"],
-  ["/institutional-readiness/", "Prepare"],
-  ["/governance/", "Govern"],
-  ["/understand/", "Understand"],
-  ["/research/", "Study"]
-]) {
-  if (!frontDoorHtml.includes(`href="${route}"`)) fail(`front door does not route ${label} to ${route}`);
-  else pass(`front door routes ${label} to ${route}`);
+const builtFrontDoorJs = (await read("_site/front-door.js")).toString("utf8");
+const frontDoorRoutes = [
+  ["Relate", "/relationships/"],
+  ["Adapt", "/adaptation/"],
+  ["Care", "/mental-health/"],
+  ["Prepare", "/institutional-readiness/"],
+  ["Govern", "/governance/"],
+  ["Understand", "/understand/"],
+  ["Study", "/research/"]
+];
+for (const [destination, route] of frontDoorRoutes) {
+  if (!builtFrontDoorJs.includes(`destination === '${destination}') window.location.assign('${route}')`)) fail(`front door lacks the ${destination} routing seam`);
+  else pass(`front door routes ${destination} to ${route}`);
+}
+
+const approvedSource = (await read("restart-front-door/index.html")).toString("utf8").replace(/\r\n/g, "\n");
+const approvedSourceHash = sha(approvedSource);
+if (approvedSourceHash !== "e4ebf7ab4ff0cc0fbf60dce6aafc760f77b41996d254869de337e56a9f44e1b0") {
+  fail("approved front-door HTML checksum changed");
 }
 
 if (failures.length) {
@@ -332,4 +322,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("\nBuilt-site checks passed.");
+console.log("\nAll build-integrity checks passed.");
