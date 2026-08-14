@@ -154,7 +154,7 @@
       ),
       createStage(
         "relate-system-stage--mobile",
-        "/assets/media/relate/relationship-system-mobile-vertical.png",
+        "/assets/media/relate/relationship-system-mobile-vertical.webp",
         original.alt
       )
     );
