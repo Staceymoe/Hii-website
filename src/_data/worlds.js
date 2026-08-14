@@ -52,6 +52,20 @@ export default {
       }
     ]
   },
+  adapt: {
+    id: "adapt",
+    portalLabel: "Adapt",
+    title: "Human Adaptation",
+    route: "/adaptation/",
+    eyebrow: "Adapt",
+    published: true,
+    status: "World in development",
+    introduction: "Hii examines how people and institutions adapt as AI changes work, learning, judgment, identity, relationships, and public life.",
+    question: "How do people remain capable and oriented while the surrounding system changes faster than shared norms?",
+    previewHeading: "Adaptation is a human problem, not only a software problem.",
+    purpose: "This world explores psychological, cognitive, relational, economic, and institutional adaptation to AI.",
+    scope: "Hii connects evidence about human adaptation with practical orientation for work and livelihood, learning and cognition, identity and confidence, family and relationships, and community life."
+  },
   care: {
     id: "care",
     portalLabel: "Care",
@@ -92,6 +106,34 @@ export default {
       "Evidence-informed",
       "Human-centered"
     ]
+  },
+  prepare: {
+    id: "prepare",
+    portalLabel: "Prepare",
+    title: "Institutional Readiness",
+    route: "/institutional-readiness/",
+    eyebrow: "Prepare",
+    published: true,
+    status: "World in development",
+    introduction: "Hii helps organizations look beyond AI tool adoption to the human, relational, and institutional conditions that determine whether sustained use is actually workable.",
+    question: "Is our institution ready for sustained human-AI use, not only AI tool adoption?",
+    previewHeading: "Readiness means understanding what changes around the technology.",
+    purpose: "This world turns Hii’s institutional work into a practical pathway for organizations navigating sustained human-AI use.",
+    scope: "Healthcare, education, workplaces, public institutions, and community organizations need readiness questions that include judgment, relationships, norms, support, and real-world consequences—not just software."
+  },
+  govern: {
+    id: "govern",
+    portalLabel: "Govern",
+    title: "Governance Translation",
+    route: "/governance/",
+    eyebrow: "Govern",
+    published: true,
+    status: "World in development",
+    introduction: "Hii translates between technical systems, policy, clinical and human signals, and real-world institutional consequences.",
+    question: "How should governance change when AI effects accumulate through relationships, institutions, and time?",
+    previewHeading: "Different fields are seeing different parts of the same transition.",
+    purpose: "This world connects technical, policy, clinical, institutional, and lived-human perspectives without flattening their differences.",
+    scope: "The goal is to make those differences visible enough to improve public and institutional decisions as AI effects accumulate across relationships, organizations, and time."
   },
   understand: {
     id: "understand",
@@ -145,5 +187,19 @@ export default {
       { title: "Research and evidence", text: "Follow the existing research and methods trail.", href: "/research.html" },
       { title: "Media and public communication", text: "Find current institutional facts and media inquiry routes.", href: "/press.html" }
     ]
+  },
+  study: {
+    id: "study",
+    portalLabel: "Study",
+    title: "Research, Evidence, and Publications",
+    route: "/research/",
+    eyebrow: "Study",
+    published: true,
+    status: "World in development",
+    introduction: "Hii makes its evidence trail inspectable: what is known, what remains uncertain, what is being tested, and how claims should change as evidence changes.",
+    question: "What is known, how do we know it, what remains uncertain, and what is Hii testing next?",
+    previewHeading: "The evidence trail should be visible.",
+    purpose: "This world organizes Hii research, publications, methods, evidence standards, open questions, and collaboration pathways.",
+    scope: "The aim is to make Hii’s research inspectable without forcing every visitor through the full evidence stack before they can understand the institution."
   }
 };
