@@ -17,6 +17,8 @@
   };
 
   const enhanceRelationalSystem = () => {
+    if (typeof document.querySelector !== "function") return;
+
     const figure = document.querySelector(".relate-system-asset");
     const original = figure?.querySelector("img");
     if (!figure || !original || figure.querySelector("[data-relate-system-sequence]")) return;
