@@ -1,0 +1,43 @@
+<section class="world-hero section-shell world-preview-hero">
+  <div class="world-hero-copy">
+    <p class="eyebrow">{{ world.eyebrow }}</p>
+    <h1>{{ world.title }}</h1>
+    <p class="lede">{{ world.introduction }}</p>
+  </div>
+  <blockquote>{{ world.question }}</blockquote>
+</section>
+
+<section class="section-shell world-preview-section" aria-labelledby="{{ world.id }}-preview-heading">
+  <figure class="world-preview-visual">
+    <img src="/assets/media/relate/hii-observatory-mark.webp" alt="" loading="eager">
+    <figcaption>Hii is the bridge between research and real-world human adaptation to AI.</figcaption>
+  </figure>
+  <div class="world-preview-copy">
+    <p class="eyebrow">{{ world.status }}</p>
+    <h2 id="{{ world.id }}-preview-heading">{{ world.previewHeading }}</h2>
+    <p>{{ world.purpose }}</p>
+    <p>{{ world.scope }}</p>
+    <p class="world-preview-note">The full resource is in development. This doorway remains open so visitors can understand the question, scope, and place of this work inside Hii.</p>
+    <div class="closing-actions">
+      <a class="button-link" href="mailto:hello@hii.earth?subject={{ world.portalLabel | url_encode }}%20inquiry">Talk with Hii</a>
+      <a class="text-link" href="/?return=hii">Return to Hii <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="boundary-section">
+  <div class="section-shell boundary-inner">
+    <p class="eyebrow">One institution, seven pathways</p>
+    <h2>Hii studies the human side of living alongside AI systems.</h2>
+    <p>Hii translates emerging evidence into practical orientation for people, clinicians, institutions, and public decision-makers. The seven worlds are connected doorways into that work, not separate brands or silos.</p>
+  </div>
+</section>
+
+<section class="section-shell closing-section" aria-labelledby="{{ world.id }}-closing-heading">
+  <p class="eyebrow">Continue</p>
+  <h2 id="{{ world.id }}-closing-heading">Explore the Hii worlds already taking shape.</h2>
+  <div class="closing-actions">
+    <a class="button-link" href="/mental-health/">Explore CARE</a>
+    <a class="text-link" href="/relationships/">Explore RELATE <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
