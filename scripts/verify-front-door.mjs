@@ -9,7 +9,8 @@ const approved = {
   css: "e1e858884224a5ac5c13313097c56e9f8ab48326c9806486fcaf74c06c28565e",
   normalizedJs: "677f525ac16008098dc714cddb94c06f98a4b0f63df82deea53b16fa2efe272d",
   hero: "e9054efa1eea286e74e50d76ddcb7e436cb2fe733b3a968553da5451de9f904e",
-  film: "76e000d4d1e8e4e31a45d4f0bcbc412b286c4ac9524ed8fa8e84e145f3475abc"
+  film: "76e000d4d1e8e4e31a45d4f0bcbc412b286c4ac9524ed8fa8e84e145f3475abc",
+  mobileFilm: "f5b1f899f442fd76283ae47f1332a975b3ce2d625da4f453ed990b1289393b6d"
 };
 
 const allowedSeams = [
@@ -18,8 +19,8 @@ const allowedSeams = [
     content: "  const returnToStaticFrontDoor = new URLSearchParams(window.location.search).get('return') === 'hii';\n"
   },
   {
-    label: "mobile portrait front-door scaling",
-    content: "  const stage = document.querySelector('.hero-stage');\n  const applyMobileFrontDoorScale = () => {\n    if (!stage) return;\n    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;\n    stage.style.transform = mobilePortrait ? 'scale(1.93)' : '';\n    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';\n    if (hero.style) hero.style.clipPath = mobilePortrait ? 'polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 23%, 28% 23%)' : '';\n  };\n  applyMobileFrontDoorScale();\n  if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);\n\n"
+    label: "mobile portrait front-door and film adaptation",
+    content: "  const stage = document.querySelector('.hero-stage');\n  const DESKTOP_FILM_SRC = '/media/hii-film-approved-web-1080p.mp4';\n  const MOBILE_FILM_SRC = '/media/hii-film-mobile-vertical.mp4';\n  const applyMobileFrontDoorScale = () => {\n    if (!stage) return;\n    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;\n    stage.style.transform = mobilePortrait ? 'scale(1.93)' : '';\n    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';\n    if (hero.style) hero.style.clipPath = mobilePortrait ? 'polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 23%, 28% 23%)' : '';\n    if (film) {\n      const desiredFilmSrc = mobilePortrait ? MOBILE_FILM_SRC : DESKTOP_FILM_SRC;\n      if (film._hiiFilmVariant !== desiredFilmSrc) {\n        film._hiiFilmVariant = desiredFilmSrc;\n        film.src = desiredFilmSrc;\n        if (typeof film.load === 'function') film.load();\n      }\n      if (film.style) {\n        film.style.aspectRatio = mobilePortrait ? '9 / 16' : '';\n        film.style.width = mobilePortrait ? 'min(92vw, calc(78svh * 9 / 16))' : '';\n        film.style.maxWidth = mobilePortrait ? '92vw' : '';\n        film.style.maxHeight = mobilePortrait ? '78svh' : '';\n        film.style.height = mobilePortrait ? 'auto' : '';\n      }\n    }\n  };\n  applyMobileFrontDoorScale();\n  if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);\n\n"
   },
   {
     label: "return-state static settlement",
@@ -89,6 +90,7 @@ if (!sourceOnly) {
   await assertTextHash("_restart/front-door.css", approved.css);
   await assertHash("_restart/media/hii-hero-front-door-approved.mp4", approved.hero);
   await assertHash("_restart/media/hii-film-approved-web-1080p.mp4", approved.film);
+  await assertHash("_restart/media/hii-film-mobile-vertical.mp4", approved.mobileFilm);
 
   const stagedJs = await bytes("_restart/front-door.js");
   if (!stagedJs.equals(await bytes(jsPath))) {
