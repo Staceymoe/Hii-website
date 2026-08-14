@@ -26,12 +26,28 @@ const allowedSeams = [
     content: "    else if (destination === 'Relate') window.location.assign('/relationships/');\n"
   },
   {
+    label: "Adapt routing",
+    content: "    else if (destination === 'Adapt') window.location.assign('/adaptation/');\n"
+  },
+  {
     label: "Care routing",
     content: "    else if (destination === 'Care') window.location.assign('/mental-health/');\n"
   },
   {
+    label: "Prepare routing",
+    content: "    else if (destination === 'Prepare') window.location.assign('/institutional-readiness/');\n"
+  },
+  {
+    label: "Govern routing",
+    content: "    else if (destination === 'Govern') window.location.assign('/governance/');\n"
+  },
+  {
     label: "Understand routing",
     content: "    else if (destination === 'Understand') window.location.assign('/understand/');\n"
+  },
+  {
+    label: "Study routing",
+    content: "    else if (destination === 'Study') window.location.assign('/research/');\n"
   }
 ];
 const bytes = async (relativePath) => readFile(path.join(root, relativePath));
