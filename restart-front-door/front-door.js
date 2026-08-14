@@ -116,8 +116,12 @@
     const destination = lens.dataset.destination;
     if (destination === 'film') openFilm();
     else if (destination === 'Relate') window.location.assign('/relationships/');
+    else if (destination === 'Adapt') window.location.assign('/adaptation/');
     else if (destination === 'Care') window.location.assign('/mental-health/');
+    else if (destination === 'Prepare') window.location.assign('/institutional-readiness/');
+    else if (destination === 'Govern') window.location.assign('/governance/');
     else if (destination === 'Understand') window.location.assign('/understand/');
+    else if (destination === 'Study') window.location.assign('/research/');
     else openDestinationTest(destination);
   });
 
