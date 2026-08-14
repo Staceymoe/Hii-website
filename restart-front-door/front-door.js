@@ -21,7 +21,7 @@
     stage.style.transformOrigin = mobilePortrait ? 'center center' : '';
   };
   applyMobileFrontDoorScale();
-  window.addEventListener('resize', applyMobileFrontDoorScale);
+  if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);
 
   const HERO_FREEZE_AT = 12.2;
   let started = false;
