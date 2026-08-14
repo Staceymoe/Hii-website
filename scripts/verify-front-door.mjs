@@ -18,6 +18,10 @@ const allowedSeams = [
     content: "  const returnToStaticFrontDoor = new URLSearchParams(window.location.search).get('return') === 'hii';\n"
   },
   {
+    label: "mobile portrait front-door scaling",
+    content: "  const stage = document.querySelector('.hero-stage');\n  const applyMobileFrontDoorScale = () => {\n    if (!stage) return;\n    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;\n    stage.style.transform = mobilePortrait ? 'scale(1.38)' : '';\n    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';\n  };\n  applyMobileFrontDoorScale();\n  window.addEventListener('resize', applyMobileFrontDoorScale);\n\n"
+  },
+  {
     label: "return-state static settlement",
     content: "    if (returnToStaticFrontDoor) {\n      hero.pause();\n      hero.currentTime = HERO_FREEZE_AT;\n      frozen = true;\n      settle();\n      history.replaceState(null, '', window.location.pathname + window.location.hash);\n      return;\n    }\n\n"
   },
