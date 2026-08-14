@@ -1,3 +1,37 @@
+<style>
+  .world-preview-hero { min-height: 68vh; }
+  .world-preview-section {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: center;
+    padding-block: clamp(5rem, 10vw, 9rem);
+    border-top: 1px solid var(--line);
+  }
+  .world-preview-visual { margin: 0; }
+  .world-preview-visual img {
+    display: block;
+    width: min(100%, 34rem);
+    height: auto;
+    margin-inline: auto;
+  }
+  .world-preview-visual figcaption {
+    max-width: 28rem;
+    margin: 1.25rem auto 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-align: center;
+  }
+  .world-preview-copy h2 { max-width: 15ch; }
+  .world-preview-copy > p:not(.eyebrow) { max-width: 42rem; color: var(--ivory-soft); }
+  .world-preview-note { margin-top: 2rem; font-size: 0.92rem; }
+  @media (max-width: 760px) {
+    .world-preview-section { grid-template-columns: 1fr; }
+    .world-preview-visual { order: 2; }
+    .world-preview-hero { min-height: auto; }
+  }
+</style>
+
 <section class="world-hero section-shell world-preview-hero">
   <div class="world-hero-copy">
     <p class="eyebrow">{{ world.eyebrow }}</p>
@@ -19,7 +53,7 @@
     <p>{{ world.scope }}</p>
     <p class="world-preview-note">The full resource is in development. This doorway remains open so visitors can understand the question, scope, and place of this work inside Hii.</p>
     <div class="closing-actions">
-      <a class="button-link" href="mailto:hello@hii.earth?subject={{ world.portalLabel | url_encode }}%20inquiry">Talk with Hii</a>
+      <a class="button-link" href="mailto:hello@hii.earth?subject=Hii%20inquiry">Talk with Hii</a>
       <a class="text-link" href="/?return=hii">Return to Hii <span aria-hidden="true">↗</span></a>
     </div>
   </div>
