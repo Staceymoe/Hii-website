@@ -13,6 +13,16 @@
 
   if (!entry || !hero || !lensMap) return;
 
+  const stage = document.querySelector('.hero-stage');
+  const applyMobileFrontDoorScale = () => {
+    if (!stage) return;
+    const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
+    stage.style.transform = mobilePortrait ? 'scale(1.38)' : '';
+    stage.style.transformOrigin = mobilePortrait ? 'center center' : '';
+  };
+  applyMobileFrontDoorScale();
+  window.addEventListener('resize', applyMobileFrontDoorScale);
+
   const HERO_FREEZE_AT = 12.2;
   let started = false;
   let frozen = false;
