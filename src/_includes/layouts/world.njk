@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} | Hii</title>
+    <meta name="description" content="{{ description }}">
+    {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hii">
+    <meta property="og:title" content="{{ title }} | Hii">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#080b10">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/hii-site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {% include "components/site-header.njk" %}
+    <main id="main-content" tabindex="-1">
+      {{ content | safe }}
+    </main>
+    {% if not hideSiteFooter %}{% include "components/site-footer.njk" %}{% endif %}
+    {% if pageScript %}<script src="{{ pageScript }}" defer></script>{% endif %}
+  </body>
+</html>

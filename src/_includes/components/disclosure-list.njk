@@ -1,0 +1,11 @@
+<div class="disclosure-list">
+  {% for item in disclosureItems %}
+    <details>
+      <summary>
+        <span class="disclosure-index" aria-hidden="true">0{{ loop.index }}</span>
+        <span>{{ item.question }}</span>
+      </summary>
+      <p>{{ item.answer }}</p>
+    </details>
+  {% endfor %}
+</div>

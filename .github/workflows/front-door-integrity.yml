@@ -1,0 +1,26 @@
+name: Front door integrity and site build
+
+on:
+  push:
+    branches:
+      - agent/hii-front-door-restart
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: bash scripts/build-hii-front-door-restart.sh
+      - run: pnpm build
+      - run: pnpm test

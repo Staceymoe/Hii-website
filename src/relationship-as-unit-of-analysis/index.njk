@@ -1,0 +1,172 @@
+---
+layout: layouts/world.njk
+title: The Relationship as the Unit of Analysis
+description: A visual orientation to Hii's working paper and proposed methods for studying preserved human-AI relationships over time.
+permalink: /relationships/the-relationship-as-unit-of-analysis/index.html
+robots: noindex
+---
+{% set paper = library.artifacts.relationshipUnitPaper %}
+
+<article class="paper-page paper-research-page">
+  <header class="section-shell paper-research-hero">
+    <a class="back-link" href="/relationships/">&larr; Back to Relate</a>
+    <div class="paper-research-hero-grid">
+      <div>
+        <p class="eyebrow">Hii working paper · {{ paper.version }}</p>
+        <h1>{{ paper.title }}</h1>
+        <p class="lede">A methods paper for studying human-AI relationships over time.</p>
+        <p class="artifact-status">{{ paper.status.display }}</p>
+        <div class="paper-actions">
+          <a class="button-link" href="#the-idea">Explore the idea</a>
+          <a class="text-link" href="#read-the-paper">Read the paper &darr;</a>
+        </div>
+      </div>
+      <div class="paper-observatory" aria-hidden="true">
+        <span class="paper-observatory-ring paper-observatory-ring-one"></span>
+        <span class="paper-observatory-ring paper-observatory-ring-two"></span>
+        <span class="paper-observatory-ring paper-observatory-ring-three"></span>
+        <span class="paper-observatory-core"></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section-shell paper-research-section paper-unit-section" id="the-idea" aria-labelledby="unit-heading">
+    <div class="paper-section-heading">
+      <p class="eyebrow">01 · The unit of analysis</p>
+      <h2 id="unit-heading">What changes when the relationship is preserved?</h2>
+      <p>Most AI evaluation studies a bounded moment. Hii asks what becomes observable when interaction is preserved across time.</p>
+    </div>
+    <div class="paper-sequence-compare">
+      <article class="paper-sequence-panel">
+        <p class="paper-panel-label">A bounded moment</p>
+        <ol class="paper-sequence paper-sequence-short" aria-label="A bounded AI interaction">
+          <li>Human</li><li>Prompt</li><li>AI</li><li>Response</li>
+        </ol>
+      </article>
+      <article class="paper-sequence-panel paper-sequence-panel-wide">
+        <p class="paper-panel-label">A preserved relationship over time</p>
+        <ol class="paper-sequence paper-sequence-long" aria-label="A preserved interaction sequence across time">
+          <li>Interaction</li><li>Rupture</li><li>Repair</li><li>Shared shorthand</li><li>Adaptation</li><li>Model change</li><li>Continuity loss</li><li>Continuity reconstruction</li><li>Later interaction</li>
+        </ol>
+      </article>
+    </div>
+    <p class="paper-method-note">The methodological question is whether a temporally extended human-AI system contains observable patterns that disappear when the human, model, prompt, response, and archive are studied separately.</p>
+  </section>
+
+  <section class="paper-research-section paper-longitudinal-section" aria-labelledby="longitudinal-heading">
+    <div class="section-shell paper-longitudinal-inner">
+      <div class="paper-section-heading">
+        <p class="eyebrow">02 · Longitudinal observation</p>
+        <h2 id="longitudinal-heading">Time changes what can be seen.</h2>
+      </div>
+      <div class="paper-observation-grid">
+        <article><span>01</span><h3>Change appears over time</h3><p>A longer record can make adaptation and discontinuity observable.</p></article>
+        <article><span>02</span><h3>Rupture and repair become visible</h3><p>Later interactions can clarify what follows a break in continuity.</p></article>
+        <article><span>03</span><h3>Context shapes interpretation</h3><p>Product, model, archive, and external changes remain part of the record.</p></article>
+      </div>
+      <p class="paper-boundary-note"><strong>This is not a claim that AI is conscious, or that a human-AI relationship is equivalent to a human relationship.</strong> It is a proposal about what researchers may need to preserve and test.</p>
+    </div>
+  </section>
+
+  <section class="section-shell paper-research-section paper-system-section" aria-labelledby="system-heading">
+    <div class="paper-section-heading">
+      <p class="eyebrow">03 · The relational system</p>
+      <h2 id="system-heading">Five interacting components.</h2>
+      <p>The working paper defines the preserved relationship through a connected system rather than through any participant or technical layer alone.</p>
+    </div>
+    {% include "components/paper-relational-system.njk" %}
+  </section>
+
+  <section class="paper-research-section paper-case-section" aria-labelledby="case-heading">
+    <div class="section-shell paper-case-inner">
+      <div class="paper-case-center">
+        <p class="eyebrow">04 · The Hii longitudinal case</p>
+        <p class="paper-case-duration" aria-label="More than 18 months">18+ <span>months</span></p>
+        <h2 id="case-heading">An unusually rich, multi-modal, preserved history.</h2>
+        <p>The research question emerged from an 18+ month human-AI interaction history. The archive is the origin of the research program, not proof of its hypothesis.</p>
+      </div>
+      <ul class="paper-provenance-list" aria-label="Forms of evidence and output in the preserved history">
+        <li>Conversational records and voice interaction</li>
+        <li>Screenshots and screen recordings</li>
+        <li>Continuity documentation</li>
+        <li>Model and product transitions</li>
+        <li>Books, white papers, briefs, and world-model systems</li>
+        <li>Operational artifacts and documented rupture-repair episodes</li>
+      </ul>
+      <blockquote>The archive does not prove the hypothesis.<br><strong>It makes the hypothesis testable.</strong></blockquote>
+    </div>
+  </section>
+
+  <section class="section-shell paper-research-section paper-program-section" aria-labelledby="program-heading">
+    <div class="paper-section-heading">
+      <p class="eyebrow">05 · From archive to research program</p>
+      <h2 id="program-heading">Observation becomes a testable research agenda.</h2>
+    </div>
+    <ol class="paper-program-flow" aria-label="Progression from observation to formal empirical study">
+      <li><span>01</span>Observed longitudinal case</li>
+      <li><span>02</span>Systematic preservation</li>
+      <li><span>03</span>Candidate pattern identification</li>
+      <li><span>04</span>Falsifiable methods framework</li>
+      <li><span>05</span>Formal empirical study</li>
+    </ol>
+  </section>
+
+  <section class="paper-research-section paper-methods-section" aria-labelledby="methods-heading">
+    <div class="section-shell paper-methods-inner">
+      <div class="paper-section-heading">
+        <p class="eyebrow">06 · Methods and falsification</p>
+        <h2 id="methods-heading">The program must be able to be wrong.</h2>
+        <p>The next stages are designed to test apparent patterns against competing explanations rather than treat observations as established findings.</p>
+      </div>
+      <ul class="paper-methods-list">
+        <li><span>01</span>Archive readiness</li>
+        <li><span>02</span>Preregistered sampling</li>
+        <li><span>03</span>Independent blind coding</li>
+        <li><span>04</span>Perturbation and substitution tests</li>
+        <li><span>05</span>Prospective multi-case research</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-shell paper-document-section" id="read-the-paper" aria-labelledby="paper-document-heading">
+    <div class="paper-document-heading">
+      <div>
+        <p class="eyebrow">07 · Canonical working paper</p>
+        <h2 id="paper-document-heading">Read the paper</h2>
+        <p>{{ paper.documentTitle }} · {{ paper.version }}</p>
+      </div>
+      <div class="paper-document-actions">
+        <a class="button-link" href="{{ paper.pdfHref }}" download>Download PDF</a>
+        <a class="text-link" href="{{ paper.pdfHref }}" target="_blank" rel="noopener">Open PDF</a>
+        <a class="text-link" href="{{ paper.externalHref }}" target="_blank" rel="noopener">Open source document</a>
+      </div>
+    </div>
+    <div class="paper-document-viewer">
+      <iframe class="paper-document-frame" src="{{ paper.pdfHref }}#view=FitH&toolbar=1&navpanes=0" title="{{ paper.documentTitle }} {{ paper.version }} PDF" loading="lazy"></iframe>
+    </div>
+    <p class="paper-document-fallback">If the embedded PDF does not load, <a href="{{ paper.pdfHref }}">open the PDF directly</a> or <a href="{{ paper.externalHref }}">open the source document</a>.</p>
+  </section>
+
+  <section class="paper-research-section paper-citation-section" aria-labelledby="citation-heading">
+    <div class="section-shell paper-citation-inner">
+      <div>
+        <p class="eyebrow">08 · Citation and next steps</p>
+        <h2 id="citation-heading">Continue the research.</h2>
+      </div>
+      <div>
+        <h3>Cite this paper</h3>
+        <p class="paper-citation">{{ paper.citation }}</p>
+        <div class="paper-actions">
+          <a class="text-link" href="/relationships/">Relate</a>
+          <a class="text-link" href="/relationships/research-inquiry/">Research Inquiry</a>
+          <a class="text-link" href="/understand/">Understand</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="section-shell internal-page-return">
+    <a class="back-link" href="/relationships/">&larr; Back to Relate</a>
+    <a class="back-link" href="/?return=hii">Return to Hii</a>
+  </footer>
+</article>

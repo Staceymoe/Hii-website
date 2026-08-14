@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div>
+    <p class="footer-name">{{ site.expandedName }}</p>
+    <p>{{ site.description }}</p>
+  </div>
+  <div>
+    <p>{{ site.tagline }}</p>
+    <p class="muted">{{ site.pronunciation }}</p>
+  </div>
+  <nav aria-label="Published Hii worlds">
+    <p class="footer-label">Explore worlds</p>
+    <ul>
+      {% for worldKey, world in worlds %}
+        {% if world.published %}<li><a href="{{ world.route }}">{{ world.portalLabel }}</a></li>{% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+  <nav aria-label="Footer navigation">
+    <ul>
+      {% for link in site.utilityLinks %}
+        <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</footer>

@@ -1,97 +1,67 @@
-# Hii Website MVP
+# Hii website
 
-Static one-page landing page for Hii, the Hybrid Intelligence Institute.
+The active build uses Eleventy behind the approved Hii front door. The front door remains an isolated, checksum-protected artifact; world and utility pages are generated from shared layouts, components, and structured data.
 
-## What this is
-
-This is a clean public front door for Hii. It is intentionally restrained, dark, credible, and research-institute oriented. It avoids founder-centered copy, medical claims, analytics, paid services, domain purchases, or public publishing actions.
-
-## File structure
+## Protected architecture
 
 ```text
-Hii-website/
-  index.html
-  css/
-    styles.css
-  js/
-    main.js
-  assets/
-    favicon.svg
-    hii-earth.svg
-    og-preview.svg
-  docs/
-    approval-checklist.md
-  netlify.toml
-  _headers
-  robots.txt
-  README.md
+approved front door (/)
+  -> narrow destination routing seam
+  -> shared Eleventy world and utility system
 ```
 
-## Local preview
+The approved source is in `restart-front-door/`. Do not change its HTML, CSS, media, timing, geometry, film behavior, or front-door interactions. The only authorized JavaScript differences are the narrow Relate, Care, and Understand destination routes plus the explicit static-return state. `scripts/verify-front-door.mjs` enforces that boundary.
 
-Open `index.html` directly in a browser, or run a local static server from this folder.
+## Current implementation scope
+
+- `/` — checksum-locked approved front door
+- `/relationships/` — approved consolidated Relate world
+- `/relationships/the-relationship-as-unit-of-analysis/` — embedded Relate working paper with approved public status language
+- `/relationships/research-inquiry/` — Relate inquiry form foundation; submissions disabled until the approved privacy notice is connected
+- `/mental-health/` — draft Care world with clinician education, fee-ready engagements, pilot boundaries, and future public-session status
+- `/understand/` — frozen pending the next page-by-page review
+- Existing `.html` pages — retained as migration sources and temporary destinations
+- Other four worlds — intentionally not generated
+- Legacy redirects — intentionally not configured
+
+## Local development
+
+Requirements: Node.js 22+ and pnpm.
+
+The approved media is downloaded and verified by the protected staging script:
 
 ```bash
-python3 -m http.server 8080
+bash scripts/build-hii-front-door-restart.sh
+pnpm install --frozen-lockfile
+pnpm build
+pnpm test
+pnpm serve
 ```
 
-Then open:
+The generated site is written to `_site/`. Netlify uses the same protected staging step before the Eleventy build.
 
-```text
-http://localhost:8080
-```
+## Content system
 
-## Netlify deployment
+- `src/_data/site.js` — canonical institutional language and shared utility links
+- `src/_data/worlds.js` — world-level content; currently Relate only
+- `src/_data/library.js` — canonical artifact, program, and update records
+- `src/_includes/components/` — shared page components
+- `src/_includes/layouts/` — shared layouts
 
-GitHub connected deployment:
+Artifacts, programs, and updates should each have one canonical record in `library.js`, with world associations recorded as data. Do not duplicate records to place the same material in multiple worlds.
 
-1. In Netlify, choose Add new site from Git.
-2. Select `Staceymoe/Hii-website`.
-3. Build command can stay blank.
-4. Publish directory should be `.`.
-5. Deploy the site.
-6. Review the Netlify preview before connecting any custom domain.
+Before adding a visual, check the designated Hii website asset library for an appropriate approved asset. Every visual entering the repository must be renamed immediately using section, subject, asset type, and version. Filenames must distinguish `candidate`, `approved`, `concept`, and `final` status. Do not infer approval from presence in Drive, Library, chat, or the repository.
 
-## DNS connection for hii.earth
+## Protection and checks
 
-Do not change DNS until Cat approves the preview.
+`pnpm test` verifies:
 
-After approval:
+- approved front-door HTML, CSS, JavaScript seam, and media checksums
+- built front-door byte identity
+- `/relationships/` metadata and structural landmarks
+- internal links
+- Manrope and reduced-motion support
+- sitemap inclusion
+- absence of additional world routes and Netlify redirects
 
-1. In Netlify, open Site configuration.
-2. Open Domain management.
-3. Add custom domain `hii.earth`.
-4. Add `www.hii.earth` as a domain alias if desired.
-5. Netlify will provide DNS records.
-6. At Njalla, update either nameservers to Netlify DNS or DNS records to point to Netlify.
-7. Wait for DNS propagation.
-8. Confirm HTTPS certificate is active inside Netlify.
-
-Typical Netlify DNS records are:
-
-```text
-A record     @      75.2.60.5
-CNAME        www    your-netlify-site-name.netlify.app
-```
-
-Netlify may provide different values. Use the values shown in the Netlify dashboard at the time of connection.
-
-## Approval needed before publishing
-
-Cat should approve:
-
-- Final homepage copy
-- Final Earth visual direction
-- Whether to include the News nav item
-- Whether `hello@hii.earth` exists or should stay removed
-- Whether @HumanAIResearch is the correct public follow link
-- Whether to add Waking ÆLYSIA anywhere later
-- Whether to add analytics later
-- Whether to publish under hii.earth
-
-## Notes
-
-No tracking analytics have been added.
-No domain purchase has been made.
-No DNS changes have been made.
-The MVP is currently set to noindex until Cat approves public launch. Change the robots meta tag to index, follow and update robots.txt when the final domain is approved.
+The GitHub workflow runs the protected media build, Eleventy build, and checks on the active branch and pull request. Production deployment, merges, and changes to `main` are outside this workflow.
