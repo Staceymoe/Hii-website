@@ -17,7 +17,7 @@
   const applyMobileFrontDoorScale = () => {
     if (!stage) return;
     const mobilePortrait = window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
-    stage.style.transform = mobilePortrait ? 'scale(1.38)' : '';
+    stage.style.transform = mobilePortrait ? 'scale(1.52)' : '';
     stage.style.transformOrigin = mobilePortrait ? 'center center' : '';
   };
   applyMobileFrontDoorScale();
