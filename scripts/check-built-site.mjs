@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
+import { inflateSync } from "node:zlib";
 
 const root = process.cwd();
 const output = path.join(root, "_site");
@@ -9,6 +10,72 @@ const pass = (message) => console.log(`✓ ${message}`);
 const fail = (message) => failures.push(message);
 const read = (relativePath) => readFile(path.join(root, relativePath));
 const sha = (content) => createHash("sha256").update(content).digest("hex");
+
+const assertPng = (content, expectedWidth, expectedHeight, label) => {
+  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  if (content.length < 33 || !content.subarray(0, 8).equals(signature)) {
+    fail(`${label} is not a valid PNG`);
+    return;
+  }
+
+  let offset = 8;
+  let width;
+  let height;
+  let bitDepth;
+  let colorType;
+  let interlace;
+  let sawIend = false;
+  const idat = [];
+
+  while (offset + 12 <= content.length) {
+    const length = content.readUInt32BE(offset);
+    const type = content.toString("ascii", offset + 4, offset + 8);
+    const dataStart = offset + 8;
+    const dataEnd = dataStart + length;
+    const chunkEnd = dataEnd + 4;
+    if (chunkEnd > content.length) {
+      fail(`${label} contains a truncated ${type || "unknown"} chunk`);
+      return;
+    }
+    if (type === "IHDR") {
+      width = content.readUInt32BE(dataStart);
+      height = content.readUInt32BE(dataStart + 4);
+      bitDepth = content[dataStart + 8];
+      colorType = content[dataStart + 9];
+      interlace = content[dataStart + 12];
+    } else if (type === "IDAT") {
+      idat.push(content.subarray(dataStart, dataEnd));
+    } else if (type === "IEND") {
+      sawIend = true;
+      offset = chunkEnd;
+      break;
+    }
+    offset = chunkEnd;
+  }
+
+  if (!sawIend || offset !== content.length || width !== expectedWidth || height !== expectedHeight) {
+    fail(`${label} has an incomplete PNG structure or unexpected dimensions`);
+    return;
+  }
+  if (bitDepth !== 8 || colorType !== 2 || interlace !== 0 || idat.length === 0) {
+    fail(`${label} uses an unexpected PNG encoding`);
+    return;
+  }
+
+  try {
+    const pixels = inflateSync(Buffer.concat(idat));
+    const expectedBytes = expectedHeight * (1 + expectedWidth * 3);
+    if (pixels.length !== expectedBytes) {
+      fail(`${label} pixel data is incomplete`);
+      return;
+    }
+  } catch {
+    fail(`${label} pixel data cannot be decoded`);
+    return;
+  }
+
+  pass(`${label} is a complete decodable ${expectedWidth}x${expectedHeight} PNG`);
+};
 
 const frontDoorFiles = ["index.html", "front-door.css", "front-door.js"];
 for (const filename of frontDoorFiles) {
@@ -46,6 +113,7 @@ const required = [
   [/instagram\.com\/hybridintelligenceinstitute\//, "Instagram destination"],
   [/linkedin\.com\/company\/hybrid-intelligence-institute\//, "LinkedIn destination"],
   [/x\.com\/HumanAIResearch/, "X destination"],
+  [/src="\/assets\/media\/relate\/hii-horizontal-logo-lockup\.png" width="1980" height="495"/, "approved horizontal Hii footer logo"],
   [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
   [/class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"]
 ];
@@ -114,6 +182,7 @@ for (const assetPath of [
   "_site/assets/media/relate/longitudinal-provenance-poster.webp",
   "_site/assets/media/relate/longitudinal-provenance-callouts.png",
   "_site/assets/media/relate/research-meaning.png",
+  "_site/assets/media/relate/hii-horizontal-logo-lockup.png",
   "_site/assets/media/relate/hii-observatory-mark.webp",
   "_site/assets/media/relate/archive-accumulation-desktop.jpg",
   "_site/assets/media/relate/archive-accumulation-mobile.png",
@@ -123,6 +192,13 @@ for (const assetPath of [
   catch { fail(`approved Relate asset is missing: ${assetPath}`); }
 }
 if (!failures.some((item) => item.includes("approved Relate asset"))) pass("approved Relate motion, stills, and reference art are present");
+const [sourceFooterLogo, builtFooterLogo] = await Promise.all([
+  read("src/assets/media/relate/hii-horizontal-logo-lockup.png"),
+  read("_site/assets/media/relate/hii-horizontal-logo-lockup.png")
+]);
+assertPng(sourceFooterLogo, 1980, 495, "approved horizontal Hii footer logo");
+if (!sourceFooterLogo.equals(builtFooterLogo)) fail("built horizontal Hii footer logo differs from its approved source asset");
+else pass("built horizontal Hii footer logo is byte-identical to its approved source asset");
 if ((page.match(/<video[^>]+data-relate-motion/g) || []).length !== 2) fail("relationships page does not use exactly the two approved Relate motion moments");
 else pass("relationships page uses exactly the two approved Relate motion moments");
 if (!/archive-accumulation-mobile\.png[\s\S]*archive-accumulation-desktop\.jpg/.test(page)) fail("relationships page lacks the dedicated responsive archive compositions");
