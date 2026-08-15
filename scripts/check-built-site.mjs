@@ -125,8 +125,11 @@ if (/Content decision/i.test(page)) fail("relationships page exposes a visitor-f
 else pass("relationships page has no visitor-facing content decisions");
 if (/Research orientation/i.test(page)) fail("relationships page retains the superseded Research orientation action");
 else pass("relationships page replaces Research orientation with Research Inquiry");
-if (/class="site-footer"/.test(page)) fail("relationships page includes the generic shared footer");
-else pass("relationships page uses its Relate-specific conclusion instead of the generic shared footer");
+if ((page.match(/class="site-footer"/g) || []).length !== 1) fail("relationships page does not include exactly one shared footer");
+else pass("relationships page uses the shared institutional footer");
+if (!/Follow us[\s\S]*linkedin\.com[\s\S]*x\.com[\s\S]*instagram\.com[\s\S]*Return to Hii/.test(page)) {
+  fail("relationships page footer does not follow the approved logo, social, and return structure");
+} else pass("relationships page footer uses the approved live social order and Return to Hii control");
 for (const removedSection of ["Flagship artifact", "Relationship literacy", "Study what happens between people and systems across time.</h2>"]) {
   if (page.includes(removedSection)) fail(`relationships page retains removed content: ${removedSection}`);
 }
@@ -140,7 +143,8 @@ const relateOrder = [
   'class="relate-interpretation-section',
   'class="section-shell relate-artifact-section',
   'class="section-shell relate-paper-document',
-  'class="relate-conclusion'
+  'class="relate-conclusion',
+  'class="site-footer"'
 ].map((marker) => page.indexOf(marker));
 if (relateOrder.some((position) => position < 0) || relateOrder.some((position, index) => index > 0 && position <= relateOrder[index - 1])) {
   fail("relationships page does not follow the approved section order");
@@ -169,6 +173,32 @@ for (const [pattern, label] of understandRequired) {
 const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
 if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
 else pass("understand page has one h1");
+
+const sharedFooterPages = [
+  "_site/adaptation/index.html",
+  "_site/governance/index.html",
+  "_site/institutional-readiness/index.html",
+  "_site/mental-health/index.html",
+  "_site/mental-health/roundtable/index.html",
+  "_site/mental-health/roundtable/interest/index.html",
+  "_site/mental-health/roundtable/thanks/index.html",
+  "_site/relationships/index.html",
+  "_site/relationships/research-inquiry/index.html",
+  "_site/relationships/the-relationship-as-unit-of-analysis/index.html",
+  "_site/research/index.html",
+  "_site/understand/index.html"
+];
+for (const sharedFooterPath of sharedFooterPages) {
+  const sharedFooterPage = (await read(sharedFooterPath)).toString("utf8");
+  const footerCount = (sharedFooterPage.match(/class="site-footer"/g) || []).length;
+  if (footerCount !== 1) fail(`${sharedFooterPath} has ${footerCount} shared footers; expected 1`);
+  if (!/class="site-footer-signature"[\s\S]*hii-horizontal-logo-lockup\.png/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the approved footer signature`);
+  if (!/aria-label="Follow Hii on LinkedIn"[\s\S]*aria-label="Follow Hii on X"[\s\S]*aria-label="Follow Hii on Instagram"/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the approved live social controls`);
+  if (!/class="button-link site-footer-return" href="\/\?return=hii">Return to Hii/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the footer Return to Hii control`);
+}
+if (!failures.some((item) => item.includes("shared footer") || item.includes("footer signature") || item.includes("live social controls") || item.includes("footer Return to Hii"))) {
+  pass("every interior page uses the approved shared institutional footer");
+}
 
 const understandSourceHash = sha(await read("src/understand/index.njk"));
 if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");

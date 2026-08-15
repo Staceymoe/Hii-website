@@ -4,7 +4,6 @@ title: Human-AI Relationships
 description: Hii exists to help people navigate a historic transition without losing themselves or one another.
 permalink: /relationships/index.html
 pageScript: /assets/js/relate-hero.js
-hideSiteFooter: true
 ---
 {% set world = worlds.relate %}
 {% set paper = library.artifacts.relationshipUnitPaper %}
@@ -139,55 +138,8 @@ hideSiteFooter: true
   <p class="paper-document-fallback">If the embedded PDF does not load, <a href="{{ paper.pdfHref }}">open the PDF directly</a>.</p>
 </section>
 
-<style>
-  .relate-conclusion-inner {
-    grid-template-columns: minmax(0, 1fr) minmax(14rem, auto) auto;
-  }
-  .relate-social {
-    grid-template-columns: repeat(3, 3rem);
-    column-gap: 1.35rem;
-    row-gap: 0.8rem;
-  }
-  .relate-social-icon {
-    width: 3rem;
-  }
-  .relate-signature {
-    justify-content: center;
-    padding-block: clamp(2.25rem, 4vw, 3.5rem);
-  }
-  .relate-signature img {
-    width: min(100%, 34rem);
-    height: auto;
-    object-fit: contain;
-  }
-  @media (max-width: 760px) {
-    .relate-conclusion-inner {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      text-align: center;
-    }
-    .relate-social {
-      grid-template-columns: repeat(3, 3rem);
-      column-gap: 1.5rem;
-    }
-    .relate-signature img {
-      width: min(100%, 28rem);
-    }
-  }
-</style>
-
 <section class="relate-conclusion" aria-label="Relate conclusion">
-  <div class="section-shell relate-conclusion-inner">
+  <div class="section-shell">
     <p class="eyebrow">Relationship → preservation → observation → research</p>
-    <div class="relate-social" aria-label="Follow Hii">
-      <span class="relate-social-label">Follow us</span>
-      <a class="relate-social-icon relate-social-instagram" href="{{ site.socialLinks.instagram }}" target="_blank" rel="noopener" aria-label="Follow Hii on Instagram"></a>
-      <a class="relate-social-icon relate-social-linkedin" href="{{ site.socialLinks.linkedin }}" target="_blank" rel="noopener" aria-label="Follow Hii on LinkedIn">in</a>
-      <a class="relate-social-icon relate-social-x" href="{{ site.socialLinks.x }}" target="_blank" rel="noopener" aria-label="Follow Hii on X">X</a>
-    </div>
-    <a class="button-link" href="/?return=hii">Return to Hii</a>
-  </div>
-  <div class="section-shell relate-signature">
-    <img src="/assets/media/relate/hii-horizontal-logo-lockup.png" width="1980" height="495" alt="Hybrid Intelligence Institute. A new hello for a new world." loading="lazy" decoding="async">
   </div>
 </section>
