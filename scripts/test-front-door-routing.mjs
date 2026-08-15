@@ -17,6 +17,7 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
       hidden: false,
       disabled: true,
       textContent: "",
+      style: {},
       listeners,
       classList: { add: (name) => classes.add(name), contains: (name) => classes.has(name) },
       addEventListener: (type, callback) => listeners.set(type, callback),
@@ -32,6 +33,7 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
     pause: () => { pauseCalls += 1; },
     play: () => { playCalls += 1; return Promise.resolve(); }
   });
+  const stage = element();
   const entry = element();
   const lens = element();
   lens.dataset = { destination };
@@ -50,7 +52,8 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
     ["[data-destination-test]", destinationTest],
     ["[data-destination-title]", destinationTitle],
     ["[data-film-layer]", filmLayer],
-    ["[data-hii-film]", film]
+    ["[data-hii-film]", film],
+    [".hero-stage", stage]
   ]);
 
   vm.runInNewContext(source, {
@@ -76,7 +79,8 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
     historyCalls,
     lens,
     pauseCalls,
-    playCalls
+    playCalls,
+    stage
   };
 };
 
@@ -85,6 +89,8 @@ assert.equal(direct.playCalls, 1, "a direct visit must play the approved hero");
 assert.equal(direct.pauseCalls, 0, "a direct visit must not immediately pause the hero");
 assert.equal(direct.hero.currentTime, 0, "a direct visit must begin at the start");
 assert.equal(direct.classes.has("is-ready"), false, "circles must wait for the direct-entry animation");
+assert.equal(direct.hero.style.opacity, undefined, "a direct visit must keep the approved animation visible");
+assert.equal(direct.stage.style.backgroundImage, undefined, "a direct visit must not replace the approved animation with the return frame");
 
 const returned = runFrontDoor("?return=hii");
 assert.equal(returned.playCalls, 0, "a world return must not replay the hero");
@@ -94,6 +100,8 @@ assert.equal(returned.classes.has("is-ready"), true, "a world return must settle
 assert.equal(returned.lens.disabled, false, "a world return must enable the circles");
 assert.equal(returned.fallback.hidden, true, "a world return must hide the autoplay fallback");
 assert.equal(returned.hero.poster, "/media/hii-hero-front-door-final-frame.jpg", "a world return must display the approved final frame immediately");
+assert.equal(returned.hero.style.opacity, "0", "a world return must keep the loading video from covering the approved final frame");
+assert.equal(returned.stage.style.backgroundImage, 'url("/media/hii-hero-front-door-final-frame.jpg")', "a world return must keep the approved final frame visible throughout video seeking");
 assert.deepEqual(returned.historyCalls, [[null, "", "/"]], "the temporary return marker must be removed");
 
 const slowReturn = runFrontDoor("?return=hii", "Understand", 0);
