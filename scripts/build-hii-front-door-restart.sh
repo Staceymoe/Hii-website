@@ -14,6 +14,7 @@ mkdir -p "$OUT/media"
 cp restart-front-door/index.html "$OUT/index.html"
 cp restart-front-door/front-door.css "$OUT/front-door.css"
 cp restart-front-door/front-door.js "$OUT/front-door.js"
+cp restart-front-door/hii-hero-front-door-final-frame.png "$OUT/media/hii-hero-front-door-final-frame.png"
 
 python -m pip install --quiet --disable-pip-version-check gdown
 

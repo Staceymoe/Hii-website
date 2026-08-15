@@ -4,7 +4,7 @@ import vm from "node:vm";
 
 const source = await readFile(new URL("../restart-front-door/front-door.js", import.meta.url), "utf8");
 
-const runFrontDoor = (search, destination = "Understand") => {
+const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) => {
   const classes = new Set();
   const historyCalls = [];
   let playCalls = 0;
@@ -26,8 +26,9 @@ const runFrontDoor = (search, destination = "Understand") => {
   };
 
   const hero = element({
-    readyState: 1,
+    readyState: heroReadyState,
     currentTime: 7,
+    poster: "",
     pause: () => { pauseCalls += 1; },
     play: () => { playCalls += 1; return Promise.resolve(); }
   });
@@ -92,7 +93,14 @@ assert.equal(returned.hero.currentTime, 12.2, "a world return must seek to the a
 assert.equal(returned.classes.has("is-ready"), true, "a world return must settle the interface");
 assert.equal(returned.lens.disabled, false, "a world return must enable the circles");
 assert.equal(returned.fallback.hidden, true, "a world return must hide the autoplay fallback");
+assert.equal(returned.hero.poster, "/media/hii-hero-front-door-final-frame.png", "a world return must display the approved final frame immediately");
 assert.deepEqual(returned.historyCalls, [[null, "", "/"]], "the temporary return marker must be removed");
+
+const slowReturn = runFrontDoor("?return=hii", "Understand", 0);
+assert.equal(slowReturn.classes.has("is-ready"), true, "a slow world return must reveal the interface before video metadata loads");
+assert.equal(slowReturn.lens.disabled, false, "a slow world return must enable the circles immediately");
+assert.equal(slowReturn.hero.poster, "/media/hii-hero-front-door-final-frame.png", "a slow world return must not show a blank screen");
+assert.equal(slowReturn.playCalls, 0, "a slow world return must not replay the hero");
 
 const expectedRoutes = new Map([
   ["Relate", "/relationships/"],
