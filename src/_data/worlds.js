@@ -184,7 +184,7 @@ export default {
       { title: "My own experience", text: "Find language for sustained interaction, meaning, agency, continuity, and change.", href: "/relationships/" },
       { title: "Clinical practice", text: "Explore evidence-aware orientation for clinicians and people concerned about AI-mediated emotional life.", href: "/mental-health-ai.html" },
       { title: "Institutional change", text: "Explore how adaptation involves psychological, cognitive, relational, economic, and institutional change.", href: "/human-adaptation.html" },
-      { title: "Research and evidence", text: "Follow the existing research and methods trail.", href: "/research.html" },
+      { title: "Research and evidence", text: "Follow the existing research and methods trail.", href: "/research/" },
       { title: "Media and public communication", text: "Find current institutional facts and media inquiry routes.", href: "/press.html" }
     ]
   },
