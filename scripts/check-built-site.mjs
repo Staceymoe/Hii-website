@@ -228,7 +228,7 @@ for (const assetPath of [
   "_site/assets/media/relate/hii-horizontal-logo-lockup.png",
   "_site/assets/media/relate/hii-observatory-mark.webp",
   "_site/assets/media/relate/archive-accumulation-desktop.jpg",
-  "_site/assets/media/relate/archive-accumulation-mobile.png",
+  "_site/assets/media/relate/archive-accumulation-mobile.jpg",
   "_site/assets/media/relate/waking-aelysia-cover-approved.jpg"
 ]) {
   try { await access(path.join(root, assetPath)); }
@@ -259,7 +259,14 @@ for (const [filename, expectedSha] of Object.entries(responsiveSystemAssets)) {
 if (!failures.some((item) => item.includes("relational-system-") && item.includes("differs"))) pass("responsive relationship-system motion and poster assets are byte-identical to their approved sources");
 if ((page.match(/<video[^>]+data-relate-motion/g) || []).length !== 3) fail("relationships page does not use exactly the three approved Relate motion moments");
 else pass("relationships page uses exactly the three approved Relate motion moments");
-if (!/archive-accumulation-mobile\.png[\s\S]*archive-accumulation-desktop\.jpg/.test(page)) fail("relationships page lacks the dedicated responsive archive compositions");
+const [sourceMobileArchive, builtMobileArchive] = await Promise.all([
+  read("src/assets/media/relate/archive-accumulation-mobile.jpg"),
+  read("_site/assets/media/relate/archive-accumulation-mobile.jpg")
+]);
+if (sha(sourceMobileArchive) !== "2a92f67dfd370c5b34e6bddcf7968ac7787c937915891fa3a9ab7eb5609cbece") fail("mobile archive composition differs from its approved source bytes");
+if (!sourceMobileArchive.equals(builtMobileArchive)) fail("built mobile archive composition differs from its approved source asset");
+else pass("mobile archive composition is byte-identical to its approved source asset");
+if (!/archive-accumulation-mobile\.jpg" width="975" height="1462"[\s\S]*archive-accumulation-desktop\.jpg/.test(page)) fail("relationships page lacks the dedicated responsive archive compositions");
 else pass("relationships page includes desktop and mobile archive compositions");
 for (const statement of [
   "Time reveals patterns that short sessions hide.",
