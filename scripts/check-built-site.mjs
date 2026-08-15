@@ -102,7 +102,7 @@ const required = [
   [/human-ai-relationship\.mp4/, "approved hero animation"],
   [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
   [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
-  [/<video class="relate-system-animation" data-relate-motion data-hold-final-frame muted playsinline preload="metadata"[\s\S]*media="\(max-width: 760px\)" src="\/assets\/media\/relate\/relational-system-mobile\.mp4"[\s\S]*src="\/assets\/media\/relate\/relational-system-desktop\.mp4"/, "approved responsive relationship-system animation with final-frame hold"],
+  [/<video class="relate-system-animation" data-relate-motion data-hold-final-frame data-mobile-src="\/assets\/media\/relate\/relational-system-mobile\.mp4" data-desktop-src="\/assets\/media\/relate\/relational-system-desktop\.mp4" muted playsinline preload="metadata"[^>]*><\/video>/, "explicitly selected responsive relationship-system animation with final-frame hold"],
   [/media="\(max-width: 760px\)" srcset="\/assets\/media\/relate\/relational-system-mobile-poster\.jpg"[\s\S]*relational-system-desktop-poster\.jpg/, "responsive reduced-motion relationship-system poster"],
   [/Observation becomes a testable research agenda/, "research-agenda callout"],
   [/href="#current-working-paper">Explore the paper/, "same-page embedded-paper action"],
