@@ -25,7 +25,7 @@ const allowedSeams = [
   },
   {
     label: "return-state immediate settlement",
-    content: "  if (returnToStaticFrontDoor) {\n    hero.poster = RETURN_FRAME_SRC;\n    frozen = true;\n    settle();\n  }\n\n"
+    content: "  if (returnToStaticFrontDoor) {\n    hero.poster = RETURN_FRAME_SRC;\n    if (stage && stage.style) {\n      stage.style.backgroundImage = `url(\"${RETURN_FRAME_SRC}\")`;\n      stage.style.backgroundPosition = 'center';\n      stage.style.backgroundRepeat = 'no-repeat';\n      stage.style.backgroundSize = 'contain';\n    }\n    if (hero.style) hero.style.opacity = '0';\n    frozen = true;\n    settle();\n  }\n\n"
   },
   {
     label: "mobile portrait front-door and film adaptation",
