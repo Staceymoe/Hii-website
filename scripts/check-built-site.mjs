@@ -201,6 +201,14 @@ if (!failures.some((item) => item.includes("shared footer") || item.includes("fo
   pass("every interior page uses the approved shared institutional footer");
 }
 
+try {
+  await access(path.join(root, "_site/research.html"));
+  fail("legacy research.html conflicts with the /research/ world route");
+} catch (error) {
+  if (error?.code === "ENOENT") pass("legacy research.html does not shadow the /research/ world route");
+  else throw error;
+}
+
 const understandSourceHash = sha(await read("src/understand/index.njk"));
 if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");
 else pass("frozen Understand template is unchanged");
