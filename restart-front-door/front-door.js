@@ -42,6 +42,7 @@
   if (typeof window.addEventListener === 'function') window.addEventListener('resize', applyMobileFrontDoorScale);
 
   const HERO_FREEZE_AT = 12.2;
+  const RETURN_FRAME_SRC = '/media/hii-hero-front-door-final-frame.jpg';
   let started = false;
   let frozen = false;
 
@@ -50,6 +51,12 @@
     lenses.forEach((lens) => { lens.disabled = false; });
     fallback.hidden = true;
   };
+
+  if (returnToStaticFrontDoor) {
+    hero.poster = RETURN_FRAME_SRC;
+    frozen = true;
+    settle();
+  }
 
   const freezeHero = () => {
     if (frozen) return;

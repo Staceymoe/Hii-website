@@ -196,8 +196,9 @@ for (const sharedFooterPath of sharedFooterPages) {
   if (!/class="site-footer-signature"[\s\S]*hii-horizontal-logo-lockup\.png/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the approved footer signature`);
   if (!/aria-label="Follow Hii on LinkedIn"[\s\S]*aria-label="Follow Hii on X"[\s\S]*aria-label="Follow Hii on Instagram"/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the approved live social controls`);
   if (!/class="button-link site-footer-return" href="\/\?return=hii">Return to Hii/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the footer Return to Hii control`);
+  if (!/rel="preload" href="\/media\/hii-hero-front-door-final-frame\.jpg" as="image"/.test(sharedFooterPage)) fail(`${sharedFooterPath} is missing the return-state preload`);
 }
-if (!failures.some((item) => item.includes("shared footer") || item.includes("footer signature") || item.includes("live social controls") || item.includes("footer Return to Hii"))) {
+if (!failures.some((item) => item.includes("shared footer") || item.includes("footer signature") || item.includes("live social controls") || item.includes("footer Return to Hii") || item.includes("return-state preload"))) {
   pass("every interior page uses the approved shared institutional footer");
 }
 
