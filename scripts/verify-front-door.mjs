@@ -11,7 +11,7 @@ const approved = {
   hero: "e9054efa1eea286e74e50d76ddcb7e436cb2fe733b3a968553da5451de9f904e",
   film: "76e000d4d1e8e4e31a45d4f0bcbc412b286c4ac9524ed8fa8e84e145f3475abc",
   mobileFilm: "f5b1f899f442fd76283ae47f1332a975b3ce2d625da4f453ed990b1289393b6d",
-  returnFrame: "11f07763d0c8eab76e11cd3f8793edbf900e88321801441a0f89eacabe1f7f8d"
+  returnFrame: "181e19e612cc99e16aec938414606da00ad7628e2f672342ce4ce92eed66b8a4"
 };
 
 const allowedSeams = [
@@ -21,7 +21,7 @@ const allowedSeams = [
   },
   {
     label: "return-state poster source",
-    content: "  const RETURN_FRAME_SRC = '/media/hii-hero-front-door-final-frame.webp';\n"
+    content: "  const RETURN_FRAME_SRC = '/media/hii-hero-front-door-final-frame.jpg';\n"
   },
   {
     label: "return-state immediate settlement",
@@ -78,7 +78,7 @@ const assertTextHash = async (relativePath, expected) => {
 
 await assertTextHash("restart-front-door/index.html", approved.index);
 await assertTextHash("restart-front-door/front-door.css", approved.css);
-await assertHash("restart-front-door/hii-hero-front-door-final-frame.webp", approved.returnFrame);
+await assertHash("restart-front-door/hii-hero-front-door-final-frame.jpg", approved.returnFrame);
 
 const jsPath = "restart-front-door/front-door.js";
 const javascript = (await bytes(jsPath)).toString("utf8");
@@ -101,7 +101,7 @@ if (!sourceOnly) {
   await assertHash("_restart/media/hii-hero-front-door-approved.mp4", approved.hero);
   await assertHash("_restart/media/hii-film-approved-web-1080p.mp4", approved.film);
   await assertHash("_restart/media/hii-film-mobile-vertical.mp4", approved.mobileFilm);
-  await assertHash("_restart/media/hii-hero-front-door-final-frame.webp", approved.returnFrame);
+  await assertHash("_restart/media/hii-hero-front-door-final-frame.jpg", approved.returnFrame);
 
   const stagedJs = await bytes("_restart/front-door.js");
   if (!stagedJs.equals(await bytes(jsPath))) {

@@ -10,6 +10,6 @@ await copyFile(path.join(source, "index.html"), path.join(stage, "index.html"));
 await copyFile(path.join(source, "front-door.css"), path.join(stage, "front-door.css"));
 await copyFile(path.join(source, "front-door.js"), path.join(stage, "front-door.js"));
 await mkdir(path.join(stage, "media"), { recursive: true });
-await copyFile(path.join(source, "hii-hero-front-door-final-frame.webp"), path.join(stage, "media", "hii-hero-front-door-final-frame.webp"));
+await copyFile(path.join(source, "hii-hero-front-door-final-frame.jpg"), path.join(stage, "media", "hii-hero-front-door-final-frame.jpg"));
 
 console.log("Staged the protected front door source. Media remains checksum-controlled in _restart/media.");
