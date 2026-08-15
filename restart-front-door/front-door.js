@@ -54,6 +54,10 @@
 
   if (returnToStaticFrontDoor) {
     hero.poster = RETURN_FRAME_SRC;
+    hero.pause();
+    hero.removeAttribute('src');
+    hero.querySelectorAll('source').forEach((source) => source.remove());
+    if (typeof hero.load === 'function') hero.load();
     if (stage && stage.style) {
       stage.style.backgroundImage = `url("${RETURN_FRAME_SRC}")`;
       stage.style.backgroundPosition = 'center';
@@ -61,6 +65,7 @@
       stage.style.backgroundSize = 'contain';
     }
     if (hero.style) hero.style.opacity = '0';
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
     frozen = true;
     settle();
   }
