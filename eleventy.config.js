@@ -1,6 +1,10 @@
 import fs from "node:fs";
 
 export default function (eleventyConfig) {
+  eleventyConfig.on("eleventy.before", () => {
+    fs.rmSync("_site/research.html", { force: true });
+  });
+
   eleventyConfig.addPassthroughCopy({ "_restart": "." });
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -15,7 +19,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "_headers": "_headers" });
 
   for (const filename of fs.readdirSync(".").filter((name) => name.endsWith(".html"))) {
-    if (filename !== "index.html" && filename !== "motion-test.html") {
+    if (filename !== "index.html" && filename !== "motion-test.html" && filename !== "research.html") {
       eleventyConfig.addPassthroughCopy({ [filename]: filename });
     }
   }
