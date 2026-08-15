@@ -268,7 +268,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .relate-paper-thesis { margin: 1.8rem 0; font-size: clamp(1.08rem, 1.45vw, 1.3rem); }
 .relate-paper-card .button-link { margin-top: 1rem; color: var(--ivory); background: var(--ink); }
 .relate-system-asset { margin: 0; }
-.relate-system-asset img { display: block; width: 100%; height: auto; border: 1px solid rgba(8,11,16,0.16); }
+.relate-system-animation, .relate-system-asset img { display: block; width: 100%; height: auto; border: 1px solid rgba(8,11,16,0.16); }
+.relate-system-reduced-motion { display: none; }
 .relate-system-asset figcaption { margin-top: 0.8rem; color: #6f695f; font-size: 0.82rem; }
 .relate-system-asset .relate-system-callout { max-width: 15ch; margin: 1.4rem 0 0; color: var(--ink); font-size: clamp(2rem, 3.2vw, 3.4rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; }
 .relate-provenance-section { display: grid; grid-template-columns: minmax(26rem, 0.72fr) minmax(32rem, 1.28fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: center; padding-block: clamp(4.5rem, 8vw, 7rem); }
@@ -818,6 +819,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .roundtable-session-card .button-link { margin-top: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .relate-system-animation { display: none; }
+  .relate-system-reduced-motion { display: block; }
   .care-conversation-ring--outer, .care-conversation-ring--middle, .care-conversation-ring--inner, .care-conversation-core { animation: none; }
   .care-principles::after, .care-principles li::before { animation: none; }
   html { scroll-behavior: auto; }

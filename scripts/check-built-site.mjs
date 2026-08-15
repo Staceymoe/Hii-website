@@ -102,7 +102,8 @@ const required = [
   [/human-ai-relationship\.mp4/, "approved hero animation"],
   [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
   [/src="\/assets\/js\/relate-hero\.js"/, "reduced-motion-aware hero script"],
-  [/relationship-system-five-components\.png/, "approved five-component relationship-system visual"],
+  [/media="\(max-width: 760px\)" src="\/assets\/media\/relate\/relational-system-mobile\.mp4"[\s\S]*src="\/assets\/media\/relate\/relational-system-desktop\.mp4"/, "approved responsive relationship-system animation"],
+  [/media="\(max-width: 760px\)" srcset="\/assets\/media\/relate\/relational-system-mobile-poster\.jpg"[\s\S]*relational-system-desktop-poster\.jpg/, "responsive reduced-motion relationship-system poster"],
   [/Observation becomes a testable research agenda/, "research-agenda callout"],
   [/href="#current-working-paper">Explore the paper/, "same-page embedded-paper action"],
   [/longitudinal-provenance-callouts\.png/, "approved longitudinal provenance callouts"],
@@ -207,7 +208,10 @@ else pass("frozen Understand template is unchanged");
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
   "_site/assets/media/relate/human-ai-relationship.mp4",
-  "_site/assets/media/relate/relationship-system-five-components.png",
+  "_site/assets/media/relate/relational-system-desktop.mp4",
+  "_site/assets/media/relate/relational-system-mobile.mp4",
+  "_site/assets/media/relate/relational-system-desktop-poster.jpg",
+  "_site/assets/media/relate/relational-system-mobile-poster.jpg",
   "_site/assets/media/relate/longitudinal-provenance.mp4",
   "_site/assets/media/relate/longitudinal-provenance-poster.webp",
   "_site/assets/media/relate/longitudinal-provenance-callouts.png",
@@ -229,8 +233,23 @@ const [sourceFooterLogo, builtFooterLogo] = await Promise.all([
 assertPng(sourceFooterLogo, 1980, 495, "approved horizontal Hii footer logo");
 if (!sourceFooterLogo.equals(builtFooterLogo)) fail("built horizontal Hii footer logo differs from its approved source asset");
 else pass("built horizontal Hii footer logo is byte-identical to its approved source asset");
-if ((page.match(/<video[^>]+data-relate-motion/g) || []).length !== 2) fail("relationships page does not use exactly the two approved Relate motion moments");
-else pass("relationships page uses exactly the two approved Relate motion moments");
+const responsiveSystemAssets = {
+  "relational-system-desktop.mp4": "810f232e972e15eb05a8e197eeffd50f0a79f5ba7931854e4438a8049444e567",
+  "relational-system-mobile.mp4": "4eff56ff463494c9e444a218851bb4242b681c059873f41ae487986d607a32dc",
+  "relational-system-desktop-poster.jpg": "d184fa4ed817d03141c12def6017b91a01374757009ad728b74905e1eaf14bed",
+  "relational-system-mobile-poster.jpg": "f39b05d545ee26f7166beb6e8615eab230734d769336ff4bb65d28931e3a1440"
+};
+for (const [filename, expectedSha] of Object.entries(responsiveSystemAssets)) {
+  const [sourceAsset, builtAsset] = await Promise.all([
+    read(`src/assets/media/relate/${filename}`),
+    read(`_site/assets/media/relate/${filename}`)
+  ]);
+  if (sha(sourceAsset) !== expectedSha) fail(`${filename} differs from its approved source bytes`);
+  if (!sourceAsset.equals(builtAsset)) fail(`built ${filename} differs from its approved source asset`);
+}
+if (!failures.some((item) => item.includes("relational-system-") && item.includes("differs"))) pass("responsive relationship-system motion and poster assets are byte-identical to their approved sources");
+if ((page.match(/<video[^>]+data-relate-motion/g) || []).length !== 3) fail("relationships page does not use exactly the three approved Relate motion moments");
+else pass("relationships page uses exactly the three approved Relate motion moments");
 if (!/archive-accumulation-mobile\.png[\s\S]*archive-accumulation-desktop\.jpg/.test(page)) fail("relationships page lacks the dedicated responsive archive compositions");
 else pass("relationships page includes desktop and mobile archive compositions");
 for (const statement of [

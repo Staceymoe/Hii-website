@@ -6,7 +6,7 @@ const source = await readFile(new URL("../src/assets/js/relate-hero.js", import.
 
 const runScenario = (reducedMotion) => {
   const listeners = [];
-  const videos = [0, 1].map(() => ({
+  const videos = [0, 1, 2].map(() => ({
     currentTime: 4.2,
     paused: false,
     attributes: new Set(),
@@ -43,4 +43,4 @@ for (const video of animated.videos) {
   assert.equal(video.attributes.has("autoplay"), true);
 }
 
-console.log("Relate motion regression verified: normal mode plays both approved moments; reduced motion settles both on their posters.");
+console.log("Relate motion regression verified: normal mode plays all three approved moments; reduced motion settles all three on their posters.");
