@@ -244,7 +244,7 @@ if (!sourceFooterLogo.equals(builtFooterLogo)) fail("built horizontal Hii footer
 else pass("built horizontal Hii footer logo is byte-identical to its approved source asset");
 const responsiveSystemAssets = {
   "relational-system-desktop.mp4": "810f232e972e15eb05a8e197eeffd50f0a79f5ba7931854e4438a8049444e567",
-  "relational-system-mobile.mp4": "810f232e972e15eb05a8e197eeffd50f0a79f5ba7931854e4438a8049444e567",
+  "relational-system-mobile.mp4": "4eff56ff463494c9e444a218851bb4242b681c059873f41ae487986d607a32dc",
   "relational-system-desktop-poster.jpg": "d184fa4ed817d03141c12def6017b91a01374757009ad728b74905e1eaf14bed",
   "relational-system-mobile-poster.jpg": "f39b05d545ee26f7166beb6e8615eab230734d769336ff4bb65d28931e3a1440"
 };
