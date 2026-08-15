@@ -54,6 +54,13 @@
 
   if (returnToStaticFrontDoor) {
     hero.poster = RETURN_FRAME_SRC;
+    if (stage && stage.style) {
+      stage.style.backgroundImage = `url("${RETURN_FRAME_SRC}")`;
+      stage.style.backgroundPosition = 'center';
+      stage.style.backgroundRepeat = 'no-repeat';
+      stage.style.backgroundSize = 'contain';
+    }
+    if (hero.style) hero.style.opacity = '0';
     frozen = true;
     settle();
   }
