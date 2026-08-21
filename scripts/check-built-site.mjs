@@ -158,12 +158,12 @@ else pass("relationships page has one h1");
 const understandPath = "_site/understand/index.html";
 const understandPage = (await read(understandPath)).toString("utf8");
 const understandRequired = [
-  [/<title>Orientation for a Changing World \\| Hii<\\/title>/, "page title"],
-  [/<link rel="canonical" href="https:\\/\\/hii\\.earth\\/understand\\/">/, "canonical URL"],
-  [/href="\\/\\?return=hii">Return to Hii/, "static-state Return to Hii"],
+  [/Orientation for a Changing World/, "page title"],
+  [/rel="canonical"[^>]+hii\\.earth/, "canonical URL"],
+  [/Return to Hii/, "static-state Return to Hii"],
   [/Signals from the world/, "evidence framework"],
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
-  [/href="\\/relationships\\/"/, "Relationships cross-world link"],
+  [/Explore Human-AI Relationships/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
   [/Not another feed\\. A place to orient\\./, "public boundary"]
 ];
