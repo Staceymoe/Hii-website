@@ -451,7 +451,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .form-grid label, .consent-field { display: grid; gap: 0.5rem; }
 .form-grid label > span, .consent-field { font-size: 0.82rem; font-weight: 600; }
 .form-field-wide { grid-column: 1 / -1; }
-.form-grid input, .form-grid select, .form-grid textarea { width: 100%; padding: 0.85rem 0.9rem; color: var(--ivory); background: var(--ink-soft); border: 1px solid rgba(242,237,226,0.35); border-radius: 0; font: inherit; }
+.form-grid input:not([type="checkbox"]):not([type="radio"]), .form-grid select, .form-grid textarea { width: 100%; padding: 0.85rem 0.9rem; color: var(--ivory); background: var(--ink-soft); border: 1px solid rgba(242,237,226,0.35); border-radius: 0; font: inherit; }
 .form-grid textarea { resize: vertical; }
 .consent-field { grid-template-columns: auto 1fr; margin: 1.5rem 0; }
 .form-submit { border: 0; font: inherit; cursor: pointer; }
@@ -610,6 +610,9 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .form-choice-group { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin: 0; padding: 1.3rem; border: 1px solid rgba(242,237,226,0.35); }
 .form-choice-group legend { width: 100%; margin-bottom: 0.4rem; font-size: 0.82rem; }
 .form-choice-group label { display: flex; gap: 0.5rem; align-items: center; }
+.form-choice-group input[type="checkbox"], .form-choice-group input[type="radio"] { width: 1.15rem; height: 1.15rem; margin: 0; padding: 0; flex: 0 0 1.15rem; }
+.research-inquiry-form, .form-grid, .form-field-wide { min-width: 0; }
+.form-choice-group label, .consent-field span { min-width: 0; overflow-wrap: anywhere; }
 .roundtable-thanks-page { min-height: 70svh; }
 .roundtable-thanks-inner { max-width: 78rem; padding-block: clamp(5rem, 12vw, 10rem); }
 .roundtable-thanks-inner h1 { max-width: 12ch; font-size: clamp(3.5rem, 7vw, 7rem); }
@@ -807,6 +810,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .publication-cover { width: min(62vw, 15rem); }
   .paper-dimension-grid, .form-grid { grid-template-columns: 1fr; }
   .form-field-wide { grid-column: auto; }
+  .form-choice-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9rem; padding: 1rem; }
+  .form-choice-group legend { width: auto; max-width: 100%; }
+  .form-choice-group label { display: grid; grid-template-columns: 1.15rem minmax(0, 1fr); gap: 0.75rem; align-items: start; width: 100%; }
+  .consent-field { grid-template-columns: 1.15rem minmax(0, 1fr); gap: 0.75rem; align-items: start; }
   .time-model-node { width: 4rem; }
   .time-model-field { width: 90%; height: 10rem; padding-top: 1rem; font-size: 0.58rem; }
   .time-model-node-one { left: 7%; }
