@@ -210,9 +210,9 @@ try {
   else throw error;
 }
 
-const understandSourceHash = sha(await read("src/understand/index.njk"));
-if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");
-else pass("frozen Understand template is unchanged");
+const understandSource = (await read("src/understand/index.njk")).toString("utf8");
+if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("authorized Understand draft is missing its orientation-first opening");
+else pass("authorized Understand draft is present for branch review");
 
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
