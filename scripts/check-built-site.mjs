@@ -158,14 +158,14 @@ else pass("relationships page has one h1");
 const understandPath = "_site/understand/index.html";
 const understandPage = (await read(understandPath)).toString("utf8");
 const understandRequired = [
-  [/<title>Public Orientation and Literacy \| Hii<\/title>/, "page title"],
-  [/<link rel="canonical" href="https:\/\/hii\.earth\/understand\/">/, "canonical URL"],
-  [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
-  [/Every public claim should show what kind of claim it is\./, "evidence framework"],
+  [/<title>Orientation for a Changing World \\| Hii<\\/title>/, "page title"],
+  [/<link rel="canonical" href="https:\\/\\/hii\\.earth\\/understand\\/">/, "canonical URL"],
+  [/href="\\/\\?return=hii">Return to Hii/, "static-state Return to Hii"],
+  [/Signals from the world/, "evidence framework"],
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
-  [/href="\/relationships\/"/, "Relationships cross-world link"],
+  [/href="\\/relationships\\/"/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Public literacy should reduce both panic and false reassurance\./, "public boundary"]
+  [/Not another feed\\. A place to orient\\./, "public boundary"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
