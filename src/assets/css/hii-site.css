@@ -818,7 +818,73 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .roundtable-question-grid p, .roundtable-session-card { min-height: auto; }
   .roundtable-session-card .button-link { margin-top: 2rem; }
 }
+.world-model-visual-section {
+  padding: clamp(4.5rem, 8vw, 8rem) 0;
+  overflow: hidden;
+  background: #030303;
+}
+
+.world-model-visual-copy {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.world-model-visual-copy p:last-child {
+  max-width: 48rem;
+}
+
+.world-model-concept-media {
+  width: min(calc(100% - 3rem), 1200px);
+  margin: 0 auto;
+}
+
+.world-model-concept-video,
+.world-model-concept-reduced-motion img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
+.world-model-concept-video {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.world-model-concept-reduced-motion {
+  display: none;
+}
+
+.world-model-concept-media figcaption {
+  max-width: 54rem;
+  margin: 1rem auto 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .world-model-visual-section {
+    padding: 4rem 0;
+  }
+
+  .world-model-concept-media {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .world-model-concept-video {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .world-model-concept-media figcaption {
+    padding: 0 1.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .world-model-concept-video { display: none; }
+  .world-model-concept-reduced-motion { display: block; }
   .relate-system-animation { display: none; }
   .relate-system-reduced-motion { display: block; }
   .care-conversation-ring--outer, .care-conversation-ring--middle, .care-conversation-ring--inner, .care-conversation-core { animation: none; }
