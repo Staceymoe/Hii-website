@@ -165,7 +165,9 @@ const understandRequired = [
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
   [/Explore Human-AI Relationships/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Not another feed\. A place to orient\./, "public boundary"]
+  [/Not another feed\. A place to orient\./, "public boundary"],
+  [/world-model-eight-circles-concept-mobile-v1\.mp4[\s\S]*world-model-eight-circles-concept-v1\.mp4/, "responsive World Model concept visualization"],
+  [/Notify me when it launches[\s\S]*Follow Hii[\s\S]*turn on account notifications/, "World Model conversion actions"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
@@ -235,7 +237,8 @@ for (const [pattern, label] of [
   [/name="email"[^>]+required/, "required email field"],
   [/name="orientation-needs"/, "orientation-needs field"],
   [/name="signals-to-track"/, "signal field"],
-  [/name="contact-permission"[^>]+required/, "contact consent"]
+  [/name="contact-permission"[^>]+required/, "contact consent"],
+  [/Please notify me when the public World Model launches or enters early access/, "launch-notification consent"]
 ]) {
   if (!pattern.test(understandInterestPage)) fail(`World Model interest form is missing ${label}`);
   else pass(`World Model interest form includes ${label}`);
