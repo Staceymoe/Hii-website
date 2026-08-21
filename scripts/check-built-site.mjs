@@ -168,7 +168,7 @@ const understandRequired = [
   [/Not another feed\. A place to orient\./, "public boundary"],
   [/world-model-eight-circles-concept-mobile-v1\.mp4[\s\S]*world-model-eight-circles-concept-v1\.mp4/, "responsive World Model concept visualization"],
   [/Notify me when it launches/, "World Model launch-notification action"],
-  [/Follow Hii and turn on account notifications/, "World Model social-notification guidance"]
+  [/follow Hii and turn on account notifications/i, "World Model social-notification guidance"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
