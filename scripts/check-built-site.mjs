@@ -177,6 +177,10 @@ for (const [pattern, label] of understandRequired) {
 const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
 if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
 else pass("understand page has one h1");
+const understandVisualPosition = understandPage.indexOf('class="world-model-visual-section"');
+const understandSignalsPosition = understandPage.indexOf("Signals from the world");
+if (understandVisualPosition < 0 || understandSignalsPosition < 0 || understandVisualPosition > understandSignalsPosition) fail("World Model concept visualization does not appear before the signal evidence");
+else pass("World Model concept visualization appears near the top before the signal evidence");
 
 const sharedFooterPages = [
   "_site/adaptation/index.html",
@@ -440,6 +444,10 @@ if (!/@media \(prefers-reduced-motion: reduce\)/.test(css)) fail("shared CSS lac
 else pass("shared CSS includes reduced-motion handling");
 if (!/font-family: "Manrope"/.test(css)) fail("shared CSS does not specify Manrope");
 else pass("shared CSS specifies Manrope");
+if (!/input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\)/.test(css)) fail("form text-input sizing still applies to checkboxes or radio buttons");
+else pass("form text-input sizing excludes checkboxes and radio buttons");
+if (!/\.form-choice-group label \{ display: grid; grid-template-columns: 1\.15rem minmax\(0, 1fr\)/.test(css)) fail("mobile form choices do not keep controls and labels together");
+else pass("mobile form choices keep controls and labels together");
 
 const previewWorlds = [
   ["adaptation", "Human Adaptation"],
