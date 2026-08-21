@@ -213,8 +213,18 @@ try {
 }
 
 const understandSource = (await read("src/understand/index.njk")).toString("utf8");
-if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("authorized Understand draft is missing its orientation-first opening");
-else pass("authorized Understand draft is present for branch review");
+if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("released Understand page is missing its orientation-first opening");
+else pass("released Understand page is present");
+for (const assetPath of [
+  "_site/assets/media/understand/world-model-eight-circles-concept-v1.mp4",
+  "_site/assets/media/understand/world-model-eight-circles-concept-poster-v1.jpg",
+  "_site/assets/media/understand/world-model-eight-circles-concept-mobile-v1.mp4",
+  "_site/assets/media/understand/world-model-eight-circles-concept-mobile-poster-v1.jpg"
+]) {
+  try { await access(path.join(root, assetPath)); }
+  catch { fail(`responsive World Model asset is missing: ${assetPath}`); }
+}
+if (!failures.some((item) => item.includes("responsive World Model asset"))) pass("responsive World Model motion and poster assets are present");
 
 const understandInterestPage = (await read("_site/understand/interest/index.html")).toString("utf8");
 for (const [pattern, label] of [
