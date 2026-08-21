@@ -1,6 +1,6 @@
 # Hii shared world contract
 
-Status: shared-system contract after the first Relationships and Understand checkpoints. The August 8 review authorizes the consolidated Relate architecture while Understand remains frozen pending its page-by-page review.
+Status: shared-system contract after the first Relationships checkpoint and the August 21 authorization to draft a new orientation-first Understand page. The new Understand composition remains branch-only pending Cat’s explicit release approval.
 
 ## Invariants
 
@@ -20,7 +20,7 @@ Status: shared-system contract after the first Relationships and Understand chec
 - Existing components should be reused when their semantics fit. A new variant requires a real content or interaction need demonstrated by a world.
 - Relate now establishes a compact visual hero, an accessible five-part system model, a dedicated paper pathway, three compact ways in, an editorial publication treatment, and an internal inquiry pathway.
 - Superseded Relate-only patterns—the four long editorial rows, standalone artifact panel, standalone Relationship Literacy section, full-viewport boundary, and duplicate Continue section—are not shared-system requirements.
-- Understand remains unchanged and frozen. Its page composition is not a mandate for Relate and will not become part of the stronger reusable contract until its page-by-page review is approved.
+- Understand is now authorized for a bounded branch-only redesign: lead with the lived condition of coupled change, make provenance and evidence status visible, explain the free public World Model direction, and distinguish it from any unbuilt deeper subscription layer. Its draft composition is not a mandate for other worlds and does not become production-approved until Cat explicitly releases it.
 - Care is the next authorized draft world. Its clinician-chair visual remains a named candidate, and its Field Brief image remains a concept mockup until Cat explicitly approves or replaces either asset.
 - The remaining four worlds stay frozen until their page-by-page work is authorized.
 

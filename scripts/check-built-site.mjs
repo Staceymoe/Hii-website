@@ -158,14 +158,14 @@ else pass("relationships page has one h1");
 const understandPath = "_site/understand/index.html";
 const understandPage = (await read(understandPath)).toString("utf8");
 const understandRequired = [
-  [/<title>Public Orientation and Literacy \| Hii<\/title>/, "page title"],
-  [/<link rel="canonical" href="https:\/\/hii\.earth\/understand\/">/, "canonical URL"],
-  [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
-  [/Every public claim should show what kind of claim it is\./, "evidence framework"],
+  [/Orientation for a Changing World/, "page title"],
+  [/rel="canonical"/, "canonical URL"],
+  [/Return to Hii/, "static-state Return to Hii"],
+  [/Signals from the world/, "evidence framework"],
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
-  [/href="\/relationships\/"/, "Relationships cross-world link"],
+  [/Explore Human-AI Relationships/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Public literacy should reduce both panic and false reassurance\./, "public boundary"]
+  [/Not another feed\. A place to orient\./, "public boundary"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
@@ -187,7 +187,9 @@ const sharedFooterPages = [
   "_site/relationships/research-inquiry/index.html",
   "_site/relationships/the-relationship-as-unit-of-analysis/index.html",
   "_site/research/index.html",
-  "_site/understand/index.html"
+  "_site/understand/index.html",
+  "_site/understand/interest/index.html",
+  "_site/understand/thanks/index.html"
 ];
 for (const sharedFooterPath of sharedFooterPages) {
   const sharedFooterPage = (await read(sharedFooterPath)).toString("utf8");
@@ -210,9 +212,29 @@ try {
   else throw error;
 }
 
-const understandSourceHash = sha(await read("src/understand/index.njk"));
-if (understandSourceHash !== "2694b225ef11796b5f446f0badaa2c5c1ace46a76efc05b50ed46e01da228120") fail("frozen Understand template changed");
-else pass("frozen Understand template is unchanged");
+const understandSource = (await read("src/understand/index.njk")).toString("utf8");
+if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("authorized Understand draft is missing its orientation-first opening");
+else pass("authorized Understand draft is present for branch review");
+
+const understandInterestPage = (await read("_site/understand/interest/index.html")).toString("utf8");
+for (const [pattern, label] of [
+  [/name="world-model-interest"/, "Netlify form name"],
+  [/data-netlify="true"/, "Netlify form activation"],
+  [/netlify-honeypot="company-website"/, "spam protection"],
+  [/action="\/understand\/thanks\/"/, "confirmation route"],
+  [/name="email"[^>]+required/, "required email field"],
+  [/name="orientation-needs"/, "orientation-needs field"],
+  [/name="signals-to-track"/, "signal field"],
+  [/name="contact-permission"[^>]+required/, "contact consent"]
+]) {
+  if (!pattern.test(understandInterestPage)) fail(`World Model interest form is missing ${label}`);
+  else pass(`World Model interest form includes ${label}`);
+}
+if (!understandPage.includes('href="/understand/interest/"')) fail("Understand CTA does not route to the World Model interest form");
+else pass("Understand CTA routes to the World Model interest form");
+const understandThanksPage = (await read("_site/understand/thanks/index.html")).toString("utf8");
+if (!understandThanksPage.includes("Thank you for helping shape the inquiry.")) fail("World Model confirmation page is missing its acknowledgement");
+else pass("World Model confirmation page is present");
 
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",

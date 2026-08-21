@@ -1,110 +1,204 @@
 ---
 layout: layouts/world.njk
-title: Public Orientation and Literacy
-description: Hii develops plain-language relational AI literacy so people can stay oriented, discerning, and grounded while living alongside AI systems.
+title: Orientation for a Changing World
+description: Hii helps people understand what is changing across AI, work, education, climate, institutions, information, and human life—and see the evidence and connections for themselves.
 permalink: /understand/index.html
 ---
-{% set world = worlds.understand %}
 {% set artifact = library.artifacts.epistemicGuardrails %}
 
 <section class="world-hero section-shell">
   <div class="world-hero-copy">
-    <p class="eyebrow">{{ world.eyebrow }}</p>
-    <h1>{{ world.title }}</h1>
-    <p class="lede">{{ world.introduction }}</p>
+    <p class="eyebrow">Understand</p>
+    <h1>The world is changing faster than any one person can process.</h1>
+    <p class="lede">AI is reshaping work, education, relationships, institutions, and the information environment while climate, politics, economic pressure, and technological change interact. People are not imagining the difficulty of staying oriented.</p>
   </div>
-  <blockquote>{{ world.question }}</blockquote>
+  <blockquote>The problem is no longer access to information. It is knowing what is reliable, what is changing, how the signals connect, and what they mean for your life.</blockquote>
 </section>
 
-<section class="section-shell orientation-section" aria-labelledby="orientation-heading">
+<section class="section-shell orientation-section" aria-labelledby="signals-heading">
   <div class="section-heading compact-heading">
-    <p class="eyebrow">Start here</p>
-    <h2 id="orientation-heading">Four things to notice before reaching a conclusion.</h2>
+    <p class="eyebrow">Signals from the world</p>
+    <h2 id="signals-heading">Your concern has context.</h2>
+    <p>These signals do not tell one simple story. They show why orientation now requires more than following one headline, institution, platform, or field.</p>
   </div>
+
   <div class="orientation-grid">
-    {% for item in world.orientation %}
-      <article class="orientation-card">
-        <p class="pathway-number" aria-hidden="true">0{{ loop.index }}</p>
-        <p class="orientation-label">{{ item.label }}</p>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.text }}</p>
-      </article>
-    {% endfor %}
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">01</p>
+      <p class="orientation-label">Population survey · June 2026</p>
+      <h3>Work and livelihood</h3>
+      <p>71% of U.S. adults think AI will lead to fewer jobs over the next 20 years. That is a public expectation—not proof of the eventual labor-market outcome.</p>
+      <a class="text-link" href="https://www.pewresearch.org/short-reads/2026/08/18/young-adults-in-the-us-are-increasingly-wary-of-ai-concerned-it-will-take-jobs/">Review the Pew evidence <span aria-hidden="true">↗</span></a>
+    </article>
+
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">02</p>
+      <p class="orientation-label">Population survey · April 2026</p>
+      <h3>Climate and security</h3>
+      <p>65% of Americans say global warming is personally important to them. Climate concern sits alongside economic, technological, political, and family concerns—not outside them.</p>
+      <a class="text-link" href="https://climatecommunication.yale.edu/app/uploads/2026/07/climate-change-american-mind-beliefs-attitudes-spring-2026.pdf">Review the Yale–GMU report <span aria-hidden="true">↗</span></a>
+    </article>
+
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">03</p>
+      <p class="orientation-label">Expert assessment · July 2026</p>
+      <h3>Information and reality</h3>
+      <p>In one study of 54 international experts, video deepfakes received the highest average threat rating among AI-disinformation formats. The finding maps expert perception; it does not establish one universal risk hierarchy.</p>
+      <a class="text-link" href="https://misinforeview.hks.harvard.edu/wp-content/uploads/2026/07/loth_ai_disinformation_threats_20260729.pdf">Read the research note <span aria-hidden="true">↗</span></a>
+    </article>
+
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">04</p>
+      <p class="orientation-label">Institutional action · August 2026</p>
+      <h3>Education and children</h3>
+      <p>New U.S. Department of Education guidance asks schools to judge technology by instructional purpose, evidence, transparency, duration, and student outcomes.</p>
+      <a class="text-link" href="https://www.ed.gov/about/news/press-release/us-department-of-education-releases-guidance-responsible-use-of-education-technology-classroom">Read the federal guidance <span aria-hidden="true">↗</span></a>
+    </article>
   </div>
 </section>
 
-<section class="section-shell questions-section" aria-labelledby="questions-heading">
+<section class="section-shell relationship-intro" aria-labelledby="connections-heading">
   <div class="section-heading">
-    <p class="eyebrow">Common questions</p>
-    <h2 id="questions-heading">Orientation begins by separating questions that are often collapsed.</h2>
+    <p class="eyebrow">The missing view</p>
+    <h2 id="connections-heading">The signals are connected.</h2>
+    <p>A forecast about jobs changes education choices. AI infrastructure affects energy, water, cost, and climate decisions. Synthetic media changes how people interpret politics and public institutions. Those shifts alter family planning, mental health, trust, investment, and policy in return.</p>
+    <p>Hii studies these relationships across systems and over time—not only the stories one by one.</p>
   </div>
-  {% set disclosureItems = world.questions %}
-  {% include "components/disclosure-list.njk" %}
-</section>
 
-<section class="section-shell evidence-literacy-section" aria-labelledby="evidence-literacy-heading">
-  <div class="section-heading compact-heading">
-    <p class="eyebrow">Evidence and confidence</p>
-    <h2 id="evidence-literacy-heading">Every public claim should show what kind of claim it is.</h2>
-  </div>
-  <div class="evidence-key">
-    {% for label in evidence.labels %}
-      <article>
-        <p class="evidence-name">{{ label.name }}</p>
-        <p>{{ label.description }}</p>
-      </article>
-    {% endfor %}
-  </div>
-  <div class="shared-artifact-heading">
-    <p class="eyebrow">Shared research standard</p>
-    <h2>Keep interpretation answerable to evidence.</h2>
-  </div>
-  {% include "components/artifact-card.njk" %}
-</section>
-
-<section class="section-shell pathway-section understand-pathway-section" aria-labelledby="understand-pathway-heading">
-  <div class="section-heading compact-heading">
-    <p class="eyebrow">Choose my pathway</p>
-    <h2 id="understand-pathway-heading">Continue from the role you hold.</h2>
-  </div>
-  <div class="pathway-grid public-pathway-grid">
-    {% for pathway in world.pathways %}
-      <article class="pathway-card">
-        <p class="pathway-number" aria-hidden="true">0{{ loop.index }}</p>
-        <h3>{{ pathway.title }}</h3>
-        <p>{{ pathway.text }}</p>
-        <a class="text-link" href="{{ pathway.href }}">Follow this pathway <span aria-hidden="true">↗</span></a>
-      </article>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="film-orientation-section">
-  <div class="section-shell film-orientation-inner">
-    <div>
-      <p class="eyebrow">Hii Film</p>
-      <h2>The institute remains at the center.</h2>
+  <figure class="relationship-map" aria-labelledby="world-model-caption">
+    <div class="map-stage" aria-hidden="true">
+      <span class="map-orbit"></span>
+      <span class="map-orbit map-orbit-two"></span>
+      <span class="map-center">Lived reality</span>
+      <span class="map-node map-human">People</span>
+      <span class="map-node map-system">Technology</span>
+      <span class="map-node map-time">Institutions</span>
+      <span class="map-node map-world">Planet</span>
     </div>
-    <div>
-      <p>The approved Hii Film remains in the center circle of the front door. Return to the settled observatory and select Hii Film.</p>
-      <a class="button-link" href="/?return=hii">Return to Hii</a>
-    </div>
-  </div>
+    <figcaption id="world-model-caption">A lightweight view of the coupled system Hii is building to observe: people, technology, institutions, and the planet changing one another over time.</figcaption>
+  </figure>
 </section>
 
 <section class="boundary-section">
   <div class="section-shell boundary-inner">
-    <p class="eyebrow">Public boundary</p>
-    <h2>Public literacy should reduce both panic and false reassurance.</h2>
-    <p>Hii does not ask people to trust AI systems, reject them, or accept one story about what they mean. The aim is to improve the quality of attention, judgment, language, and collective decision-making.</p>
+    <p class="eyebrow">The Hii World Model</p>
+    <h2>Not another feed. A place to orient.</h2>
+    <p>The Hii World Model is being designed to help people see important developments, inspect why each signal was included, follow its provenance, compare competing interpretations, and understand how changes in one domain may affect another. It is not an oracle, a prediction engine, or a substitute for direct evidence.</p>
   </div>
 </section>
 
-<section class="section-shell closing-section" aria-labelledby="understand-closing-heading">
-  <p class="eyebrow">Continue</p>
-  <h2 id="understand-closing-heading">Follow the question into relationship-level study.</h2>
+<section class="section-shell orientation-section" aria-labelledby="model-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">What the model should make visible</p>
+    <h2 id="model-heading">From information to orientation.</h2>
+  </div>
+
+  <div class="orientation-grid">
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">01</p>
+      <p class="orientation-label">Observe</p>
+      <h3>What happened?</h3>
+      <p>Important events, research, public perception, institutional actions, and emerging claims across domains.</p>
+    </article>
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">02</p>
+      <p class="orientation-label">Verify</p>
+      <h3>What supports it?</h3>
+      <p>Direct links, dates, source type, confidence, contradictions, and unresolved questions—so people can check the work themselves.</p>
+    </article>
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">03</p>
+      <p class="orientation-label">Connect</p>
+      <h3>What else changes?</h3>
+      <p>Relationships among technology, work, climate, politics, institutions, information, culture, and human adaptation.</p>
+    </article>
+    <article class="orientation-card">
+      <p class="pathway-number" aria-hidden="true">04</p>
+      <p class="orientation-label">Orient</p>
+      <h3>What might it mean?</h3>
+      <p>Proportionate interpretation, plausible pathways, implications for daily life, and the boundaries of what is not yet known.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell pathway-section understand-pathway-section" aria-labelledby="access-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">A public layer and a deeper layer</p>
+    <h2 id="access-heading">Orientation should be accessible. Depth can support the work.</h2>
+    <p>The product model is still being tested. This is the direction—not a promise that every feature is available today.</p>
+  </div>
+
+  <div class="pathway-grid">
+    <article class="pathway-card">
+      <p class="pathway-number">Free public access</p>
+      <h3>A lightweight orientation layer</h3>
+      <p>Selected current signals, why Hii included them, direct provenance, evidence status, important connections, and clear uncertainty boundaries.</p>
+    </article>
+    <article class="pathway-card">
+      <p class="pathway-number">Potential subscription</p>
+      <h3>A deeper World Model</h3>
+      <p>Expanded signal history, richer domain views, more detailed connection mapping, synthesis across time, and access to the underlying evidence trail.</p>
+    </article>
+    <article class="pathway-card">
+      <p class="pathway-number">Delivery under exploration</p>
+      <h3>Orientation that meets people where they are</h3>
+      <p>A concise daily or weekly briefing, deeper web access, or both. Hii will test what is genuinely useful before choosing the format, features, or price.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell questions-section" aria-labelledby="method-heading">
+  <div class="section-heading">
+    <p class="eyebrow">How Hii reads the world</p>
+    <h2 id="method-heading">Different signals require different kinds of trust.</h2>
+  </div>
+  <div class="disclosure-list">
+    <details>
+      <summary><span class="disclosure-index" aria-hidden="true">01</span><span>Does a survey tell us what will happen?</span></summary>
+      <p>No. It tells us what a defined population reported at a particular time. Public perception can influence behavior, markets, policy, and adaptation, but it is not the same as an outcome.</p>
+    </details>
+    <details>
+      <summary><span class="disclosure-index" aria-hidden="true">02</span><span>Does an official statement make a claim true?</span></summary>
+      <p>No. Government and institutional statements are primary evidence of what an institution said, decided, or did. Their factual claims still require evaluation and may be disputed.</p>
+    </details>
+    <details>
+      <summary><span class="disclosure-index" aria-hidden="true">03</span><span>Does social-media discussion count as evidence?</span></summary>
+      <p>It can be evidence of public discourse, lived experience, emerging claims, and the information environment. Consequential factual claims still need corroboration, and unresolved claims should remain visibly unresolved.</p>
+    </details>
+    <details>
+      <summary><span class="disclosure-index" aria-hidden="true">04</span><span>Is the World Model trying to predict one future?</span></summary>
+      <p>No. It is intended to preserve continuity, expose convergence and contradiction, make uncertainty visible, and help people evaluate possible pathways as conditions change.</p>
+    </details>
+  </div>
+</section>
+
+<section class="section-shell evidence-literacy-section" aria-labelledby="evidence-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">Shared research standard</p>
+    <h2 id="evidence-heading">Keep interpretation answerable to evidence.</h2>
+  </div>
+  {% include "components/artifact-card.njk" %}
+</section>
+
+<section class="research-inquiry-section">
+  <div class="section-shell research-inquiry-inner">
+    <div>
+      <p class="eyebrow">Help shape the public World Model</p>
+      <h2>What would help you feel more oriented?</h2>
+    </div>
+    <div>
+      <p>Hii is developing the free public layer first and testing what belongs in a deeper service. Tell us what you would want to see, verify, follow, or receive.</p>
+      <a class="button-link" href="/understand/interest/">Share what would help</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell closing-section" aria-labelledby="closing-heading">
+  <p class="eyebrow">Why Hii exists</p>
+  <h2 id="closing-heading">To help people navigate a historic transition without losing themselves or one another.</h2>
   <div class="closing-actions">
-    <a class="button-link" href="/relationships/">Explore Relationships</a>
-    <a class="text-link" href="{{ artifact.href }}">Review Epistemic Guardrails <span aria-hidden="true">↗</span></a>
+    <a class="button-link" href="/?return=hii">Return to Hii</a>
+    <a class="text-link" href="/relationships/">Explore Human-AI Relationships <span aria-hidden="true">↗</span></a>
+    <a class="text-link" href="/research/">Explore Hii research <span aria-hidden="true">↗</span></a>
   </div>
 </section>
