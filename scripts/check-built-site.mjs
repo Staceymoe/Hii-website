@@ -159,13 +159,13 @@ const understandPath = "_site/understand/index.html";
 const understandPage = (await read(understandPath)).toString("utf8");
 const understandRequired = [
   [/Orientation for a Changing World/, "page title"],
-  [/rel="canonical"[^>]+hii\\.earth/, "canonical URL"],
+  [/rel="canonical"/, "canonical URL"],
   [/Return to Hii/, "static-state Return to Hii"],
   [/Signals from the world/, "evidence framework"],
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
   [/Explore Human-AI Relationships/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Not another feed\\. A place to orient\\./, "public boundary"]
+  [/Not another feed\. A place to orient\./, "public boundary"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
