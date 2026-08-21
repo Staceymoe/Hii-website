@@ -391,7 +391,8 @@ const careRequired = [
   [/Now forming/, "active roundtable status"],
   [/Available for organizations/, "organizational workshop status"],
   [/Available by inquiry/, "advisory inquiry status"],
-  [/Learn more and express interest/, "roundtable recruitment action"],
+  [/Request a September roundtable seat/, "roundtable recruitment action"],
+  [/href="\/mental-health\/pilot-interest\/">Express interest in a founding pilot/, "first-window pilot action"],
   [/Explore a workshop/, "workshop inquiry action"],
   [/Discuss an advisory session/, "advisory inquiry action"],
   [/Hii offerings are educational and strategic/, "shared offering boundary"],
@@ -421,6 +422,34 @@ for (const assetPath of [
   catch { fail(`Care asset is missing: ${assetPath}`); }
 }
 if (!failures.some((item) => item.includes("Care asset"))) pass("named Care candidate and concept assets are present");
+
+const carePilotInterestPage = (await read("_site/mental-health/pilot-interest/index.html")).toString("utf8");
+for (const [pattern, label] of [
+  [/name="care-pilot-interest"/, "Netlify form name"],
+  [/data-netlify="true"/, "Netlify form activation"],
+  [/action="\/mental-health\/pilot-interest\/thanks\/"/, "confirmation route"],
+  [/name="full-name"[^>]+required/, "required name"],
+  [/name="email"[^>]+required/, "required email"],
+  [/name="role-title"[^>]+required/, "required role"],
+  [/name="interest"/, "engagement-interest choices"],
+  [/name="contact-permission"[^>]+required/, "contact consent"]
+]) {
+  if (!pattern.test(carePilotInterestPage)) fail(`CARE pilot interest form is missing ${label}`);
+  else pass(`CARE pilot interest form includes ${label}`);
+}
+const carePilotThanksPage = (await read("_site/mental-health/pilot-interest/thanks/index.html")).toString("utf8");
+if (!carePilotThanksPage.includes("Thank you. We will follow up.")) fail("CARE pilot confirmation page is missing");
+else pass("CARE pilot confirmation page is present");
+
+const roundtablePage = (await read("_site/mental-health/roundtable/index.html")).toString("utf8");
+for (const [pattern, label] of [
+  [/Request a roundtable seat/, "primary seat-request action"],
+  [/6:00 to 7:00 PM Central/, "Milwaukee session time"],
+  [/12:00 to 1:00 PM Central/, "Zoom session time"]
+]) {
+  if (!pattern.test(roundtablePage)) fail(`roundtable page is missing ${label}`);
+  else pass(`roundtable page includes ${label}`);
+}
 
 for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
   const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
