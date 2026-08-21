@@ -1,0 +1,65 @@
+---
+layout: layouts/world.njk
+title: Help Shape the Hii World Model
+description: Tell Hii what would help you understand, verify, and navigate a rapidly changing world.
+permalink: /understand/interest/index.html
+robots: noindex
+---
+
+<article class="roundtable-interest-page">
+  <header class="section-shell internal-page-hero roundtable-interest-hero">
+    <a class="back-link" href="/understand/">← Back to Understand</a>
+    <p class="eyebrow">Help shape the public World Model</p>
+    <h1>What would help you feel more oriented?</h1>
+    <p class="lede">Hii is developing a free public orientation layer first and exploring what belongs in a deeper service. Tell us what you would want to see, verify, follow, or receive.</p>
+  </header>
+
+  <section class="section-shell inquiry-form-section roundtable-form-section" aria-labelledby="world-model-form-heading">
+    <div class="inquiry-form-heading">
+      <p class="eyebrow">Early interest</p>
+      <h2 id="world-model-form-heading">Help us build something genuinely useful.</h2>
+      <p>You can share as much or as little as you like. Hii may use responses in aggregate to guide the public World Model and future orientation services.</p>
+    </div>
+
+    <form class="research-inquiry-form" name="world-model-interest" method="post" data-netlify="true" netlify-honeypot="company-website" action="/understand/thanks/">
+      <input type="hidden" name="form-name" value="world-model-interest">
+      <p class="form-honeypot"><label>Do not fill this out if you are human: <input name="company-website"></label></p>
+      <fieldset>
+        <legend>World Model interest</legend>
+        <div class="form-grid">
+          <label><span>Name</span><input type="text" name="name" autocomplete="name"></label>
+          <label><span>Email address <strong aria-hidden="true">*</strong></span><input type="email" name="email" autocomplete="email" required></label>
+
+          <fieldset class="form-field-wide form-choice-group">
+            <legend>What would you most want help understanding? <span>(Choose any)</span></legend>
+            <label><input type="checkbox" name="topics" value="work-livelihood"> Work and livelihood</label>
+            <label><input type="checkbox" name="topics" value="ai-technology"> AI and technology</label>
+            <label><input type="checkbox" name="topics" value="climate-environment"> Climate and environment</label>
+            <label><input type="checkbox" name="topics" value="politics-institutions"> Politics and institutions</label>
+            <label><input type="checkbox" name="topics" value="education-children"> Education and children</label>
+            <label><input type="checkbox" name="topics" value="information-reality"> Information and reality</label>
+            <label><input type="checkbox" name="topics" value="human-adaptation"> Human adaptation and relationships</label>
+          </fieldset>
+
+          <label class="form-field-wide"><span>What would help you feel more oriented?</span><textarea name="orientation-needs" rows="5" placeholder="What do you wish you could see, verify, connect, or understand more clearly?"></textarea></label>
+          <label class="form-field-wide"><span>What should Hii be tracking?</span><textarea name="signals-to-track" rows="4" placeholder="Share a topic, pattern, source, question, or signal you think deserves sustained attention."></textarea></label>
+
+          <fieldset class="form-field-wide form-choice-group">
+            <legend>How might you want to receive deeper orientation? <span>(Choose any)</span></legend>
+            <label><input type="checkbox" name="delivery" value="public-website"> Free public website</label>
+            <label><input type="checkbox" name="delivery" value="daily-briefing"> Concise daily briefing</label>
+            <label><input type="checkbox" name="delivery" value="weekly-briefing"> Weekly synthesis</label>
+            <label><input type="checkbox" name="delivery" value="deeper-access"> Deeper research and evidence access</label>
+          </fieldset>
+        </div>
+
+        <label class="consent-field"><input type="checkbox" name="contact-permission" required><span>I give Hii permission to contact me about the World Model and related orientation work.</span></label>
+        <button class="button-link form-submit" type="submit">Share what would help</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <footer class="section-shell internal-page-return">
+    <a class="back-link" href="/understand/">← Back to Understand</a>
+  </footer>
+</article>
