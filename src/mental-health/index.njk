@@ -26,7 +26,11 @@ permalink: /mental-health/index.html
   </div>
   <div class="care-hero-bridge">
     <p class="care-hero-thesis">The task is to understand what the interaction is doing.</p>
-    <a class="text-link care-hero-action" href="#care-programs">Explore our programs <span aria-hidden="true">↓</span></a>
+    <div class="care-hero-conversion" aria-label="CARE participation options">
+      <a class="button-link" href="/mental-health/roundtable/interest/">Request a September roundtable seat</a>
+      <a class="text-link" href="/mental-health/pilot-interest/">Express interest in a founding pilot <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="care-hero-dates">Milwaukee · September 9 · 6:00 PM Central<br>Zoom · September 10 · 12:00 PM Central</p>
   </div>
 </section>
 
@@ -71,7 +75,7 @@ permalink: /mental-health/index.html
         <p class="care-program-format">{{ program.format }}</p>
         <p>{% if program.id == 'facilitated-roundtable' %}A complimentary listening roundtable for clinicians encountering AI-related experiences in practice.{% elif program.id == 'introductory-workshop' %}A tailored introduction to human–AI relationship literacy, clinician preparedness, and practical AI navigation.{% else %}A focused working session to clarify needs, shape a bounded pilot, or design humane safeguards and next steps.{% endif %}</p>
         {% if program.id == 'facilitated-roundtable' %}
-          <a class="button-link care-card-action" href="/mental-health/roundtable/">Learn more and express interest</a>
+          <a class="button-link care-card-action" href="/mental-health/roundtable/interest/">Request a September roundtable seat</a>
         {% elif program.id == 'introductory-workshop' %}
           <a class="text-link care-card-action" href="mailto:hello@hii.earth?subject=Hii%20Customized%20Workshop%20Inquiry">Explore a workshop <span aria-hidden="true">↗</span></a>
         {% else %}
@@ -115,7 +119,7 @@ permalink: /mental-health/index.html
   </div>
 </section>
 
-<section class="care-pilot-section">
+<section class="care-pilot-section" id="founding-pilot">
   <div class="section-shell care-pilot-inner">
     <div>
       <p class="eyebrow">{{ pilot.status.display }}</p>
@@ -131,7 +135,7 @@ permalink: /mental-health/index.html
         </div>
       </aside>
       <p class="care-program-boundary">{{ pilot.boundary }}</p>
-      <a class="text-link" href="{{ inquiry.href }}">Ask about the founding pilot <span aria-hidden="true">↗</span></a>
+      <a class="button-link" href="/mental-health/pilot-interest/">Express interest in the founding pilot</a>
     </div>
     <aside class="care-pilot-scope" aria-label="Founding pilot scope">
       <p class="care-card-label">The session includes</p>
@@ -190,7 +194,8 @@ permalink: /mental-health/index.html
     <h2 id="care-closing-heading">Together, we care.</h2>
   </div>
   <div class="care-closing-actions">
-    <a class="button-link" href="{{ inquiry.href }}">Begin a CARE conversation</a>
+    <a class="button-link" href="/mental-health/roundtable/interest/">Request a roundtable seat</a>
+    <a class="text-link" href="/mental-health/pilot-interest/">Explore a CARE pilot</a>
     <a class="text-link" href="/?return=hii">Return to Hii</a>
   </div>
 </section>

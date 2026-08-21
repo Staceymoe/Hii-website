@@ -1,0 +1,52 @@
+---
+layout: layouts/world.njk
+title: CARE Pilot Interest
+description: Tell Hii about your organization’s interest in a clinician education pilot, workshop, briefing, or advisory engagement.
+permalink: /mental-health/pilot-interest/index.html
+robots: noindex
+---
+
+<article class="roundtable-interest-page care-pilot-interest-page">
+  <header class="section-shell internal-page-hero roundtable-interest-hero">
+    <a class="back-link" href="/mental-health/">← Back to CARE</a>
+    <p class="eyebrow">CARE pilot and organizational interest</p>
+    <h1>Start with what your team needs.</h1>
+    <p class="lede">Tell us enough to understand the setting, the people involved, and the question you are trying to address. Hii will follow up from hello@hii.earth to identify the most useful next conversation.</p>
+  </header>
+
+  <section class="section-shell inquiry-form-section roundtable-form-section" aria-labelledby="care-pilot-form-heading">
+    <div class="inquiry-form-heading">
+      <p class="eyebrow">Short interest form</p>
+      <h2 id="care-pilot-form-heading">What would help your organization prepare?</h2>
+      <p>Please do not include client or patient names, identifying details, protected health information, crisis information, or confidential records.</p>
+    </div>
+
+    <form class="research-inquiry-form" name="care-pilot-interest" method="post" data-netlify="true" netlify-honeypot="company-website" action="/mental-health/pilot-interest/thanks/">
+      <input type="hidden" name="form-name" value="care-pilot-interest">
+      <p class="form-honeypot"><label>Do not fill this out if you are human: <input name="company-website"></label></p>
+      <fieldset>
+        <legend>CARE pilot and organizational interest</legend>
+        <div class="form-grid">
+          <label><span>Full name <strong aria-hidden="true">*</strong></span><input type="text" name="full-name" autocomplete="name" required></label>
+          <label><span>Email address <strong aria-hidden="true">*</strong></span><input type="email" name="email" autocomplete="email" required></label>
+          <label><span>Role or title <strong aria-hidden="true">*</strong></span><input type="text" name="role-title" autocomplete="organization-title" required></label>
+          <label><span>Organization or practice</span><input type="text" name="organization" autocomplete="organization"></label>
+          <label class="form-field-wide"><span>Organization or practice setting</span><select name="organization-setting"><option value="">Select one</option><option value="private-or-group-practice">Private or group practice</option><option value="health-system-or-clinic">Health system or clinic</option><option value="community-mental-health">Community mental health</option><option value="education-or-training">Education or training program</option><option value="professional-association">Professional association</option><option value="other">Other</option></select></label>
+          <fieldset class="form-field-wide form-choice-group">
+            <legend>What are you interested in?</legend>
+            <label><input type="checkbox" name="interest" value="founding-pilot"> Founding clinician education pilot</label>
+            <label><input type="checkbox" name="interest" value="workshop-briefing"> Customized workshop or briefing</label>
+            <label><input type="checkbox" name="interest" value="advisory"> Advisory or strategy session</label>
+            <label><input type="checkbox" name="interest" value="unsure"> Not sure yet</label>
+          </fieldset>
+          <label><span>Approximate number of participants</span><input type="text" name="participant-count" inputmode="numeric"></label>
+          <label><span>Preferred timing</span><select name="preferred-timing"><option value="">Select one</option><option value="next-30-days">Within 30 days</option><option value="next-90-days">Within 90 days</option><option value="later">Later</option><option value="exploring">Just exploring</option></select></label>
+          <label class="form-field-wide"><span>What question, need, or opportunity are you trying to address?</span><textarea name="need-or-opportunity" rows="5" aria-describedby="care-phi-reminder"></textarea><small id="care-phi-reminder">Organizational context only. Do not include identifying or protected health information.</small></label>
+        </div>
+        <label class="consent-field"><input type="checkbox" name="contact-permission" required><span>I give Hii permission to contact me about CARE pilots, workshops, briefings, or advisory work.</span></label>
+        <label class="consent-field"><input type="checkbox" name="no-phi-confirmation" required><span>I confirm that I have not included client names, identifying details, or protected health information.</span></label>
+        <button class="button-link form-submit" type="submit">Share my interest</button>
+      </fieldset>
+    </form>
+  </section>
+</article>
