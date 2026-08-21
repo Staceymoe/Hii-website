@@ -165,7 +165,10 @@ const understandRequired = [
   [/Epistemic Guardrails/, "shared Epistemic Guardrails artifact"],
   [/Explore Human-AI Relationships/, "Relationships cross-world link"],
   [/class="disclosure-list"/, "accessible disclosure-list component"],
-  [/Not another feed\. A place to orient\./, "public boundary"]
+  [/Not another feed\. A place to orient\./, "public boundary"],
+  [/world-model-eight-circles-concept-mobile-v1\.mp4[\s\S]*world-model-eight-circles-concept-v1\.mp4/, "responsive World Model concept visualization"],
+  [/Notify me when it launches/, "World Model launch-notification action"],
+  [/follow Hii and turn on account notifications/i, "World Model social-notification guidance"]
 ];
 for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
@@ -213,8 +216,18 @@ try {
 }
 
 const understandSource = (await read("src/understand/index.njk")).toString("utf8");
-if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("authorized Understand draft is missing its orientation-first opening");
-else pass("authorized Understand draft is present for branch review");
+if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("released Understand page is missing its orientation-first opening");
+else pass("released Understand page is present");
+for (const assetPath of [
+  "_site/assets/media/understand/world-model-eight-circles-concept-v1.mp4",
+  "_site/assets/media/understand/world-model-eight-circles-concept-poster-v1.jpg",
+  "_site/assets/media/understand/world-model-eight-circles-concept-mobile-v1.mp4",
+  "_site/assets/media/understand/world-model-eight-circles-concept-mobile-poster-v1.jpg"
+]) {
+  try { await access(path.join(root, assetPath)); }
+  catch { fail(`responsive World Model asset is missing: ${assetPath}`); }
+}
+if (!failures.some((item) => item.includes("responsive World Model asset"))) pass("responsive World Model motion and poster assets are present");
 
 const understandInterestPage = (await read("_site/understand/interest/index.html")).toString("utf8");
 for (const [pattern, label] of [
@@ -225,7 +238,8 @@ for (const [pattern, label] of [
   [/name="email"[^>]+required/, "required email field"],
   [/name="orientation-needs"/, "orientation-needs field"],
   [/name="signals-to-track"/, "signal field"],
-  [/name="contact-permission"[^>]+required/, "contact consent"]
+  [/name="contact-permission"[^>]+required/, "contact consent"],
+  [/Please notify me when the public World Model launches or enters early access/, "launch-notification consent"]
 ]) {
   if (!pattern.test(understandInterestPage)) fail(`World Model interest form is missing ${label}`);
   else pass(`World Model interest form includes ${label}`);
