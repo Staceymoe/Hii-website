@@ -187,7 +187,9 @@ const sharedFooterPages = [
   "_site/relationships/research-inquiry/index.html",
   "_site/relationships/the-relationship-as-unit-of-analysis/index.html",
   "_site/research/index.html",
-  "_site/understand/index.html"
+  "_site/understand/index.html",
+  "_site/understand/interest/index.html",
+  "_site/understand/thanks/index.html"
 ];
 for (const sharedFooterPath of sharedFooterPages) {
   const sharedFooterPage = (await read(sharedFooterPath)).toString("utf8");
@@ -213,6 +215,26 @@ try {
 const understandSource = (await read("src/understand/index.njk")).toString("utf8");
 if (!understandSource.includes("The world is changing faster than any one person can process.")) fail("authorized Understand draft is missing its orientation-first opening");
 else pass("authorized Understand draft is present for branch review");
+
+const understandInterestPage = (await read("_site/understand/interest/index.html")).toString("utf8");
+for (const [pattern, label] of [
+  [/name="world-model-interest"/, "Netlify form name"],
+  [/data-netlify="true"/, "Netlify form activation"],
+  [/netlify-honeypot="company-website"/, "spam protection"],
+  [/action="\/understand\/thanks\/"/, "confirmation route"],
+  [/name="email"[^>]+required/, "required email field"],
+  [/name="orientation-needs"/, "orientation-needs field"],
+  [/name="signals-to-track"/, "signal field"],
+  [/name="contact-permission"[^>]+required/, "contact consent"]
+]) {
+  if (!pattern.test(understandInterestPage)) fail(`World Model interest form is missing ${label}`);
+  else pass(`World Model interest form includes ${label}`);
+}
+if (!understandPage.includes('href="/understand/interest/"')) fail("Understand CTA does not route to the World Model interest form");
+else pass("Understand CTA routes to the World Model interest form");
+const understandThanksPage = (await read("_site/understand/thanks/index.html")).toString("utf8");
+if (!understandThanksPage.includes("Thank you for helping shape the inquiry.")) fail("World Model confirmation page is missing its acknowledgement");
+else pass("World Model confirmation page is present");
 
 for (const assetPath of [
   "_site/assets/media/relate/human-ai-relationship-still.png",
