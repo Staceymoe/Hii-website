@@ -489,13 +489,13 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .care-overwhelm-reduced-motion { display: none !important; }
 .care-overwhelm-visual figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; }
 .care-adaptation-section { color: var(--ink); background: var(--ivory); border-bottom: 1px solid rgba(8,11,16,0.16); }
-.care-adaptation-inner { display: grid; grid-template-columns: minmax(22rem, 0.7fr) minmax(36rem, 1.3fr); gap: clamp(3rem, 7vw, 8rem); align-items: center; padding-block: clamp(4.5rem, 8vw, 8rem); }
+.care-adaptation-inner { display: grid; grid-template-columns: minmax(22rem, 0.7fr) minmax(36rem, 1.3fr); gap: clamp(3rem, 6vw, 6.5rem); align-items: center; padding-block: clamp(2.25rem, 4vw, 3.75rem); }
 .care-adaptation-copy .eyebrow { color: #745f38; }
-.care-adaptation-copy h2 { max-width: 10ch; font-size: clamp(3rem, 5.1vw, 5.6rem); }
+.care-adaptation-copy h2 { max-width: 10ch; font-size: clamp(3rem, 4.5vw, 4.9rem); }
 .care-adaptation-copy > p:not(.eyebrow) { max-width: 38rem; color: #56534d; font-size: clamp(1rem, 1.3vw, 1.16rem); line-height: 1.72; }
 .care-adaptation-links { display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; margin-top: 2.25rem; }
 .care-adaptation-links .text-link { color: var(--ink); border-color: rgba(8,11,16,0.42); }
-.care-adaptation-model { position: relative; min-height: 29rem; }
+.care-adaptation-model { position: relative; min-height: 25rem; }
 .care-adaptation-arrows { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .care-adaptation-arrows path { fill: none; stroke: #8e7344; stroke-width: 1.6; marker-end: url(#care-arrow-gold); }
 .care-adaptation-arrows marker path { fill: #8e7344; stroke: none; }
