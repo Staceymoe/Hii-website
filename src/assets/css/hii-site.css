@@ -496,7 +496,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .care-adaptation-links { display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; margin-top: 2.25rem; }
 .care-adaptation-links .text-link { color: var(--ink); border-color: rgba(8,11,16,0.42); }
 .care-adaptation-visual { width: 100%; margin: 0; align-self: center; }
-.care-adaptation-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #f3eee4; }
+.care-adaptation-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: transparent; }
 .care-adaptation-frame video, .care-adaptation-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .care-adaptation-reduced-motion { display: none !important; }
 .care-adaptation-visual figcaption { margin-top: 0.65rem; color: #6b6254; font-size: 0.74rem; letter-spacing: 0.04em; }

@@ -427,8 +427,8 @@ for (const assetPath of [
   "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg",
   "_site/assets/media/care/care-overwhelm-final-v1.mp4",
   "_site/assets/media/care/care-overwhelm-final-poster-v1.webp",
-  "_site/assets/media/care/care-human-ai-adaptation-final-v1.mp4",
-  "_site/assets/media/care/care-human-ai-adaptation-final-poster-v1.webp"
+  "_site/assets/media/care/care-human-ai-adaptation-v2-alpha.webm",
+  "_site/assets/media/care/care-human-ai-adaptation-v2-alpha-poster.png"
 ]) {
   try { await access(path.join(root, assetPath)); }
   catch { fail(`Care asset is missing: ${assetPath}`); }
