@@ -476,11 +476,36 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .care-hero-proof cite { margin-top: auto; padding-top: 0.65rem; border-top: 1px solid rgba(203,184,142,0.62); font-size: clamp(0.42rem, 0.55vw, 0.56rem); font-style: normal; line-height: 1.45; letter-spacing: 0.03em; }
 .care-hero-visual figcaption, .care-field-brief-visual figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; }
 .care-therapist-boundary { background: #0b1017; border-block: 1px solid var(--line); }
-.care-therapist-boundary-inner { padding-block: clamp(3rem, 6vw, 6rem); }
+.care-therapist-boundary-inner { padding-block: clamp(2rem, 3.5vw, 3.5rem); }
 .care-therapist-statement { max-width: 76rem; margin: 0; padding: clamp(1.6rem, 3.2vw, 3rem); color: var(--ivory); background: rgba(242,237,226,0.045); border: 1px solid var(--line); border-left: 3px solid var(--champagne); font-size: clamp(1.35rem, 2.25vw, 2.15rem); font-weight: 300; line-height: 1.42; letter-spacing: -0.025em; }
-.care-opening-invitation { display: grid; grid-template-columns: minmax(14rem, 0.65fr) minmax(20rem, 1.35fr); gap: clamp(2rem, 6vw, 7rem); align-items: end; margin-top: clamp(3.5rem, 7vw, 7rem); padding-top: clamp(2.5rem, 4vw, 4rem); border-top: 1px solid var(--line); }
-.care-opening-invitation p { margin: 0; color: var(--champagne); font-size: clamp(0.75rem, 1vw, 0.92rem); font-weight: 600; line-height: 1.75; letter-spacing: 0.13em; text-transform: uppercase; }
-.care-opening-invitation h2 { max-width: none; margin: 0; font-size: clamp(3.4rem, 7vw, 7rem); font-weight: 200; line-height: 0.96; letter-spacing: -0.06em; }
+.care-overwhelm-section { background: #05080d; border-bottom: 1px solid var(--line); }
+.care-overwhelm-inner { display: grid; grid-template-columns: minmax(24rem, 0.78fr) minmax(30rem, 1.22fr); gap: clamp(2.5rem, 6vw, 7rem); align-items: center; padding-block: clamp(4rem, 7vw, 7rem); }
+.care-overwhelm-copy h2 { max-width: 13ch; font-size: clamp(2.8rem, 4.8vw, 5.2rem); line-height: 1.02; }
+.care-overwhelm-copy > p:not(.eyebrow):not(.care-overwhelm-thesis) { max-width: 42rem; color: var(--ivory-soft); font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.75; }
+.care-overwhelm-thesis { max-width: 35rem; margin-top: clamp(2rem, 4vw, 3.5rem); padding-left: 1.35rem; color: var(--ivory); border-left: 1px solid var(--champagne); font-size: clamp(1.15rem, 1.7vw, 1.45rem); line-height: 1.55; }
+.care-overwhelm-visual { width: min(100%, 43rem); margin: 0; justify-self: end; }
+.care-overwhelm-frame { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #000; border: 1px solid rgba(224,198,141,0.24); box-shadow: 0 1.5rem 5rem rgba(0,0,0,0.32); }
+.care-overwhelm-frame video, .care-overwhelm-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.care-overwhelm-reduced-motion { display: none !important; }
+.care-overwhelm-visual figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; }
+.care-adaptation-section { color: var(--ink); background: var(--ivory); border-bottom: 1px solid rgba(8,11,16,0.16); }
+.care-adaptation-inner { display: grid; grid-template-columns: minmax(22rem, 0.7fr) minmax(36rem, 1.3fr); gap: clamp(3rem, 7vw, 8rem); align-items: center; padding-block: clamp(4.5rem, 8vw, 8rem); }
+.care-adaptation-copy .eyebrow { color: #745f38; }
+.care-adaptation-copy h2 { max-width: 10ch; font-size: clamp(3rem, 5.1vw, 5.6rem); }
+.care-adaptation-copy > p:not(.eyebrow) { max-width: 38rem; color: #56534d; font-size: clamp(1rem, 1.3vw, 1.16rem); line-height: 1.72; }
+.care-adaptation-links { display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; margin-top: 2.25rem; }
+.care-adaptation-links .text-link { color: var(--ink); border-color: rgba(8,11,16,0.42); }
+.care-adaptation-model { position: relative; min-height: 29rem; }
+.care-adaptation-arrows { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.care-adaptation-arrows path { fill: none; stroke: #8e7344; stroke-width: 1.6; marker-end: url(#care-arrow-gold); }
+.care-adaptation-arrows marker path { fill: #8e7344; stroke: none; }
+.care-adaptation-node, .care-adaptation-center { position: absolute; top: 50%; display: grid; align-content: center; justify-items: center; text-align: center; transform: translateY(-50%); }
+.care-adaptation-node { width: 13.5rem; aspect-ratio: 1; background: #e5d6b6; border: 1px solid #8e7344; border-radius: 50%; box-shadow: 0 0 0 1.25rem rgba(142,115,68,0.06), 0 0 0 2.5rem rgba(142,115,68,0.035); }
+.care-adaptation-node--human { left: 2%; }
+.care-adaptation-node--ai { right: 2%; }
+.care-adaptation-center { left: 50%; width: 12rem; min-height: 10rem; padding: 1rem; transform: translate(-50%, -50%); }
+.care-adaptation-node strong, .care-adaptation-center strong { margin-bottom: 0.8rem; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.care-adaptation-node span, .care-adaptation-center span { color: #514b41; font-size: 0.9rem; line-height: 1.55; }
 .care-practice-section { color: var(--ink); background: var(--ivory); }
 .care-practice-inner { padding-block: clamp(4rem, 7vw, 7rem); }
 .care-practice-inner .eyebrow { color: #6c5d3e; }
@@ -744,7 +769,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-paper-document .paper-document-heading { display: block; }
   .relate-paper-document .paper-document-actions { justify-content: flex-start; margin-top: 1.5rem; }
   .relate-paper-document .paper-document-viewer, .relate-paper-document .paper-document-fallback { display: none; }
-  .care-hero, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
+  .care-hero, .care-overwhelm-inner, .care-adaptation-inner, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
   .care-hero { gap: 1.5rem; padding-block: 1.5rem 2.5rem; }
   .care-hero-copy { grid-row: 1; }
   .care-hero-kicker { margin-bottom: 0.8rem; font-size: 0.62rem; line-height: 1.45; }
@@ -760,11 +785,21 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .care-hero-proof strong { font-size: 3rem; }
   .care-hero-proof span { max-width: 34rem; font-size: 0.9rem; }
   .care-hero-proof cite { margin-top: 1rem; font-size: 0.68rem; }
-  .care-therapist-boundary-inner { padding-block: 2.75rem 3.25rem; }
+  .care-therapist-boundary-inner { padding-block: 1.5rem 2.25rem; }
   .care-therapist-statement { padding: 1.25rem; font-size: clamp(1.08rem, 4.6vw, 1.3rem); line-height: 1.5; }
-  .care-opening-invitation { grid-template-columns: 1fr; gap: 1rem; margin-top: 2.75rem; padding-top: 2.25rem; }
-  .care-opening-invitation h2 { max-width: 9ch; font-size: clamp(2.8rem, 11vw, 3.65rem); line-height: 1; }
-  .care-practice-inner, .care-lenses-section, .care-offers-section, .care-questions-inner, .care-pilot-inner, .care-field-brief-section { padding-block: 3.75rem; }
+  .care-overwhelm-inner, .care-adaptation-inner, .care-practice-inner, .care-lenses-section, .care-offers-section, .care-questions-inner, .care-pilot-inner, .care-field-brief-section { padding-block: 3.75rem; }
+  .care-overwhelm-inner { gap: 2.5rem; }
+  .care-overwhelm-copy h2 { font-size: clamp(2.55rem, 11vw, 3.5rem); }
+  .care-overwhelm-visual { width: min(100%, 34rem); margin-inline: auto; justify-self: center; }
+  .care-adaptation-inner { gap: 2.75rem; }
+  .care-adaptation-copy h2 { font-size: clamp(2.75rem, 12vw, 4rem); }
+  .care-adaptation-links { align-items: flex-start; flex-direction: column; }
+  .care-adaptation-model { min-height: 24rem; }
+  .care-adaptation-node { width: min(31vw, 9.5rem); }
+  .care-adaptation-node span { font-size: 0.68rem; }
+  .care-adaptation-center { width: min(28vw, 8rem); padding: 0.45rem; }
+  .care-adaptation-center strong { font-size: 0.58rem; }
+  .care-adaptation-center span { font-size: 0.68rem; }
   .care-public-inner, .care-boundary-inner, .care-closing-section { padding-block: 3.5rem; }
   .care-practice-inner h2, .care-pilot-inner h2 { font-size: clamp(2.5rem, 10.5vw, 3.35rem); }
   .care-closing-section h2 { font-size: clamp(2.75rem, 11vw, 3.65rem); }
@@ -806,6 +841,11 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .paper-program-flow li:not(:last-child)::after { top: auto; right: 50%; bottom: -0.95rem; transform: rotate(90deg); }
   .paper-document-actions { justify-content: flex-start; margin-top: 1.5rem; }
   .paper-document-frame { min-height: 42rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-overwhelm-frame video { display: none; }
+  .care-overwhelm-reduced-motion { display: block !important; }
 }
 @media (max-width: 460px) {
   .header-actions { gap: 0.7rem; }

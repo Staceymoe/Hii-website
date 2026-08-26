@@ -390,6 +390,10 @@ const careRequired = [
   [/When AI becomes part of emotional life, care needs a wider lens\./, "approved CARE hero"],
   [/Hii CARE helps clinicians and institutions understand what happens when AI becomes part of emotional, relational, and clinical life\./, "clear CARE purpose"],
   [/lived human-AI experience, longitudinal research, and clinical understanding/, "CARE bridge formulation"],
+  [/data-care-play-once/, "single-play overwhelm animation"],
+  [/CARE helps clinicians examine the role the interaction is playing within the whole of a person’s life./, "whole-person overwhelm frame"],
+  [/Human–AI adaptation/, "bidirectional adaptation model"],
+  [/Meaning emerges through the interaction./, "relationship-dynamic statement"],
   [/Clinical risk[\s\S]*Situational overwhelm[\s\S]*Interaction effects/, "three-lens frame"],
   [/Now forming/, "active roundtable status"],
   [/Available for organizations/, "organizational workshop status"],
@@ -420,7 +424,9 @@ if (careH1Count !== 1) fail(`care page has ${careH1Count} h1 elements; expected 
 else pass("care page has one h1");
 for (const assetPath of [
   "_site/assets/media/care/care-clinician-chair-circle-candidate-v1.png",
-  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg"
+  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg",
+  "_site/assets/media/care/care-overwhelm-final-v1.mp4",
+  "_site/assets/media/care/care-overwhelm-final-poster-v1.webp"
 ]) {
   try { await access(path.join(root, assetPath)); }
   catch { fail(`Care asset is missing: ${assetPath}`); }
