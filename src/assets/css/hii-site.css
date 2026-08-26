@@ -458,18 +458,22 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .form-submit:disabled { cursor: not-allowed; }
 
 /* Care: mental health and clinical practice */
-.care-hero { display: grid; grid-template-columns: minmax(23rem, 0.74fr) minmax(34rem, 1.26fr); gap: clamp(2rem, 4vw, 4rem) clamp(2.5rem, 5vw, 5rem); align-items: start; padding-block: clamp(1.35rem, 2.8vh, 2.25rem) clamp(2.25rem, 4.5vh, 3.75rem); }
-.care-hero-kicker { margin: -0.55rem 0 1.25rem; color: var(--ivory-soft); font-size: 0.68rem; font-weight: 600; line-height: 1.5; letter-spacing: 0.12em; text-transform: uppercase; }
-.care-hero h1 { max-width: 13ch; margin-bottom: clamp(1.25rem, 2.4vh, 2rem); font-size: clamp(3.1rem, 4.6vw, 4.9rem); line-height: 1.01; }
-.care-hero .lede { max-width: 39rem; }
-.care-hero-bridge { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(20rem, 1fr) minmax(20rem, auto); gap: 0.85rem 2rem; align-items: end; padding-top: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); }
-.care-hero-thesis { grid-row: 1 / span 2; max-width: 20ch; margin: 0; color: var(--champagne); font-size: clamp(1.65rem, 3vw, 3.15rem); line-height: 1.18; letter-spacing: -0.035em; }
-.care-hero-conversion { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 1rem 1.4rem; }
-.care-hero-conversion .button-link { font-weight: 650; }
-.care-hero-dates { margin: 0; color: var(--ivory-soft); font-size: 0.82rem; line-height: 1.65; text-align: right; }
-.care-hero-visual { margin: 2.55rem 0 0; }
-.care-hero-crop { aspect-ratio: 16 / 7; overflow: hidden; background: #050708; border: 1px solid var(--line); }
-.care-hero-crop img { display: block; width: 144%; max-width: none; height: auto; transform: translateX(-30.55%); }
+.care-hero { display: grid; grid-template-columns: minmax(22rem, 0.88fr) minmax(34rem, 1.12fr); gap: clamp(2rem, 4vw, 4.25rem); align-items: center; padding-block: clamp(1rem, 2vh, 1.6rem) clamp(1.5rem, 3vh, 2.4rem); }
+.care-hero-copy .eyebrow { margin-bottom: 0.45rem; }
+.care-hero-kicker { margin: 0 0 0.9rem; color: var(--ivory-soft); font-size: 0.66rem; font-weight: 600; line-height: 1.45; letter-spacing: 0.12em; text-transform: uppercase; }
+.care-hero h1 { max-width: 14ch; margin-bottom: clamp(0.9rem, 1.7vh, 1.3rem); font-size: clamp(2.65rem, 3.75vw, 4.15rem); line-height: 1.02; }
+.care-hero .lede { max-width: 38rem; margin-bottom: 0; font-size: clamp(0.96rem, 1.15vw, 1.08rem); line-height: 1.62; }
+.care-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.25rem; margin-top: clamp(1.15rem, 2vh, 1.6rem); }
+.care-hero-actions .button-link { padding: 0.78rem 1rem; font-size: 0.84rem; font-weight: 650; }
+.care-hero-actions .text-link { font-size: 0.82rem; }
+.care-hero-visual { min-width: 0; margin: 0; }
+.care-hero-media { position: relative; }
+.care-hero-image-frame { aspect-ratio: 1.35; overflow: hidden; background: #050708; border: 1px solid var(--line); }
+.care-hero-image-frame img { display: block; width: 132%; max-width: none; height: auto; transform: translateX(-22%); }
+.care-hero-proof { position: absolute; top: 38.2%; left: 73.4%; display: flex; flex-direction: column; width: 22.5%; min-height: 44.5%; padding: clamp(0.7rem, 1.15vw, 1rem); color: var(--ivory); background: #100f0e; border: 1px solid rgba(203,184,142,0.24); box-shadow: 0 0.75rem 2.5rem rgba(0,0,0,0.26); transform: rotate(2.5deg); }
+.care-hero-proof strong { color: #d8ba8e; font-size: clamp(2rem, 3.2vw, 3.25rem); font-weight: 300; line-height: 1; letter-spacing: -0.05em; }
+.care-hero-proof span { margin-top: 0.55rem; font-size: clamp(0.54rem, 0.77vw, 0.72rem); line-height: 1.45; }
+.care-hero-proof cite { margin-top: auto; padding-top: 0.65rem; border-top: 1px solid rgba(203,184,142,0.62); font-size: clamp(0.42rem, 0.55vw, 0.56rem); font-style: normal; line-height: 1.45; letter-spacing: 0.03em; }
 .care-hero-visual figcaption, .care-field-brief-visual figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; }
 .care-therapist-boundary { background: #0b1017; border-block: 1px solid var(--line); }
 .care-therapist-boundary-inner { padding-block: clamp(3rem, 6vw, 6rem); }
@@ -741,19 +745,21 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-paper-document .paper-document-actions { justify-content: flex-start; margin-top: 1.5rem; }
   .relate-paper-document .paper-document-viewer, .relate-paper-document .paper-document-fallback { display: none; }
   .care-hero, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
-  .care-hero { gap: 1.75rem; padding-block: 2rem 3rem; }
+  .care-hero { gap: 1.5rem; padding-block: 1.5rem 2.5rem; }
   .care-hero-copy { grid-row: 1; }
-  .care-hero-kicker { margin-bottom: 1rem; font-size: 0.64rem; line-height: 1.45; }
-  .care-hero h1 { max-width: 14ch; margin-bottom: 1.25rem; font-size: clamp(2.55rem, 10vw, 3.35rem); line-height: 1.02; }
-  .care-hero .lede { font-size: clamp(1.05rem, 4.5vw, 1.2rem); line-height: 1.62; }
+  .care-hero-kicker { margin-bottom: 0.8rem; font-size: 0.62rem; line-height: 1.45; }
+  .care-hero h1 { max-width: 14ch; margin-bottom: 1rem; font-size: clamp(2.35rem, 9.5vw, 3.1rem); line-height: 1.03; }
+  .care-hero .lede { font-size: 0.98rem; line-height: 1.58; }
+  .care-hero-actions { align-items: flex-start; flex-direction: column; width: 100%; margin-top: 1.25rem; }
+  .care-hero-actions .button-link { width: 100%; text-align: center; }
   .care-hero-visual { grid-row: 2; margin: 0; }
-  .care-hero-bridge { grid-row: 3; grid-column: auto; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1.25rem; padding-top: 1.75rem; }
-  .care-hero-thesis { grid-row: auto; font-size: clamp(1.65rem, 7vw, 2rem); }
-  .care-hero-conversion { align-items: flex-start; justify-content: flex-start; flex-direction: column; width: 100%; }
-  .care-hero-conversion .button-link { width: 100%; text-align: center; }
-  .care-hero-dates { font-size: 0.8rem; text-align: left; }
-  .care-hero-crop { aspect-ratio: 16 / 9; }
-  .care-hero-crop img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: none; }
+  .care-hero-media { display: grid; gap: 1rem; }
+  .care-hero-image-frame { aspect-ratio: 1; }
+  .care-hero-image-frame img { width: 177%; transform: translateX(-27%); }
+  .care-hero-proof { position: static; width: 100%; min-height: 0; padding: 1.15rem; transform: none; }
+  .care-hero-proof strong { font-size: 3rem; }
+  .care-hero-proof span { max-width: 34rem; font-size: 0.9rem; }
+  .care-hero-proof cite { margin-top: 1rem; font-size: 0.68rem; }
   .care-therapist-boundary-inner { padding-block: 2.75rem 3.25rem; }
   .care-therapist-statement { padding: 1.25rem; font-size: clamp(1.08rem, 4.6vw, 1.3rem); line-height: 1.5; }
   .care-opening-invitation { grid-template-columns: 1fr; gap: 1rem; margin-top: 2.75rem; padding-top: 2.25rem; }
