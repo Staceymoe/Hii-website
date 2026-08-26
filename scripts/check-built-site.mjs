@@ -167,6 +167,7 @@ const understandRequired = [
   [/class="disclosure-list"/, "accessible disclosure-list component"],
   [/Not another feed\. A place to orient\./, "public boundary"],
   [/world-model-eight-circles-concept-mobile-v1\.mp4[\s\S]*world-model-eight-circles-concept-v1\.mp4/, "responsive World Model concept visualization"],
+  [/<video class="world-model-concept-video" data-hold-final-frame autoplay muted playsinline preload="metadata"/, "single-play World Model visualization with final-frame hold"],
   [/Notify me when it launches/, "World Model launch-notification action"],
   [/follow Hii and turn on account notifications/i, "World Model social-notification guidance"]
 ];
@@ -174,6 +175,8 @@ for (const [pattern, label] of understandRequired) {
   if (!pattern.test(understandPage)) fail(`understand page is missing ${label}`);
   else pass(`understand page includes ${label}`);
 }
+if (/<video class="world-model-concept-video"[^>]*\sloop(?:\s|>)/.test(understandPage)) fail("World Model concept visualization still loops");
+else pass("World Model concept visualization plays once and holds its final frame");
 const understandH1Count = (understandPage.match(/<h1(?:\s|>)/g) || []).length;
 if (understandH1Count !== 1) fail(`understand page has ${understandH1Count} h1 elements; expected 1`);
 else pass("understand page has one h1");
@@ -414,6 +417,12 @@ for (const [pattern, label] of careRequired) {
   if (!pattern.test(carePage)) fail(`care page is missing ${label}`);
   else pass(`care page includes ${label}`);
 }
+if (!/class="care-hero-copy"[\s\S]*class="care-hero-conversion"[\s\S]*class="care-conversation-signal care-hero-signal"/.test(carePage)) fail("CARE participation actions do not appear before the hero visual");
+else pass("CARE participation actions appear before the hero visual");
+if ((carePage.match(/Clinician education \+ institutional guidance/g) || []).length !== 1) fail("CARE hero does not use exactly one pre-headline offering label");
+else pass("CARE hero uses one canonical pre-headline offering label");
+if ((carePage.match(/Together, we care\./g) || []).length !== 1) fail("CARE page repeats its closing invitation");
+else pass("CARE page reserves its invitation for the close");
 const careH1Count = (carePage.match(/<h1(?:\s|>)/g) || []).length;
 if (careH1Count !== 1) fail(`care page has ${careH1Count} h1 elements; expected 1`);
 else pass("care page has one h1");
