@@ -2,6 +2,81 @@ const header = document.querySelector('[data-site-header]');
 const nav = document.querySelector('[data-site-nav]');
 const toggle = document.querySelector('[data-nav-toggle]');
 
+const observatoryHero = document.querySelector('[data-observatory-hero]');
+const observatoryAwakening = document.querySelector('[data-observatory-awakening]');
+const observatoryFilm = document.querySelector('[data-hii-film]');
+const observatoryFilmOpen = document.querySelector('[data-observatory-film-open]');
+const observatoryFilmClose = document.querySelector('[data-observatory-film-close]');
+const observatoryStatus = document.querySelector('[data-observatory-status]');
+const observatoryHoldTime = 20.9;
+
+function setObservatoryReady() {
+  observatoryHero?.classList.add('is-ready');
+  if (observatoryStatus) observatoryStatus.textContent = 'The Hii observatory is ready. Select the center lens to play the Hii Film.';
+}
+
+function holdObservatoryFinalFrame() {
+  if (!(observatoryAwakening instanceof HTMLVideoElement)) return;
+  observatoryAwakening.pause();
+  observatoryAwakening.currentTime = Math.min(observatoryHoldTime, observatoryAwakening.duration || observatoryHoldTime);
+  setObservatoryReady();
+}
+
+function playObservatoryFilm() {
+  if (!(observatoryFilm instanceof HTMLVideoElement)) return;
+  observatoryHero?.classList.add('is-film-playing');
+  document.body.classList.add('is-observatory-film-playing');
+  observatoryFilm.controls = true;
+  observatoryFilm.currentTime = 0;
+  observatoryFilm.muted = false;
+  observatoryFilm.play().catch(() => {
+    observatoryFilm.controls = true;
+  });
+  if (observatoryStatus) observatoryStatus.textContent = 'The Hii Film is playing.';
+}
+
+function closeObservatoryFilm() {
+  if (observatoryFilm instanceof HTMLVideoElement) {
+    observatoryFilm.pause();
+    observatoryFilm.currentTime = 0;
+    observatoryFilm.controls = false;
+  }
+  observatoryHero?.classList.remove('is-film-playing');
+  document.body.classList.remove('is-observatory-film-playing');
+  observatoryFilmOpen?.focus();
+  if (observatoryStatus) observatoryStatus.textContent = 'Returned to the Hii observatory.';
+}
+
+if (observatoryAwakening instanceof HTMLVideoElement) {
+  observatoryAwakening.addEventListener('timeupdate', () => {
+    if (observatoryAwakening.currentTime >= observatoryHoldTime) {
+      holdObservatoryFinalFrame();
+    }
+  });
+  observatoryAwakening.addEventListener('ended', holdObservatoryFinalFrame);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    observatoryAwakening.addEventListener('loadedmetadata', () => {
+      holdObservatoryFinalFrame();
+    }, { once: true });
+  } else {
+    observatoryAwakening.play().catch(() => {
+      if (observatoryAwakening.readyState >= 1) {
+        holdObservatoryFinalFrame();
+      } else {
+        observatoryAwakening.addEventListener('loadedmetadata', holdObservatoryFinalFrame, { once: true });
+      }
+    });
+  }
+}
+
+observatoryFilmOpen?.addEventListener('click', playObservatoryFilm);
+observatoryFilmClose?.addEventListener('click', closeObservatoryFilm);
+
+observatoryFilm?.addEventListener('ended', () => {
+  closeObservatoryFilm();
+});
+
 function syncHeader() {
   if (!header) return;
   header.classList.toggle('is-scrolled', window.scrollY > 18);
@@ -90,6 +165,10 @@ filmModal?.addEventListener('close', () => {
 
 window.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
+    if (observatoryHero?.classList.contains('is-film-playing')) {
+      closeObservatoryFilm();
+      return;
+    }
     closeNav();
     toggle?.focus();
   }
