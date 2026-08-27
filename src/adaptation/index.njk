@@ -81,21 +81,25 @@ permalink: /adaptation/index.html
     aspect-ratio: 1;
     animation: adapt-orbit 8s linear infinite;
   }
+  .adapt-orbit-one span { animation: adapt-label-reverse 8s linear infinite; }
   .adapt-orbit-two {
     width: clamp(22rem, 43vw, 34rem);
     aspect-ratio: 1;
     animation: adapt-orbit 14s linear infinite reverse;
   }
+  .adapt-orbit-two span { animation: adapt-label-forward 14s linear infinite; }
   .adapt-orbit-three {
     width: clamp(28rem, 55vw, 43rem);
     aspect-ratio: 1;
     animation: adapt-orbit 22s linear infinite;
   }
+  .adapt-orbit-three span { animation: adapt-label-reverse 22s linear infinite; }
   .adapt-orbit-four {
     width: clamp(34rem, 67vw, 52rem);
     aspect-ratio: 1;
     animation: adapt-orbit 32s linear infinite reverse;
   }
+  .adapt-orbit-four span { animation: adapt-label-forward 32s linear infinite; }
   .adapt-speed-visual figcaption {
     position: absolute;
     right: 1.25rem;
@@ -107,6 +111,12 @@ permalink: /adaptation/index.html
     text-align: center;
   }
   @keyframes adapt-orbit { to { transform: rotate(360deg); } }
+  @keyframes adapt-label-reverse {
+    to { transform: translateX(-50%) rotate(-360deg); }
+  }
+  @keyframes adapt-label-forward {
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
   .adapt-layers { padding-block: clamp(5rem, 10vw, 9rem); }
   .adapt-layer-grid {
     display: grid;
@@ -187,7 +197,8 @@ permalink: /adaptation/index.html
   .adapt-offer-card p { color: var(--ivory-soft); }
   .adapt-offer-card .text-link { margin-top: auto; }
   @media (prefers-reduced-motion: reduce) {
-    .adapt-orbit { animation: none; }
+    .adapt-orbit,
+    .adapt-orbit span { animation: none; }
   }
   @media (max-width: 900px) {
     .adapt-layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
