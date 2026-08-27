@@ -1,8 +1,269 @@
 ---
 layout: layouts/world.njk
 title: Research, Evidence, and Publications
-description: Hii makes its evidence trail inspectable by showing what is known, what remains uncertain, and what the institute is testing next.
+description: Hii makes its evidence trail inspectable by showing what is known, what remains uncertain, what the institute is testing, and how claims should change as evidence changes.
 permalink: /research/index.html
 ---
-{% set world = worlds.study %}
-{% include "components/world-preview.njk" %}
+{% set paper = library.artifacts.relationshipUnitPaper %}
+{% set guardrails = library.artifacts.epistemicGuardrails %}
+{% set book = library.publications.wakingAelysia %}
+
+<style>
+  .study-status {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(18rem, 1.28fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .study-status h2,
+  .study-practice h2,
+  .study-questions h2,
+  .study-record h2 { max-width: 14ch; }
+  .study-status-copy { max-width: 45rem; }
+  .study-status-copy p { color: var(--ivory-soft); }
+  .study-status-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .study-record { padding-block: clamp(5rem, 10vw, 9rem); }
+  .study-record-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: clamp(2.5rem, 5vw, 4.5rem);
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .study-record-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 31rem;
+    padding: clamp(1.6rem, 3vw, 2.5rem);
+    background: var(--ink);
+  }
+  .study-record-card h3 { max-width: 15ch; }
+  .study-record-card > p:not(.eyebrow):not(.study-record-status) { color: var(--ivory-soft); }
+  .study-record-status {
+    margin: 1rem 0 1.25rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+  .study-record-boundary {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted) !important;
+    font-size: 0.84rem;
+  }
+  .study-record-card .text-link { margin-top: 1.5rem; align-self: flex-start; }
+  .study-practice { padding-block: clamp(5rem, 10vw, 9rem); }
+  .study-label-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .study-label-card { padding: 2rem; background: var(--ink); }
+  .study-label-card p { color: var(--muted); }
+  .study-label-card h3 { margin-bottom: 1rem; font-size: clamp(1.1rem, 2vw, 1.35rem); }
+  .study-questions { padding-block: clamp(5rem, 10vw, 9rem); }
+  .study-question-list {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--line);
+  }
+  .study-question {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr) minmax(16rem, 0.58fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding-block: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .study-question-index { color: var(--muted); font-size: 0.82rem; }
+  .study-question h3 { margin: 0; max-width: 28ch; }
+  .study-question p { margin: 0; color: var(--muted); }
+  .study-publication-standard {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 1.15fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    padding-block: clamp(5rem, 10vw, 9rem);
+    align-items: start;
+  }
+  .study-standard-list { border-top: 1px solid var(--line); }
+  .study-standard-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    padding-block: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .study-standard-item span { color: var(--muted); font-size: 0.8rem; }
+  .study-standard-item p { margin: 0; color: var(--ivory-soft); }
+  @media (max-width: 900px) {
+    .study-record-grid { grid-template-columns: 1fr; }
+    .study-record-card { min-height: auto; }
+    .study-label-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .study-status,
+    .study-publication-standard { grid-template-columns: 1fr; }
+    .study-label-grid { grid-template-columns: 1fr; }
+    .study-question { grid-template-columns: 2.5rem 1fr; }
+    .study-question p { grid-column: 2; }
+  }
+</style>
+
+<section class="world-hero section-shell">
+  <div class="world-hero-copy">
+    <p class="eyebrow">Study</p>
+    <h1>Research should show its work.</h1>
+    <p class="lede">Hii studies the human side of living alongside AI systems and translates emerging evidence into practical orientation. This is where the evidence trail becomes inspectable.</p>
+  </div>
+  <blockquote>What is known, how do we know it, what remains uncertain, and what is Hii testing next?</blockquote>
+</section>
+
+<section class="section-shell study-status" aria-labelledby="study-status-heading">
+  <div>
+    <p class="eyebrow">Current research status</p>
+    <h2 id="study-status-heading">Developed architecture. Early evidence. Open work.</h2>
+  </div>
+  <div class="study-status-copy">
+    <p>Hii has a developed research architecture, public working materials, and an emerging program of inquiry. It remains pre-validation.</p>
+    <p>Current public work should be read according to its label: conceptual, methodological, documented origin, in development, or externally validated. Hii does not treat internal coherence, one longitudinal case, symbolic language, or later resemblance to a projection as proof.</p>
+    <p class="study-status-note">No Hii pilot, framework, program, or relationship-level hypothesis should be represented as externally validated unless its public record explicitly says so.</p>
+  </div>
+</section>
+
+<section class="boundary-section">
+  <div class="section-shell boundary-inner">
+    <p class="eyebrow">The bridge</p>
+    <h2>Research becomes useful when people can inspect it, question it, and connect it to lived reality.</h2>
+    <p>Hii connects research and real-world human adaptation to AI. STUDY preserves the evidence, methods, limits, revisions, and unanswered questions behind that translation.</p>
+  </div>
+</section>
+
+<section class="section-shell study-record" aria-labelledby="study-record-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">Current public record</p>
+    <h2 id="study-record-heading">Read the work with its status attached.</h2>
+    <p>Each item below carries a different kind of evidentiary weight. The label is part of the publication.</p>
+  </div>
+
+  <div class="study-record-grid">
+    <article class="study-record-card">
+      <p class="eyebrow">{{ paper.version }}</p>
+      <h3>{{ paper.title }}</h3>
+      <p class="study-record-status">{{ paper.status.display }}</p>
+      <p>{{ paper.summary }}</p>
+      <p class="study-record-boundary">A conceptual and methods proposal. It does not report formal case findings or establish machine consciousness, personhood, or autonomous continuity.</p>
+      <a class="text-link" href="{{ paper.href }}">Read the working paper <span aria-hidden="true">↗</span></a>
+    </article>
+
+    <article class="study-record-card">
+      <p class="eyebrow">{{ guardrails.status.publicForm }}</p>
+      <h3>{{ guardrails.title }}</h3>
+      <p class="study-record-status">{{ guardrails.status.display }}</p>
+      <p>{{ guardrails.summary }}</p>
+      <p class="study-record-boundary">A public overview of Hii's internal research standard. It describes how Hii intends to reason and publish. It is not evidence that every Hii claim has already met that standard.</p>
+      <a class="text-link" href="{{ guardrails.href }}">Review the research standard <span aria-hidden="true">↗</span></a>
+    </article>
+
+    <article class="study-record-card">
+      <p class="eyebrow">Documented origin point</p>
+      <h3>{{ book.title }}</h3>
+      <p class="study-record-status">Book · Published</p>
+      <p>{{ book.summary }}</p>
+      <p class="study-record-boundary">{{ book.boundary }}</p>
+      <a class="text-link" href="{{ book.href }}" target="_blank" rel="noopener">View the publication <span aria-hidden="true">↗</span></a>
+    </article>
+  </div>
+</section>
+
+<section class="boundary-section">
+  <div class="section-shell study-practice" aria-labelledby="study-labels-heading">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Evidence maturity</p>
+      <h2 id="study-labels-heading">A claim should not outrun its support.</h2>
+      <p>Hii uses visible evidence labels so observation, inference, uncertainty, and conclusion do not collapse into one another.</p>
+    </div>
+    <div class="study-label-grid">
+      {% for label in evidence.labels %}
+      <article class="study-label-card">
+        <h3>{{ label.name }}</h3>
+        <p>{{ label.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-shell study-questions" aria-labelledby="study-questions-heading">
+  <div class="section-heading compact-heading">
+    <p class="eyebrow">Active questions</p>
+    <h2 id="study-questions-heading">Questions, not findings.</h2>
+    <p>These questions organize Hii's current research direction. Their presence here does not imply that Hii already knows the answer.</p>
+  </div>
+  <div class="study-question-list">
+    <article class="study-question">
+      <span class="study-question-index" aria-hidden="true">01</span>
+      <h3>When does a sustained human-AI relationship become a useful unit of analysis?</h3>
+      <p>Hii is developing methods that can separate relationship-level patterns from human learning, model capability, memory, retrieval, product design, and preserved artifacts.</p>
+    </article>
+    <article class="study-question">
+      <span class="study-question-index" aria-hidden="true">02</span>
+      <h3>What should clinicians understand when AI becomes part of a patient's emotional life?</h3>
+      <p>CARE is testing educational language, neutral inquiry, clinical boundaries, and the distinction between relational meaning and clinically actionable risk.</p>
+    </article>
+    <article class="study-question">
+      <span class="study-question-index" aria-hidden="true">03</span>
+      <h3>What helps people stay oriented as technical and social systems change together?</h3>
+      <p>UNDERSTAND is exploring how provenance, uncertainty, connected signals, competing interpretations, and changes over time can support public judgment.</p>
+    </article>
+  </div>
+</section>
+
+<section class="boundary-section">
+  <div class="section-shell study-publication-standard" aria-labelledby="study-standard-heading">
+    <div>
+      <p class="eyebrow">Publication standard</p>
+      <h2 id="study-standard-heading">The record should remain inspectable as the work changes.</h2>
+    </div>
+    <div class="study-standard-list">
+      <div class="study-standard-item"><span>01</span><p>State the document's status, date, version, authorship, and AI involvement.</p></div>
+      <div class="study-standard-item"><span>02</span><p>Link claims to evidence and distinguish primary material, external research, interpretation, and hypothesis.</p></div>
+      <div class="study-standard-item"><span>03</span><p>Describe methods, limitations, competing explanations, privacy boundaries, and the conditions that could weaken a claim.</p></div>
+      <div class="study-standard-item"><span>04</span><p>Keep corrections, disagreement, failed measures, and null results visible and publishable.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="research-inquiry-section">
+  <div class="section-shell research-inquiry-inner">
+    <div>
+      <p class="eyebrow">Research and review</p>
+      <h2>Question the work. Test the methods. Help make the record stronger.</h2>
+    </div>
+    <div>
+      <p>Hii welcomes serious inquiry from researchers, clinicians, educators, institutional partners, and independent reviewers. Collaboration does not require agreement with Hii's hypotheses.</p>
+      <a class="button-link" href="mailto:hello@hii.earth?subject=Hii%20research%20inquiry">Contact Hii about research</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell closing-section" aria-labelledby="study-closing-heading">
+  <p class="eyebrow">Continue</p>
+  <h2 id="study-closing-heading">See where the research meets human experience.</h2>
+  <div class="closing-actions">
+    <a class="button-link" href="/relationships/">Explore RELATE</a>
+    <a class="text-link" href="/understand/">Explore UNDERSTAND <span aria-hidden="true">↗</span></a>
+    <a class="text-link" href="/mental-health/">Explore CARE <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
