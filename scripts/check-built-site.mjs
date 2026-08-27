@@ -390,12 +390,17 @@ const careRequired = [
   [/When AI becomes part of emotional life, care needs a wider lens\./, "approved CARE hero"],
   [/Hii CARE helps clinicians and institutions understand what happens when AI becomes part of emotional, relational, and clinical life\./, "clear CARE purpose"],
   [/lived human-AI experience, longitudinal research, and clinical understanding/, "CARE bridge formulation"],
+  [/data-care-play-once/, "single-play overwhelm animation"],
+  [/CARE helps clinicians examine the role the interaction is playing within the whole of a person’s life./, "whole-person overwhelm frame"],
+  [/Human–AI adaptation/, "bidirectional adaptation model"],
+  [/Meaning emerges through the interaction./, "relationship-dynamic statement"],
   [/Clinical risk[\s\S]*Situational overwhelm[\s\S]*Interaction effects/, "three-lens frame"],
   [/Now forming/, "active roundtable status"],
   [/Available for organizations/, "organizational workshop status"],
   [/Available by inquiry/, "advisory inquiry status"],
   [/Request a September roundtable seat/, "roundtable recruitment action"],
-  [/href="\/mental-health\/pilot-interest\/">Express interest in a founding pilot/, "first-window pilot action"],
+  [/href="#care-programs">Explore CARE programs/, "first-window CARE programs action"],
+  [/href="\/mental-health\/roundtable\/">Join the Founding Clinician Roundtable/, "first-window roundtable action"],
   [/Explore a workshop/, "workshop inquiry action"],
   [/Discuss an advisory session/, "advisory inquiry action"],
   [/Hii offerings are educational and strategic/, "shared offering boundary"],
@@ -419,7 +424,13 @@ if (careH1Count !== 1) fail(`care page has ${careH1Count} h1 elements; expected 
 else pass("care page has one h1");
 for (const assetPath of [
   "_site/assets/media/care/care-clinician-chair-circle-candidate-v1.png",
-  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg"
+  "_site/assets/media/care/care-field-brief-concept-mockup-v1.jpg",
+  "_site/assets/media/care/care-overwhelm-final-v1.mp4",
+  "_site/assets/media/care/care-overwhelm-final-poster-v1.webp",
+  "_site/assets/media/care/care-human-ai-adaptation-desktop-final.mp4",
+  "_site/assets/media/care/care-human-ai-adaptation-mobile-final.mp4",
+  "_site/assets/media/care/care-human-ai-adaptation-desktop-poster-final.webp",
+  "_site/assets/media/care/care-human-ai-adaptation-mobile-poster-final.webp"
 ]) {
   try { await access(path.join(root, assetPath)); }
   catch { fail(`Care asset is missing: ${assetPath}`); }
