@@ -71,9 +71,12 @@ permalink: /research/index.html
     background: var(--line);
     border: 1px solid var(--line);
   }
-  .study-label-card { padding: 2rem; background: var(--ink); }
+  .study-practice .eyebrow,
+  .study-publication-standard .eyebrow { color: #6c5d3e; }
+  .study-practice .section-heading > p:not(.eyebrow) { color: #5f5a51; }
+  .study-label-card { padding: 2rem; color: var(--ivory); background: var(--ink); }
   .study-label-card p { color: var(--muted); }
-  .study-label-card h3 { margin-bottom: 1rem; font-size: clamp(1.1rem, 2vw, 1.35rem); }
+  .study-label-card h3 { margin-bottom: 1rem; color: var(--ivory); font-size: clamp(1.1rem, 2vw, 1.35rem); }
   .study-questions { padding-block: clamp(5rem, 10vw, 9rem); }
   .study-question-list {
     margin-top: clamp(2.5rem, 5vw, 4rem);
@@ -97,16 +100,16 @@ permalink: /research/index.html
     padding-block: clamp(5rem, 10vw, 9rem);
     align-items: start;
   }
-  .study-standard-list { border-top: 1px solid var(--line); }
+  .study-standard-list { border-top: 1px solid rgba(8, 11, 16, 0.18); }
   .study-standard-item {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
     padding-block: 1.35rem;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(8, 11, 16, 0.18);
   }
-  .study-standard-item span { color: var(--muted); font-size: 0.8rem; }
-  .study-standard-item p { margin: 0; color: var(--ivory-soft); }
+  .study-standard-item span { color: #6c5d3e; font-size: 0.8rem; }
+  .study-standard-item p { margin: 0; color: #4f4b44; }
   @media (max-width: 900px) {
     .study-record-grid { grid-template-columns: 1fr; }
     .study-record-card { min-height: auto; }
