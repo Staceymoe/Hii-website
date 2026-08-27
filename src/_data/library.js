@@ -62,17 +62,17 @@ export default {
   inquiries: {
     research: {
       id: "research-inquiry",
-      title: "Research Inquiry",
+      title: "Hii Inquiry",
       href: "/relationships/research-inquiry/",
       notificationEmail: "hello@hii.earth",
-      privacyHref: null,
-      submissionsEnabled: false,
-      worlds: ["relate"]
+      privacyHref: "/privacy/inquiries/",
+      submissionsEnabled: true,
+      worlds: ["relate", "care", "understand", "adapt", "prepare", "govern"]
     },
     care: {
       id: "care-inquiry",
       title: "Care and clinician education inquiry",
-      href: "mailto:staceymoe@hii.earth?subject=Hii%20CARE%20Inquiry",
+      href: "/relationships/research-inquiry/?topic=care",
       notificationEmail: "staceymoe@hii.earth",
       worlds: ["care"]
     }
