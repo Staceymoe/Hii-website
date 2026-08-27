@@ -14,9 +14,9 @@ export default {
   },
   utilityLinks: [
     { label: "About", href: "/about.html" },
-    { label: "Work with Hii", href: "mailto:hello@hii.earth?subject=Work%20with%20Hii" },
+    { label: "Work with Hii", href: "/relationships/research-inquiry/?topic=work-with-hii" },
     { label: "Updates", href: "/news.html" },
     { label: "Press", href: "/press.html" },
-    { label: "Contact", href: "mailto:hello@hii.earth?subject=Hii%20Inquiry" }
+    { label: "Contact", href: "/relationships/research-inquiry/?topic=general" }
   ]
 };

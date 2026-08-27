@@ -2,6 +2,36 @@
   command = "bash scripts/build-hii-front-door-restart.sh && pnpm build"
   publish = "_site"
 
+[[redirects]]
+  from = "/roundtable"
+  to = "/mental-health/roundtable/"
+  status = 301
+
+[[redirects]]
+  from = "/roundtable/"
+  to = "/mental-health/roundtable/"
+  status = 301
+
+[[redirects]]
+  from = "/care"
+  to = "/mental-health/"
+  status = 301
+
+[[redirects]]
+  from = "/care/"
+  to = "/mental-health/"
+  status = 301
+
+[[redirects]]
+  from = "/relate"
+  to = "/relationships/"
+  status = 301
+
+[[redirects]]
+  from = "/relate/"
+  to = "/relationships/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]

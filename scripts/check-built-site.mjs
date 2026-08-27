@@ -360,25 +360,29 @@ try {
 const inquiryPath = "_site/relationships/research-inquiry/index.html";
 const inquiryPage = (await read(inquiryPath)).toString("utf8");
 const inquiryRequired = [
-  [/<title>Research Inquiry \| Hii<\/title>/, "page title"],
+  [/<title>Hii Inquiry \| Hii<\/title>/, "page title"],
   [/<meta name="robots" content="noindex">/, "temporary noindex"],
   [/name="full-name"/, "full-name field"],
   [/name="email"/, "email field"],
   [/name="role"/, "role field"],
   [/name="area-of-interest"/, "area-of-interest field"],
   [/name="message"/, "open-text field"],
-  [/fieldset disabled/, "disabled pre-privacy form state"],
-  [/Submissions are not yet enabled\./, "explicit pending dependency"],
+  [/name="hii-inquiry"/, "Netlify form name"],
+  [/data-netlify="true"/, "Netlify form activation"],
+  [/action="\/relationships\/research-inquiry\/thanks\/"/, "confirmation route"],
+  [/href="\/privacy\/inquiries\/"/, "inquiry privacy notice"],
+  [/name="consent" required/, "required consent"],
   [/href="\/\?return=hii">Return to Hii/, "static Return to Hii control"]
 ];
 for (const [pattern, label] of inquiryRequired) {
   if (!pattern.test(inquiryPage)) fail(`inquiry page is missing ${label}`);
   else pass(`inquiry page includes ${label}`);
 }
-if (/data-netlify="true"|<form[^>]+method="post"/i.test(inquiryPage)) fail("inquiry page activates an unapproved submission route");
-else pass("inquiry page does not activate an unapproved submission route");
-if ((inquiryPage.match(/href="\/relationships\/"/g) || []).length < 2) fail("inquiry page lacks repeated Back to Relate controls");
-else pass("inquiry page repeats Back to Relate controls");
+if (/fieldset disabled|Submissions are not yet enabled\./i.test(inquiryPage)) fail("inquiry page still exposes a disabled submission state");
+else pass("inquiry page exposes an active submission route");
+const inquiryThanksPage = (await read("_site/relationships/research-inquiry/thanks/index.html")).toString("utf8");
+if (!inquiryThanksPage.includes("Thank you. We will be in touch.")) fail("inquiry confirmation page is missing");
+else pass("inquiry confirmation page is present");
 
 const carePath = "_site/mental-health/index.html";
 const carePage = (await read(carePath)).toString("utf8");
@@ -413,7 +417,7 @@ const careRequired = [
   [/more than 18 months of longitudinal human-AI interaction/, "approved longitudinal credibility note"],
   [/href="\/relationships\/#relate-provenance-heading"/, "Relate longitudinal-section link"],
   [/href="\/relationships\/the-relationship-as-unit-of-analysis\/#read-the-paper"/, "in-site paper-reader link"],
-  [/mailto:staceymoe@hii\.earth\?subject=Hii%20CARE%20Inquiry/, "CARE inquiry destination"]
+  [/href="\/relationships\/research-inquiry\/\?topic=care"/, "CARE inquiry destination"]
 ];
 for (const [pattern, label] of careRequired) {
   if (!pattern.test(carePage)) fail(`care page is missing ${label}`);
@@ -459,14 +463,19 @@ const roundtablePage = (await read("_site/mental-health/roundtable/index.html"))
 for (const [pattern, label] of [
   [/Request a roundtable seat/, "primary seat-request action"],
   [/6:00 to 7:00 PM Central/, "Milwaukee session time"],
-  [/12:00 to 1:00 PM Central/, "Zoom session time"]
+  [/12:00 to 1:00 PM Central/, "Zoom session time"],
+  [/hii-clinician-roundtable-invitation\.webp/, "display invitation"],
+  [/data-share-invitation/, "enhanced invitation sharing"],
+  [/hii-clinician-roundtable-invitation\.webp" download/, "downloadable invitation"]
 ]) {
   if (!pattern.test(roundtablePage)) fail(`roundtable page is missing ${label}`);
   else pass(`roundtable page includes ${label}`);
 }
 
-for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", understandPage], ["paper", paperPage], ["inquiry", inquiryPage], ["care", carePage]]) {
-  const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+const builtHtmlPaths = (await readdir(output, { recursive: true })).filter((relativePath) => relativePath.endsWith(".html"));
+for (const htmlPath of builtHtmlPaths) {
+  const pageHtml = (await read(path.join("_site", htmlPath))).toString("utf8");
+  const hrefs = [...pageHtml.matchAll(/href="([^"]+)"/g)].map((match) => match[1].replaceAll("&amp;", "&"));
   for (const href of hrefs) {
     if (/^(https?:|mailto:|#)/.test(href)) continue;
     const clean = decodeURIComponent(href.split("#")[0].split("?")[0]);
@@ -476,11 +485,11 @@ for (const [pageLabel, pageHtml] of [["relationships", page], ["understand", und
     try {
       await access(candidate);
     } catch {
-      fail(`${pageLabel} internal link does not resolve in the build: ${href}`);
+      fail(`${htmlPath} internal link does not resolve in the build: ${href}`);
     }
   }
 }
-if (!failures.some((item) => item.includes("internal link"))) pass("all world-page internal links resolve");
+if (!failures.some((item) => item.includes("internal link"))) pass("all generated-page internal links resolve");
 
 const css = (await read("_site/assets/css/hii-site.css")).toString("utf8");
 if (!/@media \(prefers-reduced-motion: reduce\)/.test(css)) fail("shared CSS lacks a reduced-motion mode");
@@ -493,10 +502,8 @@ if (!/\.form-choice-group label \{ display: grid; grid-template-columns: 1\.15re
 else pass("mobile form choices keep controls and labels together");
 
 const previewWorlds = [
-  ["adaptation", "Human Adaptation"],
   ["institutional-readiness", "Institutional Readiness"],
-  ["governance", "Governance Translation"],
-  ["research", "Research, Evidence, and Publications"]
+  ["governance", "Governance Translation"]
 ];
 for (const [route, title] of previewWorlds) {
   const previewPath = `_site/${route}/index.html`;
@@ -509,11 +516,20 @@ for (const [route, title] of previewWorlds) {
     fail(`approved developing world route was not built: /${route}/`);
   }
 }
-if (!failures.some((item) => item.includes("developing world route") || item.includes("preview is missing"))) pass("all four developing world preview routes were generated with bounded Hii framing");
+if (!failures.some((item) => item.includes("developing world route") || item.includes("preview is missing"))) pass("remaining developing-world routes use bounded Hii framing");
+
+for (const [route, title] of [["adaptation", "You do not have to speed up to match the world."], ["research", "Research should show its work."]]) {
+  const releasedPage = (await read(`_site/${route}/index.html`)).toString("utf8");
+  if (!releasedPage.includes(`<h1>${title}</h1>`)) fail(`/${route}/ released page is missing its approved title`);
+  else pass(`/${route}/ released page includes its approved title`);
+}
 
 const netlify = (await read("netlify.toml")).toString("utf8");
-if (/\[\[redirects\]\]/.test(netlify)) fail("Netlify redirects were activated");
-else pass("no Netlify redirects are active");
+for (const [from, to] of [["/roundtable", "/mental-health/roundtable/"], ["/care", "/mental-health/"], ["/relate", "/relationships/"]]) {
+  const redirectPattern = new RegExp(`from = "${from.replaceAll("/", "\\/")}\\/?"[\\s\\S]*?to = "${to.replaceAll("/", "\\/")}"`);
+  if (!redirectPattern.test(netlify)) fail(`Netlify redirect is missing: ${from} to ${to}`);
+  else pass(`Netlify redirect is present: ${from} to ${to}`);
+}
 if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf"[\s\S]*X-Frame-Options = "SAMEORIGIN"[\s\S]*Content-Security-Policy = "frame-ancestors 'self'"/.test(netlify)) fail("canonical paper lacks a same-origin-only embedding policy");
 else pass("canonical paper permits only same-origin embedding");
 

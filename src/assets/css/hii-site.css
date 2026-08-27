@@ -603,6 +603,15 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .roundtable-purpose-inner .eyebrow { grid-column: 1 / -1; color: #6c5d3e; }
 .roundtable-purpose-inner h2 { max-width: 13ch; font-size: clamp(3rem, 5vw, 5.4rem); }
 .roundtable-purpose-inner > p { color: #56534d; font-size: clamp(1.05rem, 1.4vw, 1.22rem); }
+.roundtable-invitation { display: grid; grid-template-columns: 0.72fr 1.28fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; padding-block: clamp(4.5rem, 8vw, 7.5rem); border-bottom: 1px solid var(--line); }
+.roundtable-invitation h2 { max-width: 12ch; }
+.roundtable-invitation-copy > p:not(.eyebrow):not(.share-status) { color: var(--ivory-soft); }
+.roundtable-invitation-artifact { margin: 0; }
+.roundtable-invitation-artifact img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.roundtable-invitation-artifact figcaption { margin-top: 0.7rem; color: var(--muted); font-size: 0.74rem; }
+.share-status { min-height: 1.4em; margin-top: 1rem; color: var(--champagne); font-size: 0.78rem; }
+.privacy-notice-copy { max-width: 48rem; }
+.privacy-notice-copy p { color: var(--ivory-soft); }
 .roundtable-ai { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(3rem, 8vw, 8rem); padding-block: clamp(4.5rem, 8vw, 7.5rem); border-bottom: 1px solid var(--line); }
 .roundtable-ai h2 { max-width: 10ch; }
 .roundtable-ai > div:last-child p { max-width: 46rem; color: var(--ivory-soft); font-size: clamp(1.05rem, 1.35vw, 1.2rem); }
@@ -764,7 +773,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .relate-paper-document .paper-document-heading { display: block; }
   .relate-paper-document .paper-document-actions { justify-content: flex-start; margin-top: 1.5rem; }
   .relate-paper-document .paper-document-viewer, .relate-paper-document .paper-document-fallback { display: none; }
-  .care-hero, .care-overwhelm-inner, .care-adaptation-inner, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
+  .care-hero, .care-overwhelm-inner, .care-adaptation-inner, .care-questions-inner, .care-offers-heading, .care-pilot-inner, .care-field-brief-section, .care-public-inner, .care-closing-section, .roundtable-hero, .roundtable-purpose-inner, .roundtable-invitation, .roundtable-ai, .roundtable-fit, .roundtable-sessions, .roundtable-boundaries-inner, .roundtable-share { grid-template-columns: 1fr; }
   .care-hero { gap: 1.5rem; padding-block: 1.5rem 2.5rem; }
   .care-hero-copy { grid-row: 1; }
   .care-hero-kicker { margin-bottom: 0.8rem; font-size: 0.62rem; line-height: 1.45; }
