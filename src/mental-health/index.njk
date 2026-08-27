@@ -78,10 +78,14 @@ permalink: /mental-health/index.html
     </div>
     <figure class="care-adaptation-visual">
       <div class="care-adaptation-frame">
-        <video data-care-play-once muted playsinline preload="metadata" poster="/assets/media/care/care-human-ai-adaptation-v2-alpha-poster.png" aria-label="A reciprocal relationship model showing a human and an AI system adapting through interaction.">
-          <source src="/assets/media/care/care-human-ai-adaptation-v2-alpha.webm" type="video/webm">
+        <video data-care-play-once muted playsinline preload="metadata" aria-label="A reciprocal relationship model showing a human and an AI system adapting through interaction.">
+          <source src="/assets/media/care/care-human-ai-adaptation-mobile-final.mp4" media="(max-width: 760px)" type="video/mp4">
+          <source src="/assets/media/care/care-human-ai-adaptation-desktop-final.mp4" type="video/mp4">
         </video>
-        <img class="care-adaptation-reduced-motion" src="/assets/media/care/care-human-ai-adaptation-v2-alpha-poster.png" width="1536" height="864" alt="A reciprocal relationship model showing a human and an AI system, with meaning emerging in the relationship dynamic.">
+        <picture class="care-adaptation-reduced-motion">
+          <source srcset="/assets/media/care/care-human-ai-adaptation-mobile-poster-final.webp" media="(max-width: 760px)">
+          <img src="/assets/media/care/care-human-ai-adaptation-desktop-poster-final.webp" width="1018" height="509" alt="A reciprocal relationship model showing a human and an AI system, with meaning emerging through interaction.">
+        </picture>
       </div>
       <figcaption>Human and AI behavior shape the relationship over time.</figcaption>
     </figure>
