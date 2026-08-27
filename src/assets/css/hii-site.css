@@ -498,6 +498,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .care-adaptation-visual { width: 100%; margin: 0; align-self: center; }
 .care-adaptation-frame { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: transparent; }
 .care-adaptation-frame video, .care-adaptation-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.care-adaptation-frame .care-adaptation-video--mobile { display: none; }
 .care-adaptation-reduced-motion { display: none !important; }
 .care-adaptation-visual figcaption { margin-top: 0.65rem; color: #6b6254; font-size: 0.74rem; letter-spacing: 0.04em; }
 .care-practice-section { color: var(--ink); background: var(--ivory); }
@@ -790,6 +791,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
   .care-adaptation-links { align-items: flex-start; flex-direction: column; }
   .care-adaptation-visual { width: 100%; }
   .care-adaptation-frame { aspect-ratio: 1 / 2; }
+  .care-adaptation-frame .care-adaptation-video--desktop { display: none; }
+  .care-adaptation-frame .care-adaptation-video--mobile { display: block; }
   .care-public-inner, .care-boundary-inner, .care-closing-section { padding-block: 3.5rem; }
   .care-practice-inner h2, .care-pilot-inner h2 { font-size: clamp(2.5rem, 10.5vw, 3.35rem); }
   .care-closing-section h2 { font-size: clamp(2.75rem, 11vw, 3.65rem); }
@@ -836,7 +839,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
 @media (prefers-reduced-motion: reduce) {
   .care-overwhelm-frame video { display: none; }
   .care-overwhelm-reduced-motion { display: block !important; }
-  .care-adaptation-frame video { display: none; }
+  .care-adaptation-frame .care-adaptation-video { display: none !important; }
   .care-adaptation-reduced-motion { display: block !important; }
 }
 @media (max-width: 460px) {
