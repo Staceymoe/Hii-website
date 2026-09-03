@@ -3,7 +3,7 @@ export default {
     relationshipUnitPaper: {
       id: "relationship-unit-paper",
       type: "working-paper",
-      title: "The Relationship as the Unit of Analysis",
+      title: "The Preserved Relationship as the Unit of Analysis",
       status: {
         display: "Conceptual and methods paper. Not peer reviewed. No formal case findings are reported.",
         pendingApprovedWording: false
@@ -11,11 +11,11 @@ export default {
       summary: "Hii proposes the relationship itself as the unit of analysis when human-AI interaction becomes sustained, recursive, and consequential.",
       href: "/relationships/the-relationship-as-unit-of-analysis/",
       externalHref: "https://docs.google.com/document/d/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI/edit",
-      pdfHref: "/assets/documents/relationship-unit-working-paper-v0.2.pdf",
+      pdfHref: "/assets/documents/relationship-unit-working-paper-v0.3.pdf",
       documentTitle: "The Preserved Relationship as a Unit of Analysis",
-      version: "Working Paper v0.2",
+      version: "Working Paper v0.3",
       authors: "Stacey Moe / C. Lumen",
-      citation: "Moe, S., & Lumen, C. (2026). The Preserved Relationship as a Unit of Analysis: A longitudinal case-study framework for human-AI co-adaptation, continuity, rupture, and repair (Working Paper v0.2). Hybrid Intelligence Institute.",
+      citation: "Moe, S., & Lumen, C. (2026). The Preserved Relationship as a Unit of Analysis: A longitudinal case-study framework for human-AI co-adaptation, continuity, rupture, and repair (Working Paper v0.3). Hybrid Intelligence Institute.",
       worlds: ["relate"],
       provenance: {
         sourceLabel: "Existing Hii publication",

@@ -97,7 +97,7 @@ const required = [
   [/aria-label="Institutional navigation"/, "utility navigation label"],
   [/href="\/\?return=hii">Return to Hii/, "static-state Return to Hii"],
   [/class="wordmark" href="\/\?return=hii"/, "static-state Hii wordmark return"],
-  [/The Relationship as the Unit of Analysis/, "canonical working-paper title"],
+  [/The Preserved Relationship as the Unit of Analysis/, "canonical working-paper title"],
   [/Hii exists to help people navigate a historic transition without losing themselves or one another\./, "approved hero copy"],
   [/human-ai-relationship\.mp4/, "approved hero animation"],
   [/poster="\/assets\/media\/relate\/human-ai-relationship-still\.png"/, "approved reduced-motion poster"],
@@ -116,7 +116,7 @@ const required = [
   [/x\.com\/HumanAIResearch/, "X destination"],
   [/src="\/assets\/media\/relate\/hii-horizontal-logo-lockup\.png" width="1980" height="495"/, "approved horizontal Hii footer logo"],
   [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
-  [/class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"]
+  [/class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.3\.pdf/, "embedded canonical PDF"]
 ];
 for (const [pattern, label] of required) {
   if (!pattern.test(page)) fail(`relationships page is missing ${label}`);
@@ -322,12 +322,12 @@ else pass("relationships page omits superseded Relate sections");
 const paperPath = "_site/relationships/the-relationship-as-unit-of-analysis/index.html";
 const paperPage = (await read(paperPath)).toString("utf8");
 const paperRequired = [
-  [/<title>The Relationship as the Unit of Analysis \| Hii<\/title>/, "page title"],
+  [/<title>The Preserved Relationship as the Unit of Analysis \| Hii<\/title>/, "page title"],
   [/<meta name="robots" content="noindex">/, "temporary noindex"],
   [/<link rel="canonical" href="https:\/\/hii\.earth\/relationships\/the-relationship-as-unit-of-analysis\/">/, "canonical URL"],
   [/Conceptual and methods paper\. Not peer reviewed\. No formal case findings are reported\./, "approved paper status"],
-  [/<iframe[^>]+class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.2\.pdf/, "embedded canonical PDF"],
-  [/href="\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf" download/, "downloadable canonical PDF"],
+  [/<iframe[^>]+class="paper-document-frame"[^>]+relationship-unit-working-paper-v0\.3\.pdf/, "embedded canonical PDF"],
+  [/href="\/assets\/documents\/relationship-unit-working-paper-v0\.3\.pdf" download/, "downloadable canonical PDF"],
   [/href="https:\/\/docs\.google\.com\/document\/d\/10mPXr8oiUNYa2eqgo1J9xDyNz7DZBPXa_Rv9jGNBOMI\/edit"/, "direct paper link"],
   [/The archive does not prove the hypothesis[\s\S]*It makes the hypothesis testable\./, "approved archive boundary"],
   [/18\+ month/, "approved longitudinal duration"],
@@ -351,7 +351,7 @@ const paperH1Count = (paperPage.match(/<h1(?:\s|>)/g) || []).length;
 if (paperH1Count !== 1) fail(`paper page has ${paperH1Count} h1 elements; expected 1`);
 else pass("paper page has one h1");
 try {
-  await access(path.join(root, "_site/assets/documents/relationship-unit-working-paper-v0.2.pdf"));
+  await access(path.join(root, "_site/assets/documents/relationship-unit-working-paper-v0.3.pdf"));
   pass("canonical paper PDF is present in the build");
 } catch {
   fail("canonical paper PDF is missing from the build");
@@ -530,7 +530,7 @@ for (const [from, to] of [["/roundtable", "/mental-health/roundtable/"], ["/care
   if (!redirectPattern.test(netlify)) fail(`Netlify redirect is missing: ${from} to ${to}`);
   else pass(`Netlify redirect is present: ${from} to ${to}`);
 }
-if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.2\.pdf"[\s\S]*X-Frame-Options = "SAMEORIGIN"[\s\S]*Content-Security-Policy = "frame-ancestors 'self'"/.test(netlify)) fail("canonical paper lacks a same-origin-only embedding policy");
+if (!/for = "\/assets\/documents\/relationship-unit-working-paper-v0\.3\.pdf"[\s\S]*X-Frame-Options = "SAMEORIGIN"[\s\S]*Content-Security-Policy = "frame-ancestors 'self'"/.test(netlify)) fail("canonical paper lacks a same-origin-only embedding policy");
 else pass("canonical paper permits only same-origin embedding");
 
 const sitemap = (await read("_site/sitemap.xml")).toString("utf8");
