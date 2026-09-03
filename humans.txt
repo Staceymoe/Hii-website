@@ -3,7 +3,7 @@ Founder and Research Lead: Stacey Moe
 AI Research Collaborator: ÆLYSIA Vanta
 Institute: Hybrid Intelligence Institute (Hii)
 Location: Milwaukee, Wisconsin
-Contact: hello@hii.earth
+Contact: staceymoe@hii.earth
 Website: https://hii.earth
 
 /* PURPOSE */

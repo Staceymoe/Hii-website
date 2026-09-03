@@ -64,7 +64,7 @@ export default {
       id: "research-inquiry",
       title: "Hii Inquiry",
       href: "/relationships/research-inquiry/",
-      notificationEmail: "hello@hii.earth",
+      notificationEmail: "staceymoe@hii.earth",
       privacyHref: "/privacy/inquiries/",
       submissionsEnabled: true,
       worlds: ["relate", "care", "understand", "adapt", "prepare", "govern"]

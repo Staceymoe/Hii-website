@@ -2,7 +2,7 @@ export default {
   name: "Hii",
   expandedName: "Hybrid Intelligence Institute",
   url: "https://hii.earth",
-  email: "hello@hii.earth",
+  email: "staceymoe@hii.earth",
   tagline: "A new hello for a new world.",
   description: "Hii is the Hybrid Intelligence Institute. It studies the human side of living alongside AI systems.",
   purpose: "Hii helps people navigate a historic transition without losing themselves or one another.",
