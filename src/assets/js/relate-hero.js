@@ -7,6 +7,11 @@
   const applyResponsiveSource = () => {
     if (!responsiveVideo) return;
     const nextSource = mobileViewport.matches ? responsiveVideo.dataset.mobileSrc : responsiveVideo.dataset.desktopSrc;
+    const nextPoster = mobileViewport.matches ? responsiveVideo.dataset.mobilePoster : responsiveVideo.dataset.desktopPoster;
+
+    if (nextPoster && responsiveVideo.getAttribute("poster") !== nextPoster) {
+      responsiveVideo.setAttribute("poster", nextPoster);
+    }
     if (responsiveVideo.getAttribute("src") === nextSource) return;
 
     responsiveVideo.pause();
@@ -14,17 +19,23 @@
     responsiveVideo.load();
   };
 
+  const settleOnPoster = (video) => {
+    video.pause();
+    video.removeAttribute("autoplay");
+    video.currentTime = 0;
+    video.dataset.motionBlocked = "true";
+    video.load();
+  };
+
   const applyMotionPreference = () => {
     videos.forEach((video) => {
       if (motionPreference.matches) {
-        video.pause();
-        video.removeAttribute("autoplay");
-        video.currentTime = 0;
+        settleOnPoster(video);
         return;
       }
 
       video.setAttribute("autoplay", "");
-      video.play().catch(() => {});
+      video.play().catch(() => settleOnPoster(video));
     });
   };
 
