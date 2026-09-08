@@ -43,7 +43,10 @@ const runScenario = (reducedMotion, rejectPlay = false) => {
 
   vm.runInNewContext(source, {
     document: { querySelectorAll: () => videos },
-    window: { matchMedia: () => ({ matches: reducedMotion }) },
+    window: {
+      matchMedia: () => ({ matches: reducedMotion }),
+      IntersectionObserver: MockIntersectionObserver
+    },
     IntersectionObserver: MockIntersectionObserver
   });
 
