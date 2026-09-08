@@ -11,7 +11,8 @@
     "check:site": "node scripts/check-built-site.mjs",
     "test:front-door-routing": "node scripts/test-front-door-routing.mjs",
     "test:relate-motion": "node scripts/test-relate-motion.mjs",
-    "test": "pnpm verify:front-door && pnpm test:front-door-routing && pnpm test:relate-motion && pnpm check:site"
+    "test:care-motion": "node scripts/test-care-motion.mjs",
+    "test": "pnpm verify:front-door && pnpm test:front-door-routing && pnpm test:relate-motion && pnpm test:care-motion && pnpm check:site"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6"

@@ -36,6 +36,10 @@ const allowedSeams = [
     content: "    if (returnToStaticFrontDoor) {\n      hero.pause();\n      hero.currentTime = HERO_FREEZE_AT;\n      frozen = true;\n      settle();\n      history.replaceState(null, '', window.location.pathname + window.location.hash);\n      return;\n    }\n\n"
   },
   {
+    label: "autoplay-blocked static fallback",
+    content: "        hero.pause();\n        hero.poster = RETURN_FRAME_SRC;\n        if (stage && stage.style) {\n          stage.style.backgroundImage = `url(\"${RETURN_FRAME_SRC}\")`;\n          stage.style.backgroundPosition = 'center';\n          stage.style.backgroundRepeat = 'no-repeat';\n          stage.style.backgroundSize = 'contain';\n        }\n        if (hero.style) hero.style.opacity = '0';\n        frozen = true;\n        settle();\n"
+  },
+  {
     label: "Relate routing",
     content: "    else if (destination === 'Relate') window.location.assign('/relationships/');\n"
   },
