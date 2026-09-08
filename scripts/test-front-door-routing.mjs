@@ -4,7 +4,7 @@ import vm from "node:vm";
 
 const source = await readFile(new URL("../restart-front-door/front-door.js", import.meta.url), "utf8");
 
-const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) => {
+const runFrontDoor = (search, destination = "Understand", heroReadyState = 1, rejectPlay = false) => {
   const classes = new Set();
   const historyCalls = [];
   let playCalls = 0;
@@ -32,7 +32,10 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
     currentTime: 7,
     poster: "",
     pause: () => { pauseCalls += 1; },
-    play: () => { playCalls += 1; return Promise.resolve(); },
+    play: () => {
+      playCalls += 1;
+      return rejectPlay ? Promise.reject(new Error("autoplay blocked")) : Promise.resolve();
+    },
     removeAttribute: () => {},
     querySelectorAll: (selector) => selector === "source" ? heroSources : [],
     load: () => { hero.readyState = 0; }
@@ -83,24 +86,35 @@ const runFrontDoor = (search, destination = "Understand", heroReadyState = 1) =>
     heroSources,
     historyCalls,
     lens,
-    pauseCalls,
-    playCalls,
+    pauseCalls: () => pauseCalls,
+    playCalls: () => playCalls,
     stage
   };
 };
 
 const direct = runFrontDoor("");
-assert.equal(direct.playCalls, 1, "a direct visit must play the approved hero");
-assert.equal(direct.pauseCalls, 0, "a direct visit must not immediately pause the hero");
+assert.equal(direct.playCalls(), 1, "a direct visit must play the approved hero");
+assert.equal(direct.pauseCalls(), 0, "a direct visit must not immediately pause the hero");
 assert.equal(direct.hero.currentTime, 0, "a direct visit must begin at the start");
 assert.equal(direct.classes.has("is-ready"), false, "circles must wait for the direct-entry animation");
 assert.equal(direct.hero.style.opacity, undefined, "a direct visit must keep the approved animation visible");
 assert.equal(direct.stage.style.backgroundImage, undefined, "a direct visit must not replace the approved animation with the return frame");
 assert.equal(direct.heroSources[0].removed, false, "a direct visit must retain the approved animation source");
 
+const blocked = runFrontDoor("", "Understand", 1, true);
+await Promise.resolve();
+await Promise.resolve();
+assert.equal(blocked.playCalls(), 1, "a blocked direct visit must attempt the approved animation once");
+assert.equal(blocked.classes.has("is-ready"), true, "blocked autoplay must still reveal the front-door interface");
+assert.equal(blocked.lens.disabled, false, "blocked autoplay must still enable the destination circles");
+assert.equal(blocked.fallback.hidden, true, "blocked autoplay must not leave a tiny Enter Hii fallback as the primary interface");
+assert.equal(blocked.hero.poster, "/media/hii-hero-front-door-final-frame.jpg", "blocked autoplay must use the approved final-frame poster");
+assert.equal(blocked.hero.style.opacity, "0", "blocked autoplay must keep the rejected video from covering the final frame");
+assert.equal(blocked.stage.style.backgroundImage, 'url("/media/hii-hero-front-door-final-frame.jpg")', "blocked autoplay must display the approved static front door");
+
 const returned = runFrontDoor("?return=hii");
-assert.equal(returned.playCalls, 0, "a world return must not replay the hero");
-assert.equal(returned.pauseCalls, 1, "a world return must pause the hero");
+assert.equal(returned.playCalls(), 0, "a world return must not replay the hero");
+assert.equal(returned.pauseCalls(), 1, "a world return must pause the hero");
 assert.equal(returned.hero.currentTime, 7, "a world return must not wait for a video seek");
 assert.equal(returned.classes.has("is-ready"), true, "a world return must settle the interface");
 assert.equal(returned.lens.disabled, false, "a world return must enable the circles");
@@ -115,7 +129,7 @@ const slowReturn = runFrontDoor("?return=hii", "Understand", 0);
 assert.equal(slowReturn.classes.has("is-ready"), true, "a slow world return must reveal the interface before video metadata loads");
 assert.equal(slowReturn.lens.disabled, false, "a slow world return must enable the circles immediately");
 assert.equal(slowReturn.hero.poster, "/media/hii-hero-front-door-final-frame.jpg", "a slow world return must not show a blank screen");
-assert.equal(slowReturn.playCalls, 0, "a slow world return must not replay the hero");
+assert.equal(slowReturn.playCalls(), 0, "a slow world return must not replay the hero");
 
 const expectedRoutes = new Map([
   ["Relate", "/relationships/"],
@@ -133,4 +147,4 @@ for (const [destination, route] of expectedRoutes) {
   assert.deepEqual(routed.assignments, [route], `${destination} must route to ${route}`);
 }
 
-console.log("Front-door routing regression verified: direct entry plays; world return uses the approved 12.2s frame without loading video; all seven worlds route correctly.");
+console.log("Front-door routing regression verified: direct entry plays; blocked autoplay and world return use the approved static frame; all seven worlds route correctly.");
