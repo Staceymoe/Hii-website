@@ -402,7 +402,7 @@ const careRequired = [
   [/Now forming/, "active roundtable status"],
   [/Available for organizations/, "organizational workshop status"],
   [/Available by inquiry/, "advisory inquiry status"],
-  [/Request a September roundtable seat/, "roundtable recruitment action"],
+  [/Express interest in a future roundtable/, "future roundtable recruitment action"],
   [/href="#care-programs">Explore CARE programs/, "first-window CARE programs action"],
   [/href="\/mental-health\/roundtable\/">Join the Founding Clinician Roundtable/, "first-window roundtable action"],
   [/Explore a workshop/, "workshop inquiry action"],
@@ -462,15 +462,21 @@ else pass("CARE pilot confirmation page is present");
 const roundtablePage = (await read("_site/mental-health/roundtable/index.html")).toString("utf8");
 for (const [pattern, label] of [
   [/Request a roundtable seat/, "primary seat-request action"],
-  [/6:00 to 7:00 PM Central/, "Milwaukee session time"],
-  [/12:00 to 1:00 PM Central/, "Zoom session time"],
-  [/hii-clinician-roundtable-invitation\.webp/, "display invitation"],
-  [/data-share-invitation/, "enhanced invitation sharing"],
-  [/hii-clinician-roundtable-invitation\.webp" download/, "downloadable invitation"]
+  [/future virtual or Milwaukee-area clinician conversation/, "future session format"],
+  [/href="\/mental-health\/roundtable\/interest\/"/, "active interest route"],
+  [/href="\/research\/why-study-interaction-over-time\/"/, "research context"]
 ]) {
   if (!pattern.test(roundtablePage)) fail(`roundtable page is missing ${label}`);
   else pass(`roundtable page includes ${label}`);
 }
+const roundtableInterestPage = (await read("_site/mental-health/roundtable/interest/index.html")).toString("utf8");
+if (!roundtableInterestPage.includes("Preferred format") || !roundtableInterestPage.includes('name="contact-permission"')) fail("roundtable interest form lacks future format or contact consent");
+else pass("roundtable interest form has future format and contact consent");
+const studyNote = (await read("_site/research/why-study-interaction-over-time/index.html")).toString("utf8");
+if (!studyNote.includes("remains pre-validation") || !studyNote.includes("not a promise of access to private raw material")) fail("research note lacks status or access boundary");
+else pass("research note includes status and access boundary");
+if (/September (?:9|10), 2026/.test(roundtablePage + roundtableInterestPage)) fail("roundtable invitation still contains expired dates");
+else pass("roundtable invitation has no expired September 2026 dates");
 
 const builtHtmlPaths = (await readdir(output, { recursive: true })).filter((relativePath) => relativePath.endsWith(".html"));
 for (const htmlPath of builtHtmlPaths) {
